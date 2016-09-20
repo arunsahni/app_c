@@ -1,0 +1,758 @@
+
+<style type="text/css">
+	.froala-editor {z-index: 9999 !important}
+</style>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!--<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">-->
+
+<!-- compiled css output -->
+<!--<link href="../assets/board/css/bootstrap.min.css" rel="stylesheet">-->
+<!--<link href="css/main.css" rel="stylesheet">-->
+<link href="../assets/board/css/style.css" rel="stylesheet">
+<link href="../assets/board/css/animate.css" rel="stylesheet">
+<link href="../assets/board/fonts/stylesheet.css" rel="stylesheet">
+<link href="../assets/board/css/media---2.css" rel="stylesheet">
+<link href="../assets/board/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/board/css/jquery.gridster.css" rel="stylesheet" type="text/css"> 
+<!--<link href="css/jquery.gridster.css" rel="stylesheet">-->
+  
+<!-- Froala Editor -->
+<link href="../assets/board/css/froala_editor.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/board/css/froala_style.min.css" rel="stylesheet" type="text/css">
+	
+<div id="note_forMontage" style="display:none">
+	<div class="popup-textarea bx-sz">
+		<section id="editor">
+			<div id="edit" class="edit_froala2 bx-sz">
+				<p>Start writing...</p>
+			</div>
+		</section>
+		<section class="btns-btm for-mob bx-sz">
+			<section ng-show="note_montage_case == true" class="col-xs-6"><a  ng-click="note_screenshot_for_montage()" onClick="add_id_forNote()" href="javascript:void(0)" class="circle-btn"><span>Add to montage</span></a></section>
+			<section ng-show="note_montage_case == true" class="col-xs-6"><a  ng-click="close_note();" href="javascript:void(0)"  class="square-btn"><span>Exit without save</span></a></section>
+	   </section>
+	</div>
+	<div class="bg-popup"></div>
+</div>
+
+<!-- Header -->
+<main class="container bx-sz">
+	<header class="row nw-header bx-sz" include-static="'../views/front/boards/elements/header2.html'"></header>
+	<section class="nw-subheader row bx-sz" include-static="'../views/front/boards/elements/h2_search_tray.html'"></section>
+	<section class="text-editor  bx-sz">
+		<section id="editor">
+		  <div id="edit" class="edit_froala1">
+			<p>Start writing...</p>
+		  </div>
+		</section>
+	   
+	   <!--<textarea class="text-area form-control">Start writing...</textarea>-->
+	   <section class="tooltips">
+		
+			<!----------------------------------   Post to board butons  ---------------------------------------------------->
+			<a ng-show="search_view_case == true" ng-click="addMedia()" href="javascript:void(0)" class="a-circle" id="a-tooltip1">
+			   <span id="tooltip1" class="tooltip-box animated"><b class="animated fadeIn">Post to board</b></span>
+			</a>
+			<!--<a ng-show="note_case == true" ng-click="close_note()" onClick="alert('work in progress');" href="javascript:void(0)" class="a-circle" id="a-tooltip5">-->
+			   <!--<span id="tooltip5" class="tooltip-box animated"><b class="animated fadeIn">Post note to board</b></span>-->
+			<!--</a>-->
+			<a ng-show="note_montage_case == true" ng-click="note_screenshot_for_montage()" onClick="add_id_forNote()" href="javascript:void(0)" class="a-circle" id="a-tooltip6">
+			   <span id="tooltip6" class="tooltip-box animated"><b class="animated fadeIn">Add to montage</b></span>
+			</a>
+			<a ng-show="post_montage_case == true" ng-click="postMontage_mCtrl()" href="javascript:void(0)" class="a-circle" id="a-tooltip7">
+			   <span id="tooltip7" class="tooltip-box animated"><b class="animated fadeIn">Post montage </b></span>
+			</a>
+			<!----------------------------------   Post to board butons ends ---------------------------------------------------->
+			
+			
+			<!----------------------------------   Exit without save butons  ---------------------------------------------------->
+			<a ng-show="search_view_case == true" class="a-square" id="a-tooltip2" onClick="grid_init()"  ng-click="close_holder_act();">
+				<span  id="tooltip2" class="tooltip-box animated"><b class="animated fadeIn">Exit without save</b></span>
+			</a>
+			<a ng-show="post_montage_case == true" class="a-square" id="a-tooltip8" onClick="grid_init()"  ng-click="close_holder_act();">
+				<span  id="tooltip8" class="tooltip-box animated"><b class="animated fadeIn">Exit without save</b></span>
+			</a>
+			<!--<a ng-show="note_case == true" class="a-square" id="a-tooltip3" ng-click="close_note()" >-->
+				<!--<span id="tooltip3" class="tooltip-box animated"><b class="animated fadeIn">Exit without save</b></span>-->
+			<!--</a>-->
+			<a ng-show="note_montage_case == true" class="a-square" id="a-tooltip4" ng-click="close_note()" >
+				<span id="tooltip4" class="tooltip-box animated"><b class="animated fadeIn">Exit without save</b></span>
+			</a>
+			<!----------------------------------   Exit without save butons Ends ---------------------------------------------------->
+		
+	   </section>
+	</section>
+	
+	<section class="m-gridster clear">
+	  <div class="gridster">
+		<div id="holder-box" class="single-img"></div>
+		<ul id="grid" style="display: none">
+			<li data-row="1" data-col="1" data-sizex="1" data-sizey="1" ><a ng-click="openNote_mctrl()" onClick="openNote($(this))" href="javascript:void(0)" class="addnote drop-here"><span class="tb-cell"><span class="fa fa-plus-circle"></span> <b>Click to add note</b></span></a></li>
+			<li data-row="1" data-col="2" data-sizex="1" data-sizey="1" ><a ng-click="openNote_mctrl()" onClick="openNote($(this))" href="javascript:void(0)" class="addnote drop-here"><span class="tb-cell"><span class="fa fa-plus-circle"></span> <b>Click to add note</b></span></a></li>
+			<li data-row="2" data-col="1" data-sizex="1" data-sizey="1" ><a ng-click="openNote_mctrl()" onClick="openNote($(this))" href="javascript:void(0)" class="addnote drop-here"><span class="tb-cell"><span class="fa fa-plus-circle"></span> <b>Click to add note</b></span></a></li>
+			<li data-row="2" data-col="2" data-sizex="1" data-sizey="1" ><a ng-click="openNote_mctrl()" onClick="openNote($(this))" href="javascript:void(0)" class="addnote drop-here"><span class="tb-cell"><span class="fa fa-plus-circle"></span> <b>Click to add note</b></span></a></li>
+		</ul>
+		<ul id="grid_clone" style="display: none; height:555px !important;width: 555px !important;">
+		</ul>
+	  </div>
+	  
+	</section>
+	
+	<section class="btns-btm for-mob bx-sz">
+		<section ng-show="search_view_case == true" class="col-xs-6"><a ng-click="addMedia()" href="javascript:void(0)" class="circle-btn"><span>Post to board</span></a></section>
+		<section ng-show="search_view_case == true" class="col-xs-6"><a onClick="grid_init()" ng-click="close_holder_act();" href="javascript:void(0)"  class="square-btn"><span>Exit without save</span></a></section>
+		
+		<section ng-show="post_montage_case == true" class="col-xs-6"><a ng-click="postMontage_mCtrl()" href="javascript:void(0)" class="circle-btn"><span>Post montage</span></a></section>
+		<section ng-show="post_montage_case == true" class="col-xs-6"><a onClick="grid_init()" ng-click="close_holder_act();" href="javascript:void(0)"  class="square-btn"><span>Exit without save</span></a></section>
+		
+		<!--<section ng-show="note_montage_case == true" class="col-xs-6"><a  ng-click="note_screenshot()" href="javascript:void(0)" class="circle-btn"><span>Add to montage</span></a></section>-->
+		<!--<section ng-show="note_montage_case == true" class="col-xs-6"><a  ng-click="close_note();" href="javascript:void(0)"  class="square-btn"><span>Exit without save</span></a></section>-->
+   </section>
+</main>
+<!-- /Header --> 
+
+
+
+<!-- Scripts -->
+<!--<script src="js/jquery.min.js"></script>-->
+<script src="../assets/board/js/froala/froala_editor.min.js"></script>
+<script src="../assets/board/js/froala/plugins/block_styles.min.js"></script>
+<script src="../assets/board/js/froala/plugins/colors.min.js"></script>
+<script src="../assets/board/js/froala/plugins/file_upload.min.js"></script>
+<script src="../assets/board/js/froala/plugins/font_family.min.js"></script>
+<script src="../assets/board/js/froala/plugins/font_size.min.js"></script>
+<script src="../assets/board/js/froala/plugins/fullscreen.min.js"></script>
+<script src="../assets/board/js/froala/plugins/inline_styles.min.js"></script>
+<script src="../assets/board/js/froala/plugins/tables.min.js"></script>
+<script src="../assets/board/js/froala/plugins/urls.min.js"></script>
+<script src="../assets/board/js/froala/plugins/video.min.js"></script>
+<script src="../assets/board/js/froala/plugins/media_manager.min.js"></script>
+<script src="../assets/board/js/froala/plugins/lists.min.js"></script>
+<!--<script src="../assets/board/js/froala/plugins/char_counter.min.js"></script>-->
+
+
+
+<!--<script>
+  $.Editable.DEFAULTS.key = 'DA6C5veuxA-63B15hce1==';
+</script>-->
+<script>
+	
+	
+///****************************************************************************************************************
+///****************************************************************************************************************
+/// initializing droppable to make holder-box droppable
+///****************************************************************************************************************
+///****************************************************************************************************************
+/// parul 20042015
+// added by parul to make holder-box droppable
+$('#holder-box').droppable({
+	accept: '.drag-me',
+	hoverClass: "grid-focused",
+	drop:function(event,ui){
+		var item = $(ui.draggable);
+		gridster_tray(item.find('a'));
+	}
+})
+/********************************************END******************************************************/	 
+
+	
+	//console.log(video[0]);
+	function btnReplay() {
+		$('#videoID')[0].currentTime=0;
+		$('#videoID')[0].play();
+		return false;
+	}
+
+
+///****************************************************************************************************************
+///****************************************************************************************************************
+/// initializing droppable on add note class of gridster li
+///****************************************************************************************************************
+///****************************************************************************************************************
+/// parul 20042015
+function grid_init() {
+	console.log('grid_init');
+	setTimeout(function(){
+		$('.drop-here').droppable({
+			accept: '.drag-me',
+			hoverClass: "grid-focused",
+			drop:function(event,ui){
+				//alert(1);
+				console.log($(this).parent());
+				var row = $(this).parent().attr('data-row');
+				var col = $(this).parent().attr('data-col');
+				var item = $(ui.draggable);
+				gridster_tray(item.find('a'),row,col);  
+			}
+		})
+	},1000)
+}
+
+grid_init();
+/********************************************END******************************************************/	 
+
+
+function chk_ctrl() {
+	alert("chk_ctrl()");
+}
+
+
+/********************************************END******************************************************/	 
+
+//added by parul to start froala text editor
+$(function(){
+	
+});
+
+
+
+
+
+var trayObject_index = null;
+/*________________________________________________________________________
+	* @Date:      	02 April 2015
+	* @Method :   	gridster_tray
+	* Created By: 	smartData Enterprises Ltd
+	* Modified On:	14 Apr 2015, 16 April 2015
+	* @Purpose:   	This is called when user clicks on media tray of view_search page.
+	* @Param:     	3
+	* @Return:    	no
+_________________________________________________________________________
+*/    
+//parul02042015 
+function gridster_tray(obj,row,col){
+	$('#discuss_list').hide();
+	console.log($('#grid li[data-row="2"][data-col="1"]').html());
+	var scope = angular.element($(".search-view")).scope();
+	scope.trayObject = obj;
+	console.log(scope.trayObject);
+	console.log(scope.__isMontagePrivate);
+	trayObject = obj;
+	trayObject_index = obj.parent().index();
+	console.log('-----gridster_tray-------'+trayObject_index);
+	if ($('#holder-box').find('#montageContainer').is('div')) {
+		$('#montage_replace_pop').css({'display':'block'});
+	}
+	else if (scope.__isMontagePrivate == false && $('#holder-box').attr('is-private') == '1' && !($('#holder-box').find('.noteContent').is('p')) && !($('#holder-box').find('.videoContent').is('p'))) {
+		if ($('#grid').find('.addnote').length >= 1) {
+			if ($('#holder-box').attr('is-private') == '1') {
+			   $('#private_media_pop1').show();
+			}
+		}else{
+			alert('no room left for new media')
+		}
+	}else{
+		if (obj.find('.montageElement').is('img')) {
+		  $('#montage_pop').css({'display':'block'});
+		}
+		else if (scope.__isMontagePrivate == false && obj.attr('is-private') == 1 && !(obj.find('.noteContent').is('p')) && !(obj.find('.videoContent').is('p'))) {
+			if ($('#grid').find('.addnote').length >= 1) {
+				if (obj.attr('is-private') == 1) {
+					$('#private_media_pop').css({'display':'block'});
+				}
+			}else{
+				alert('no room left for new media');
+			}
+		}else{
+			setTimeout(function(){
+				var scope2 = angular.element($(".search-view")).scope();
+				scope2.$apply(function(){
+					angular.element($(".search-view")).scope().montage_case_buttons_handler();
+				})
+				scope2 = null;
+			},100)
+			
+			addToGrid(obj,row,col);
+			grid_init();
+		}
+	}
+	scope = null;
+}
+/********************************************END******************************************************/	 
+
+
+
+/*________________________________________________________________________
+* @Date:      	14 April 2015
+* @Method :   	mkPublic
+* Created By: 	smartData Enterprises Ltd
+* Modified On:	--
+* @Purpose:   	This is called to make private media public.
+* @Param:     	no
+* @Return:    	no
+_________________________________________________________________________
+*/
+//parul 14042015
+function mkPublic(){
+	var scope = angular.element($(".search-view")).scope();
+	var id = trayObject.attr('data-id');
+	scope.$apply( function () {
+		setTimeout( function () {
+			if (obj_stage_index != null && obj_stage_index != undefined && obj_stage_index != '') {
+				scope.makePublic(id,obj_stage_index,'stage_case');
+				obj_stage_index = null;
+			}
+			else{
+				scope.makePublic(id,trayObject_index,'tray_case');
+				setTimeout(function(){trayObject_index = null},500);	
+			}
+		},20);
+	});
+}
+/********************************************END******************************************************/	 
+
+
+/*________________________________________________________________________
+* @Date:      	15 April 2015
+* @Method :   	remove_from_list
+* Created By: 	smartData Enterprises Ltd
+* Modified On:	16 April 2015,
+* @Purpose:   	This is to remove media entry from media trays.
+* @Param:     	1
+* @Return:    	no
+_________________________________________________________________________
+*/
+function remove_from_list(obj) {
+	$('#media-tray-elements li:eq('+obj.parent().index()+')').remove();
+	$('#discuss_list #search-media-tray li:eq('+obj.parent().index()+')').remove();
+	obj.parent().remove();
+}
+/********************************************END******************************************************/
+
+
+/*________________________________________________________________________
+* @Date:      	15 April 2015
+* @Method :   	addToGrid
+* Created By: 	smartData Enterprises Ltd
+* Modified On:	16 April 2015,
+* @Purpose:   	This is to add media tray item to gridster.
+* @Param:     	3
+* @Return:    	no
+_________________________________________________________________________
+*/
+//parul 15042015	 
+function addToGrid(obj,row,col){
+	console.log($('#grid li[data-row="2"][data-col="1"]').html());
+	$('#grid').show();
+	if ($('#holder-box').css('display') != 'none') {
+		console.log('addToGrid_first_case')
+		addToGrid_first_case(obj);
+	}else{
+		console.log('addToGrid_else_case')
+		if (row != undefined && row != null && col != undefined && col != null) {
+			var objct = getHtml(obj);
+			item_ids[$('#grid li[data-row='+row+'][data-col='+col+']').index()] = "mon_note_unknown";
+			$('#grid li[data-row='+row+'][data-col='+col+']').html(objct.html());
+			$('#grid li[data-row='+row+'][data-col='+col+']').append('<div onclick="del_grid($(this))" class="close_icon" title="Delete"></div>');
+			remove_from_list(obj);
+		}else{
+			if ($('#grid li[data-row="1"][data-col="1"]').find('.addnote').is('a')) {
+				var objct = getHtml(obj);
+				item_ids[$('#grid li[data-row="1"][data-col="1"]').index()] = obj.attr('data-id');
+				$('#grid li[data-row="1"][data-col="1"]').html(objct.html());
+				$('#grid li[data-row="1"][data-col="1"]').append('<div onclick="del_grid($(this))" class="close_icon" title="Delete"></div>');
+				remove_from_list(obj)
+			}
+			else if ($('#grid li[data-row="1"][data-col="2"]').find('.addnote').is('a')) {
+				var objct = getHtml(obj);
+				item_ids[$('#grid li[data-row="1"][data-col="2"]').index()] = obj.attr('data-id');
+				$('#grid li[data-row="1"][data-col="2"]').html(objct.html());
+				$('#grid li[data-row="1"][data-col="2"]').append('<div onclick="del_grid($(this))" class="close_icon" title="Delete"></div>');
+				remove_from_list(obj)
+			}
+			else if ($('#grid li[data-row="2"][data-col="1"]').find('.addnote').is('a')) {
+				var objct = getHtml(obj);
+				item_ids[$('#grid li[data-row="2"][data-col="1"]').index()] = obj.attr('data-id');
+				$('#grid li[data-row="2"][data-col="1"]').html(objct.html());
+				$('#grid li[data-row="2"][data-col="1"]').append('<div onclick="del_grid($(this))" class="close_icon" title="Delete"></div>');
+				remove_from_list(obj)
+			}
+			else if ($('#grid li[data-row="2"][data-col="2"]').find('.addnote').is('a')) {
+				var objct = getHtml(obj);
+				item_ids[$('#grid li[data-row="2"][data-col="2"]').index()] = obj.attr('data-id');
+				$('#grid li[data-row="2"][data-col="2"]').html(objct.html());
+				$('#grid li[data-row="2"][data-col="2"]').append('<div onclick="del_grid($(this))" class="close_icon" title="Delete"></div>');
+				remove_from_list(obj)
+			}
+			else{
+				alert('no room left for new media')
+			}
+		}
+		console.log('***********************************************');
+		console.log(item_ids);
+		console.log('***********************************************');
+	}
+	$('#holder-box').hide();
+	$('#holder-box').html("");
+}
+/********************************************END******************************************************/
+
+
+
+
+/*________________________________________________________________________
+* @Date:      	16 April 2015
+* @Method :   	addToGrid_first_case
+* Created By: 	smartData Enterprises Ltd
+* Modified On:	23 Apr 2015
+* @Purpose:   	This is called to make private media public.
+* @Param:     	-
+* @Return:    	no
+_________________________________________________________________________
+*/
+//parul 16042015
+function addToGrid_first_case(obj) {
+	console.log('in first case');
+	window.item_ids = ['','','',''];
+	var scope = angular.element($(".search-view")).scope();
+	if (scope.del_grid_noteCase == false) {
+		item_ids[$('#grid li[data-row="1"][data-col="1"]').index()] = scope.mediasData._id;
+	}else{
+		item_ids[$('#grid li[data-row="1"][data-col="1"]').index()] = 'mon_note';
+	}
+	
+	item_ids[$('#grid li[data-row="1"][data-col="2"]').index()] = obj.attr('data-id');
+	scope = null;
+	console.log('***********************************************');
+	console.log(item_ids);
+	console.log('***********************************************');
+	console.log($('#grid li[data-row="2"][data-col="1"]').html());
+	if ($('#holder-box').find('#videoContainer').is('div')) {
+		var first = getHtml($('#holder-box').find('#videoActual'));
+	}
+	else if ($('#holder-box').find('#iframeContainer').is('div')) {
+		var first = getHtml($('#holder-box').find('#linkActual'));
+	}else if ($('#holder-box').find('#noteContainer').is('div')) {
+		var first = getHtml($('#holder-box').find('#noteActual'));
+	}else{
+		var first = getHtml($('#holder-box'));
+	}
+	$('#grid li[data-row="1"][data-col="1"]').html(first.html());
+	$('#grid li[data-row="1"][data-col="1"]').append('<div onclick="del_grid($(this))" class="close_icon"  title="Delete"></div>');
+	var second= getHtml(obj);
+	remove_from_list(obj)
+	$('#grid li[data-row="1"][data-col="2"]').html(second.html());
+	$('#grid li[data-row="1"][data-col="2"]').append('<div onclick="del_grid($(this))" class="close_icon" title="Delete"></div>');
+}
+/********************************************END******************************************************/
+
+
+
+	 
+/*________________________________________________________________________
+* @Date:      	15 April 2015
+* @Method :   	getHtml
+* Created By: 	smartData Enterprises Ltd
+* Modified On:	16 Aril 2015
+* @Purpose:   	This is used to get html from object to append it to gridster. it is used in addToGrid() function
+* @Param:     	1
+* @Return:    	yes
+_________________________________________________________________________
+*/
+//parul 15042015		 
+function getHtml(obj1){
+	var obj = obj1.clone();
+	if (obj.find('img').is("img")) {
+		obj.find('img').removeAttr('width');
+		if (obj.find('img').parent().hasClass('avatar-name')) {
+			obj.find('img').unwrap();
+			obj.find('img').wrap("<p class='innerimg-wrap'></p>");
+		}else if(obj.find('.avatar-name').is('span')){
+			obj.find('.avatar-name').remove();
+			obj.find('img').wrap("<p class='innerimg-wrap'></p>");
+		}
+		if (!(obj.find('img').parent().hasClass('innerimg-wrap'))) {
+			obj.find('img').wrap("<p class='innerimg-wrap'></p>");
+		}
+		if (obj.find('.avtar_list_overlay').is('span')) {
+			obj.find('.avtar_list_overlay').remove();
+		}
+		var imgStr = obj.find('img').attr('src');
+		var thumbSize = "/"+small__thumbnail;
+		var replaceWith="/"+discuss__thumbnail;
+		imgStr = getResizedThumbnail(imgStr,thumbSize,replaceWith);
+		var itemImg = obj.find('img').attr('src',imgStr);
+	}else{
+		if (obj.find('.avatar-name').find('p').is('p')) {
+			obj.find('.avatar-name').find('p').addClass('textWrap');
+			obj.find('.textWrap').unwrap();
+			obj.find('.avtar_list_overlay').remove();
+		}
+	}
+	if (obj.find('.videoContent').is('p')) {
+		obj.append('<span class="play-btn"><img src="../assets/img/play-btn.png" /></span>');
+	}
+	return obj;
+}
+/********************************************END******************************************************/
+
+
+
+/*________________________________________________________________________
+	* @Date:      	17 April 2015
+	* @Method :   	del_grid
+	* Created By: 	smartData Enterprises Ltd
+	* Modified On:	-
+	* @Purpose:   	This is used to replace content of #grid li in case user wants to remove media from li.
+	* @Param:     	1
+	* @Return:    	no
+_________________________________________________________________________
+*/    
+function del_grid(obj) {
+	var scope = angular.element($(".search-view")).scope();
+	var grid_li = [];
+	angular.element($(".search-view")).injector().invoke(function($compile) {
+		for (i=0;i<4;i++) {
+			grid_li[i] = angular.element('<a href="javascript:void(0)" ng-click="openNote_mctrl()" onClick="openNote($(this))" class="addnote drop-here"><span class="tb-cell"><span class="fa fa-plus-circle"></span> <b>Click to add note</b></span></a>');
+			grid_li[i] = $compile(grid_li[i])(scope);
+		}
+	});
+	var dup_obj = obj.parent().html();
+	var curr_index = obj.parent().index();
+	var curr_id = item_ids[curr_index];
+	if($('#grid').find('.addnote').length < 2){
+		obj.parent().html(grid_li[0]);
+		item_ids[curr_index] = '';
+	}else{
+		item_ids[curr_index] = '';
+		var mon_note_flag = false;
+		for(i in item_ids){
+			if (item_ids[i] != '' && item_ids[i] != 'mon_note' && item_ids[i] != 'mon_note_unknown') {
+				scope.$apply(function(){
+					console.log('===========================================================');
+					console.log(item_ids[i]);
+					scope.setMediaIdd_uploadCase(item_ids[i]);
+				})
+			}else if( item_ids[i] == 'mon_note' ){
+				scope.$apply(function(){
+					scope.del_grid_noteCase = true;
+					mon_note_flag = true;
+				})
+			}
+		}
+		if (!mon_note_flag) {
+			scope.del_grid_noteCase = false;
+		}
+		$('#grid li').each(function(){
+			console.log($(this).index()+' == '+curr_index)
+			if ($(this).find('.addnote').is('a')) {
+				console.log('first case');
+			}else if($(this).index() == curr_index){
+				console.log('second case');
+			}else{
+				$('#grid').hide();
+				console.log('third case');
+				$('#holder-box').show();
+				$(this).find('.close_icon').remove();		
+				if ($(this).find(".montageContent").attr('class')) {
+					media=true;
+					var data=$(this).find('.montageContent').html();
+					data = data.replace(/@less@/g,"<");
+					data = data.replace(/gre@ter/g,">");
+					$('#holder-box').html('');
+					$('#holder-box').html("<div id='montageContainer'></div>")
+					$('#montageContainer').append(data);
+					$('#holder-box').append("<div id='montageActual' style='display:none'>"+$(this).html()+"</div>");
+				}
+				else if ($(this).find(".linkContent").attr('class')) {
+					media=true;
+					var data=$(this).find('.linkContent').html();
+					data = data.replace("less","<");
+					data = data.replace("greater",">");
+					$('#holder-box').html('');
+					$('#holder-box').html("<div id='iframeContainer' class='holder_bulb_iframe'></div>")
+					$('#iframeContainer').append(data);
+					$('#holder-box').append("<div id='linkActual' style='display:none'>"+$(this).html()+"</div>");
+				}else if ($(this).find(".noteContent").attr('class')) {
+					media=true;
+					var data=$(this).find('.noteContent').html();
+					data = data.replace(/@less@/g,"<");
+					data = data.replace(/gre@ter/g,">");
+					$('#holder-box').html('');
+					$('#holder-box').html("<div id='noteContainer'></div>")
+					$('#noteContainer').append(data);
+					$('#holder-box').append("<div id='noteActual' style='display:none'>"+$(this).html()+"</div>");
+				}else if($(this).find('.videoContent').is('p')){
+					$('#holder-box').html("<div id='videoContainer' class='holder_bulb_iframe'></div>");
+					$('#videoContainer').append('<video class="media_video" controls ><'+$(this).find('.videoContent').html()+'></video>');
+					var whichBrowser = BrowserDetecter.whichBrowser();
+					var videoSrc = $('#holder-box').find('source').attr('src');
+					var ext = videoSrc.split('.').pop();
+					if (whichBrowser == "FireFox") {
+					  if ( ext.toUpperCase() != 'WEBM' ) {
+						videoSrc = videoSrc.replace('.'+ext,'.webm');
+					  }
+					}
+					else if (whichBrowser == 'Safari') {
+					  if ( ext.toUpperCase() != 'MP4' ) {
+						videoSrc = videoSrc.replace('.'+ext,'.mp4');	
+					  }
+					}
+					else{
+					  if ( ext.toUpperCase() != 'MP4' ) {
+						videoSrc = videoSrc.replace('.'+ext,'.mp4');	
+					  }
+					}
+					$('#holder-box').find('source').attr('src', videoSrc);
+					
+					var ext = videoSrc.split('.').pop();
+					$('.s-media-con').hide();
+					$('.d-media-con').hide();
+					media_type = "video";
+					$('#holder-box').append("<div id='videoActual' style='display:none'>"+$(this).html()+"</div>");
+				}
+				else{
+					if($(this).find('img').is('img')){
+						if($(this).find('img').parent().hasClass('innerimg-wrap')){
+							$(this).find('img').unwrap();
+						}
+						var orgUrl = $(this).find('img').attr('src');
+						var thumbSize = "/"+small__thumbnail;
+						var replaceWith="/"+discuss__thumbnail;		//20022015
+						imgStr = getResizedThumbnail(orgUrl,thumbSize,replaceWith);
+						$(this).find('img').attr('src',imgStr);
+						$('#holder-box').html($(this).html())
+					}else{
+						var objj=$(this).clone();
+						if (objj.find('.avatar-name').find('p').is('p')) {
+							objj.find('.avatar-name').find('p').addClass('textWrap');
+							objj.find('.textWrap').unwrap();
+							objj.find('.avtar_list_overlay').remove();
+						}
+						
+						$('#holder-box').html(objj.html())
+					}
+				}
+				$('#grid').find('li').each(function(){
+					$(this).html(grid_li[$(this).index()]);
+				})
+				scope.$apply(function(){
+					angular.element($(".search-view")).scope().init__stateVar();
+				})
+			}
+		})
+	}
+	if (curr_id != '' && curr_id != 'mon_note') {
+		scope.addtoTray_delCase(curr_id);
+	}else if (curr_id == 'mon_note') {
+		alert('mon_note case still under discussion')
+	}else{
+		//alert('unknown case in del_grid')
+	}
+	console.log('***********************************************');
+	console.log(item_ids);
+	console.log('***********************************************');
+	scope=null;
+	grid_init();
+}
+/********************************************END******************************************************/
+
+
+/*________________________________________________________________________
+	* @Date:      	12 May 2015
+	* @Method :   	add_back_to_tray
+	* Created By: 	smartData Enterprises Ltd
+	* Modified On:	-
+	* @Purpose:   	This is used to add media deleted from grid back to media tray .
+	* @Param:     	1
+	* @Return:    	no
+_________________________________________________________________________
+*/    
+function add_back_to_tray(dup_obj,curr_id){
+	var new_li_srch = angular.element('<li class="dragable"></li>');
+	var new_li_grid = document.createElement('li');
+	var obj = document.createElement('li');
+	$(obj).append(dup_obj);
+	new_li_srch.append('<div onclick="deleteMedia($(this))" class="close_icon" style="top:0" title="Delete"></div><a onclick="openMediaDetail($(this))" data-ng-click="setMediaIdd("'+curr_id+'")" data-id="'+curr_id+'" href="javascript:void(0)"><span class="avtar_list_overlay"></span><span class="avatar-name"></span></a>');
+	$(new_li_grid).append('<div onclick="deleteMedia($(this))" class="close_icon" style="top:0" title="Delete"></div><a onclick="gridster_tray($(this))" data-ng-click="setMediaIdd("'+curr_id+'")" data-id="'+curr_id+'" href="javascript:void(0)"><span class="avtar_list_overlay"></span><span class="avatar-name"></span></a>');
+	
+	if ($(obj).find('.linkContent').is('p')) {
+		console.log('-------------------------------Link case----------------------------------------------------');
+		
+	}else if($(obj).find('.videoContent').is('p')) {
+		console.log('-------------------------------video case----------------------------------------------------');
+		
+	}else if($(obj).find('.noteContent').is('p')) {
+		console.log('-------------------------------note case----------------------------------------------------');
+		
+	}else{
+		console.log('-------------------------------Image case----------------------------------------------------');
+		//new_li_srch.find('.avatar-name').append($(obj).find('.innerimg-wrap').html())
+		//$('.search-view #search-media-tray').append(new_li_srch);
+	}
+	
+}
+/********************************************END******************************************************/
+
+
+
+/*________________________________________________________________________
+	* @Date:      	17 April 2015
+	* @Method :   	openNote
+	* @Created By: 	smartData Enterprises Ltd
+	* @Modified On:	-
+	* @Purpose:   	This is used for the purpose of adding note to montage grid .
+	* @Param:     	1
+	* @Return:    	no
+_________________________________________________________________________
+*/    
+//parul17042015 
+function openNote(obj) {
+	//alert('here')
+	$('#note_forMontage').show();
+	var scope = angular.element($(".search-view")).scope();
+	//alert(obj.parent().attr('data-row'));
+	scope.$apply(function(){
+		angular.element($(".search-view")).scope().row_no = obj.parent().attr('data-row');
+		angular.element($(".search-view")).scope().col_no = obj.parent().attr('data-col');
+	})
+	scope = null;
+}
+/********************************************END******************************************************/
+
+
+/*________________________________________________________________________
+	* @Date:      	24 April 2015
+	* @Method :   	add_id_forNote
+	* Created By: 	smartData Enterprises Ltd
+	* Modified On:	-
+	* @Purpose:   	This is used to handle note case for item_ids .
+	* @Param:     	1
+	* @Return:    	no
+_________________________________________________________________________
+*/    
+//parul17042015 
+function add_id_forNote() {
+	setTimeout(function(){
+		//$('#note_forMontage').show();
+		var scope = angular.element($(".search-view")).scope();
+		var row = angular.element($(".search-view")).scope().row_no;
+		var col = angular.element($(".search-view")).scope().col_no;
+		item_ids[$('#grid li[data-row='+row+'][data-col='+col+']').index()] = scope.mon_note_id;
+		console.log('8888888888888888888888888888888888888888888888888888888888888888888888');
+		console.log(item_ids);
+		console.log('8888888888888888888888888888888888888888888888888888888888888888888888');
+		scope.mon_note_id = null;
+		scope = null;
+	},8000)
+	
+}
+/********************************************END******************************************************/
+
+</script>
+  <script src="../assets/board/js/jquery.gridster.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="js/gridster/jquery.gridster.min.js"></script>-->
+<script src="../assets/board/js/cjquery.js"></script>
+<script>
+	jQuery(document).ready(function($) {
+		setTimeout(function(){
+			$('.toggle-menu').jPushMenu();
+		},5000)
+	});
+</script>

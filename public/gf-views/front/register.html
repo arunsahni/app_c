@@ -1,0 +1,76 @@
+<div class="container">
+			
+			<header>
+                            <br />
+            	<p class="logo">Scrpt <span>Sign up</span></p>
+				<!--<a href="#" class="tip" id="logo" data-tip="Scrpt"></a>
+				<a class="icon-create tip" data-tip="Create"></a>
+				<a class="icon-context tip" data-tip="Context" id="trigger-overlay"></a>-->
+			</header>
+			
+			<div id="everything" style="max-width:560px; margin:0 auto; padding-top:70px;">
+                        <section id="login" class="animated bounceInDown">
+                	<form class="well simform" novalidate id="theForm" name="users" autocomplete="off">                        
+			    <div class="loginform-inner">
+                            <h1>Sign up</h1>
+                            <ul class="loginform">
+                                <li>
+                                <input type="text" class="textfield" name="name" placeholder="Name" ng-model="user.name" auto-focus required>
+                                
+			         <p class="thumb"  ng-show="users.name.$error.required"><a><img src="../assets/img/invalid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Please enter your full name here.</span></a></p>
+			         <p class="thumb"  ng-show="!(users.name.$error.required)"><a></a><img src="../assets/img/valid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Please enter your full name here.</span></a></p>
+			        
+				</li>
+				<li>
+                                <input type="email" autocomplete="off" class="textfield" name="email" placeholder="Email" ng-model="user.email" required>
+			        <p class="thumb"  ng-show="(users.email.$dirty && users.email.$invalid)||users.email.$error.required"><a><img src="../assets/img/invalid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Please enter a valid email id.</span></a></p>
+			        <p  class="thumb" ng-show="!((users.email.$dirty && users.email.$invalid)||users.email.$error.required)"><a><img src="../assets/img/valid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Please enter a valid email id.</span></a></p>
+				</li>
+				<li>
+                                <input type="password" class="textfield" autocomplete="off" name="password" placeholder="Password" ng-minlength="6" ng-model="user.password" required>
+				<p class="thumb" ng-show="users.password.$error.minlength||users.password.$error.required" ><a><img src="../assets/img/invalid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Use at least 6 characters. Don’t use a password from another site, or something too obvious like your pet’s name.</span></a></p>
+				<p class="thumb" ng-show="!(users.password.$error.minlength||users.password.$error.required)" ><a><img src="../assets/img/valid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Use at least 6 characters. Don’t use a password from another site, or something too obvious like your pet’s name.</span></a></p>
+				</li>
+			    </ul>
+							
+			    
+			    
+                            <div ng-if="msg"><p class="error">{{msg}}<span class="close_icon"></span></p></div>
+                            <button type="submit" style="float:left; width:auto;" class="button" ng-click="submitForm(users.$valid)" ng-disabled="users.$dirty && users.$invalid">Sign up</button>
+			    <button style="float:right; width:auto;" type="submit" class="button" ng-click="redirectToLogin()" >Login</button>
+			    
+                        </div>
+                    </form>
+				</section><!-- Login -->				
+				
+		  </div>
+			
+			<!--<div class="overlay overlay-slidedown">
+				<button type="button" class="overlay-close">Close</button>
+				<div id="content_3" class="holder fullheight">
+					<h3>What is your aspiration?</h3>
+					<div class="imageholder"></div>
+					<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam</p>
+				</div>
+			</div>-->
+			
+			
+		</div>
+
+         <style>
+                
+                
+    #menuicon{
+        display:none;
+    }
+    button:disabled
+	{
+		cursor: not-allowed;	
+	}
+                
+              </style>  
+<script>
+if ($.browser.webkit) {
+    $('input[name="input"]').attr('autocomplete', 'off');
+}
+</script>

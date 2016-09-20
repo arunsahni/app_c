@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html ng-app="collabmedia">
+<head>
+    <title>Create New Capsule</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="Ink | The UKs Most Original Creative Agency" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/capsule/css/slick.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/capsule/css/create.css" />
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../assets/capsule/js/slick.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>	
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>	
+    <script src="../assets/js/angular-ui-router.min.js"></script>
+    <script src="../assets/js/angular-file-upload.js"></script>
+    <script src="../config/admin/bootstrap.js"></script>
+    <script src="../controllers/capsulesRoutes.js"></script>
+    <script src="../services/capsule/capsuleService.js"></script>
+    <script src="../directives/upload.js"></script>
+    
+    <script src="../controllers/capsule/capsuleCtrl.js"></script>
+    <script src="../controllers/capsule/pageCtrl.js"></script>
+
+</head>
+<body>
+    <div id="left-menu" ui-view="sidebar"></div>
+    <div ui-view="main"></div>
+    
+    <div id="loader" style="display: block;"><img src="../assets/capsule/images/ajax-loader.gif" alt="Loader" /></div>
+    
+</body>
+
+
+</html>

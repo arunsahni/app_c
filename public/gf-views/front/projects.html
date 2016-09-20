@@ -1,0 +1,144 @@
+<div class="container">
+			
+	<header>	
+		<p class="logo">Scrpt <span>Projects</span></p>
+		<span class="pro-span">
+		<span class="brdmem_pic"><img ng-src="{{userInfo.ProfilePic}}" alt="Profile Picture" title="{{userInfo.Name}}  ({{userInfo.Email}})"></span> Welcome {{userInfo.Name}} (<a href="#/logout">Logout</a>)
+		</span> 
+	</header>
+
+	<div id="everything" class="boards_outer">
+	<section id="login" class="animated bounceInDown simform" style=" font-size:100% !important;">
+			
+	<div class="">
+	<h1>Projects</h1>
+	<div id="msg" ng-show="msg"><p class="success">{{msg}}<span class="close_icon" id="close_span"></span></p></div>
+	<ul class="loginform">
+	<li><a ng-click="showAdd()" class="add_icon">Add</a>
+	<div ng-show="add" class="add_project">
+	<form name="projects21" novalidate>
+	<!--<div id="msg2" ng-show="msg2"><p class="error">{{msg2}}<span class="close_icon" id="close_span"></span></p></div>
+	-->
+	<div id="div1">
+	<input type="text" id="name" placeholder="Title" ng-model="project.name" name="name" value=""  required><br/>
+	<!--<select data-ng-options="dom.DomainTitle for dom in domains track by dom._id" ng-model="project.domain"></select>-->
+
+
+	<p class="thumb" ng-show="projects21.name.$error.required"><a><img src="../assets/img/invalid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Project title is required.</span></a></p>
+	<p class="thumb" ng-show="!(projects21.name.$error.required)"><a><img src="../assets/img/valid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Project title is required.</span></a></p>
+	</div>
+	<!--
+	<div id="div2">
+		<select ng-model="project.domain" id="domain" name="domain"  auto-fill-sync required>
+			<option  value="">Select Domain</option>
+			<option ng-repeat="dom in domains" value="{{dom._id}}">{{dom.DomainTitle}}</option>    
+		</select><br/>
+		<div>
+			<p class="thumb" ng-show="project.domain"><a><img src="../assets/img/valid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Please select a Domain.</span></a></p>
+			<p class="thumb" ng-show="!(project.domain)"><a><img src="../assets/img/invalid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Please select a Domain.</span></a></p>
+		</div>
+	</div>
+	-->
+    <input type="hidden" ng-model="project.id" >
+    <input type="submit" class="button margin_botm_zero" value="Submit" ng-click="addProject(projects21.$valid)"  >
+<a ng-click="add=0" class="button">Cancel</a>
+
+    
+			
+
+
+</form>
+<div class="clearfix"></div>
+
+                                </div>
+                
+		                </li>
+<!--
+		        <li>
+<table style="width:100%;">
+    <tr>
+        <th>
+            Projects Title
+        </th>
+        <th>
+            Domain
+        </th>
+        <th>
+            Boards
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+    <tr ng-repeat="project in projects">
+        <td>
+            {{project.ProjectTitle}}
+        </td>
+        <td>
+            {{project.Domain.DomainTitle}}
+        </td>
+        <td>
+            <a href="#/boards/{{project._id}}">View</a>
+        </td>
+        <td>
+            <a ng-click="showAdd(project)">Edit</a>/<a ng-click="deleteProject(project)">Delete</a>
+        </td>
+    </tr>
+    
+</table></li>-->
+                                
+                                
+                                <li>
+						<div ng-show="!loaded" ><img style="display:block;margin-left:auto;margin-right:auto;" src="../assets/img/ajax-loader.gif"> </div>
+					<div ng-show="loaded" class="table_responsive">
+                    	
+                                <table  ng-table="tableParams" show-filter="true" class="margin_top20" width="100%">
+							<tr ng-repeat="x in $data|filter:query">
+							    <td header-class="text-left"   data-title="'Project Title'" filter="{ 'ProjectTitle': 'text' }" sortable="'ProjectTitle'">{{x.ProjectTitle}}</td>
+							    <td header-class="text-left"   data-title="'Domain'"  sortable="'Domain.DomainTitle'">{{x.Domain.DomainTitle}}</td>
+							    <td header-class="text-left"   data-title="'Last Modified'"  sortable="'ModifiedOn'">{{x.ModifiedOn | date:'medium'}}</td>
+							    <td header-class="text-left"   data-title="'Boards'" >
+								<a href="#/boards/{{x._id}}">View</a>
+								</td>
+							    <td header-class="text-left"   data-title="'Action'">
+							    <a ng-click="showAdd(x)">Edit</a>/<a id="button_2" ng-click="deleteProject(x)">Delete</a>
+							    </td>
+							    </tr>
+							</table>
+                          
+                            
+                            </div></li>
+                            </ul>
+                            
+                        </div>
+                    
+				</section><!-- Login -->				
+				
+                
+		  </div>
+			
+			<!--<div class="overlay overlay-slidedown">
+				<button type="button" class="overlay-close">Close</button>
+				<div id="content_3" class="holder fullheight">
+					<h3>What is your aspiration?</h3>
+					<div class="imageholder"></div>
+					<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam</p>
+				</div>
+			</div>-->
+			
+			
+		</div>
+
+<div id="delete_pop">
+<div class="confirmon-overlay" style="display: block;"></div>
+<div class="confirmon-box" style="display: block;">
+<p class="confirmon-content">This action cannot be undone, are you sure?</p>
+<button class="confirmon-button confirmon-button" ng-click="confirmDel()">Yes, I'm sure</button>
+<button class="confirmon-button confirmon-button" ng-click="closeDel()">No, I'm not sure</button>
+</div>
+</div>  
+</div><!-- /.modal -->
+
+
+						
+						

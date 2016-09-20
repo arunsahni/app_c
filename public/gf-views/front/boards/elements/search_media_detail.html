@@ -1,0 +1,206 @@
+<div class="actionholder">                        	
+<a href="#" ng-click="cancel()" class="close_media red" title="Close"><span class="close_icon"></span></a>
+<a href="#" class="close_media green" ng-click="addMedia()" title="Add"><span class="check_icon"></span></a>
+</div>
+<div class="act_content">
+
+<!--<aside class="media_sidebar">
+<div class="accordion">
+	<h3>Cover Note</h3>
+	<div>
+		<div class="accordion">
+			<h3>Promt 1</h3>
+			<div>
+				<ul>
+					<li><a href="#">Promt 1</a></li>
+					<li><a href="#">Promt 2</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="accordion">
+			<h3>Promt 2</h3>
+			<div>
+				<ul>
+					<li><a href="#">Promt 1</a></li>
+					<li><a href="#">Promt 2</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="accordion">
+			<h3>Promt 3</h3>
+			<div>
+				<ul>
+					<li><a href="#">Promt 1</a></li>
+					<li><a href="#">Promt 2</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<h3>Mini Stories</h3>
+	<div>
+		<div class="accordion">
+			<h3>Promt 1</h3>
+			<div>
+				<ul>
+					<li><a href="#">Promt 1</a></li>
+					<li><a href="#">Promt 2</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<p>To create a mini story, simply drag from your media tray into the main display area.</p>
+</aside>-->
+
+<div class="media_block">
+<div class="holder_img thinbar" style="color:#fff;">
+	<div class="holder_bulb"></div>
+	
+	<div id="content_10" class="imd-des content" style="height:75px;">                                    						
+		<div class="note">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea comm odo consequat. Consectetur adipisicing elit, sed do eiusmod tempor incididunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Consectetur adipisicing elit, sed do eiusmod tempor incididunt </p>
+		</div>
+	</div>
+</div>
+<a href="#" class="sidemenu">Menu</a>
+</div> <!-- END MEDIA BLOCK -->
+
+
+<aside class="media_sidebar md_sidebar">	                		
+<div class="accordion">
+	<h3>Send Media</h3>
+	<div>
+		<div class="accordion">
+			<h3>People</h3>
+			<div>
+				<ul>
+					<li><a href="#">Individual</a></li>
+					<li><a href="#">Group</a></li>
+				</ul>
+			</div>
+			<h3>Board</h3>
+			<div>
+				<ul>
+					<li><a href="#">Projects</a></li>
+					<li><a href="#">Chapters</a></li>
+					<li><a href="#">Boards</a></li>
+				</ul>
+			</div>
+			<h3>Base</h3>
+		</div>
+	</div>
+	<h3>Other Actions</h3>
+	<div>
+		<div class="accordion">
+			<h3>Add Tag</h3>
+			<div>
+				<ul>
+					<li><a href="#">Visible</a></li>
+					<li><a href="#">Edit &amp; Remove</a></li>
+				</ul>
+			</div>
+			<h3>Source</h3>
+			<div>
+				<ul>
+					<li><a href="#">Source Name</a></li>
+					<li><a href="#">Link</a></li>
+				</ul>
+			</div>
+			<h3>Privacy</h3>
+			<div>
+				<ul>
+					<li><a href="#">Visible to public</a></li>
+					<li><a href="#">Private</a></li>
+				</ul>
+			</div>
+			<h3>Delete</h3>
+			<div>
+				<ul>
+					<li><a href="#">Confirm Delete?</a></li>
+				</ul>
+			</div>
+			<h3>Flag</h3>
+			<div>
+				<ul>
+					<li><a href="#">Innapropriate</a></li>
+					<li><a href="#">Copyright</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</aside>
+
+<div class="clear"></div>
+<!--
+<div class="comment_block">
+	<div class="wrapper-redactor">
+		<textarea ng-model="media_comment" htmleditor-redactor></textarea>
+		<a ng-click="postMediaComment(media_comment)">Post Comment</a>
+		<p>Type or copy and paste from the web</p>
+	</div>
+	<div class="act-page-menu">
+		<ul>
+			<li class="right">
+				<a ng-click="postMediaComment(media_comment)">Post Comment</a>
+			</li>
+			<li class="right">
+				<a class="makeprivate">Make Private</a>
+			</li>
+			<li class="recordspacer">
+				<a href="#" class="recordicon"></a>
+				<ul class="dropdown-menu anim">
+					<li><a href="#">Video</a></li>
+					<li><a href="#">Audio</a></li>
+				</ul>
+			</li>
+			<li class="uploadspacer">
+				<a href="#" class="uploadicon"></a>
+				<ul class="dropdown-menu anim">
+					<li><a href="#">Hard Drive</a></li>
+					<li><a href="#">Boards</a></li>
+				</ul>
+			</li>
+			<li class="linkspacer">
+				<a class="linkicon" title="Link"></a>
+			</li>
+			<li class="urlspacer">
+				<input placeholder="Paste link.." value="Paste URL">
+			</li>
+			<span class="dark">Drop media here</span>
+		</ul>
+	</div>
+	<div class="comment_item">
+		<div class="comment_block_top">
+			<img src="../assets/board/img/avatar.png" alt="" width="30">
+			<div class="comment_author">John Smith</div>
+			<div class="comment_date">29th January 2014</div>
+		</div>
+		<div class="comment">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, aliquam ad doloremque cupiditate velit architecto accusantium aliquid nostrum cumque magnam eius illum! Dolorum, minus expedita repellendus! Nulla, temporibus eaque assumenda esse maiores praesentium dignissimos nam id accusamus ipsum.</p>
+		</div>
+		<div class="comment_actions">
+			<a href="" class="action-reply" title="Reply"></a>
+			<a href="" class="action-vote" title="Up Vote"></a>
+			<a href="" class="action-flag" title="Flag"></a>
+		</div>
+	</div>
+	<div class="comment_item">
+		<div class="comment_block_top">
+			<img src="../assets/board/img/avatar.png" alt="" width="30">
+			<div class="comment_author">John Smith</div>
+			<div class="comment_date">29th January 2014</div>
+		</div>
+		<div class="comment">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, aliquam ad doloremque cupiditate velit architecto accusantium aliquid nostrum cumque magnam eius illum! Dolorum, minus expedita repellendus! Nulla, temporibus eaque assumenda esse maiores praesentium dignissimos nam id accusamus ipsum.</p>
+		</div>
+		<div class="comment_actions">
+			<a href="" class="action-reply" title="Reply"></a>
+			<a href="" class="action-vote" title="Up Vote"></a>
+			<a href="" class="action-flag" title="Flag"></a>
+		</div>
+	</div>
+</div>
+-->
+<!-- end comment -->
+</div>

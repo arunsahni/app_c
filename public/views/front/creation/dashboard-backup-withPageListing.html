@@ -1,0 +1,221 @@
+<div id="menu-button" class="toggle-menu menu-left push-body">
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+</div>
+<div class="head">
+	<div class="wrapper">
+		<div class="clearfix"></div>
+		<!-- START BROWSE -->
+		<div class="browse">
+			<div class="heading-row">
+				<h2>My Chapters </h2>
+			</div>
+			<!--<ul class="tabs library-qc">-->
+			<!--	<li><a href="javascript:void(0)" class="qc-all selected" ng-click="DashboardMgmt.setQueryCriteria('all')">All</a></li>-->
+			<!--	<li><a href="javascript:void(0)" class="qc-createdByMe" ng-click="DashboardMgmt.setQueryCriteria('createdByMe')">Created by you</a></li>-->
+			<!--	<li><a href="javascript:void(0)" class="qc-sharedWithMe" ng-click="DashboardMgmt.setQueryCriteria('sharedWithMe')">Shared with you</a></li>-->
+			<!--	<li><a href="javascript:void(0)" class="qc-byTheHouse" ng-click="DashboardMgmt.setQueryCriteria('byTheHouse')">By the house</a></li>-->
+			<!--</ul>-->
+			
+			<div class="select-con select-con2">
+				<select>
+					<option value="Capsule 1">Latest</option>
+					<option value="Capsule 2">Latest</option>
+					<option value="Capsule 3">Latest</option>
+				</select>
+			</div>
+			
+			<div class="select-con first  select-con2">
+				<select>
+					<option value="Capsule 1">Capsule 1</option>
+					<option value="Capsule 2">Capsule 2</option>
+					<option value="Capsule 3">Capsule 3</option>
+				</select>
+			</div>
+			
+			<div class="clear"></div>
+			
+			<!-- START IMAGES -->
+			<div class="browse-images browse-images2">
+				<dir-pagination-controls on-page-change="DashboardMgmt.pageNoChangedChapters(newPageNumber)" pagination-id="chapter"></dir-pagination-controls>
+                <div class="chapter-library-block">
+                	<ul>
+                    	<li dir-paginate="chapter in DashboardMgmt.chaptersPaginated  | itemsPerPage: perPage" pagination-id="chapter" total-items="count" current-page="pageNoChapter">
+                        	<div class="zoomIn chapter-library-bx">
+					<img ng-if="!(chapter.CoverArt)" src="/assets/create/images/no-chapter-pic.jpg" alt="chapter" class="primary zoomIn" />
+					<img ng-if="chapter.CoverArt" src="/assets/Media/covers/small/{{chapter.CoverArt}}" alt="chapter" class="primary zoomIn" />
+					<div class="chapter-overlay2"></div>
+					<h3>{{chapter.Title}}</h3>
+					<ul class="chapter-library-icon">
+						<li class="preview" ng-click="DashboardMgmt.preview(chapter._id)">
+							<a href="javascript:void(0)"><img data-toggle="tooltip" title="Preview" src="/assets/create/images/chapter/preview-chapter.png" alt="Preview" /></a>
+							<!--<span class="tooltip">Preview</span>-->
+						</li>
+						<li class="add">
+							<a href="javascript:void(0)" ng-click="DashboardMgmt.addFromLibrary(chapter._id)"><img data-toggle="tooltip" title="Add" src="/assets/create/images/chapter/add-chapter.png" alt="Add" /></a>
+							<!--<span class="tooltip">Add</span>-->
+						</li>
+						<li class="edit">
+							<a href="javascript:void(0)"><img data-toggle="tooltip" title="Share" src="/assets/create/images/chapter/share.png" alt="Edit" /></a>
+							<!--<span class="tooltip">Share</span>-->
+						</li>
+						<li class="delete">
+							<a href="javascript:void(0)" ng-click="DashboardMgmt.remove(chapter._id)"><img data-toggle="tooltip" title="Delete" src="/assets/create/images/chapter/delete-chapter.png" alt="Edit" /></a>
+							<!--<span class="tooltip">Delete</span>-->
+						</li>
+					</ul>
+					<!--<div class="date">11/09/2014</div>-->
+				</div>
+                        </li>
+                    </ul>
+                    
+                </div>
+				
+				
+				<div ng-if="DashboardMgmt.chaptersPaginated.length==0">No Record Found!</div>
+				<div class="clear"></div>
+				
+			</div>
+			<!-- END IMAGES -->
+			
+		</div>
+		<!-- END BROWSE -->
+		<!-- START BROWSE -->
+	<div class="browse">
+		<div class="heading-row">
+			<h2>My Page </h2>
+		</div>
+		<!--<ul class="tabs library-qc">-->
+		<!--	<li><a href="javascript:void(0)" class="qc-all selected" ng-click="DashboardMgmt.setQueryCriteria('all')">All</a></li>-->
+		<!--	<li><a href="javascript:void(0)" class="qc-createdByMe" ng-click="DashboardMgmt.setQueryCriteria('createdByMe')">Created by you</a></li>-->
+		<!--	<li><a href="javascript:void(0)" class="qc-sharedWithMe" ng-click="DashboardMgmt.setQueryCriteria('sharedWithMe')">Shared with you</a></li>-->
+		<!--	<li><a href="javascript:void(0)" class="qc-byTheHouse" ng-click="DashboardMgmt.setQueryCriteria('byTheHouse')">By the house</a></li>-->
+		<!--</ul>-->
+		
+		<div class="select-con">
+			<select>
+				<option value="Capsule 1">Latest</option>
+				<option value="Capsule 2">Latest</option>
+				<option value="Capsule 3">Latest</option>
+			</select>
+		</div>
+		
+		<div class="select-con first">
+			<select>
+				<option value="Capsule 1">Capsule 1</option>
+				<option value="Capsule 2">Capsule 2</option>
+				<option value="Capsule 3">Capsule 3</option>
+			</select>
+		</div>
+		
+		<div class="clear"></div>
+		
+		<!-- START IMAGES -->
+		<div class="browse-images browse-images2">
+        <dir-pagination-controls on-page-change="DashboardMgmt.pageNoChangedPages(newPageNumber)" pagination-id="page"></dir-pagination-controls>
+         <div class="chapter-library-block">
+                	<ul>
+                    	<li dir-paginate="page in DashboardMgmt.page_library  | itemsPerPage: perPage" pagination-id="page" total-items="count1" current-page="pageNoPages">
+                        	<div class="zoomIn chapter-library-bx">
+				<img data="big" bg-image="/assets/Media/headers/small/{{page.HeaderImage}}" ng-if="page.HeaderImage" src="/assets/Media/headers/small/{{page.HeaderImage}}" alt="chapter" class="primary" />
+				<img ng-if="!(page.HeaderImage)" src="/assets/create/images/no-chapter-pic.jpg" alt="chapter" class="primary" />
+				<!--<img src="/assets/create/images/browse/1.jpg" alt="chapter" class="primary"/>-->
+				<div class="chapter-overlay2"></div>
+				<h3>{{page.Title}}</h3>
+				<ul class="chapter-library-icon">
+					<li class="preview">
+						<a href="#/page-preview/{{DashboardMgmt.chapter_id}}/{{page._id}}"><img data-toggle="tooltip" title="Preview" src="/assets/create/images/chapter/preview-chapter.png" alt="Preview" /></a>
+					</li>
+					<li class="add">
+						<a href="javascript:void(0)" ng-click="DashboardMgmt.addFromLibrary(page._id)"><img data-toggle="tooltip" title="Add" src="/assets/create/images/chapter/add-chapter.png" alt="Add" /></a>
+					</li>
+					<li class="edit">
+						<a href="javascript:void(0)" class="open_pop"><img data-toggle="tooltip" title="Share" src="/assets/create/images/chapter/share.png" alt="Edit" /></a>
+                        
+                        <div class="send-message-block scrollable">
+                        <a href="#" class="message-block-arw">
+                        	<img title="arrow" src="/assets/create/images/arrow-icon.png" alt="Edit" />
+                        </a>
+                        <div class="add-msg-head">
+                        <textarea placeholder="Add a message?"></textarea>
+                        </div>
+                        <div class="search-find-row">
+                        <input type="text" name="name" placeholder="Search">
+                        </div>
+                        <div class="send-msg-description">
+                        <p> <strong>Send messages to your friends!</strong><br>
+                        Plan projects, swap ideas and share your best discoveries. </p>
+                        </div>
+                        <div class="search-result-block">
+                        <ul style="">
+                        <li> <a style="" href="#">
+                        <div class="left-box"> <img style="" src="https://s-passets-cache-ak0.pinimg.com/images/user/default_75.png"> </div>
+                        <div class="right-box">
+                        <h2>Manish test</h2>
+                        <p> Fellow Pinner </p>
+                        </div>
+                        </a> </li>
+                        <li> <a style="" href="#">
+                        <div class="left-box"> <img style="" src="https://s-passets-cache-ak0.pinimg.com/images/user/default_75.png"> </div>
+                        <div class="right-box">
+                        <h2 class="title-txt">Manish test</h2>
+                        </div>
+                        </a> </li>
+                        <li> <a style="" href="#">
+                        <div class="left-box"> <img style="" src="https://s-passets-cache-ak0.pinimg.com/images/user/default_75.png"> </div>
+                        <div class="right-box">
+                        <h2 class="title-txt">Manish test</h2>
+                        </div>
+                        </a> </li>
+                        <li> <a style="" href="#">
+                        <div class="left-box"> <img style="" src="https://s-passets-cache-ak0.pinimg.com/images/user/default_75.png"> </div>
+                        <div class="right-box">
+                        <h2 class="title-txt">Manish test</h2>
+                        </div>
+                        </a> </li>
+                        <li> <a style="" href="#">
+                        <div class="left-box"> <img style="" src="https://s-passets-cache-ak0.pinimg.com/images/user/default_75.png"> </div>
+                        <div class="right-box">
+                        <h2 class="title-txt">Manish test</h2>
+                        </div>
+                        </a> </li>
+                        </ul>
+                        </div>
+                        </div>
+					</li>
+					<li class="delete">
+						<a href="javascript:void(0)"><img data-toggle="tooltip" title="Delete" src="/assets/create/images/chapter/delete-chapter.png" alt="Edit" /></a>
+					</li>
+				</ul>
+				<!--<div class="date">11/09/2014</div>-->
+			</div>
+                        </li>
+					</ul>
+			
+			
+			
+			<div class="chapter-info" ng-if="DashboardMgmt.page_library.length==0">No Record Found!</div>
+			<div class="clear"></div>
+			
+		</div>
+		<!-- END IMAGES -->
+		
+	</div>
+	<!-- END BROWSE -->
+		<a class="previous-link nav-link" href="javascript:void(0)">Previous</a>
+		<a class="next-link nav-link" href="javascript:void(0)">Proceed</a>
+		
+		<div class="clear"></div>
+		
+	</div>
+</div>
+<div id="loader" style="display: block;"><img src="/assets/create/images/ajax-loader.gif" alt="Loader" /></div>
+<div id="tips" style="display: none;"><div id="closetips"></div></div>
+<!--<script type="text/javascript" src="/assets/create/js/scripts.js"></script>-->
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

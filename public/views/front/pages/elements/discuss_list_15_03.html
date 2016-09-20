@@ -1,0 +1,234 @@
+<div id="dropzone2">
+    <header class="row quest-row bx-sz dropzone4 search-header-same header {{headerImg ? 'header-bg' : ''}}" bg-image="{{headerImg}}">
+    	<div class="header-pic-overlayer"></div>
+       <section class="col-sm-12 nw-header-left dropzone4">
+          <!--<h3 class="title dropzone4">
+            <a href="javascript:void(0)" ng-click="openmenu()" class=" dropzone4 toggle-menu menu-left push-body"><i class="fa fa-bars dropzone4"></i></a> <span class='dropzone4'>{{title}}</span>
+          </h3>-->
+          <nav class="nav dropzone4">
+                <a href="javascript:void(0)" ng-click="openmenu()" class="dropzone4 nav-toggle animated toggle-menu menu-left push-body"><span></span></a>
+              <div class="quest-row-sml dropzone4">
+                <div class="quest-bx-sml dropzone4">
+                    <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
+                </div>
+            </div>
+            <a class="reset_heade dropzone4r" href="javascript:void(0)"  ng-click="switch__toSearch()" title="Go To Search Gallery"><i class="fa fa-table  dropzone4"></i></a>
+        </nav>
+       </section>
+       <!--<section class="col-sm-4 nw-header-right title_header_block">
+         <h3 class="subtitle">{{selectedgtsa}}</h3>
+       </section>-->
+       
+       <section class="nw-subheader dropzone4 row bx-sz media-tray-rw col-sm-12">
+           <section ng-class="{'no-btm-line' : countOfTrayMedia < 1}" class="col-md-2 dropzone4 col-sm-3  icon-links">
+           
+            <div class="table-box"> 
+                <!-- <a href="javascript:void(0)" class="noteIcons dropzone4 margin-rt-0" ng-click="open_note_forBoard()" title="Add note"><i class="fa fa-file-text-o dropzone4"></i></a> -->
+                <!--<a ng-show="search_view_case == true" href="javascript:void(0)" title="Statements" onClick="alert('On Hold...')"><i class="fa fa-lightbulb-o"></i></a> -->
+                <div class=" dropdown-box dropdown-box3  dropzone4">
+                    <a href="javascript:void(0)" class="dropdown-icn  dropzone4">
+                        <i class="fa fa-plus  dropzone4"></i> 
+                    </a>
+                    <div class="dropdown-nav  dropzone4">
+                        <ul class="dropzone4">
+                            <li ng-hide="(whichBrowser == 'InternetExplorer' || whichBrowser == 'Opera'  || whichBrowser == 'Safari') && (!mobileDevice)">
+                                <a id="recVideo" ng-click="isRecording('video')" href="javascript:void(0)"  rel="dialog" data-dialog-id="421">
+                                    Web-Cam
+                                </a>
+                            </li>
+                             <li>
+                                <a href="javascript:void(0)">
+                                    <span class="browse-data">
+                                        <span class="browse-label">
+                                            Hard-drive
+                                        </span>
+                                        <input type="file" name="" ng-disabled="false" ng-file-select="onFileSelect($files)" accept="image/*" value="Add Files" />
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a ng-click="checkTray()" href="javascript:void(0)" data-dialog-id="221" rel="dialog">Link/Embed</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" ng-click="viewBoardsMedia()">My Pages</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <span class="browse-data">
+                                        <span class="browse-label">
+                                            Header Image
+                                        </span>
+                                        <input id='headerUpload_discuss' type="file" name="" ng-disabled="false" ng-file-select="onHeaderSelect($files)" accept="image/*" value="Add Files" />
+                                    </span>
+                                </a>
+                            </li>
+                          </ul>
+                    </div>
+                </div>
+            </div>
+           </section>	
+           <section class="col-md-10 col-sm-9 dropzone4 image-selector discuss_trayArea discuss_trayArea2"></section>
+        </section>
+        <div class="white-space"></div>
+    </header>
+    
+</div>
+
+<main class="container bx-sz space-top" id="discuss_list">
+<!--<header class="row nw-header bx-sz" include-static="'../views/front/boards/elements/header2.html'"></header>-->
+
+
+
+
+<!--<section class="nw-subheader row bx-sz" include-static="'../views/front/boards/elements/h2_search_tray.html'"></section>-->
+
+
+
+<!--<section class="row-{{$index+1}} fluid-container montage-view bx-sz" >-->
+<section class="montage-view bx-sz">
+	 <div class="media-list-rw" ng-repeat= "sectiondivider in sections">
+	     <section class="col-xs-4 montage-box bx-sz" ng-repeat="media in sectiondivider.section">
+		 <section  class="toflip fixedheight cover_img" id="thumbs">
+			<section class="img-box clearfix">
+				 <div class="img-cont discuss-img-cont discuss_item">
+					<div class="img-cont-inner">
+					<!---Anchor tag for Images starts--->
+					<!--<a class="item"  ng-if="media.ContentType=='image/png' || media.ContentType=='image/jpeg' || media.ContentType=='image/gif' || media.ContentType==null"  ng-href='../assets/Media/img/{{media.MediaURL}}'  ng-click="setMediaId__mannualy(media.MediaID)">-->
+					<a class="item"  ng-if="media.Medias.MediaType=='Image' || media.Medias.ContentType=='image/png' || media.ContentType=='image/jpeg' || media.Medias.ContentType=='image/gif' || media.Medias.ContentType==null"  ng-href='../assets/Media/img/600/{{media.Medias.MediaURL}}'  ng-click="setMediaId(media.Medias)" data-id="{{media.Medias.MediaID}}"><!-- modified on 19022015--->
+						<!--<span class="loader_img"></span>-->
+						<div class="text_wrap" ng-if="media.Medias.MediaType=='Link' || media.Medias.MediaType=='Notes'"  ng-bind-html="media.Medias.Content | to_trusted" ></div>
+						<img fallback-src="" class="media_img" ng-if="media.Medias.MediaType=='Image' || media.Medias.ContentType=='image/png' || media.Medias.ContentType=='image/jpeg' || media.Medias.ContentType=='image/gif' || media.Medias.ContentType==null" class=""  ng-src="../assets/Media/img/{{discuss__thumbnail}}/{{media.Medias.MediaURL}}" alt="Loading..." /> 
+						<div class="overlay anim"></div>
+					</a>
+					<!---Anchor tag for Images Ends--->
+					
+					<!---Anchor tag for Montage starts--->
+					<a class="item" ng-if="media.Medias.MediaType=='Montage'"   ng-href='../assets/Media/img/{{media.Medias.thumbnail}}' ng-click="setMediaId(media.Medias)" data-id="{{media.Medias.MediaID}}">
+						<div class="text_wrap" ng-if="media.Medias.MediaType=='Link' || media.Medias.MediaType=='Notes'"  ng-bind-html="media.Medias.Content | to_trusted" ></div>
+						<img fallback-src="" ng-if="media.Medias.MediaType=='Montage'"  class="montageElement media_img"  ng-src="../assets/Media/img/{{discuss__thumbnail}}/{{media.Medias.thumbnail}}" alt="Montage">
+						<p class="montageContent" style="display: none"  ng-if="media.Medias.MediaType=='Montage'">{{media.Medias.Content}}</p>
+						<div class="overlay anim"></div>
+					</a>
+					<!---Anchor tag for Montage Ends--->
+					
+					<!---Anchor tag for notes starts--->
+					<a class="item" ng-if="media.Medias.MediaType=='Notes'"   ng-href='../assets/Media/img/{{media.Medias.thumbnail}}' ng-click="setMediaId(media.Medias)" data-id="{{media.Medias.MediaID}}">
+						<img fallback-src="" ng-if="media.Medias.MediaType=='Notes'"  class="noteElement media_img"  ng-src="../assets/Media/img/{{discuss__thumbnail}}/{{media.Medias.thumbnail}}" alt="Note" />
+						<p class="noteContent" style="display: none"  ng-if="media.Medias.MediaType=='Notes'">{{media.Medias.Content}}</p>
+						<div class="overlay anim"></div>
+					</a>
+					<!---Anchor tag for notes Ends--->
+					
+					
+					<!---Anchor tag for video starts--->
+					<a class="item" ng-if="media.Medias.MediaType == 'Video' || media.Medias.MediaType == 'Audio'"   ng-href='/media/view?mid={{media.Medias.MediaID}}'  ng-click="setMediaId(media.Medias)" data-id="{{media.Medias.MediaID}}">
+						<!--
+						<div class="caption">
+							<img ng-src="{{media.PostedBy.ProfilePic}}" style="border-radius:30px;" alt="" height="30" width="30" class="avatar">
+							<h3 ng-show="boarddata[0].PrivacySetting[0].DisplayNames=='RealNames'">{{media.PostedBy.Name}}</h3>
+							<h3 ng-show="boarddata[0].PrivacySetting[0].DisplayNames=='NickNames'">{{media.PostedBy.NickName}}</h3>
+						</div>
+						-->
+					    <span class="play-btn"><img src="../assets/img/play-btn.png" /></span>
+						<p class="videoContent" ng-if="media.Medias.MediaType == 'Video'" style="display: none;">source src="../assets/Media/video/{{media.Medias.MediaURL}}"</p>
+						<p class="audioContent" ng-if="media.Medias.MediaType == 'Audio'" style="display: none;">source src="../assets/Media/video/{{media.Medias.MediaURL}}"</p>
+						<img fallback-src="" class="media_img" ng-if="media.Medias.MediaType=='Video'" ng-src="../assets/Media/video/{{discuss__thumbnail}}/{{media.Medias.thumbnail}}" alt="Sample Image 1" /> 
+						<img fallback-src="" class="media_img" ng-if="media.Medias.MediaType=='Audio'" ng-src="../assets/img/audio-recording-thumb.jpg" alt="Sample Image 1" /> 
+						<div class="overlay anim"></div>
+					</a>
+					<!---Anchor tag for video ENDS--->
+					
+					
+					<!---Anchor tag for LEft cases starts--->
+					<a class="item" ng-if="media.Medias.MediaType!='Image' && media.Medias.MediaType != 'Notes' && media.Medias.MediaType != 'Video' && media.Medias.MediaType != 'Audio' && media.Medias.ContentType != 'image/png' && media.Medias.ContentType != 'image/jpeg' && media.Medias.ContentType != 'image/gif' && media.Medias.MediaType != 'Montage'"   ng-href='/media/view?mid={{media.Medias.MediaID}}'  ng-click="setMediaId(media.Medias)" data-id="{{media.Medias.MediaID}}">
+						<span class="text_wrap_index" ng-if="media.Medias.MediaType=='Notes'" style="color:#fff"  ng-bind-html="media.Medias.Content | to_trusted" ></span>
+						<img fallback-src="" class="media_img" ng-if="media.Medias.ContentType=='application/pdf'" class=""  ng-src="../assets/img/PDF.png" alt="Sample PDF 1" />
+						
+						
+						<img fallback-src="" class="media_img" ng-if="media.Medias.ContentType=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || media.Medias.ContentType=='application/msword'" class=""  ng-src="../assets/img/Icon-Document.jpg" alt="Sample Word 1" />
+						<img fallback-src="" class="media_img" ng-if="media.Medias.ContentType=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || media.Medias.ContentType=='application/vnd.ms-excel' || media.Medias.ContentType=='application/vnd.oasis.opendocument.spreadsheet'" class=""  ng-src="../assets/img/excel.png" alt="Sample Excel 1" />
+						<img fallback-src="" class="media_img" ng-if="media.Medias.ContentType=='application/vnd.openxmlformats-officedocument.presentationml.presentation' || media.Medias.ContentType=='application/vnd.ms-powerpoint'" class=""  ng-src="../assets/img/ppt.png" alt="Sample PPT 1" />
+						<div class="overlay anim"></div>
+						<img fallback-src="" class="media_img" ng-if="media.Medias.ContentType=='Montage'" class=""  ng-src="../assets/Media/img/{{discuss__thumbnail}}/{{media.Medias.thumbnail}}" alt="Montage" /> 
+						<p class="montageContent" style="display: none" ng-if="media.Medias.ContentType=='Montage'">{{media.Medias.Content}}</p>
+						
+						<!--Added bu parul 25 dec-->			
+						<img fallback-src="" ng-if="media.Medias.MediaType=='Link'"  class="linkElement"  ng-src="../assets/Media/img/{{discuss__thumbnail}}/{{media.Medias.thumbnail}}" alt="Link" fallback-src="">
+						<p class="linkContent" style="display: none"  ng-if="media.Medias.MediaType=='Link'">{{media.Medias.Content}}</p>
+						<!--</p>-->
+						<!--end-->
+					</a>
+					<!---Anchor tag for LEft cases ends--->
+					
+					<!--<div class="format_file_right cross_format anim" style="top:0;cursor:pointer;" ng-show="showsetting||(userInfo._id==media.Medias.PostedBy._id)" ng-click="deleteMedia(media.Medias)" title="Delete"></div>
+					<div  style="margin-bottom:0px;cursor:pointer;" class="format_file tick_format anim" ng-click="mark(media.Medias)" ng-show="media.Medias.PostedBy._id!=userInfo._id" title="Mark"></div>
+					<div style="margin-bottom:0px;cursor:pointer;" class="format_file_mid vote_format anim" ng-show="media.Medias.PostedBy._id!=userInfo._id" ng-click="stamp(media.Medias)" title="Stamp"></div>
+					<div style="margin-bottom:0px;cursor:pointer;" class="format_file_right stamp_format anim" ng-show="media.Medias.PostedBy._id!=userInfo._id" ng-click="vote(media.Medias)" title="Vote"></div>-->
+				
+				 
+				 
+				 <div class="media-action-icn m-delete-icn anim" style="top:0;cursor:pointer;" ng-show="(userInfo._id==media.Medias.PostedBy._id)" ng-click="deleteMedia(media.Medias)" title="Delete"></div>
+					
+					<div class="media-btm-rw" ng-show="media.Medias.PostedBy._id != userInfo._id">
+					<!--<div class="media-btm-rw" >-->
+						<div  style="margin-bottom:0px;cursor:pointer;" class="media-action-icn m-mark-icn anim" ng-click="mark(media.Medias)"  title="Mark"></div>
+						<div style="margin-bottom:0px;cursor:pointer;" class="media-action-icn m-stamp-icn anim"  ng-click="stamp(media.Medias)" title="Stamp"></div>
+						<div style="margin-bottom:0px;cursor:pointer;" class="media-action-icn m-vote-icn anim"  ng-click="vote(media.Medias)" title="Vote"></div>
+					</div>
+					</div>
+				</div>
+				<!--<div class="user-panel clearfix">
+					<div class="col-md-3 col-sm-4 col-xs-3 bx-sz user-img">
+						<img ng-src="{{media.Medias.PostedBy.ProfilePic}}" alt="" height="" width="" class="img-circle">
+					</div>
+					<div class="col-md-9 col-sm-8 col-xs-9 bx-sz user-text"><p>{{media.Medias.PostStatement}}</p></div>
+					<div ng-show="boarddata[0].PrivacySetting[0].DisplayNames=='RealNames'" class="col-xs-12 bx-sz user-name"><strong>{{media.Medias.PostedBy.Name}}</strong></div>
+					<div ng-show="boarddata[0].PrivacySetting[0].DisplayNames=='NickNames'" class="col-xs-12 bx-sz user-name"><strong>{{media.Medias.PostedBy.NickName}}</strong></div>
+				</div>-->
+				
+				<div class="user-panel clearfix">
+					<div class=user-block2>
+						<div class="user-pic2">
+							<img ng-src="{{media.Medias.PostedBy.ProfilePic}}" alt="" height="" width="" class="img-circle">
+						</div>
+						<div class="user-info2">
+							<div>
+							<p>{{media.Medias.PostStatement}}</p>
+							</div>
+						</div>
+					</div>
+					
+					<div  class="col-xs-12 bx-sz user-name"><strong>{{media.Medias.PostedBy.Name}}</strong></div>
+					<!--
+					<div ng-show="boarddata[0].PrivacySetting[0].DisplayNames=='RealNames'" class="col-xs-12 bx-sz user-name"><strong>{{media.Medias.PostedBy.Name}}</strong></div>
+					<div ng-show="boarddata[0].PrivacySetting[0].DisplayNames=='NickNames'" class="col-xs-12 bx-sz user-name"><strong>{{media.Medias.PostedBy.NickName}}</strong></div>
+					-->
+				</div>
+				
+			</section>
+		</section>
+		</section>
+	</div>
+</section>
+<div class=" show-count">
+    
+    <p class="more-btn-rw">
+		<!--<button class="btn btn-info" ng-show="has_more_discuss()" ng-click="show_more_discuss()">-->
+		<button class="btn btn-info" ng-show="has_more_discuss" ng-click="show_more_discuss()">	
+				<i class="fa fa-plus"></i>Show More
+				<span id="loading" class="loading-bar" ng-show="show_img_discuss">
+						<img src="../../assets/img/show-more-loader.GIF" />
+				</span>
+		</button> 
+	</p>
+    
+</div>
+</main>
+<!-- /Header -->
+<style type='text/css'>
+	
+.loading-bar {
+float: right;
+width: 9%;
+}
+</style>

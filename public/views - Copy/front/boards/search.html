@@ -1,0 +1,1253 @@
+<script>
+jQuery(document).ready(function(){
+	$("body").queryLoader2({
+		minimumTime: 10,
+		backgroundColor:'#111111',
+		barColor:'#000',
+		percentage: true,
+		completeAnimation: "grow"
+	});
+	
+	
+	
+
+$("#menuicon").click(function (){
+  if($('.masonry-container').hasClass('with-sidebar')){
+          $('.masonry-container').removeClass('with-sidebar');
+		  $('._mCS_1').addClass('hidden'); 
+    }
+   // else{
+//         $('.masonry-container').addClass('with-sidebar');
+//    }
+  });
+
+
+	
+});
+
+</script>
+<div class="loader_overlay"></div>
+<div class="loader_img loader_img_overlay">
+<!--<img src="../assets/img/loader.gif">-->
+<img src="../assets/img/ajax-loader.gif">
+</div>
+<div ng-if="boardsMedia" ng-click="boardsMedia=0" style="z-index:99999; top:0px; left:0px; width:100%; height:100%; position:absolute; background:#000; opacity:.7"></div>
+<div class="anim home-page" data-page-class="home-page">
+
+				<!-- Right menu element-->
+                
+                
+	                <div class="dialog ui-helper-hidden" data-dialog-id="1" title="Basic dialog 1">
+	                	<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+					</div>
+					<div class="dialog ui-helper-hidden" data-dialog-id="2" title="Basic dialog 2">
+	                	<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+					</div>
+					
+					<div id="writenote"  class="dialog dialog-redactor ui-helper-hidden" data-dialog-id="651" title="Write Note">
+					<a class="addmediamodal" title="Add Media"></a>
+					<a class="hidetoolbar" title="Toolbar"></a>
+						
+                                            <textarea htmleditor-redactor ng-model="notes.comment"  style="max-height:150px;">
+                                                
+                                            </textarea>
+	                	<a href="javascript:void(0)" ng-click="checknotes()" class="btn btn_add_text">Done</a>
+					</div>
+                                        
+                                        <div class="dialog ui-helper-hidden window_button_theme dialog-redactor" data-dialog-id="222" title="Link Upload">
+						<div class="linkupload">
+							<textarea placeholder="Paste Media Link Here" style="max-height:150px" ng-model="link.content"  class="fullwidth" id="capturetext"></textarea>
+							<input type="button" ng-click="uploadLink()" value="Done" class="btn btn_add_text" style="line-height:normal;">
+						</div>
+					</div>
+                                        
+					<div class="dialog dialog-redactor ui-helper-hidden window_media_load" data-dialog-id="5" title="Tag Media">
+						<form action="" novalidate name="medias">
+							<div class="left">
+								<div class="img_holder" style="max-height:150px; overflow:auto">
+									<img ng-if="uploadedMedia.ContentType=='application/pdf'" class=""  ng-src="../assets/img/PDF.png" alt="Sample PDF 1">
+					<img ng-if="uploadedMedia.ContentType=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || uploadedMedia.ContentType=='application/msword'" class=""  ng-src="../assets/img/Icon-Document.jpg" alt="Sample Word 1">
+					<img ng-if="uploadedMedia.ContentType=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || uploadedMedia.ContentType=='application/vnd.ms-excel' || uploadedMedia.ContentType=='application/vnd.oasis.opendocument.spreadsheet'" class=""  ng-src="../assets/img/excel.png" alt="Sample Excel 1">
+					<img ng-if="uploadedMedia.ContentType=='application/vnd.openxmlformats-officedocument.presentationml.presentation' || uploadedMedia.ContentType=='application/vnd.ms-powerpoint'" class=""  ng-src="../assets/img/ppt.png" alt="Sample PPT 1">
+					<img ng-if="uploadedMedia.ContentType=='image/png' || uploadedMedia.ContentType=='image/jpeg' || uploadedMedia.ContentType=='image/gif' || uploadedMedia.ContentType==null" class=""  ng-src="../assets/Media/img/{{uploadedMedia.Location[0].URL}}" alt="Image Not Found!">
+								</div>
+							</div>
+							
+							<div class="left">
+								<div class="padded">
+									<h3>Ice Crystal Timelapse</h3>
+									<div class="option_info">
+										<ul>                
+										    <li ng-repeat="mmts in mmt"  ng-click="changemmt(mmts._id)">
+										        <input id="{{mmts._id}}" ng-model="media.mmt" type="radio" name="radio" value="{{mmts._id}}" hidden/>
+										        <label for="{{mmts._id}}" title="">{{mmts.MetaMetaTagTitle}}</label>
+										    </li>
+										    
+										</ul>
+									</div>
+									<div class="option_info">
+										<p>This is private<!--, thanks for understand--> :-)</p>
+										<input id="private" ng-model="media.isPrivate" type="checkbox" name="private" hidden/>
+										<label for="private">Private</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="clear">
+								<input ui-items="gt" ng-model="media.gtsa" placeholder="What does this represent?" id="tags" auto-complete class="keyword-search"></input>
+                                <input ng-model="media.gt" type="hidden" ></input>
+								<input type="button" value="Done" ng-click="addTags()">
+							</div>
+						</form>
+					</div>
+					<div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="6" title="Add Theme">
+						<div class="addtheme">
+							<textarea placeholder="Your theme's title.." class="fullwidth"></textarea>
+							<textarea placeholder="Enter your theme description..."></textarea>
+							<input type="submit" value="Create">
+						</div>
+						<a href="#" class="link_themes">See all themes</a>
+					</div>
+					<div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="7" title="All Themes">
+						<div>
+							<input placeholder="Search themes.." class="searchthemes"></input>
+							<ul>
+                                                            <li><a href="#">Theme Name</a></li>
+                                                            <li><a href="#">Theme Name</a></li>
+                                                            <li><a href="#">Theme Name</a></li>
+                                                            <li><a href="#">Theme Name</a></li>
+                                                            <li><a href="#">Theme Name</a></li>
+                                                            <li><a href="#">Theme Name</a></li>
+                                                            <li><a href="#">Theme Name</a></li>
+                                                            <li><a href="#">Theme Name</a></li>
+                                                            <li><a href="#">Theme Name</a></li>
+							</ul>
+						</div>
+						<div class="centerlinks">
+                                                    <a href="#" class="link_themes">&laquo;</a>
+                                                    <a href="#" class="link_themes">1</a>
+                                                    <a href="#" class="link_themes">2</a>
+                                                    <a href="#" class="link_themes">3</a>
+                                                    <a href="#" class="link_themes">&raquo;</a>
+						</div>
+					</div>
+                                        
+                                        <div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="125" title="Duplicate Board">
+						<div class="addtheme">
+							<textarea placeholder="Enter Board Title" ng-model="duplicate.title"  class="fullwidth"></textarea>
+							<input type="submit" ng-click="duplicate()" value="Create">
+						</div>
+						<a href="#" class="link_themes"></a>
+					</div>
+                                        
+                                        <div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="152" title="Renaming Board">
+						<div class="addtheme">
+							<textarea placeholder="Enter Board Title" ng-model="rename.title"  class="fullwidth"></textarea>
+							<input type="submit" ng-click="rename()" value="Create">
+						</div>
+						<a href="#" class="link_themes"></a>
+					</div>
+                                        
+                             <!--           <div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="126" title="Add Members">
+						<div class="addtheme">
+							<textarea placeholder="Enter member's emails comma(,) separated" ng-model="member.emails"  class="fullwidth"></textarea>
+							<input type="submit" ng-click="addMembers()" value="Add">
+						</div>
+						<a href="#" class="link_themes"></a>
+					</div>-->
+					
+					  <div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="126" title="Add Members">
+						<div class="addtheme">
+							<input placeholder="Member's Name" ui-items="myInvitee" auto-complete-invitees autocomplete="off" ng-model="member.name"  class="keyword-search fullwidth" style="padding:15px 20px" />
+                                                        <textarea placeholder="Member's Email" ng-model="member.email"  class="fullwidth"></textarea>
+                                                        <select ng-model="member.relation"  style="padding:15px 18px"  class="fullwidth">
+                                                            <option>Father</option>
+                                                            <option>Mother</option>
+                                                            <option>Son</option>
+                                                            <option>Daughter</option>
+                                                            <option>Grandparent</option>
+                                                            <option>Grandchild</option>
+                                                            <option>Family Member</option>
+                                                            <option>Friend</option>
+                                                            <option>Mentor</option>
+                                                            <option>Coach</option>
+                                                            <option>Significant Other(Male)</option>
+                                                            <option>Significant Other(Female)</option>
+                                                            <option>Dating</option>
+                                                            <option>Teacher</option>
+                                                            <option>Student</option>
+                                                            <option>Colleague(senior)</option>
+                                                            <option>Colleague(junior)</option>
+                                                            <option>Colleague(peer)</option>
+                                                            <option>Professional Friend</option>
+                                                            
+                                                        </select>
+							<input type="submit" ng-click="addMembers()" value="Add">
+						</div>
+						<a href="#" class="link_themes"></a>
+					</div>
+                                     
+					
+                                        
+                                        <div class="dialog dialog-redactor ui-helper-hidden window_media_load akkadbakkad" data-dialog-id="129" title="Current Members">
+						<form action="#">
+							<div class="left current_member">
+								<div class="padded">
+									<h3 ng-repeat="invitee in boarddata[0].Invitees">
+                                                                            {{invitee.UserName}} <span class="ui-dialog-titlebar-close" ng-click="deleteMember(invitee.UserID)"> </span>
+                                                                        </h3>								</div>
+							</div>
+
+						</form>
+					</div>
+                                        
+                                        <div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="132" title="Move Project">
+						<div class="addtheme">
+							<textarea placeholder="Enter member's emails comma(,) separated" ui-items="projectsa" auto-complete-project  ng-model="project.project"  class="fullwidth"></textarea>
+                                                        <input type="hidden" ng-model="project.projectid">
+							<input type="submit" ng-click="moveBoard()" value="Move">
+						</div>
+						<a href="#" class="link_themes"></a>
+					</div>
+                                        
+                                        <div class="dialog dialog-redactor ui-helper-hidden window_media_load akkadbakkad" data-dialog-id="29" title="Current Members">
+						<form action="#">
+							<div class="left">
+								<div class="padded">
+									<h3 ng-repeat="invitee in boarddata[0].Invitees">
+                                                                            {{invitee.UserName}} <span ng-click="deleteMember(invitee.UserID)">X</span>
+                                                                        </h3>								</div>
+							</div>
+
+						</form>
+					</div>
+                                        
+					<div id="notepad" class="dialog dialog-redactor ui-helper-hidden" data-dialog-id="8" title="Notepad">
+						<a class="addmediamodal" title="Add Media"></a>
+						<a class="hidetoolbar" title="Toolbar"></a>
+						<div class="redactor"></div>
+	                	<a href="#" class="btn btn_add_text">Done</a>
+					</div>
+					
+					<div class="header-container">
+                        <header class="wrapper">
+                            <div id="head-top">
+                            
+                            	<!--<div class="theme_dropdown">
+                            		
+                        			<ul class="anim dropdown-menu navmenu">
+                            			<h2><a href="#">Capsule Name</a></h2>
+                            			<h3>Chapter Name</h3>
+                            			<span class="lead"><img src="../assets/board/img/avatar.png" alt="" width="30"><a href="#">Leads Name</a></span>
+                            			<li><a href="#">Art's Settings</a></li>
+                            			<li><a href="#" rel="dialog" data-dialog-id="8">Notepad</a></li>
+                            			<span class="audio">
+                            				<a href="#" class="audio_options">
+                            					<img src="../assets/board/img/icons/icon-audio.png" alt="audio" width="15" class="left">
+                            					<img src="../assets/board/img/icons/icon-play.png" alt="audio" width="15" class="left">
+                            					<img src="../assets/board/img/icons/icon-pause.png" alt="audio" width="15" class="left">
+                            				</a>
+                            				<a href="#" class="btn btn_open_account">Context</a>
+                            			</span>
+                            		</ul>
+                            	</div>-->
+                            	<div id="account_holder" class="account_holder anim">
+                            		<div class="account_wrapper anim">
+					            		<a href="#" id="close_account" class="close_account anim" title="Close"></a>
+					            		<div class="holder_person anim">
+						            		<div class="holder_avatar open_more_info anim">
+						            			<img src="../assets/board/img/avatar_person.png" alt="">
+						            		</div>
+						            		<div class="button_person">
+							            		<h3><span>Art</span></h3>
+							            		<ul class="list_person dropdown-menu">
+							            			<li><a href="#">Darshan</a></li>
+							            			<li><a href="#">Martijn</a></li>
+							            		</ul>
+						            		</div>
+						            	</div>
+						            	<!--<div class="account_media anim">
+						            		<img src="../assets/board/img/tmbs/9.jpg" alt="">
+						            	</div>
+						            	<div class="button_chapter">
+							            	<h3><span>Lead for Self</span></h3>
+							            	<ul class="list_chapter dropdown-menu">
+							            		<li><a href="#">Chapter1</a></li>
+							            		<li><a href="#">Chapter2</a></li>
+							            		<li><a href="#">Chapter3</a></li>
+							            	</ul>
+							            </div>
+							            <div class="button_question">
+						            		<h3><span>What is your aspiration?</span></h3>
+						            		<ul class="list_question dropdown-menu">
+							            		<li><a href="#">Question1</a></li>
+							            		<li><a href="#">Question2</a></li>
+							            		<li><a href="#">Question3</a></li>
+							            	</ul>
+						            	</div>-->
+                            		</div>
+				            	</div>
+				            	<div class="account_more_info_holder anim">
+				            		<a href="#" id="close_more_info" class="close_account"></a>
+				            		<h2>Peace</h2>
+				            		<div class="holder_img">				            			<img src="../assets/board/img/tmbs/10.jpg" alt="">
+				            		</div>
+				            		<p>Art statement...</p>
+				            	</div>
+				            	
+	                            <div class="headerBg anim" style="{{headerstyle}}">
+                                	<div class="avtartop"><a href="#"><img src="../assets/board/img/avatar.png" alt=""></a></div>
+	                            	<div class="center-container">
+	                            		<a href="#" class="navarrow-left" ng-click="changePT()"></a>
+		                            	<a href="#" class="navarrow-right"ng-click="changePT()"></a>
+		                            	<div class="center">
+		                            		<div class="question_block">
+			                            		<h2><span>{{boarddata[0].Title}}</span></h2>
+				                            	<ul id="questionMenu" class="anim dropdown-menu">
+                                                                    <li>
+                                                                            <h2><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit?</a></h2>
+                                                                    </li>
+                                                                    <li>
+                                                                            <h2><a href="#">sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?</a></h2>
+                                                                    </li>
+                                                                    <li>
+                                                                            <h2><a href="#">Ut enim ad minim veniam, quis nostrud exercitation ullamco?</a></h2>
+                                                                    </li>
+                                                                    <li>
+                                                                            <h2><a href="#">Duis aute irure dolor in reprehenderit in voluptate?</a></h2>
+                                                                    </li>
+                                                                    <li>
+                                                                            <h2><a href="#" id="tips-btn" data-tip="Tips" rel="tips-content">Tips</a></h2>
+                                                                    </li>
+				                            	</ul>
+				                            </div>
+                                            <!--<ul id="header-dropdown-pager" class="header-dropdown-pager rt-matg_none">
+				                            	<li>                                                
+				                            		<ul class="headerTitleMenu anim customScrollbar dropdown-menu">
+				                            			<li class="inputli searchfield">
+                                                        	<div class="searchwidget clearfix"><input class="searchthemes" placeholder="Search Themes.." > <button class="button fade fl-rt">Suggest</button></div>
+                                                        </li>
+				                            			<li class="add_theme width50per"><a href="#" rel="dialog" data-dialog-id="6">Add themes</a></li>
+				                            			<li class="all width50per"><a href="#" rel="dialog" data-dialog-id="7">All themes</a></li>
+				                            			<li><a href="#">Inspirational Leadership</a></li>
+				                            			<li><a href="#">Accountability</a></li>
+				                            			<li><a href="#">Authentic conversations</a></li>
+				                            			<li><a href="#">Inspirational Leadership</a></li>
+				                            			<li><a href="#">Accountability</a></li>
+				                            			<li><a href="#">Authentic conversations</a></li>
+				                            		</ul>
+				                            	</li>
+				                            	<li>
+                                                	
+				                            		<ul class="headerTitleMenu anim dropdown-menu customScrollbar">
+                                                    	<li class="inputli searchfield">
+                                                        	<div class="searchwidget clearfix"><input class="searchthemes" placeholder="Search Themes.."> <button class="button fl-rt">Suggest</button></div>
+                                                        </li>
+				                            			<li class="add_theme width50per"><a href="#" rel="dialog" data-dialog-id="2">Add Themes</a></li>
+				                            			<li class="all width50per"><a href="#" rel="dialog" data-dialog-id="1">All Themes</a></li>
+				                            			<li><a href="#">Word1 2</a></li>
+				                            			<li><a href="#">Word2 2</a></li>
+				                            			<li><a href="#">Word3 2</a></li>
+				                            			<li><a href="#">Word4 2</a></li>
+				                            		</ul>
+				                            	</li>
+				                            	<li>
+				                            		<ul class="headerTitleMenu anim customScrollbar dropdown-menu">
+                                                    	<li class="inputli searchfield">
+                                                        	<div class="searchwidget clearfix"><input class="searchthemes" placeholder="Search Themes.."> <button class="button fl-rt">Suggest</button></div>
+                                                        </li>
+				                            			<li class="add_theme width50per"><a href="#" rel="dialog" data-dialog-id="2">Add Themes</a></li>
+				                            			<li class="all width50per"><a href="#" rel="dialog" data-dialog-id="1">All Themes</a></li>
+				                            			<li><a href="#">Word1 3</a></li>
+				                            			<li><a href="#">Word2 3</a></li>
+				                            			<li><a href="#">Word3 3</a></li>
+				                            			<li><a href="#">Word4 3</a></li>
+				                            		</ul>
+				                            	</li>
+											</ul>-->
+			                            	
+                                                        
+                                                        <ul id="header-dropdown-pager" class="header-dropdown-pager rt-matg_none">
+				                            	<li ng-repeat="themes in gt" ng-hide="1">
+				                            		<ul class="headerTitleMenu anim customScrollbar dropdown-menu">
+				                            			<li class="inputli"><input class="searchthemes" ng-model="search" placeholder="Search Themes.."></li>
+				                            			<li >
+				                            				<a href="#" rel="dialog" data-dialog-id="6">Add New</a>
+				                            			</li>				                            			
+                                                                        </ul>
+                                                                        <ul class="headerTitleMenu anim customScrollbar dropdown-menu" style="max-height:250px; overflow:auto; margin-top:108px; padding-top:0px;">
+				                            			<li ng-repeat="theme in groupta | filter:{ title:search }" style="width:100%;"><a ng-if="theme.canAdded" ng-click="addGroupTag(theme.id,theme.title)">{{theme.title}} <span style="float: right" ng-if="theme.canAdded" ng-click="alert('add')">Add</span></a>
+                                                                                <a ng-if="theme.canDeleted" ng-click="deleteGroupTag(theme.id,theme.title)">{{theme.title}} <span style="float: right" ng-if="theme.canDeleted" ng-click="alert('delete')">Delete</span></a>
+                                                                                </li>  
+				                            		</ul>
+				                            	</li>
+				                            	
+							    </ul>
+		                            		<!-- <a href="#" rel="dialog" data-dialog-id="1" class="btn left">All Themes</a>
+		                            		<a href="#" rel="dialog" data-dialog-id="2" class="btn right">Add Themes</a> -->
+		                            	</div>
+	                            	</div>
+		                           <!-- <ul id="actions" class="anim">
+			                          	<li class="third"><a href="#">&plus;</a></li>
+			                          	<li class="third"><a href="#" class="push">&#42;</a></li> 
+			                          	<li class="third"><a href="#">&minus;</a></li>
+		                            </ul>-->
+		                            <div id="dropzone" class="anim discuss" style="position:relative">
+		                            	<div class="avatar-widget">                                        	
+                                        	<ul class="avatarlist clearfix">
+                                            	
+                                            </ul>
+											<a style="display:none" class="avarrow-left" href="javascript:void(0)"></a>
+                                            <a style="display:none" class="avarrow-right" href="javascript:void(0)"></a>
+                                        </div>
+						
+						<form action="/boards/uploadMedia" >
+			                            	<ul class="dz-default dz-message">
+			                            		<li class="icon"><a href="#" rel="dialog" data-dialog-id="651" class="text" title="Write Note"></a></li>
+			                            		<li class="icon">
+			                            			<a href="#" class="record"></a>
+			                            			<ul class="record-dropdown hidden anim">
+				                        				<li><a href="#">Video</a></li>
+				                        				<li><a href="#">Audio</a></li>
+				                        			</ul>
+			                            		</li>
+			                            		<li class="icon">
+			                            			<a href="javascript:void(0)" class="upload more"></a>
+									<a href="#" style="display:none" rel="dialog" data-dialog-id="5" class="upload more"></a>
+									
+			                            			<ul class="upload-dropdown hidden anim">
+				                        				<li><a class="input-file uniform_on" data-dialog-id="222" rel="dialog" >Link </a>
+                                                                                        <a href="#" class="link_upload_themes" style="display:none" data-dialog-id="421" rel="dialog">test</a></li>
+				                        				<li><a href="javascript:void(0)" ng-click="viewBoardsMedia()">Boards</a></li>
+				                        				<li style="background:none repeat scroll 0 0 rgba(0, 0, 0, 0.8); font-size:0.85em;">
+                                                                                      
+          <span style=" cursor:pointer !important;">                                                                                     <input type="file" class="input-file uniform_on" style="opacity:0; left:0; position:absolute" ng-disabled="{{disablebtn}}" ng-file-select="onFileSelect($files)" multiple value="Add Files">
+Hard Drive 
+</span>                                                                               </li>
+				                        			</ul>
+			                            		</li>
+			                            	</ul>
+		                            	</form>
+						
+		                            	<ul id="slideTitleHeader" class="slideTitleHeader">
+			                            	<li id="{{theme.ThemeID}}" ng-repeat="theme in boarddata[0].Themes | filter:{isApproved:'!0'}">
+			                            		<div class="title_header_block">
+				                            		<h1><span>{{theme.ThemeTitle}}</span></h1>
+			                            		</div>
+			                            	</li>
+			                            </ul>
+		                            	
+										
+		                            	
+		                            	<!--<ul id="media-in">
+		                            		<li>
+		                            			<a class="remove">&times;</a>
+		                            			<img src="../assets/board/img/tmbs/square/1.jpg" alt="" width="128">
+		                            		</li>
+		                            		<li>
+		                            			<a class="remove">&times;</a>
+		                            			<img src="../assets/board/img/tmbs/square/2.jpg" alt="" width="128">
+		                            		</li>
+		                            		<li>
+		                            			<a class="remove">&times;</a>
+		                            			<img src="../assets/board/img/tmbs/square/3.jpg" alt="" width="128">
+		                            		</li>
+		                            	</ul>-->
+		                            	
+		                            	<!--<a href="#" class="btn btn_media_done">Done</a>-->
+		                            </div>
+	                            </div>
+	                            <ul id="filterbar">
+	                        		<li class="icon left"><a href="#" class="ico ico1 filterMenu" title="Filters"></a></li>
+	                        		<li class="icon left"><a href="#/discuss/{{id}}" class="ico ico7 switch" title="Go to Discuss"></a></li>
+	                        		<!--<li class="icon left"><a href="#" class="ico ico2 searchBar" title="Search"></a></li>-->
+	                        		
+	                        		<li class="icon right"><a href="#" class="ico ico6 settingsBar" title="Settings" ng-show="showsetting"></a></li>
+	                        		<!--
+									<li class="icon right"><a href="#" id="orderItems" class="ico ico5" title="Re-Order"></a></li>
+	                        		<li class="icon right"><a href="#" id="tagButton" class="ico ico4" title="Tags"></a></li>
+	                        		-->
+									<li class="icon right">
+	                        			<a href="#" class="ico ico3 mediaBar"></a>
+	                        			<ul class="mediaBar-dropdown anim hidden">
+	                        				<li><a href="#">Picture</a></li>
+	                        				<li><a href="#">Video</a></li>
+	                        				<li><a href="#">Audio</a></li>
+	                        				<li><a href="#">Text</a></li>
+	                        			</ul>
+	                        		</li>
+                                    <!-- search title -->
+	                        		<li class="icon searchinglist">
+                                    	<a class="searchBar" href="#">
+                                        	<span class="ico ico2"></span>
+                                    		<span class="searching">You are searching '<span class="bold">physical</span>'</span>
+                                    	</a>
+                                    </li>
+	                        	</ul>
+	                        	<ul id="filterbar-dropdown">
+	                        		<li class="searchBar hidden anim">
+		                				<div class="search-bar">
+		                					<input type="text" placeholder="Start typing here.." id="searchfld" ng-change="searchMedia()" ng-model="searchTitle" autofocus>
+		                					<!--<button>More</button>-->
+		                				</div>
+		                				<div class="search-dropdown">
+	                						<ul>
+												<!--
+	                							<li><a class="option head">Media</a>
+	                								<ul>
+	                									<li><a class="option active"><span class="padded">All</span></a></li>
+	                									<li><a class="option"><span class="padded">Image</span></a></li>
+														<li><a class="option"><span class="padded">Video</span></a></li>
+	                									<li><a class="option"><span class="padded">Audio</span></a></li>
+	                									<li><a class="option"><span class="padded">Link</span></a></li>	
+														<li><a class="option"><span class="padded">Text</span></a></li>	
+														<li><a class="option"><span class="padded">Montage</span></a></li>	
+														
+	                								</ul>
+	                							</li>
+												-->
+	                							<li><a class="option head">Kind of Media</a>
+	                								<ul>
+														<!--
+	                									<li><a class="option active"><span class="padded">Helpers</span></a></li>
+	                									<li><a class="option active"><span class="padded">Trippers</span></a></li>	
+														-->
+														<li><a class="option active"><span class="padded">Enablers</span></a></li>
+	                									<li><a class="option active"><span class="padded">Barriers</span></a></li>	
+	                								</ul>
+	                							</li>
+												<!--
+	                							<li><a class="option head">Additional</a>
+	                								<ul>
+	                									<li><a class="option active"><span class="padded">Overpass</span></a></li>
+	                									<li><a class="option"><span class="padded">Descriptives</span></a></li>	
+	                									<li><a class="option"><span class="padded">Opposites</span></a></li>	
+	                								</ul>
+	                							</li>
+												-->
+	                							<li><a class="option head">Sort By</a>
+	                								<ul>
+	                									<li><a class="option"><span class="padded">Highest Votes</span></a></li>
+	                									<li><a class="option"><span class="padded">Lowest Votes</span></a></li>	
+	                									<li><a class="option"><span class="padded">Alphabetical</span></a></li>	
+	                									<li><a class="option active"><span class="padded">Newest</span></a></li>	
+	                									<li><a class="option"><span class="padded">Oldest</span></a></li>	
+	                								</ul>
+	                							</li>
+	                						</ul>
+		                				</div>
+		                			</li>
+		                			<li class="settingsBar">
+		                				<div class="settingsBar-dropdown">
+	                						<ul>
+	                							<li  ng-show="boarddata[0].PrivacySetting[0].BoardType!='OnlyYou'"><a class="option head">Members</a>
+	                								<ul>
+	                									<li><a rel="dialog" data-dialog-id="129" class="option"><span class="padded">Current Members</span></a></li>
+	                									<li><a class="option" href="javascript:void()" rel="dialog" data-dialog-id="126"><span class="padded">Add Members</span></a></li>
+	                									<!--<li><a class="option"><span class="padded">Delete Members</span></a></li>-->
+	                								</ul>
+	                							</li>
+	                							<li><a class="option head">Board</a>
+	                								<ul>
+	                									<!--<li><a class="option"><span class="padded">Title</span></a></li>-->
+	                									<li><a data-dialog-id="152" rel="dialog" class="option"><span class="padded">Rename</span></a></li>
+	                									<li><a data-dialog-id="125" rel="dialog" class="option"><span class="padded">Duplicate</span></a></li>	
+	                									<li><a class="option" rel="dialog" data-dialog-id="132"><span class="padded">Move</span></a></li>	
+	                									<li><a class="option" ng-click="deleteBoard()"><span class="padded">Delete</span></a></li>	
+	                								</ul>
+	                							</li>
+	                							<!--<li><a class="option head">Page Theme</a>
+	                								<ul>
+	                									<li><a class="option"><span class="padded">Add</span></a></li>
+	                									<li><a class="option"><span class="padded">Rename</span></a></li>
+	                									<li><a class="option"><span class="padded">Duplicate</span></a></li>
+	                										                																							<li><a class="option"><span class="padded">Move</span></a></li>	
+	                										                										                									<li><a class="option"><span class="padded">Delete</span></a></li>	
+	                								</ul>
+	                							</li>
+	                	-->							<li><a class="option head">Design &amp; Sound</a>
+	                								<ul class="upload_btn">
+	                									<li><input type="file" class="input-file uniform_on" style="opacity:0; position:absolute" ng-disabled="{{disablebtn}}" ng-file-select="onHeaderSelect($files)" multiple value="Add Files"><span class="padded">Header Image</span></li>
+	                									<li><input type="file" accept="audio/*" class="input-file uniform_on" style="opacity:0; position:absolute" ng-disabled="{{disablebtn}}" ng-file-select="onAudioSelect($files)" multiple value="Add Files"><span class="padded">Background Music</span></li>
+	                								</ul>
+	                							</li>
+	                						</ul>
+		                				</div>
+		                			</li>
+	                        	</ul>
+                            </div>
+                        </header>
+                    </div>
+                    
+                    <div class="main-container">
+                        <div class="main wrapper">
+                        	<!-- ///////////////////////////// -->
+                        	<!-- ///////////////////////////// -->
+                        				<!-- GRID -->
+                        	<!-- ///////////////////////////// -->
+                        	<!-- ///////////////////////////// -->
+                            
+                        	<div class="filterMenu-sidebar hidden anim filterlist" id="content_scroll" scrollable style="height:450px;">
+							
+                            
+                            <h3 class="underline">Media Types</h3>
+                            
+                            <ul class="text-audio">
+								<li class="filter_checbox" ng-click="changeMediaType('All')">
+                                    <label>
+                                        <input type="radio" checked="checked" value="text" name="textaudio">
+                                        <span>All</span>
+                                    </label>
+                                </li>
+                                <li class="filter_checbox" ng-click="changeMediaType('Image')">
+                                    <label>
+                                        <input type="radio" value="image" name="textaudio">
+                                        <span>Image</span>
+                                    </label>
+                                </li>
+                                <li class="filter_checbox" ng-click="changeMediaType('Notes')">
+                                    <label>
+                                        <input type="radio" value="text" name="textaudio">
+                                        <span>Text/Notes</span>
+                                    </label>
+                                </li>
+                                <li class="filter_checbox" ng-click="changeMediaType('Link')">
+                                    <label>
+                                        <input type="radio" value="audio" name="textaudio">
+                                        <span>Link</span>
+                                    </label>
+                                </li>
+								<li class="filter_checbox" ng-click="changeMediaType('Video')">
+                                    <label>
+                                        <input type="radio" value="video" name="textaudio">
+                                        <span>Video</span>
+                                    </label>
+                                </li>
+                            </ul>
+                            
+                            
+                            <ul class="text-audio top_border">
+                                <li style="color:#999" for="powerUser" class="filter_checbox">
+								<label>
+								<input type="checkbox" ng-model="powerUser" ng-click="changePower()" id="powerUser">
+								<span>Power User </span></label>
+                                </li>
+                                								
+                        		<li style="color:#999" for="ownerFSG" class="filter_checbox">
+								<label><input type="checkbox" ng-model="ownerFSG" ng-click="changeOwner()" id="ownerFSG">
+								<span>Owner FSG's</span></label>
+                                </li>
+                                
+                            </ul>
+                            
+                                
+<div style="clear:both;"></div>
+<div ng-repeat="sg in fsgs" ng-show="!ownerFSG">
+	<h3 class="accordion" onclick="openAccordion($(this))"><div class="info">Information</div> {{sg.Title}}</h3>	
+        <!-- -->
+	<div class="accordion-pop" style="display:none">
+		
+			<ul class="text-audio" >
+			<li class="filter_checbox">
+                                    <label>
+                                        <input class="radiobb" type="radio" data="" id="{{sg._id}}" value="text" name="{{sg.Title}}">
+                                        <span data="{{sg.Title}}~{{fsg.valueTitle}}" subfilter="{{sg.Title}}" ng-click="changeCss(fsg._id,sg.Title,fsg.valueTitle)">All</span>
+                                    </label>
+                                </li>
+			<li class="filter_checbox" ng-repeat="fsg in sg.Values">
+                                    <label>
+                                        <input class="radiobb" type="radio" data="{{sg.Title}}~{{fsg.valueTitle}}"  id="{{fsg._id}}" subfilter="{{sg.Title}}" value="text" name="{{sg.Title}}">
+                                        <span data="{{sg.Title}}~{{fsg.valueTitle}}" subfilter="{{sg.Title}}" ng-click="changeCss(fsg._id,sg.Title,fsg.valueTitle)">{{fsg.valueTitle}}</span>
+                                    </label>
+                                </li>
+			</ul>
+		    <!--<h3  data="{{sg.Title}}~{{fsg.valueTitle}}" subfilter="{{sg.Title}}" ng-click="changeCss(fsg._id,sg.Title,fsg.valueTitle)" id="{{fsg._id}}">
+            <label for="{{fsg._id}}">-->
+			<!--<input type="checkbox"> <span>{{fsg.valueTitle}} </span>--><!-- {{fsg.valueTitle}}</label></h3>	
+            		-->
+			
+        
+        <input type="submit" value="Save" class="btn_border">
+        
+        </div>
+</div>
+                        		
+                        	
+                        		<!--<ul id="filterMenu-sidebar-main-menu" class="filterMenu-sidebar-main-menu">
+                    				<li><a href="javascript:void(0)">Configure By</a></li>
+                    				<li><a href="javascript:void(0)">Function or Department</a></li>
+                    				<li><a href="javascript:void(0)">Industry</a></li>
+                    				<li><a href="javascript:void(0)">Size of Organisation</a></li>
+                    			</ul>
+                    			<ul id="filterMenu-sidebar-sub-menu" class="filterMenu-sidebar-sub-menu">
+                    				<li>
+                    					<span style="display:none;">Configure By</span>
+                    					<ul>
+                    						<li><a href="#">Lorem ipsum.</a></li>
+                    						<li><a href="#">Odit, natus.</a></li>
+                    						<li><a href="#">Libero, earum!</a></li>
+                    					</ul>
+                    				</li>
+                    				<li>
+                    					<span style="display:none;">Function or Department</span>
+                    					<ul>
+                    						<li><a href="#">Lorem ipsum.</a></li>
+                    						<li><a href="#">Odit, natus.</a></li>
+                    					</ul>
+                    				</li>
+                    				<li>
+                    					<span style="display:none;">Industry</span>
+                    					<ul>
+                    						<li><a href="#">Lorem ipsum.</a></li>
+                    						<li><a href="#">Odit, natus.</a></li>
+                    						<li><a href="#">Libero, earum!</a></li>
+                    					</ul>
+                    				</li>
+                    				<li>
+                    					<span style="display:none;">Size of Organisation</span>
+                    					<ul>
+                    						<li><a href="#">Lorem ipsum.</a></li>
+                    						<li><a href="#">Odit, natus.</a></li>
+                    					</ul>
+                    				</li>
+                    			</ul>-->
+                    		</div>
+                            
+                            <ul id="thumbs" class="thumbs thmb-home masonry-container anim">
+								<li id="columnWidth" ng-repeat="media in medias" style="position: relative; float:left;">
+									<a ng-click="setMediaId(media)" class="item" href="" ng-right-click="openInNextTab(media.value.URL)" ng-if="media.value.ContentType=='image/png' || media.value.ContentType=='image/jpeg' || media.value.ContentType=='image/gif' " >									
+									<span class="loader_img"></span>
+									<div class="text_wrap" ng-if="media.value.MediaType=='Link' || media.value.MediaType=='Notes'"  ng-bind-html="media.value.Content | to_trusted" >
+										
+									</div>
+										
+										<p class="innerimg-wrap" style="color:#fff;">
+											
+											<img ng-if="media.value.ContentType=='image/png' || media.value.ContentType=='image/jpeg' || media.value.ContentType=='image/gif' || media.value.ContentType==null" class=""  ng-src="../assets/Media/img/{{media.value.URL}}" alt="Image Not Found!" >
+											
+										</p>
+										<div class="format_file_mid tick_format_heart anim" ng-click="addToMediaTray(media)" style="display:none" title="Post in board discussion"></div>
+										<div class="overlay anim">
+											<div class="caption">
+												<h3>{{media.value.Title}}</h3>
+												<span>{{media.value.Prompt}}</span>
+											</div>
+										</div>
+									</a>
+									<a ng-click="setMediaId(media)" class="item" href="" ng-if="media.value.ContentType!=='image/png' || media.value.ContentType!=='image/jpeg' || media.value.ContentType!=='image/gif' " >									
+									<span class="loader_img"></span>
+									<div class="text_wrap" ng-if="media.value.MediaType=='Link' || media.value.MediaType=='Notes'"  ng-bind-html="media.value.Content | to_trusted" >
+										
+									</div>
+										
+										<p class="innerimg-wrap" style="color:#fff;">
+											<img ng-if="media.value.ContentType=='application/pdf'" class=""  ng-src="../assets/img/PDF.png" alt="Sample PDF 1">
+											<img ng-if="media.value.ContentType=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || media.value.ContentType=='application/msword'" class=""  ng-src="../assets/img/Icon-Document.jpg" alt="Sample Word 1">
+											<img ng-if="media.value.ContentType=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || media.value.ContentType=='application/vnd.ms-excel' || media.value.ContentType=='application/vnd.oasis.opendocument.spreadsheet'" class=""  ng-src="../assets/img/excel.png" alt="Sample Excel 1">
+											<img ng-if="media.value.ContentType=='application/vnd.openxmlformats-officedocument.presentationml.presentation' || media.value.ContentType=='application/vnd.ms-powerpoint'" class=""  ng-src="../assets/img/ppt.png" alt="Sample PPT 1">
+											
+											
+										</p>
+										<div class="format_file_mid tick_format_heart anim" ng-click="addToMediaTray(media)" style="display:none" title="Post in board discussion"></div>
+										<div class="overlay anim">
+											<div class="caption">
+												<h3>{{media.value.Title}}</h3>
+												<span>{{media.value.Prompt}}</span>
+											</div>
+										</div>
+									</a>
+									<div class="format_file_mid tick_format_heart anim" ng-click="addToMediaTray(media)" title="Post in board discussion" style="margin-bottom:16px"></div>
+								</li>
+								
+							</ul>
+                            
+							<!-- ///////////////////////////// -->
+                        	<!-- ///////////////////////////// -->
+                        				<!-- GRID -->
+                        	<!-- ///////////////////////////// -->
+                        	<!-- ///////////////////////////// -->
+                        </div>
+                    </div>
+                    <!--/////// My Board Medias //////-->
+                    <div class="main-container-boards dialog-redactor" ng-if="boardsMedia">
+                               
+					<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"> 							   
+                            <div  class="ui-dialog-title">
+							<span style="cursor:pointer" ng-click="showMyBoard()">Boards</span> 
+							<span ng-if="boardMedia"> >> {{boardMedia.Title}} </span> 
+							 </div>
+							 
+							<span class="ui-button-icon-primary ui-icon ui-icon-closethick ui-dialog-titlebar-close" style="float: right;" ng-click="closeBoardMedia()" >X</span>
+                     </div>
+					 
+							<div class="main wrapper">   
+							<ul id="thumbs" style="margin-top:0px" class="thumbs thmb-home masonry-container anim">
+                                
+                                <li id="{{board._id}}" ng-repeat="board in myboardsMedia" style="position: relative; float:left;" ng-click="showMyBoardMedia(board)" ng-if="!boardMedia">
+                                    <a class="item" href="">
+                                        <p class="innerimg-wrap" >
+                                            <img ng-src="../assets/board/img/bg-hills.jpg" ng-if="board.HeaderImage==null || !board.HeaderImage" alt="Board {{$index+1}}">
+                                            <img ng-src="../assets/board/headerImg/{{board.HeaderImage}}" ng-if="board.HeaderImage!=null" alt="Board {{$index+1}}">    
+                                        </p>
+                                        
+                                        
+                                        
+                                        <div class="overlay anim">
+                                            <div class="caption">
+                                                <h3>{{board.Title}}</h3>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                
+                                <li id="{{media._id}}" ng-if="boardMedia" ng-repeat="media in boardMedia.Medias" ng-click="selectBoardMedia(media)" style=" position: relative; float:left;">
+                                    <a class="item" href="">
+                                        <p class="innerimg-wrap" >
+                                            <img ng-if="media.ContentType=='application/pdf'" class=""  ng-src="../assets/img/PDF.png" alt="Sample PDF 1">
+					<img ng-if="media.ContentType=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || media.ContentType=='application/msword'" class=""  ng-src="../assets/img/Icon-Document.jpg" alt="Sample Word 1">
+					<img ng-if="media.ContentType=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || media.ContentType=='application/vnd.ms-excel' || media.ContentType=='application/vnd.oasis.opendocument.spreadsheet'" class=""  ng-src="../assets/img/excel.png" alt="Sample Excel 1">
+					<img ng-if="media.ContentType=='application/vnd.openxmlformats-officedocument.presentationml.presentation' || media.ContentType=='application/vnd.ms-powerpoint'" class=""  ng-src="../assets/img/ppt.png" alt="Sample PPT 1">
+					<img ng-if="media.ContentType=='image/png' || media.ContentType=='image/jpeg' || media.ContentType=='image/gif' || media.ContentType==null" class=""  ng-src="../assets/Media/img/{{media.MediaURL}}" alt="Image Not Found!">
+                                        
+                                            
+                                        </p>
+                                        <div class="text_wrap">
+											<span ng-if="media.MediaType=='Link' || media.MediaType=='Notes'" style="color:#fff"  ng-bind-html="media.Content | to_trusted" ></span>    
+										</div>
+                                        
+                                        
+                                        <div class="overlay anim">
+                                            <div class="caption">
+                                                <h3>{{board.Title}}</h3>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>	
+			    </ul>
+							
+                        </div>
+                    
+					<span ng-if="boardMedia && selectedMediaFromBoards.length" style="cursor:pointer" class="btn btn_add_text" ng-click="AddBoardsMediasToBoard()" >Add</span> 
+					
+					</div>
+                    <!--/////// My Board Medias //////-->
+                    
+                    
+                    
+                    <!--Media Detail Page Element-->
+					<div class="holder-act" ng-include="'../views/front/boards/elements/search_media_detail.html'"></div>
+                    <!--Media Detail Page Element-->
+                    
+                    <!--Tips Star-->
+                    <section id="tips">
+				<div id="holder">
+					<h2>Tips <a id="closetips" class="right tip" data-tip="Close"></a></h2>
+					<div class="half content">
+						<iframe width="560" height="315" src="http://www.youtube.com/embed/GvgqDSnpRQM" frameborder="0" allowfullscreen></iframe>
+					</div>
+					
+					<div id="content_1" class="half content pushright">
+						<h3>Guidelines</h3>
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p> 
+						<ul>
+							<li>Ut enim ad minima veniam, quis nostrum</li>
+							<li>Quis autem vel eum iure reprehenderit</li>
+							<li>Nemo enim ipsam voluptatem</li>
+						</ul>
+						<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+						
+						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p> 
+						<ul>
+							<li>Ut enim ad minima veniam, quis nostrum</li>
+							<li>Quis autem vel eum iure reprehenderit</li>
+							<li>Nemo enim ipsam voluptatem</li>
+						</ul>
+						<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+					</div>
+				</div>
+			</section>
+            		<!--Tips Closed-->
+                    <div class="ui-widget-overlay ui-front" style="display:none;"></div>
+                    
+                    <!--<div class="footer-container">
+                        <footer class="wrapper">
+                            <span class="copyright">
+                                &copy; SCRPT <span id="copydata"></span><script> var theDate=new Date(); $('#copydata').html(theDate.getFullYear()) </script> all rights reserved
+                            </span>
+                        </footer>
+                    </div>-->
+                    
+                    <script src="../assets/board/js/dropzone.js"></script>
+                    <script src="../assets/board/js/scripts.js"></script>
+                    <script>
+                        
+                        $(document).ready(function(){
+                                $('.thumbs li').each(function(){
+                                        $(this).height($(this).width())
+								})
+								
+                                $('.thumbs li a').each(function(){
+                                        $(this).height($(this).width())
+										height=$(this).height()	
+                                })
+								$('.innerimg-wrap').each(function(){
+									  height=$(this).parent().height();
+									  imgheight=$(this).children().first('img').height();
+									  imgwidth=$(this).children().first('img').width();
+									  if(height>imgheight){
+										$(this).children().first('img').height(height)
+									  }
+									  else if(height>imgwidth){
+										$(this).children().first('img').width(height)
+									  }
+									  else{
+										if(imgheight<imgwidth){
+										    $(this).children().first('img').height(height)
+										}
+										else if(imgwidth<imgheight){
+											$(this).children().first('img').width(height)
+										}
+										else{
+											$(this).children().first('img').width(height)
+										}
+									}
+								})
+                                
+                                
+                        })
+                        $(window).resize(function() {
+                                $('.thumbs li').each(function(){
+                                        $(this).height($(this).width())
+                                })
+                        
+                                $('.thumbs li a').each(function(){
+                                        $(this).height($(this).width())
+										height=$(this).height()	
+                                })
+								$('.innerimg-wrap').each(function(){
+									  height=$(this).parent().height();
+									  imgheight=$(this).children().first('img').height();
+									  imgwidth=$(this).children().first('img').width();
+									  if(height>imgheight){
+										$(this).children().first('img').height(height)
+									  }
+									  else if(height>imgwidth){
+										$(this).children().first('img').width(height)
+									  }
+									  else{
+										if(imgheight<imgwidth){
+										    $(this).children().first('img').height(height)
+										}
+										else if(imgwidth<imgheight){
+											$(this).children().first('img').width(height)
+										}
+										else{
+											$(this).children().first('img').width(height)
+										}
+									}
+								})
+                        });
+                        $(document).attr('title','Scrpt - Search');
+                    </script>
+                    
+                    <audio autoplay loop id="audio">
+                        
+                        Your browser does not support the audio element.
+                    </audio>
+                    
+                     <div class="dialog dialog-redactor ui-helper-hidden window_media_load akkadbakkad" data-dialog-id="421" style="width:100%" title="Link Upload">
+						<form action="#">
+							<div class="left">
+								<div class="img_holder link_holder" style="max-height:150px; overflow:auto">
+									
+								</div>
+							</div>
+							
+							<div class="left">
+								<div class="padded">
+									<h3></h3>
+									<div class="option_info">
+										<ul>                
+										    <li ng-repeat="mmts in mmt"  ng-click="changemmtlink(mmts._id)">
+										        <input id="{{mmts._id}}" ng-model="link.mmt" type="radio" name="radio" value="{{mmts._id}}" hidden/>
+										        <label for="{{mmts._id}}" title="">{{mmts.MetaMetaTagTitle}}</label>
+										    </li>
+										    
+										</ul>
+									</div>
+									<div class="option_info">
+										<p>This is private<!--, thanks for understand :-)--></p>
+										<input id="private" ng-model="link.isPrivate" type="checkbox" name="private" hidden/>
+										<label for="private">Private</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="clear">
+								<input ui-items="groupt" ng-model="link.gtsa" id="tags2" placeholder="What does this represent?" auto-complete-link class="keyword-search" />
+                                                                <input ng-model="link.gt" type="hidden" />
+								<input type="button" ng-click="addTags()" value="Done">
+							</div>
+						</form>
+					</div>
+                                        
+                                        
+                                        
+					
+                    
+                    <div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="23" title="Duplicate Board">
+						<div class="addtheme">
+							<textarea placeholder="Enter Board Title" ng-model="duplicate.title"  class="fullwidth"></textarea>
+							<input type="submit" ng-click="duplicate()" value="Create">
+						</div>
+						<a href="#" class="link_themes"></a>
+					</div>
+</div>
+
+<style>
+    ul.ui-autocomplete{
+        
+        background:#fff !important;
+        z-index:1000 !important;
+        
+    }
+    .upload-dropdown{
+        top:30px;        
+    }
+    ::-webkit-input-placeholder { /* WebKit browsers */
+        color:    #999;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color:    #999;
+        opacity:  1;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color:    #999;
+        opacity:  1;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+        color:    #999;
+    }
+    
+    .main-container-boards{
+        width:83% !important;
+        margin-left: 10% !important;
+        top:10% !important;
+        height:80% !important;
+        position:fixed;
+        overflow:auto;
+        z-index:100000;
+    }
+.main-container-boards .main.wrapper{
+	background:#fff;
+	height: 80%;
+    overflow-y: scroll;
+	}
+.ui-dialog-title {
+    float: left;
+    letter-spacing: 5px;
+    margin: 0.1em 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+    width: 90%;
+}
+    .backgroundaaa{
+        background:#aaa;
+        
+    }
+    
+    .holder_bulb{
+	height:100%;
+    }
+    
+    .holder_bulb iframe{
+	width:100% !important;
+	height:100% !important;
+    }
+    .accordion-pop{
+	height: 100%;
+    }
+    /*.links iframe{
+        position: relative;
+        left:-50%
+    }*/
+    .avatarlist li{
+	display:inline-block;
+	width:68px !important;
+	height:68px !important;
+	overflow:hidden !important;
+    }
+    
+    .avatarlist li iframe{
+	width:68px !important;
+	height:68px !important;
+    }
+    
+    .avatarlist li avatar-name{
+	display:block;
+	width:68px !important;
+	height:68px !important;
+	overflow:hidden;
+	
+    }
+    
+    .avatarlist li avatar-name a{
+	display:block;
+	width:68px !important;
+	height:68px !important;
+	overflow:hidden;	
+    }
+    
+    .avatarlist li avatar-name p{
+	display:block;
+	width:68px !important;
+	height:68px !important;
+	overflow:hidden;	
+    }
+    
+    .avatarlist li img{	
+	width:68px !important;
+	height:68px !important;
+	overflow:hidden;	
+    }
+    
+    .avatarlist { width: auto !important;}
+    .avatarlist li {float:left;  }
+    
+	.loader_overlay{
+	    background: none repeat scroll 0 0 #000;
+		display: none;
+		height: 100%;
+		left: 0;
+		opacity: 0.8;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 98;
+	}
+	.loader_img_overlay{
+	    display: none;
+		height: 100%;
+		margin: auto;
+		position: fixed !important;
+		right: 0;
+		text-align: center;		
+		width: 100%;
+		left: 0%;
+		position: fixed !important;
+		top: 10px  !important;
+		z-index: 99 !important;
+	}
+	#content_scroll{
+		/*max-height:385px !important; */
+		max-height:100% !important;
+	}
+	.mCSB_container{
+		height:100%:!important;
+	}
+	.mCSB_scrollTools{
+		height:100%:!important;
+	}
+</style>
+<script>
+	$('format_file_mid tick_format_heart anim').on('click',function(e){
+		e.stopPropagation();	
+	})
+	function openAccordion(obj){
+		if (obj.next('.accordion-pop').css('display')=='none') {
+			obj.addClass('ui-state-active');
+			obj.next('.accordion-pop').slideDown('slow')				
+		}
+		else{
+			obj.removeClass('ui-state-active');
+			obj.next('.accordion-pop').slideUp('slow')
+			
+		}
+	}
+	
+	var theWidth=68;
+intIndex=0;
+$('.avarrow-right').on('click',function(){
+	theWidthu=$('.avatarlist li').length*theWidth;
+	if (theWidthu>=(((intIndex + 1)+5) * theWidth)) {
+		$('.avatarlist').animate({
+			"margin-left": (-(intIndex + 1) * theWidth)-4				
+		}, 1000);
+		intIndex++;
+	}
+	
+})
+
+function deleteMedia(obj){
+	if (confirm('Are you sure you want to delete this media from tray')) {
+		obj.parent().remove();	
+	}
+	
+	if($('.avatarlist').children().length<=5){
+		$('.avarrow-left').hide()
+		$('.avatarlist').css('margin-left','0px');
+		$('.avarrow-right').hide()
+	}	
+}			
+			
+$('.avarrow-left').on('click',function(){	
+	if(intIndex>0){
+		$('.avatarlist').animate({
+			"margin-left": (-(intIndex - 1) * theWidth)				
+		}, 1000);
+		intIndex--; 
+	}
+})
+
+
+function openMediaDetail(obj){
+	//alert("i got the point");
+	//console.log(obj.html())
+	var mediaElements = $('#thumbs, #discuss_elements');
+	var holderAct = $('.holder-act');
+	var body = $("html, body");
+	var bodyClass = $('body');
+	var currentPageClass = bodyClass.data('page-class');
+	
+	$('.holder_bulb').html(obj.html())
+
+	
+	body.animate({scrollTop:0}, '500');
+
+	bodyClass.addClass('small-fixed-header act-page');
+	bodyClass.removeClass(currentPageClass);
+	
+	mediaElements.fadeOut(400,function(){					
+		holderAct.fadeIn();
+		// Hide filter sidebar, if clicked, for remove his height from DOM
+		$('.filterMenu-sidebar').hide();
+	});
+	
+	$('#filterbar').find('a').filter(':not(.searchBar)').hide();
+
+	holderAct.find('.wrapper-redactor .redactor_editor').on('focus',function(e){
+	    $(this).parents('.wrapper-redactor').addClass('focus');
+	});
+	holderAct.find('.wrapper-redactor .redactor_editor').on('blur',function(e){
+	    $(this).parents('.wrapper-redactor').removeClass('focus');
+	});
+
+}
+	
+</script>
+
+<script>
+$(document).ready(function(){
+	$("#capturetext").on("drop", function(event) {
+	//event.preventDefault();  
+	event.stopPropagation();
+	if ($(this).val()!="") {
+		$(this).val("")
+		$(this).focus();
+	}
+    
+	});
+});
+</script>

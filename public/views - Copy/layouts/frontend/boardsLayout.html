@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7">
+    <![endif]-->
+    <!--[if IE 7]>
+    <html class="no-js lt-ie9 lt-ie8">
+        <![endif]-->
+        <!--[if IE 8]>
+        <html class="no-js lt-ie9">
+            <![endif]-->
+            <!--[if gt IE 8]><!-->
+            <html class="no-js" id="ng-app" ng-app="collabmedia">
+                <!--<![endif]-->
+                <head>
+                    <meta charset="utf-8">
+                    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
+                    <title>Scrpt - Discuss</title>
+					<style>
+					[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+						display: none !important;
+					}
+				</style>
+                    <meta name="description" content="">
+                    <meta name="keywords" content="">
+                    <meta name="author" content=""/>
+                    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no"/>
+                    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+                    <link rel="icon" href="favicon.ico" type="image/x-icon">
+                    <meta property="og:title" content=""/>
+                    <meta property="og:type" content="Link"/>
+                    <meta property="og:url" content=""/>
+                    <meta property="og:image" content=""/>
+                    <link rel="image_src" href="">
+					<link href="../assets/board/css/bootstrap.min.css" rel="stylesheet">
+                    <link rel="stylesheet" href="../assets/board/css/main.css">
+                    <link rel="stylesheet" href="../assets/board/css/jquery-ui.css">
+                    <link rel="stylesheet" href="../assets/board/css/redactor.css">
+                    <link rel="stylesheet" href="../assets/board/css/jPushMenu.css">
+                    <link rel="stylesheet" href="../assets/board/css/animate1.css">
+                    <link rel="stylesheet" href="../assets/css/common.css">
+					<!-- Custom scrollbars CSS -->
+                    <style>          
+						#content_1, #content_10{display:none;}
+                    </style>
+                    <link href="../assets/board/css/jquery.mCustomScrollbar.css" rel="stylesheet" />
+					<link rel="stylesheet" href="../assets/board/css/media.css" />
+                    <!--<script src="https://www.webrtc-experiment.com/RecordRTC.js"> </script> by manishp on 24122014-->
+					<script src="../assets/board/js/RecordRTC.js"> </script>
+					<script src="../assets/board/js/vendor/jquery-1.11.0.min.js"></script>
+					<script src="../assets/board/js/jquery.tokeninput.js"></script>
+					<script src="../assets/js/angular-1-2-10.min.js"></script>
+                    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>-->
+					<script src="../assets/js/angular-touch.min.js"></script>
+					<!--<script type="text/javascript" src="../assets/board/js/touche.js"></script>-->
+					<script src="../assets/js/angular-1-2-10-route.js"></script>
+					<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>-->
+                    <script src="../assets/js/angular-ui-router.min.js"></script>
+					<script src="../assets/js/angular-file-upload.js"></script>
+					<script src="../assets/js/angular-redactor.js"></script>
+						
+					<script src="../vendors/$script.js"></script>	
+					<script src="../vendors/angular-flash.js"></script>
+					<script src="../config/front/bootstrap.js"></script>
+					<script src="../controllers/boardsRoutes.js"></script>
+					
+					<!--
+					<script src="../services/front/board/loginService.js"></script>
+					
+					<script src="../controllers/front/boards/indexCtrl.js"></script>
+					<script src="../controllers/front/boards/searchCtrl.js"></script>
+					-->
+					<script src="../assets/board/assets/js/plugin.min.js"></script>
+					<script src="../assets/board/assets/js/core.min.js"></script>
+                    <script src="../assets/board/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+                    <script src="../assets/board/js/vendor/masonry.pkgd.min.js"></script>
+                    <script src="../assets/board/js/vendor/jquery.cycle2.min.js"></script>
+                    <script src="../assets/board/js/vendor/jquery-ui-1.10.4.custom.min.js"></script>
+					<!--<script src="../assets/board/js/jquery.ui.touch-punch.min.js" type="text/javascript" ></script>--><!--drag and drop for mobile devices22jan15-->
+                    <script src="../assets/board/js/vendor/redactor.min.js"></script>
+                    <script src="../assets/board/js/vendor/jquery.tinysort.min.js"></script>
+                    <script src="../assets/board/js/vendor/jquery.mCustomScrollbar.min.js"></script>
+                    <script src="../assets/board/js/vendor/jquery.queryloader2.min.js"></script>
+                    <script src="../assets/board/js/jPushMenu.js"></script>
+					
+					<script src="../assets/js/ng-table.js"></script>
+					<link href='../assets/css/ng-table.css' rel='stylesheet'>
+					<link href='../assets/css/jquery.confirmon.css' rel='stylesheet'>
+                    
+                    <script src="../assets/board/js/custom.js"></script>
+                    
+                    <!--[if lt IE 9]>
+                        <script type="text/javascript" src="../assets/board/http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                    <![endif]-->
+                </head>
+                <body  class="anim home-page" data-page-class="home-page" ng-controller="frontMainCtrl">
+				<!--<script type="text/javascript">var RapidEngage = window.RapidEngage || [];RapidEngage.push(['id', 763]);(function() {setTimeout(function() {var d = document;var first = d.getElementsByTagName('script')[0];var script = d.createElement('script');script.type = 'text/javascript';script.async = true;script.src = 'https://d3az0nqkd25iyi.cloudfront.net/onsite/v2/widget.min.js';first.parentNode.insertBefore(script, first);}, 1);})();</script>-->
+				<div class='flash_msg_element'> </div>
+		
+			    <a id="menuicon" class="button toggle-menu menu-left push-body" href="javascript:void(0)" ng-click="openmenu()" title="Menu"></a>
+                
+                <!-- Left menu element-->
+				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
+					<!--<h4><img src="../assets/board/img/avatar.png" alt="" width="30"><span id="leaderName">Leads Name</span></h4>-->
+					<h2>Board Name</h2>
+					<section class="brd_info">
+						<h3 class="limt_char" title="{{boarddata2[0].Title}}">{{boarddata2[0].Title}}</h3>
+						<h4 class="brd_widget clearfix">
+							<span class="brdmem_pic"><img ng-src="{{boarddata2[0].OwnerID.ProfilePic}}" alt="" width="30"></span>
+							<section class="brdmem_info">
+								<p class="brd-ld">(Board Owner)</p>
+								<p>{{boarddata2[0].OwnerID.Name}}</p>
+							</section>
+						</h4>
+					</section>
+					<a href="/#/dashboard">Dashboard</a>
+					<a href="/#/myprofile">My Profile</a>
+					<a href="/#/projects">Projects</a>
+					<a href="/#/board">Invited to Boards</a>
+					<a href="/#/logout" id="l0gout">Logout</a>
+					<a id="muteaudio" href="javascript:muteaudio()" class="audio_options">
+	    				<img src="../assets/board/img/icons/icon-audio.png" alt="audio" width="15">
+	    			</a>
+	    			<a id="pauseaudio" href="javascript:pauseaudio()" class="audio_options">
+	    				<img src="../assets/board/img/icons/icon-pause.png" alt="audio" width="15">
+	    			</a>
+	    			<a id="playaudio" href="javascript:playaudio()" class="audio_options">
+	    				<img src="../assets/board/img/icons/icon-play.png" alt="audio" width="15">
+	    			</a>
+				
+				</nav>	
+			
+                <div id="content" ui-view></div>
+				<!--<div class="footer-container">
+					<footer class="wrapper">
+						<span class="copyright">
+							&copy; SCRPT <span id="copydate"></span><script> var theDate=new Date(); $('#copydate').val(theDate.getFullYear()) </script> all rights reserved
+						</span>
+					</footer>
+				</div>-->
+			<!--<audio controls autoplay>
+                        <source src="../assets/board/backgroundAudio/AshqNaHo.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>-->
+                
+                <script language="javascript" type="text/javascript">
+			function limitText(limitField, limitCount, limitNum) {
+				if (limitField.value.length > limitNum) {
+					limitField.value = limitField.value.substring(0, limitNum);
+				} else {
+					limitCount.value = limitNum - limitField.value.length;
+				}
+			}
+		</script>
+                      
+                      <script>!window.jQuery && document.write(unescape('%3Cscript src="../assets/board/js/minified/jquery-1.9.1.min.js"%3E%3C/script%3E'))</script>
+                        <!-- custom scrollbars plugin -->
+                        <script src="../assets/board/js/jquery.mCustomScrollbar.concat.min.js"></script>
+                        <script>
+                            function loadscroll(){
+							(function($){
+                                $(window).load(function(){
+                                    $("#content_1").mCustomScrollbar();
+                                   
+                                    //demo fn
+                                    $("a[rel='tips-content']").click(function(e){
+                                        e.preventDefault();
+                                        $("#content_1").fadeToggle("slow",function(){
+                                            var customScrollbar=$("#content_1").find(".mCSB_scrollTools");
+                                            customScrollbar.css({"opacity":0});
+                                            $("#content_1").mCustomScrollbar("update");
+                                            customScrollbar.animate({opacity:1},"slow");
+                                        });
+                                    });
+                                    
+                                                    
+                                });
+                            })(jQuery);
+							}
+                        </script>
+                </body>
+            </html>
+<script>
+	//alert(window.screen.availHeight);
+	if (window.screen.availWidth<750) {
+		$("script[src='en.js']").remove()
+	}
+	function pauseaudio(){
+		$('#pauseaudio').addClass('highlight');
+		$('#playaudio').removeClass('highlight');
+		var audio = document.getElementById("audio");
+		audio.loop=true;
+		audio.pause();		
+	}
+	
+	function playaudio(){
+		$('#playaudio').addClass('highlight');
+		$('#pauseaudio').removeClass('highlight');
+		var audio = document.getElementById("audio");
+		audio.loop=true;
+		audio.play();			
+	}
+	
+	function muteaudio(){
+		if ($('#muteaudio').hasClass('highlight')) {
+			$('#muteaudio').removeClass('highlight')	
+		}
+		else{
+			$('#muteaudio').addClass('highlight')
+		}
+		var audio = document.getElementById("audio");
+		audio.loop=true;
+		if (audio.volume==0.2) {
+			audio.volume=1;
+		}
+		else{
+			audio.volume=0.2;
+		}			
+	}
+
+	
+	//added on 1812 by manishp - integration
+	function nextPageTheme(){
+		//alert("m called");
+		$('#slideTitleHeader').cycle('next');
+	}
+	
+	function prevPageTheme(){
+		$('#slideTitleHeader').cycle('prev');
+	}
+		
+</script>
+<style>
+	body.wait , body.wait *{
+          cursor: wait !important;  
+      }
+    .ui-dialog-titlebar-close { width: 30px !important; height: 24px !important; top: 40% !important }
+</style>
+<!-- Localized -->
+<script src="../assets/board/js/jquery.ui.touch-punch.min.js" type="text/javascript" ></script><!--drag and drop for mobile devices22jan15-->
+<script src="../assets/js/jquery.cookie.js"></script>
+<script>
+jQuery(document).ready(function($) {
+ //$('.toggle-menu').jPushMenu();
+	/*
+	1) input : sentence - inputSentence - String
+	2) Match With : string file comma separated - keywords - Array
+	*/
+
+	function keywordParsar(){
+		var isEqual = function(str1,str2){
+			if(str1==str2){return true;}
+			else{return false};
+		}
+		
+		
+		//alert("---keywordParsar Test---");
+		var keywords = [];
+		var matchedArr = [];
+		var suggestedArr = [];
+
+		var keywordsStr = "much belief,belief,belief in himself,teamwork,sharing,own story,Bringing, personal joys,self,happy,passion in life";
+
+		var inputSentence = "As much belief in himself as others have in him.  More sharing of his own story with others. Bringing more personal joys into self";
+
+		keywords = keywordsStr.split(",");
+		//alert(inputSentence);
+		
+		inputSentence = inputSentence.toUpperCase().trim();
+
+		for( var loop = 0;loop < keywords.length; loop++ ){
+			var keyword = keywords[loop].toUpperCase().trim();
+			
+			
+			if( inputSentence.indexOf(keyword) != -1 ){
+				if( isEqual(keyword , inputSentence) ){
+					matchedArr.push(keyword);
+				}
+				else{
+					suggestedArr.push(keyword);
+				}
+			}
+		}
+		
+		console.log("InputSentence : ",inputSentence);
+		console.log("Available Keywords : ",keywordsStr);
+		
+		console.log({
+			"InputSentence":inputSentence,
+			"Available Keywords":keywordsStr,
+			"matchedArr":matchedArr,
+			"suggestedArr":suggestedArr
+		})
+		
+		return {
+			"matchedArr":matchedArr,
+			"suggestedArr":suggestedArr
+		}
+	
+	}
+	keywordParsar();
+ 
+ 
+});
+</script>

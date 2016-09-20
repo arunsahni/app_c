@@ -1,0 +1,532 @@
+Credentials
+
+Skype:
+Username: sdm_os_in
+Password: $De!@O$MG#4004
+
+/////////////////////////////////////////////// 11 September 2014
+Hello Nabeel,
+
+As you were updated that Dipin is no more associated with Smart-Data so, from now onwards we will work for this project and will use the Base-Camp as the medium of communication regarding the progress and point of discussion related the functionality and the other enhancement as we will work ahead.
+
+As We are new to this project and needs more clearance than the central idea which is related to the creation of the adds with the involvement of the clients and the publications which are compatible to the different devices.  To have the clear picture we need more clearance regarding the concept and also the detailed discussion needs to have the clear picture of the modules which will further collectively called as the application.
+
+I am also looking forward to work with you on this project ,Yes there are many things to discuss.
+
+kindly update us regarding your availability over the Skype(Our office timings are 9:00am to 6:30pm IST) , so that we have better understanding and will start with the right strategy and in the right direction.
+
+Have great time.
+
+
+-- 
+Thanks & Regards,
+Mohinder
+
+Mohinder Singh
+Software Engineer
+smartData Enterprises (I) Ltd
+Scaling Expectations
+
+V: 91-172-406-0000/F: 91-172-406-0001
+www.smartdatainc.com
+
+
+
+/////////////////////////////////////////////// 12 September 2014  ///////////////////////////////////////////////
+
+Super admin
+Manages near about all the modules which are associated to Agencies/clients or overall application.
+
+Client/Agency
+Register/log in/logout.
+These are the key player which will work with the below mentioned modules such as the Brand, ads and also the publications.
+
+Create Brand
+CRUD operations
+
+Client/agencies will create the brands and manage the brands and their related information.
+
+
+Create Ads(Advertisement)
+CRUDE operations
+
+Create the ad:
+Add the Details/facts related to the product whose ad is to be created e.g Name,Image/banner, code, description, price e.t.c
+
+In addition to this there would be the box where end user search with keywords and those keywor$De!@O$MG#4004ds will pull the predefined Questions and answers.
+
+Generate the embed code that will be further useable by agencies/publisher.
+
+Publication/publisher
+CRUD operations
+
+Client/agencies will create the publisher and manage the brands and their related information.
+
+The so called embed code  will be published here.
+
+The above mentioned is the overall understanding (macro level) regarding the concept/project.
+
+Once we will be cleared regarding the concept we will discuss in deatil regarding all the modules one by one and also discuss how all these modules or micro units will work collectively to behave as the fully functional application parallel with the development phase.
+
+??????????????????????????? 16 September ??????????????????????????????
+
+Minute Of Meeting
+
+Date: September 15, 2014.
+
+Duration:  0:45 hrs.
+
+Attendees:   Mohinder, Nabeel
+
+Agenda: Overall concept of the application/Project.
+		Number of user's and their roles in the application
+
+Discussion:
+
+The meeting started with the over all discussion of the Project :
+
+a) Nabeel give us the brief description of the Project as this is the application in which there were Agencies/Clients which on the behalf of the brands will create and manage the adds over there in the agency section.
+ 
+b) Along with the add management section there is a section which will generate the code snippet (embed code) which will be used further in the adds to make the adds user resonsive or interactive by providing the test box as part of the paralass/pogovor add. user will search keywords from these text box and these keywords will pull pre defined set of questions and answers related to the keywors put for query by user.
+
+c) As soon the set of question answer will be pulled then theses can be somehow managed to be emailed to the user's email id.
+
+d) The set of questionarie and the keywords will be defined by the client/agency which are ad specific.
+
+e) Use location to find closest locations that sell product.
+
+f) We discussed regarding uses, what actualy the users represents specially in the mock up screen. Client replied that these are all persons interacting in the  application irrespective of the  roles like client/agency , brands and publications.
+    We discussed regarding the scope of the users and How they can be managed so that there roles and functionalities  can be restrited and can be limited as per their roles without managing the roles.
+Nabeel accepted the same and we updated him that we will provide him with the understanding  and the work flow for the same and once this will be finalised we will start with the discussion of the modules at the micro levels
+
+g) We also updated the client that we will provide him with some of the initial layout mock ups and once he will finalise the things for the layouts and the intial Business logic regarding the roles and their management, we will start with the initial functionalities.
+
+
+
+//////////////////////////// 17 September //////////////////////////
+
+
+Hello Nabeel,
+
+Please find the below mentioned.
+
+Nabeel : Is this just around access control and what type of users can do what on the site?
+
+Mohinder : Yes. it's around the Access Control displaying what type of users can perform/view what sort of function/feature.
+
+Nabeel : In the green boxes in your workflow diagram, does those mean the
+features/functions that the entity can view/perform?
+
+Mohinder : Yes, the green boxes mean the features/functions that the entity can view/perform.
+
+Nabeel :  How many super admins will there be? Perhaps the real question is if there will be more than 1.
+
+Mohinder : Super Admin is only one.
+
+Nabeel :  Super Admin should also be able to access Brands Overview
+
+Mohinder : Yes. Super admin can view the Brands over view along with all the other entities present over the application. except if some thing we will find illogical as per point of functionality in the coming time as we will swift with the functionality.
+
+Nabeel : Super Admin should be able to CRUD anything (agencies, brands,
+publications, advertisements, users)
+
+Mohinder : No Super Admin can't CRUD anything as we are making sections dependable and managed by particular sections.
+
+In spite Super Admin can enable/disable any agency , any manager and any user and this will be effective in the hierarchy e.g if admin can disable any agency then the manager associated with that agency and the user associated with that agency will also be disabled.
+
+Nabeel :  Agency is a user-less entity and is managed by an Agency Manager; do you see it this way?
+
+Mohinder : If Agency is created by Super Admin then the Agency is user-less entity and as created by Super Admin it can be managed by Super Admin only and not by the decedents of agency like Agency manager. As Agency Manager will be created by Agency which is lower in hierarchy from Agency.
+
+Also there are more than one Agency manager and thus make the situation ambiguous if all the manager will try to manage their agency.
+
+Nabeel : No user or agency can self-register; only the Super Admin can create an agency and agency manager
+
+Mohinder : if is it so then there is no Signup/Register Form in the application. is it?
+
+As per our point if Super Admin is going to create the Agency then it should limit up to the creation of Agency and not create the Agency Manager and Agency user
+
+As per our understanding :-
+
+There is one Super Admin
+
+This Super admin will create Agency and manage these agency.
+
+These Agencies will create the Agency Manager or Agency user as required, means if need to have Agency manager then will create the Agency manager otherwise create the agency user.
+
+Nabeel :  The Agency Manager can CRUD Agency Users and also manage the Agency profile (like update logo, description, etc.)
+
+Mohinder : Yes, Agency Manager can CRUD Agency Users and will not manage the Agency Profile. Agency Profile will be managed by Super Admin only.
+
+
+Nabeel :  All users in the system (besides Super Admin) will have some sort of relationship with an agency/brand/publication; but really an agency since
+the setup for brands/publications who want to manage their own ads will
+require them to create an agency entity.
+
+Mohinder : Yes, but now As discussed above the Agency will be created by the Super Admin so brands/publications who want to manage their own ads will require them to contact Super-admin and Super-admin will create an agency entity.
+
+Nabeel :  Agency managers should be able to do everything the Agency User can, like CRUD advertisements, create embed code, etc.
+
+Mohinder : These Agency manager will do their role and the Agency users will do their.
+
+Agency Manger:
+create the agency user and all CRUD operation for the user
+
+Agency User:
+Create the ad and all CRUD operation for the ad.
+
+Nabeel :  We also need to discuss who can access the reports and what those will look like, but perhaps that is later?
+
+Mohinder : Yes Once we will finalize with the above mentioned we will discuss regarding the reporting too.
+
+
+//////////////////////////  18 September /////////////////////////////
+
+Date: September 17, 2014.
+
+Duration:  1:00 hrs.
+
+Attendees:   Mohinder, Nabeel
+
+Agenda:   Number of user's and their roles in the application
+
+Discussion:
+
+The meeting started with the super admin and the other type of roles as mentioned below.
+
+a) Nabeel update us that there will be two admins for the site the one is as the super admin and the other one is Sub admin
+
+ 
+b) We discussed regarding the earlier provided workflow and the client update us that there were not many employee heirarchy so we not needed the agency Manager heirarchy and need to remove the same from the heirarchy in such a manner that Agency/Client will create the Agency User and not the Ageny Manager.
+
+c) The Sub Admin will go to create the Agency/Client and manage the same in place of the Super-Admin. The Sub admin will also create the Brand and the Publications and manages the same.
+   The Sub admin will also create the Agency user. When they will do so they will assign the Agency/ client while creating the Agency user.
+
+We update the client that we will provide another Work flow diagram for the same and will discuss the rest of things in the next call.
+
+
+Kindly find the attached document as "Revised_user_roles_workflow.png" and confirm if all the points discussed have been covered in this, and let us know if there is any modification that might be required.
+
+-- 
+Thanks & Regards,
+Mohinder
+
+Mohinder Singh
+Software Engineer (Open Source)
+smartData Enterprises (I) Ltd
+Scaling Expectations
+
+V: 91-172-406-0000/F: 91-172-406-0001
+www.smartdatainc.com
+
+
+////////////////////////// 19th September /////////////////////////////
+
+
+Date: September 18, 2014.
+
+Duration:  1:00 hrs.
+
+Attendees:   Mohinder, Nabeel
+
+Agenda:   Discussed regarding the comments mentioned over there in the Base camp in the above mentioned thread.
+
+Discussion:
+
+The meeting started with the discussion regarding the first comment which is as :
+
+Nabeel :- Agency/Client should be able to manage their own agency information (name, logo, description, etc.) in addition to Agency Users.
+
+Mohinder :- Yes, the Agency/client will be able to manage their own Profile.
+ 
+Nabeel :-  Agency/Client and Agency Users should also have some type of
+notifications, which we can further discuss what those will be
+
+Mohinder :- Yes, Agency/Client and Agency Users have some type of notifications. We discussed the same and client updated us that we will discuss in detail when we will move with the functionality upto that point.
+
+Nabeel :- Where does the relationship between advertisement to brand/publication get defined/managed?
+
+Mohinder :- The Relationship between the advertisement and the related Brands /publication will be defined at the time of the creation of the respective brand and publication.
+
+Please confirm if all the points discussed have been covered in this. let us know if there is any modification that might be required.
+
+-- 
+Thanks & Regards,
+Mohinder
+
+Mohinder Singh
+Software Engineer (Open Source)
+smartData Enterprises (I) Ltd
+Scaling Expectations
+
+V: 91-172-406-0000/F: 91-172-406-0001
+www.smartdatainc.com
+
+/////////////////** 22 Sep 2014 **///////////////////////////////////////
+
+git clone https://mohinders@bitbucket.org/mohinders/tutorial.git
+
+**********************************************************
+
+Users 
+
+Title: String,	
+FirstName: String,
+LastName: String,
+Username: String,
+EmailAddress: String,
+Password: { type: String, select: false },
+Agency: schemaObjectid,
+Roles: { type: String, enum : enums.UserRoles },
+ProfileImageExtension: String,
+LastLogin: Date,
+IsActive: Boolean,
+CreateDate: Date
+
+Brand:
+Name: String
+Logo: Image
+Description:String
+Website(URL):String
+Address:String	
+Agency (every advertiser/brand will be managed by an agency):
+		[Agency schema]
+
+
+Agency:
+Name : String
+Username (by default it can be the same as the name): String
+Logo : Image
+Description : String
+Website(URL) : String
+Address : String
+Phone : Number
+Primary contact (would be selected from Agency Users who are associated with this agency) : Number
+
+
+Publication
+Name: String	
+Logo : Image
+Description: String
+Website(URl): String
+Address: String
+Publication frequency cycle (e.g. daily, weekly, monthly, annually, constant/ad hoc, etc.): Number
+Agency (every publication will be managed by an agency)[Agency schema]
+
+*******************************************************************
+
+Date: Octobrt 10, 2014.
+
+Duration:  1:00 hrs.
+
+Attendees:   Mohinder, Nabeel
+
+Agenda: Create Ad By the Agency User, Pogovor Ad (Embedd Code to be generated), dicussion regarding some of the fields of the forms for the Create Agency and the Create Agency User.
+
+Discussion:
+
+The meeting started with the discussion of Create Ad module functionality :
+
+a) Starting with the discussion we ask Nabeel regarding the work flow for ad creation and during the call we come across certain questionairies regarding the same and Nabeel responded as mentioned below:
+
+SDM : Who will create the ad?
+Nabeel : The Agency Users Which are created By ageny or by Sub-admin will create the ad.
+
+SDM : How they will create the ad?
+Nabeel : To create the add, the agency user log-in to the Pogovor user panel. There they will go to advertisement link. Here they will navigate to the UI which have the specified fields, with which the ad will be created.
+
+SDM : What will be the fields for the form to create the ad?
+Nabeel : For the time being the Fields are as below and further will provide the exact set of fields to Create ad form.
+a) Name
+b) Title
+c) Description
+d) Image
+
+SDM : Who will create the embed code?
+Nabeel : Agency User will create the embed code. To create the Embed code, the agency user log-in to the Pogovor user panel. There they will go to generate link. From there the user will create the embed code which will further use to integrate with the ad's.
+
+
+SDM : Will the embed code will created for the whole ad or it will be for the text box (what is called as pogovor ad)?
+Nabeel: The ad is separate from the embed code. The Embed code will be generated separately. The embed code will be generated for the Text Box, Which is build so that it can be best fitted in the different devices and different adds and enclosed with the functionality able to search against specific keywords which in turn queries with data base at our servers.
+
+SDM : How the embed code will communicate or will be identified by our database or functionality?
+Nabeel : The embed code generated have the unique id and that is in our database.   
+
+SDM : Will the entity(agency or agency user) which will use the embed code knows prior wherever the code is being used so to make the database rich regarding the questionnaire keywords.
+Nabeel: In some cases It is prior known regarding the destination ad and so the information regarding that ad is kept in database and used at the time searching through the keywords by the end user. 
+But in most cases it is not not known prior where and what type of ad is to be used with the pogovor ad and here when end user first time query some stuff that will be saved in database as per the unique id and the rest flow will be discussed in the upcoming discussions.
+
+SDM : Will we have to follw the MRAID specification or use the sdk or libraray.
+Nabeel : We have to make the embed code able to satisfy the MRAID specification and also other's like Adobe DPS and not use the SDK or Libraray.
+ 
+b) In the Add Agency/agency User Screen we discussed regarding some of the fields and their scopes are as defined below;
+
+1) User Name
+SDM : Should we Keep field username in the form(agency and agency user) as the username will be automatically set as per the Name.
+Nabeel : Remove the field as this is the system generated as per the Name of the Agency.
+If Name have space in between the Two words then the space will be spliced.
+Example : if the Name is "The Name" then the Space is being splice and the name is being treated as "TheName" and so the username as per. if already existed then it will be as the "TheName-1" instead of "TheName-01".
+
+2) Email 
+SDM : Is Email will be unique for the Agency.
+Nabeel : Yes it will be.
+   
+3) Password
+SDM : Password will not be included in the Form for the Add Agency and add Agency user as the Password will generated by the system.
+Nabeel: Agreed to the same and asked then how the agency and the agency user will get the username and the password.
+   	 We replied that the username and the Password will be emailed to the respective agency or agency users e-mail. Once they will get the email they will login with the credentials provided and have to change the password as this is one time password.
+
+4) Image formats.
+SDM : #) We have allowed three formats to be uploaded. 
+              a) JPEG
+             	 b) GIF
+             	 c) PNG
+          =) Kindly povide the logo and the Favicon.
+Nabeel : #) Agreed with the image formats to be included.
+              =) Will provide the Logo and the Favicon for the same.
+
+5) Primary contact
+SDM : Asked whether to keep this in the form as we predict this as the number of the Agency User.
+Nabeel : No This will not be removed from the Form as this is not the number but this will be the name of the Agency user or the concerned person of the agency. So will there in the form but as the Name and not as phone.
+
+6) Country List.
+SDM : We asked whether there is only one country or the list of the countries is to be added. and if added then whether he will provide or we will manage on ourselves.
+Nabeel: No this would be the list of the countries. We will use the plugin for the same.
+
+Please confirm if all the points discussed have been covered in this, and let us know if there is any modification that might be required.
+
+-- 
+Thanks & Regards, 
+Mohinder 
+
+Mohinder Singh
+Software Engineer (Open Source) 
+smartData Enterprises (I) Ltd 
+Scaling Expectations
+
+V: 91-172-406-0000/F: 91-172-406-0001 
+www.smartdatainc.com
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+Status:
+
+Big Data Project.
+a) Client communication.
+b) Code Merging.
+c) Done with the Staging server setup.
+d) Made changes over there for the conflicts over there in the merging.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                               %%%%
+Agency User                    %%%%
+UserName: mohinder-singh       %%%%
+Password: UN3i7hab             %%%%
+                               %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Mohinder Singh 
+Minute Of Meeting
+
+Date: October 22, 2014.
+
+Duration:  0:45 hrs.
+
+Attendees:   Mohinder, Nabeel
+
+Agenda:    Demo for the Functionality provided over the Staging
+  Server, Discussed regarding the implemented functionalities flow.
+
+Discussion:
+
+The meeting started with the discussion of the Staging environment for the Project hosted at "http://192.155.246.146:11111/".
+
+a) Update Client that the staging server is at out location and serves the function to access the application regardless of the source code. Updated client that the server will run during all the time but if shutdown/downgrade then will be down for the moment till the server is being restarted.
+
+b) Client asked regarding the source code sharing and we update that we will provide the source code once we will be completed with single module in full swing, till then the progress can be measured from the staging server.
+
+c) After sharing knowledge of the server we provided the working demo for the different panel sections of the Pogovor.
+
+We provided the demo for the sections as mentioned below:
+1) Admin
+2) Sub Admin
+3) Agency
+4) Agency User
+
+We updated client regarding the working modules and what is being currently going on. We also share the latest development progress with the client over the local host over there in the Skype screen share.
+
+d) Client asked regarding the Profile setting section and we updated regarding the same as this is the section from where the respective privileged entity can go for the Profile update. 
+
+e) We suggested client to include the pagination in the listing modules for all the entities and client accept the same.
+
+f) Client reported us that there is an issue while working in the safari environment and is working fine over there in the Firefox.
+We update the client that we will check the same over there in the safari and will troubleshoot the same.
+
+g) We update the client how the password will be one time usable for the Agency and the Agency User and once they will create the new password, then it will able for the future use.
+ 
+Please confirm if all the points discussed have been covered in this, and let us know if there is any modification that might be required.
+
+-- 
+Thanks & Regards, 
+Mohinder 
+
+Mohinder Singh
+Software Engineer (Open Source) 
+smartData Enterprises (I) Ltd 
+Scaling Expectations
+
+V: 91-172-406-0000/F: 91-172-406-0001 
+www.smartdatainc.com
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Hello Nabeel,
+
+Hope doing great.
+
+Below mentioned is our side understanding for the ad creation and the embed Code generation going through the different dimension testing. If some where you feels that needs to be amendment please mention it out and we will finalize the things in the  next successive Skype call.
+
+Ths flow is as follows:
+
+a) Agency User log in to the Agency User Panel.
+
+b) In the Agency User Panel the Agency user will click on the Create Advertisement. upon doing so, Agency-user will navigated to Create Ad form.
+
+c) Create ad form will have meta data options like Name . Desciption, image formats(dimensions). 
+
+d) For image formats(dimensions) we need to give option for user, then user can select multiple image formats(e.g. 300x250, 160x600) from listing.(Needs this to discuss in detail like whether there will be limited no of predefined options or will enterd in the text Box or there will be some default dimesion to be selected and other to be supplied on the user's wish).
+
+e) Agency User fill the  metadata for an Ad and clicks on the create Ad Button. As the user will create the ad functionality will take the control or navigate the user to the ad listing Page having options such as view ad, edit ad, delete ad.
+
+f) When user clicks on view icon a new page will open that contain all info and multiple image formats (that user selected) for an Ad. 
+
+(Need to be discuss: on Ad view page how user can place input box? Is there any default "input box" that need to drag and drop on different image formats? and needs to be customized the look and location of the text box for each format.
+Once done, User will click on Generate Embed Code,the resulting embed code will provide the specifications for the text-box layout for the selected 
+formats(dimensions).
+
+We had certain questions for till now regarding the above mentioned. Once we will achieve this Functionality freeze we will start discussing how the input box will communicate like the demo site do and will finalize the functionality flow).
+
+Have great time.
+
+-- 
+Thanks & Regards, 
+Mohinder 
+
+Mohinder Singh
+Software Engineer (Open Source) 
+smartData Enterprises (I) Ltd 
+Scaling Expectations
+
+V: 91-172-406-0000/F: 91-172-406-0001 
+www.smartdatainc.com
+
+
+
+

@@ -1,0 +1,147 @@
+@font-face {
+	font-family:'AvantGardeBQ-Book';
+	src: url('../../ab-fonts/AvantGardeBQ-Book_gdi.eot');
+	src: url('../../ab-fonts/AvantGardeBQ-Book_gdi.eot?#iefix') format('embedded-opentype'),
+		url('../../ab-fonts/AvantGardeBQ-Book_gdi.woff') format('woff'),
+		url('../../ab-fonts/AvantGardeBQ-Book_gdi.ttf') format('truetype'),
+		url('../../ab-fonts/AvantGardeBQ-Book_gdi.otf') format('opentype'),
+		url('../../ab-fonts/AvantGardeBQ-Book_gdi.svg#AvantGardeBQ-Book') format('svg');
+	font-weight: 500;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-2212;
+}
+@font-face {
+	font-family:'AvantGardeBQ-Bold';
+	src: url('../../ab-fonts/AvantGardeBQ-Bold_gdi.eot');
+	src: url('../../ab-fonts/AvantGardeBQ-Bold_gdi.eot?#iefix') format('embedded-opentype'),
+		url('../../ab-fonts/AvantGardeBQ-Bold_gdi.woff') format('woff'),
+		url('../../ab-fonts/AvantGardeBQ-Bold_gdi.ttf') format('truetype'),
+		url('../../ab-fonts/AvantGardeBQ-Bold_gdi.otf') format('opentype'),
+		url('../../ab-fonts/AvantGardeBQ-Bold_gdi.svg#AvantGardeBQ-Bold') format('svg');
+	font-weight: 700;
+	font-style: normal;
+	font-stretch: normal;
+	unicode-range: U+0020-2212;
+}
+@font-face {
+	font-family:'AvantGardeBQ-BoldOblique';
+	src: url('../../ab-fonts/AvantGardeBQ-BoldOblique_gdi.eot');
+	src: url('../../ab-fonts/AvantGardeBQ-BoldOblique_gdi.eot?#iefix') format('embedded-opentype'),
+		url('../../ab-fonts/AvantGardeBQ-BoldOblique_gdi.woff') format('woff'),
+		url('../../ab-fonts/AvantGardeBQ-BoldOblique_gdi.ttf') format('truetype'),
+		url('../../ab-fonts/AvantGardeBQ-BoldOblique_gdi.otf') format('opentype'),
+		url('../../ab-fonts/AvantGardeBQ-BoldOblique_gdi.svg#AvantGardeBQ-BoldOblique') format('svg');
+	font-weight: 500;
+	font-style: oblique;
+	font-stretch: normal;
+	unicode-range: U+0020-2212;
+}
+.header.header-bg .tag-block { background-color:transparent; }
+.quest-bx { width:65%; font-style:normal; font-size:24px; font-family:'AvantGardeBQ-Book'; letter-spacing:0.05em; }
+.ansr-box { float:left; width:100%; font-family:'AvantGardeBQ-Book'; font-size:18px; margin-top:15px; letter-spacing:0.05em; }
+.ansr-box-inr { width:50%; height:160px !important; }
+.quest-row-sml { padding-top:10px; }
+.quest-bx-sml { font-style:normal; font-size:18px; font-family:'AvantGardeBQ-Book'; width:auto; padding-right:50px;  }
+.ansr-box-sml { display:none; }
+.quest-block .mCSB_container { min-height:10px; }
+.user-pic ul, .user-pic li, .user-pic ul li a, .user-pic img, .blank-tray { border-radius:100%; } 
+.user-pic ul li { width:30px; height:30px; }
+.user-pic ul li a { display:block; width:100%; height:100%; }
+.user-pic { border-radius:100%; overflow:hidden; width:30px; height:30px; margin-right:10px; margin-top:8px; background-color:transparent; }
+.blank-tray { cursor:pointer;  }
+#content.boards .header.header-bg .tag-label input[type="text"] { color:#fff;  }
+#content.boards .header.header-bg .tag-label input[type="text"]::-webkit-input-placeholder { color:#fff; opacity:1 !important; font-style:normal !important; }
+#content.boards .header.header-bg .tag-label input[type="text"]:-moz-placeholder { color:#fff; opacity:1 !important; font-style:normal !important; }
+#content.boards .header.header-bg .tag-label input[type="text"]:-ms-input-placeholder { color:#fff; opacity:1 !important; font-style:normal !important; }
+#content.boards .tag-label .filter-keyword-box input[type="text"] { font-family:'AvantGardeBQ-Book'; font-size:14px; font-style:normal; }
+.header.header-bg [contenteditable="true"]:empty::before, 
+.header.header-bg [contenteditable="true"]:empty::before { color:#fff !important; font-style:normal !important; }
+/************** 03/03/2016 ****************/
+.tag-block { letter-spacing:0.05em; height:auto; padding:14px 0 0;  }
+.tag-label, .tag-list { font-family:'AvantGardeBQ-Book'; font-size:14px; font-style:normal; font-weight:normal; padding:0; }
+.toggle-icn { margin:0; display:block; left:; position:absolute; left:-20px; top:-2px; }
+.filter-keyword-box { display:inline-block; padding-top:2px; padding-left:7px; }
+.tag-label { min-width:30%; border-right:1px solid #cacaca; padding-right:15px; position:relative; margin-right:37px; }
+.header.header-bg .tag-label { border-color:#fff; }
+.filter-keyword-box .filter-keyword { font-family:'AvantGardeBQ-Book'; font-size:14px; margin:0 10px; color:#8a896d; }
+.filter-keyword-box .filter-keyword span { font-family:'AvantGardeBQ-Bold'; }
+.header.header-bg .filter-keyword-box .filter-keyword { color:#fff; }
+.header.header-bg .filter-keyword-box .filter-keyword:hover, .header.header-bg .filter-keyword-box .filter-keyword.active, 
+.header.header-bg .tag-list a:hover, .header.header-bg .tag-list a.active { color:#04CB9A; }
+.header.header-bg .tag-label span input[type="text"]::-moz-placeholder { color:#fff; }
+.header.header-bg .tag-block { box-shadow:none; }
+.tag-list  { display:block !important; float:none; width:auto; float:none; padding-top:2px; padding-left:0; }
+.tag-list a { margin:0 15px 5px; display:inline-block; padding-left:20px; position:relative; color:#8a896d; }
+.filter-keyword-box .filter-keyword:hover, .filter-keyword-box .filter-keyword.active,
+.tag-list a:hover, .tag-list a.active { color:#000; }
+.tag-list a img { display:inline-block; vertical-align:top; position:absolute; left:0; }
+.header.header-bg .tag-list a { color:#fff; }
+#content.boards .tag-label input[type="text"] { min-width:180px;}
+.header-bg.tag-block { box-shadow:none; }
+.header-bg .nav { border-bottom:none; }
+	/***** SAME HEADER *****/
+header.search-header-same { padding:0; }
+.search-header-same .nw-header-left { position:relative; z-index:1; background-color:#fff; border-bottom:1px solid #cacaca; height:48px; padding-bottom:0; position:relative; }
+.search-header-same .quest-bx-sml { padding-left:49px; padding-right:0; width:100%; color:#000; } 
+.search-header-same .image-selector ul { float:right; }
+.search-header-same .image-selector .close_icon { background: rgba(0, 0, 0, 0.3) url(../../img/icons/icon-act-cross.png) no-repeat center center; cursor:pointer; float:right; height:15px; margin:0; position:absolute; right:0; width:15px; z-index:99; }
+.container.space-top { padding-top:92px; position:relative; }
+.container.space-top-55 { padding-top:55px; position:relative; }
+
+.search-header-same.header-bg .nw-header-left, .search-header-same.header-bg .nw-subheader { background:none; }
+.search-header-same.header-bg .nw-header-left { border-bottom:none; }
+.search-header-same.header-bg .quest-bx-sml { color:#fff; }
+.tooltips.tooltips2.view-montage-btn { z-index:50; }
+.search-header-same .dropdown-nav { right:auto; left:0; }
+
+#discuss_gallery_elements .item .overlay, .m-delete-icn { z-index:50; }
+.dropdown-nav { font-family:'AvantGardeBQ-Bold'; } 
+.dropdown-nav ul li { font-size:18px; padding-bottom:5px; }
+.dropdown-nav ul li:last-child { padding-bottom:0; }
+	/*********** 04-03-2016 ********/
+.header .bg-y, .header .bg-active { display:none; }
+.header .bg-n { display:inline-block; }
+.header.header-bg .bg-y { display:inline-block; }
+.header.header-bg .bg-n, .header.header-bg .bg-active { display:none; }
+.header-bg.quest-row { border-bottom:none; }
+
+.filter-keyword-box .filter-keyword.active .bg-n { display:inline-block; } 
+.filter-keyword-box .filter-keyword.active .bg-y { display:none; }
+
+.header.header-bg .filter-keyword-box .filter-keyword.active .bg-active { display:inline-block; } 
+.header.header-bg .filter-keyword-box .filter-keyword.active .bg-y, .header.header-bg .filter-keyword-box .filter-keyword.active .bg-n { display:none; }
+
+.header.header-bg .tag-list a:hover .bg-active { display:inline-block; } 
+.header.header-bg .tag-list a:hover .bg-y, .header.header-bg .tag-list a:hover .bg-n { display:none; }
+
+.header.header-bg .tag-list a.active .bg-active { display:inline-block; } 
+.header.header-bg .tag-list a.active .bg-y, .header.header-bg .tag-list a.active .bg-n { display:none; }
+
+
+.dropdown-box-full.dropdown-box { width:auto; }
+.icon-links .table-box a, .table-box .dropdown-box3 { height:30px; width:30px; line-height:27px; font-weight:normal; font-size:18px; } 
+.table-box a { background-color: rgba(0, 0, 0, 0.5); border-radius: 100%; display: inline-block !important; margin:5px 3px 0 0 !important; }
+.icon-links a, .icon-links a:hover { color:#fff; }
+.nw-subheader .table-box { padding-left:10px; }
+.nav .reset_heade, .nav .reset_header { background-color:rgba(0, 0, 0, 0.5); border-radius:100%; color:#fff; height:30px;  line-height:30px; position:absolute; right:-5px; text-align:center; width:30px; top:8px; }
+.table-box .dropdown-nav { top:48px !important; }
+@media screen and (-webkit-min-device-pixel-ratio:0) { .table-box .dropdown-nav { top:31px !important; } }
+.user-panel, .user-name strong { font-family:'AvantGardeBQ-Book'; font-weight:400; }
+.montage-view { padding-top:20px !important; }
+		/*********** 05-03-2016 ********/
+.header-bg:before { content: ""; position:fixed; left:0; right:0; z-index:-1; display:block; width: 100%; height:auto; -webkit-filter:blur(5px); -moz-filter:blur(5px); -o-filter:blur(5px); -ms-filter:blur(5px); filter:blur(5px); }
+.gallery-block ul li .gallery-pic-bx .media-label { font-family:'AvantGardeBQ-Book'; font-size:14px; padding:5px; top:20%; }
+.sidebar-ttl h2 { font-family:'AvantGardeBQ-Bold'; }
+.sidebar-link li, .default-btn a, .country_container li, .selected_country_container li, main.container .tooltips, main.container .a-circle.a-circle-2, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button, .padded { font-family:'AvantGardeBQ-Book'; }
+.white-space { background-color:#fff; height:30px; /*position:relative;*/ margin-top:1px; }
+#dropzone2 .white-space { position:absolute; bottom:-30px; left:0; right:0; }
+#discuss_list.container.space-top { padding-top:103px; }
+#search_gallery_elements .header-pic-overlayer { bottom:30px; }
+.dropdown-nav ul li a, .icon-links .table-box ul li a{ width:auto !important; height:auto !important; background-color:transparent !important; margin:0 !important; line-height:normal !important; }
+@media(max-width:767px){ 
+	.quest-bx, .ansr-box { width:100%; max-width:none;}
+	.ansr-box-inr { width:90%; max-width:none; }	
+	.tag-list { width:100%; float:left; padding-top:8px; }
+	.tag-list-inr { padding:0; width:91%; margin:0 auto; }
+}

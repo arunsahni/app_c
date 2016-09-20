@@ -1,0 +1,676 @@
+  <link rel="stylesheet" type="text/css" href="../assets/cpage/css/fonts.css" />
+<link rel="stylesheet" type="text/css" href="../assets/cpage/css/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/cpage/css/new.css" />
+<link rel="stylesheet" type="text/css" href="../assets/cpage/css/showroom.css" />
+<link rel="stylesheet" type="text/css" href="../assets/cpage/css/effect.css" />
+<!--<script src="../assets/cpage/js/jquery-1.11.3.min.js" type="text/javascript"></script>-->
+<script src="../assets/cpage/js/fontsmoothie.min.js" type="text/javascript"></script>
+<script src="../assets/cpage/js/jquery.transition.js" type="text/javascript"></script>
+<script src="../assets/cpage/js/modernizr.custom.js" type="text/javascript"></script>
+<script src="../assets/cpage/js/classie.js" type="text/javascript"></script>
+<script src="../assets/cpage/js/master.js" type="text/javascript"></script>
+
+<!--color picker-->
+<link rel="stylesheet" type="text/css" href="../assets/create/css/spectrum.css" />
+<script src="../assets/create/js/spectrum.js" type="text/javascript"></script>
+
+<script>
+$(document).ready(function(){
+    //$('body').removeClass(*);
+    //$('body').addClass('builder');
+    $('body').attr( "class", "builder" );
+    //$('body').addClass('creation-section');
+    //$('body').addClass( "builder" );
+});	
+</script>
+
+<style type="text/css">
+   .preview-edit-btn { position:fixed; top:25px; right:80px; z-index:1; width:44px; height:44px; }
+    /*.preview-edit-btn:hover { opacity:0.85; }*/
+    .preview-edit-btn .edit { display:none; }
+    .preview-edit-btn.show .edit { display:block; }
+    .preview-edit-btn.show .preview { display:none; }
+</style>
+<script>
+    $(document).ready(function(){
+        $("#preview").click(function(){
+            $(".preview-edit-btn").addClass("show");
+            $(".workshop-main").hide();
+            $(".showroom-main").show();
+        });
+
+        $("#edit-icon").click(function(){
+            $(".preview-edit-btn").removeClass("show");
+            $(".showroom-main").hide();
+            $(".workshop-main").show();
+        });
+    });	
+</script>
+
+<div class="hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a">
+    <div id="menu-button" class="toggle-menu menu-left push-body hi-icon hi-icon-mobile cbutton cbutton--effect-tamara">
+        <div id="top"></div>
+        <div id="middle"></div>
+        <div id="bottom"></div>
+    </div>
+</div>
+
+
+<div class="dropdown-menu ng-scope hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a" href="#">
+    <a href="#" class="dropdown-icon hi-icon hi-icon-mobile cbutton cbutton--effect-tamara"> 
+    	<img alt="chapter" src="/assets/create/images/cloud-icn.png"> 
+    </a>
+    <div class="dropdown-item">
+        <ul>
+            <li><a href="javascript:void(0)" ng-click="ChaptersMgmt.openLaunchSetting('AI')">AUDIENCE &amp; INVITATION</a></li>
+            <li><a href="javascript:void(0)" ng-click="ChaptersMgmt.openLaunchSetting('DE')">DESIGN &amp; EXPERIENCE</a></li>
+        </ul>
+    </div>
+</div>
+<div class="preview-edit-btn hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a">
+	<a class="preview hi-icon hi-icon-mobile cbutton cbutton--effect-tamara" href="javascript:void(0);" id="preview"> 
+    	<img alt="preview" src="/assets/create/images/preview-icon.png"> <span class="cbutton__text">Preview</span>
+    </a>
+    <a class="edit hi-icon hi-icon-mobile cbutton cbutton--effect-tamara" href="javascript:void(0);" id="edit-icon"> 
+    	<img alt="edit" src="/assets/create/images/edit-icon.png">  <span class="cbutton__text">Editor</span>
+	</a>
+</div>
+
+<a class="back-page-btn page-btns ng-scope" href="#"><span>&lt;</span><label>Back</label></a>
+<a class="next-page-btn page-btns" href="javascript:void(0)" ng-click="ChaptersMgmt.openLaunchSetting('AI')"><label>Next</label><span>&gt;</span></a>
+
+
+<div id="builder" title="id:constructor">
+	<!-- WORKSHOP -->
+	<div class="workshop-main">
+    	<!-- BACKGROUND -->
+        <div class="main-bg-block">
+            <div class="main-bg">
+                <div ng-if="ContentPageBuilder.__config.SyncObject.CommonParams.Background.Type=='color'" class="picture-bg" style="background-color:{{ContentPageBuilder.__config.SyncObject.CommonParams.Background.Data}};"></div>
+                <div ng-if="ContentPageBuilder.__config.SyncObject.CommonParams.Background.Type=='image'" class="picture-bg" style="background-image:url('{{ContentPageBuilder.__config.SyncObject.CommonParams.Background.Data}}');opacity:{{ContentPageBuilder.__config.SyncObject.CommonParams.Background.BgOpacity}};"></div>
+                <div ng-if="ContentPageBuilder.__config.SyncObject.CommonParams.Background.Type=='video'" class="" style="width:1366px;height:768px;opacity:{{ContentPageBuilder.__config.SyncObject.CommonParams.Background.BgOpacity}};">
+                    <div class="video-overlay"></div>
+                    <div class="video-block" style="width:1366px;height:768px;">
+                        <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/CcsUYu0PVxY?wmode=opaque&amp;enablejsapi=1&amp;playlist=&amp;autohide=1&amp;loop=1&amp;showinfo=0&amp;theme=dark&amp;controls=1&amp;html5=1&amp;rel=0;autoplay=1" style="width:1366px;height:768px;"></iframe>
+                        <!--<video style="width:100%;height:100%;" src="https://www.youtube.com/embed/CcsUYu0PVxY?wmode=opaque&amp;enablejsapi=1&amp;playlist=&amp;autohide=1&amp;loop=1&amp;showinfo=0&amp;theme=dark&amp;controls=1&amp;html5=1&amp;rel=0"></video>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BACKGROUND END -->
+        
+        <!-- CONTAINER -->
+        <div class="container" tabindex="-1" title="id:main">
+            <!-- WORKSHOP -->
+            <div class="{{'workshop '+ ContentPageBuilder.__config.currentViewport}}" title="class:workspace" style="opacity:1; top:0; position:relative; margin:0 auto;" >
+            
+            <!-- EFFECT BOX -->
+            <div class="transition-effect-box" style="left:105px; top:130px; z-index:500;">
+                <ul>
+                    <li><a href="javascript:void(0);">Blind</a></li>
+                    <li><a href="javascript:void(0);">Bounce</a></li>
+                    <li><a href="javascript:void(0);">Fade</a></li>
+                    <li><a href="javascript:void(0);">Scale</a></li>
+                    <li><a href="javascript:void(0);">Lighlight</a></li>
+                    <li><a href="javascript:void(0);">Puff</a></li>
+                    <li><a href="javascript:void(0);">Slide</a></li>
+                    <li><a href="javascript:void(0);">Shake</a></li>
+                    <li><a href="javascript:void(0);">Transfer</a></li>
+                    <li><a href="javascript:void(0);">Explode</a></li>
+                </ul>
+            </div>
+            <!-- EFFECT BOX END-->
+            
+            <!-- EFFECT BOX -->
+            <div class="transition-swap-box" style="left:98px; top:130px; z-index:500;">
+                <ul>
+                    <li><a href="javascript:void(0);" class="dark-bg">2</a></li>
+                    <li><a href="javascript:void(0);" class="dark-bg">3</a></li>
+                    <li><a href="javascript:void(0);" class="dark-bg">4</a></li>
+                    <li><a href="javascript:void(0);" class="dark-bg">5</a></li>
+                </ul>
+            </div>
+            <!-- EFFECT BOX END-->
+            
+                    <div class="workshop-inr" id="workshop-inr-manish"></div>
+                    <div class="workshop-border"></div>
+                    <div id="grid-guide">
+                        <div class="guide-block" style="display: block; margin: 0 40px; width: 944px;">
+                            <table class="gide-tbl" style=" border-collapse: separate; border-spacing: 20px 0; left: -20px; table-layout: auto; width: 988px;">
+                                <colgroup><col style="width: 85px; ">
+                                    <col style="width: 85px; ">
+                                    <col style="width: 85px; ">
+                                    <col style="width: 86px; ">
+                                    <col style="width: 86px; ">
+                                    <col style="width: 86px; ">
+                                    <col style="width: 85px; ">
+                                    <col style="width: 85px; ">
+                                    <col style="width: 85px; ">
+                                </colgroup>		
+                                <tbody>
+                                    <tr style="height: 19px;">
+                                        <td style="padding-left:22px" class="tp-margin first"></td>
+                                        <td style="" class="tp-margin "></td>
+                                        <td style="" class="tp-margin "></td>
+                                        <td style="" class="tp-margin "></td>
+                                        <td style="" class="tp-margin "></td>
+                                        <td style="" class="tp-margin "></td>
+                                        <td style="" class="tp-margin "></td>
+                                        <td style="" class="tp-margin "></td>
+                                        <td style="" class="tp-margin "></td>
+                                    </tr>
+                                    <tr style="height: 636px;">                                    
+                                        <td class="col-cell first"></td>
+                                        <td class="col-cell "></td>
+                                        <td class="col-cell "></td>
+                                        <td class="col-cell "></td>
+                                        <td class="col-cell "></td>
+                                        <td class="col-cell "></td>
+                                        <td class="col-cell "></td>
+                                        <td class="col-cell "></td>
+                                        <td class="col-cell "></td>
+                                    </tr>
+                                    <tr style="height: 17px;">                                    
+                                        <td class="btmmargin first"></td>
+                                        <td class="btmmargin "></td>                                    
+                                        <td class="btmmargin "></td>                                    
+                                        <td class="btmmargin "></td>                                    
+                                        <td class="btmmargin "></td>                                    
+                                        <td class="btmmargin "></td>
+                                        <td class="btmmargin "></td>                                    
+                                        <td class="btmmargin "></td>                                    
+                                        <td class="btmmargin "></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="baseline-block">
+                            <ul>
+                                <li class="baseline-bdr fade" style="left: 0; top: 31px; width: 40px;"></li>
+                                <li class="baseline-bdr" style="left: 40px; opacity: 1; top: 31px; width: 944px;"></li>
+                                <li class="baseline-bdr fade" style="right: 0; top: 31px; width: 40px;"></li>
+                                
+                                <li class="baseline-bdr fade" style="left: 0; top: 62px; width: 40px;"></li>
+                                <li class="baseline-bdr" style="left: 40px; opacity: 1; top: 62px; width: 944px;"></li>
+                                <li class="baseline-bdr fade" style=" right: 0; top: 62px; width: 40px;"></li>
+                            </ul>
+                        </div>
+                        <div class="grid-bg"></div>
+                    </div>
+                    
+            </div> 
+        </div>
+        <!-- CONTAINER END -->
+        
+        <!-- WIDGET TOOLBAR -->
+        <div class="widget-toolbar">
+            <div class="f-left hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a">
+                <a href="javascript:void(0)" class="icon-box background dark-bg margin-left-15 hi-icon hi-icon-mobile cbutton cbutton--effect-tamara" id="screen-view">
+                    <img src="../assets/cpage/images/icons/screen-view.png" alt="screen-view" />
+                </a>
+                <div class="undo-redo icon-box background dark-bg margin-left-15 hi-icon hi-icon-mobile cbutton cbutton--effect-tamara">
+                    <div class="layout f-left undo"><a href="javascript:void(0);"><span></span></a></div>
+                    <div class="layout f-right redo active"><a href="javascript:void(0);"><span></span></a></div>
+                </div>
+                
+                <!-- DESKTOP MODAL -->
+                <div class="desktop-popup widget-tollbar-popup" style="display:none;">
+                    <div class="screen-details">
+                        <a href="javascript:void(0)" class="switch-btn brandon-bold"><span class="off">OFF</span><span class="on">ON</span></a>
+                        <div class="brandon-regular">
+                            <h2 class="brandon-bold">Laptop &amp; Tablet Landscape</h2>
+                            <p>Scaled desktop version <br> is used when off. <a href="javascript:void(0);">Learn More</a></p>
+                        </div>
+                    </div>
+                    <div class="popup-layout screen-view">
+                        <ul>
+                            <li data-view="desktop" class="active" id="desktop" ng-click="ContentPageBuilder.updateViewport('desktop')"><a href="javascript:void(0);"><span></span></a></li>
+                            <li data-view="tablet" id="tablet" ng-click="ContentPageBuilder.updateViewport('tablet')"><a href="javascript:void(0);"><span></span></a></li>
+                            <li data-view="mobile" id="mobile" ng-click="ContentPageBuilder.updateViewport('mobile')"><a href="javascript:void(0);"><span></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /DESKTOP MODAL -->
+            </div>
+            
+            <div class="widget background margin-left-15 edit-bg dark-bg">
+                <a href="javascript:void(0)" class="add-bg-widget brandon-bold edit-bg-link">EDIT BACKGROUND</a>
+                <div class="background-icons icons-box" style="display:none;">
+                    <a class="color-picker-icon" href="javascript:void(0);" id="color-background-modal"><img src="../assets/cpage/images/icons/color.png" alt="color" /><input type='text' style="visibility:hidden;" id="customhexspectrum" /></a>
+                    <a href="javascript:void(0);" id="photo-background-modal"><img src="../assets/cpage/images/icons/photos.png" alt="photos" /></a>
+                    <a href="javascript:void(0);" id="video-background-modal"><img src="../assets/cpage/images/icons/video.png" alt="video" /></a>
+                </div>
+                <!-- COLOR PICKER MODAL -->
+                <div class="color-bg-popup widget-tollbar-popup" style="display:none;">
+                    <div class="popup-layout">
+                        <div class="color-picker">
+                            <img src="../assets/cpage/images/icons/color-picker.png" alt="color picker" class="color-picker-img" />
+                            <a href="javascript:void(0);"></a>
+                        </div>
+                        <div class="color-detail lato">
+                            <div class="color-rgb-code f-left"><span>r:255  g:255  b:255</span></div>
+                            <div class="color-hex-code f-right"><span>#FFFFFF</span></div>
+                            <div class="clr"></div>
+                            <a href="javascript:void(0);" class="add-color">+</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /COLOR PICKER MODAL -->
+                
+                <!-- PICTURE MODAL -->
+                <div class="picture-video-popup picture-bg-popup widget-tollbar-popup wiget-photo-popup drop-bg-image" style="display:none;">
+                    <div class="popup-layout drop-bg-image">
+                        <h2 class="brandon-bold drop-bg-image">Picture</h2>
+                        <div class="drop-bg-image apply-opacity-box">
+                            <div style="background-image:url({{ContentPageBuilder.__config.SyncObject.CommonParams.Background.Type=='image' && ContentPageBuilder.__config.SyncObject.CommonParams.Background.Data ? ContentPageBuilder.__config.SyncObject.CommonParams.Background.Data : '../assets/cpage/images/icons/picture.png'}});opacity:{{ContentPageBuilder.__config.SyncObject.CommonParams.Background.BgOpacity}};" class="bg-picture-frame drop-bg-image"></div>
+                            <a class="close-image drop-bg-image" href="Javascript:void(0);"><img alt="cross" src="../assets/cpage/images/icons/delete-12.png"></a>
+                            <div class="opacity-box drop-bg-image">
+                                <p class="drop-bg-image">
+                                    <label for="bgp-amount" class="drop-bg-image">Background Opacity:</label>
+                                    <input type="text" id="bgp-amount" class="bg-amount drop-bg-image" readonly>
+                                </p>
+                                <div id="slider-range" class="bg-slider-range drop-bg-image" bgp-opacity-slider-range cpbuilder="ContentPageBuilder"></div>
+                            </div>
+						</div>
+                        <div class="form-layout drop-bg-image">
+                            <form class="drop-bg-image" action="javascript:void(0);" name="" method="post">
+                                <input type="text" placeholder="Paste URL or Drag ‘n’ Drop" class="brandon-regular drop-bg-image" />
+                                <ul class="icons picture-icons" drop-bg-image>
+                                    <li><a href="https://www.flickr.com/" target="_blank"><img src="../assets/cpage/images/icons/fliker.png" alt="fliker" /></a></li>
+                                    <li><a href="https://www.instagram.com/?hl=en" target="_blank"><img src="../assets/cpage/images/icons/instagram.png" alt="instagram" /></a></li>
+                                    <li><a href="javascript:void(0)" class="search-list-modal"><img src="../assets/cpage/images/icons/search-list.png" alt="search-list" /></a></li>
+                                    <li>
+                                        <a href="javascript:void(0)"><img src="../assets/cpage/images/icons/upload.png" alt="upload" /></a>
+                                        <div class="upload-btn"><input type="file" ng-file-select="ContentPageBuilder.onFileSelect($files , 'BackgroundImage')"/></div>
+                                    </li>
+                                </ul>
+                                <div class="clr drop-bg-image"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /PICTURE MODAL -->
+                
+                <!-- VIDEO MODAL -->
+                <div class="picture-video-popup video-bg-popup widget-tollbar-popup wiget-video-popup" style="display:none;">
+                    <div class="popup-layout">
+                        <h2 class="brandon-bold">Video</h2>
+                        <div><img src="../assets/cpage/images/icons/video-bg.png" alt="video"/></div>
+                        <div class="form-layout">
+                            <form action="javascript:void(0);" name="" method="post">
+                                <input type="text" placeholder="Paste URL or Drag ‘n’ Drop" class="brandon-regular" />
+                                <ul class="icons video-icons">
+                                    <li><a href="https://vimeo.com/" target="_blank"><img src="../assets/cpage/images/icons/vimeo.png" alt="vimeo" /></a></li>
+                                    <li><a href="https://www.youtube.com/" target="_blank"><img src="../assets/cpage/images/icons/youtube.png" alt="youtube.png" /></a></li>
+                                    <li><a href="javascript:void(0)"><img src="../assets/cpage/images/icons/cemera.png" alt="cemera.png" /></a></li>
+                                    <li><a href="javascript:void(0)" class="search-list-modal"><img src="../assets/cpage/images/icons/search-list.png" alt="search-list" /></a></li>
+                                    <li>
+                                        <a href="javascript:void(0)"><img src="../assets/cpage/images/icons/upload.png" alt="upload" /></a>
+                                        <div class="upload-btn"><input type="file" /></div>
+                                    </li>
+                                </ul>
+                                <div class="clr"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /VIDEO MODAL -->
+            </div>
+            
+            <div class="widget background margin-left-15 edit-fg dark-bg">
+            <a href="javascript:void(0)" class="add-bg-widget brandon-bold edit-fg-link">EDIT FOREGROUND</a>
+                <div class="foreground-icons icons-box" style="display:none;">
+                    <a href="javascript:void(0);" ng-click="ContentPageBuilder.createWidget('text')"><img src="../assets/cpage/images/icons/text.png" alt="text" /></a>
+                    <!--<a href="javascript:void(0);" id="photo-foreground-modal" ng-click="ContentPageBuilder.createWidget('image')"><img src="../assets/cpage/images/icons/photos.png" alt="photos" /></a>-->
+                    <a href="javascript:void(0);" id="photo-foreground-modal"><img src="../assets/cpage/images/icons/photos.png" alt="photos" /></a>
+                    <a href="javascript:void(0);" id="video-foreground-modal" ng-click="ContentPageBuilder.createWidget('video')"><img src="../assets/cpage/images/icons/video.png" alt="video" /></a>
+                    <a href="javascript:void(0);" id="audio-foreground-modal" ng-click="ContentPageBuilder.createWidget('audio')"><img src="../assets/cpage/images/icons/audio.png" alt="audio" /></a>
+                    <a href="javascript:void(0);" id="ques-ans-foreground-modal" ng-click="ContentPageBuilder.createWidget('questAnswer')"><img src="../assets/cpage/images/icons/ques-ans.png" alt="ques-ans" /></a>
+                </div>
+                
+                <!-- PICTURE MODAL -->
+                <div class="picture-video-popup picture-forground-popup widget-tollbar-popup wiget-photo-popup drop-wid-image" style="display:none;">
+                    <div class="popup-layout drop-wid-image">
+                        <h2 class="brandon-bold drop-wid-image">Picture</h2>
+                        <div class="drop-wid-image"><img src="../assets/cpage/images/icons/picture.png" alt="picture" class="drop-wid-image"/></div>
+                        <div class="form-layout drop-wid-image">
+                            <form action="javascript:void(0);" class="drop-wid-image" name="" method="post">
+                                <input type="text" placeholder="Paste URL or Drag ‘n’ Drop" class="brandon-regular drop-wid-image" />
+                                <ul class="icons picture-icons drop-wid-image">
+                                    <li class="drop-wid-image"><a class="drop-wid-image" href="https://www.flickr.com/" target="_blank"><img src="../assets/cpage/images/icons/fliker.png" alt="fliker" class="drop-wid-image"/></a></li>
+                                    <li class="drop-wid-image"><a class="drop-wid-image" href="https://www.instagram.com/?hl=en" target="_blank"><img src="../assets/cpage/images/icons/instagram.png" alt="instagram" class="drop-wid-image"/></a></li>
+                                    <li class="drop-wid-image"><a href="javascript:void(0)" class="search-list-modal drop-wid-image"><img src="../assets/cpage/images/icons/search-list.png" alt="search-list" class="drop-wid-image"/></a></li>
+                                    <li class="drop-wid-image">
+                                        <a class="drop-wid-image" href="javascript:void(0)"><img src="../assets/cpage/images/icons/upload.png" alt="upload" class="drop-wid-image"/></a>
+                                        <div class="upload-btn drop-wid-image"><input type="file" ng-file-select="ContentPageBuilder.onFileSelect($files , 'WidgetImage')" class="drop-wid-image"/></div>
+                                    </li>
+                                </ul>
+                                <div class="clr drop-wid-image"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /PICTURE MODAL -->
+                
+                <!-- VIDEO MODAL -->
+                <div class="picture-video-popup video-forground-popup widget-tollbar-popup wiget-video-popup" style="display:none;">
+                    <div class="popup-layout">
+                        <h2 class="brandon-bold">Video</h2>
+                        <div><img src="../assets/cpage/images/icons/video-bg.png" alt="video"/></div>
+                        <div class="form-layout">
+                            <form action="javascript:void(0);" name="" method="post">
+                                <input type="text" placeholder="Paste URL or Drag ‘n’ Drop" class="brandon-regular" />
+                                <ul class="icons video-icons">
+                                    <li><a href="https://vimeo.com/" target="_blank"><img src="../assets/cpage/images/icons/vimeo.png" alt="vimeo" /></a></li>
+                                    <li><a href="https://www.youtube.com/" target="_blank"><img src="../assets/cpage/images/icons/youtube.png" alt="youtube.png" /></a></li>
+                                    <li><a href="javascript:void(0)"><img src="../assets/cpage/images/icons/cemera.png" alt="cemera.png" /></a></li>
+                                    <li><a href="javascript:void(0)" class="search-list-modal"><img src="../assets/cpage/images/icons/search-list.png" alt="search-list" /></a></li>
+                                    <li>
+                                        <a href="javascript:void(0)"><img src="../assets/cpage/images/icons/upload.png" alt="upload" /></a>
+                                        <div class="upload-btn"><input type="file" /></div>
+                                    </li>
+                                </ul>
+                                <div class="clr"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /VIDEO MODAL -->
+                
+                <!-- AUDIO MODAL -->
+                <div class="picture-video-popup audio-forground-popup widget-tollbar-popup" style="display:none;">
+                    <div class="popup-layout">
+                        <h2 class="brandon-bold">Audio</h2>
+                        <div><img src="../assets/cpage/images/icons/audio-bg.png" alt="audio.png"/></div>
+                        <div class="form-layout">
+                            <form action="javascript:void(0);" name="" method="post">
+                                <input type="text" placeholder="Paste URL or Drag ‘n’ Drop" class="brandon-regular" />
+                                <ul class="icons video-icons">
+                                    <li><a href="javascript:void(0)"><img src="../assets/cpage/images/icons/audio-playlist.png" alt="audio playlist" /></a></li>
+                                    <li>
+                                        <a href="javascript:void(0)"><img src="../assets/cpage/images/icons/upload.png" alt="upload" /></a>
+                                        <div class="upload-btn"><input type="file" /></div>
+                                    </li>
+                                </ul>
+                                <div class="clr"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /AUDIO MODAL -->
+                
+                <!-- QUESTION-ANSWER MODAL -->
+                <div class="picture-video-popup que-ans-forground-popup widget-tollbar-popup" style="display:none;">
+                    <div class="popup-layout">
+                        <h2 class="brandon-bold">Question Type</h2>
+                        <ul>
+                            <li class="text" id="question-type-text"><a href="javascript:void(0);"><span></span></a></li>
+                            <li class="photos" id="question-type-gallery"><a href="javascript:void(0);"><span></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /QUESTION-ANSWER MODAL -->
+            </div>
+            
+            <div class="f-right hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a">
+                <a href="javascript:void(0)" class="icon-box background margin-left-15 dark-bg hi-icon hi-icon-mobile cbutton cbutton--effect-tamara" id="grid-modal">
+                	<img src="../assets/cpage/images/icons/grid.png" alt="grid" />
+                </a>
+                <a href="javascript:void(0)" class="icon-box background margin-left-15 dark-bg hi-icon hi-icon-mobile cbutton cbutton--effect-tamara" id="add-modal">
+                	<img src="../assets/cpage/images/icons/adjust-screen.png" alt="adjust-screen" />
+                </a>
+                <!-- GRID MODAL -->
+                <div class="grid-popup widget-tollbar-popup" style="display:none;">
+                    <div class="popup-layout">
+                        <ul>
+                            <li class="brandon-bold">
+                                <span class="grid-txt">GRID</span>
+                                <a href="javascript:void(0)" class="switch-btn-grid switch-grid-btn"><span class="off">OFF</span><span class="on">ON</span></a>
+                            </li>
+                            <li class="brandon-bold">
+                                <span class="grid-txt">SNAP</span>
+                                <a href="javascript:void(0)" class="switch-btn-grid switch-grid-btn"><span class="off">OFF</span><span class="on">ON</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /GRID MODAL -->
+                
+                <!-- ADD MODAL -->
+                <div class="add-popup widget-tollbar-popup" style="display:none;">
+                    <div class="popup-layout">
+                        <h2 class="brandon-bold">ADD/DELETE SECTION</h2>
+                        <div>
+                            <div class="changes-section-number">
+                                <img src="../assets/cpage/images/icons/add-section-bg.png" alt="Number Section" />
+                                <span class="brandon-bold">2</span>
+                                <a href="javascript:void(0)" class="number-navigation prev"><img src="../assets/cpage/images/icons/add-section-prev.png" alt="Number Section" /></a>
+                                <a href="javascript:void(0)" class="number-navigation next"><img src="../assets/cpage/images/icons/add-section-next.png" alt="Number Section" /></a>
+                            </div>
+                            <div class="scroll-height">
+                            	Scroll Height
+                                <input type="text" value="642" />
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="add-popup-action">
+                        	<a href="javascript:void(0)" class="brandon-regular">DELETE</a> <span class="btn-space"></span>
+                            <a href="javascript:void(0)" class="brandon-regular">ADD</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ADD MODAL -->
+            </div>
+        </div>
+        <!-- /WIDGET TOOLBAR -->
+        
+        <!-- SEARCH GALLERY POPUP-->
+        <div class="search-gallery-modal widget-tollbar-popup" id="pop-up-uncle" style="display:none;">
+            <div class="search-gallery-space">
+                <!-- SEARCH FORM -->
+                <div class="search-form">
+                    <div class="close-btn"><a href="javascript:void(0);"></a></div>
+                    <div class="search-gallery-wrap">
+                        <form>
+                            <div class="search-bar">
+                                <input type="text" placeholder="Search" class="inbox lato" />
+                                <a href="javascript:void(0)"><img src="../assets/cpage/images/icons/search-icon.png" alt="search-icon" /></a>
+                            </div>
+                            <div class="search-category">
+                                <select name="search-category" class="custom-select lato">
+                                    <option>Select...</option>
+                                    <option>Driving</option>
+                                    <option>Internet</option>
+                                    <option>Movie</option>
+                                    <option>Music</option>
+                                    <option>Reading</option>
+                                    <option>Sports</option>                
+                                </select>
+                            </div>
+                            <div class="clr"></div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /SEARCH FORM -->
+                
+                <!-- SEARCH LISTING -->
+                <div class="search-gallery-wrap">
+                    <ul class="search-result-listing">
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/01-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/02-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/03-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/04-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/05-search.jpg" /></a> </li>
+                        
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/06-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/07-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/08-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/09-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/10-search.jpg" /></a> </li>
+                        
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/11-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/12-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/13-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/14-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/15-search.jpg" /></a> </li>
+                        
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/01-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/02-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/03-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/04-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/05-search.jpg" /></a> </li>
+                        
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/06-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/07-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/08-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/09-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/10-search.jpg" /></a> </li>
+                        
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/11-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/12-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/13-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/14-search.jpg" /></a> </li>
+                        <li> <a href="javascript:void(0);"><img src="../assets/cpage/images/icons/15-search.jpg" /></a> </li>
+                    </ul>
+                    <div class="clr"></div>
+                </div>
+                <!-- /SEARCH LISTING -->
+            </div>
+        </div>
+        <!-- /SEARCH GALLERY POPUP -->
+        
+        
+        <!-- STATIC CODE -->
+        <div resizable="" draggable="" hval="obj.H" wval="obj.W" ypos="obj.Y" xpos="obj.X" style="left:261px; top:94px; width:405px;height:322px;z-index:101;position:absolute;display:block" class="video-widget-center ng-isolate-scope ui-draggable ui-draggable-handle ui-resizable">
+        
+        	<!-- Text toolbar -->
+            <div class="text-toolbar">
+            	<div class="f-left">
+                	<div class="icon-box"><a class="brandon-bold count dark-bg ng-binding" href="Javascript:void(0);">1</a></div>
+                    <div class="icon-box"><a class="dark-bg transition-effect-show" href="Javascript:void(0);"><img alt="effects" src="../assets/cpage/images/icons/effects.png"></a>
+                   	</div>
+                </div>
+                
+                <div class="f-right"><div ng-click="cpbuilder.removeWidget(obj)" class="icon-box">
+                <a id="question-answer-box-close" class="dark-bg" href="Javascript:void(0);"><img alt="cross" src="../assets/cpage/images/icons/cross-icon.png"></a>
+                </div></div></div><!-- /Text toolbar -->
+        
+        
+        <!-- --><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90; display: block;"></div></div>
+        <!-- STATIC CODE END -->
+        
+    </div>
+    <!-- WORKSHOP END -->    
+    
+    <!-- SHOWROOM MAIN -->
+    <div class="showroom-main" style="display:none;">
+    	<!-- BACKGROUND -->
+        <div class="main-bg-block">
+            <div class="main-bg">
+                <div ng-if="ContentPageBuilder.__config.SyncObject.CommonParams.Background.Type=='color'" class="picture-bg" style="background-color:{{ContentPageBuilder.__config.SyncObject.CommonParams.Background.Data}};"></div>
+                <div ng-if="ContentPageBuilder.__config.SyncObject.CommonParams.Background.Type=='image'" class="picture-bg" style="background-image:url('{{ContentPageBuilder.__config.SyncObject.CommonParams.Background.Data}}');opacity:{{ContentPageBuilder.__config.SyncObject.CommonParams.Background.BgOpacity}};"></div>
+                <div ng-if="ContentPageBuilder.__config.SyncObject.CommonParams.Background.Type=='video'" class="" style="width:1366px;height:768px;opacity:{{ContentPageBuilder.__config.SyncObject.CommonParams.Background.BgOpacity}};">
+                    <div class="video-overlay"></div>
+                    <div class="video-block" style="width:1366px;height:768px;">
+                        <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/CcsUYu0PVxY?wmode=opaque&amp;enablejsapi=1&amp;playlist=&amp;autohide=1&amp;loop=1&amp;showinfo=0&amp;theme=dark&amp;controls=1&amp;html5=1&amp;rel=0;autoplay=1" style="width:1366px;height:768px;"></iframe>
+                        <!--<video style="width:100%;height:100%;" src="https://www.youtube.com/embed/CcsUYu0PVxY?wmode=opaque&amp;enablejsapi=1&amp;playlist=&amp;autohide=1&amp;loop=1&amp;showinfo=0&amp;theme=dark&amp;controls=1&amp;html5=1&amp;rel=0"></video>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BACKGROUND END -->
+                
+    	<div class="container" title="id:showroom_main" tabindex="-1">
+            <!-- SHOWROOM -->
+            <div class="{{'showroom '+ContentPageBuilder.__config.currentViewport}}" style="opacity:1; top:0; position:relative; margin:0 auto;" title="class:showroom">
+                <!-- SHOWROOM INNER -->
+                <div class="showroom-inner">
+                    <!-- 27-07-2016 --> 
+                    <div class="showroom-page showroom-neighbour">
+                        <!--BACKGROUND FIXED -->
+                        <div class="showroom-fixed-bg-container" style="background-color:rgb(255,255,255)">
+                            <!-- FIXED VIDEO -->
+                            <div class="collab-widget cm-widget-bg" style="background-color:{{ContentPageBuilder.__config.SyncObject.CommonParams.Background.Data}}">
+                                <div class="collab-video-background" style="opacity:1;">
+                                    <div class="collob-video-container">
+                                        <!-- 
+                                        <img class="collab-video-snapshot" style="opacity: 1; left: -5px; top: -215px; width: 1376px; height: 1032px;" src="https://i.ytimg.com/vi/zsHszq5S4NY/hqdefault.jpg" />
+                                        <iframe class="video-fade-out" width="640" height="320" frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/zsHszq5S4NY?wmode=opaque&enablejsapi=1&playlist=&autohide=1&loop=1&showinfo=0&theme=dark&controls=0&html5=1&rel=0&vq=hd1080" style="left: -5px; top: -215px; width: 1376px; height: 1032px;"></iframe> 
+                                        -->
+                                    </div>
+                                    <div class="collob-video-overlay"></div>
+                                </div>
+                            </div>
+                            <!-- FIXED VIDEO END -->
+                        </div>
+                        <!-- BACKGROUND FIXED END -->
+                        
+                        <!-- SHOWROOM CONTNET -->
+                        <div class="showroom-content-wrap showroom-vertical-scroll accelerated-scroll">
+                            <div id="test-showroom-manish" class="content-page-width-frame" tabindex="-1" style="width:1024px; height:642px; top:0px; left:163px; border:1px solid transparent"></div>                            
+                        </div>
+                        <!-- SHOWROOM CONTNET END -->
+                    </div>
+                    <!-- /27-01-2016 -->
+                </div>
+                <!-- SHOWROOM INNER END -->
+                <div class="showroom-border" style="opacity:0;"></div>
+            </div>
+            <!-- SHOWROOM END -->
+        </div>
+    </div>
+    <!-- SHOWROOM MAIN END -->
+	
+</div>
+<!-- <div id="showroom" style="display:none;"></div> -->
+
+<style type="text/css">
+    .showroom .showroom-container .container { left: 0; width: 1366px; }
+</style>
+
+<!--overridding with froala css-->
+<link href="../assets/page/css/froala_editor.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/page/css/froala_style.min.css" rel="stylesheet" type="text/css">
+
+
+<script>
+	(function() {
+
+		// http://stackoverflow.com/a/11381730/989439
+		function mobilecheck() {
+			var check = false;
+			(function(a){if(/(android|ipad|playbook|silk|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4)))check = true})(navigator.userAgent||navigator.vendor||window.opera);
+			return check;
+		}
+
+		var support = { animations : Modernizr.cssanimations },
+			animEndEventNames = { 'WebkitAnimation' : 'webkitAnimationEnd', 'OAnimation' : 'oAnimationEnd', 'msAnimation' : 'MSAnimationEnd', 'animation' : 'animationend' },
+			animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ],
+			onEndAnimation = function( el, callback ) {
+				var onEndCallbackFn = function( ev ) {
+					if( support.animations ) {
+						if( ev.target != this ) return;
+						this.removeEventListener( animEndEventName, onEndCallbackFn );
+					}
+					if( callback && typeof callback === 'function' ) { callback.call(); }
+				};
+				if( support.animations ) {
+					el.addEventListener( animEndEventName, onEndCallbackFn );
+				}
+				else {
+					onEndCallbackFn();
+				}
+			},
+			eventtype = mobilecheck() ? 'touchstart' : 'click';
+
+		[].slice.call( document.querySelectorAll( '.cbutton' ) ).forEach( function( el ) {
+			el.addEventListener( eventtype, function( ev ) {
+				classie.add( el, 'cbutton--click' );
+				onEndAnimation( classie.has( el, 'cbutton--complex' ) ? el.querySelector( '.cbutton__helper' ) : el, function() {
+					classie.remove( el, 'cbutton--click' );
+				} );
+			} );
+		} );
+
+	})();
+</script>

@@ -1,0 +1,76 @@
+----JMSD----
+# delete from capsule library...				- Done
+# back button from publish setting screen...	- Done
+
+server
+
+- capsule delete - should delete all the chapters and pages - Done
+
+- Publish & Launch	
+	*************************- lsMgmt ------------ on change service integration..					-DONE
+	*************************- Members Access Management.... 										- 
+	
+	**************OTHER CASE - check member - launch icon should not be available...				- 
+	**************Need to correct Navigations back button and Launch and publish buttons...			- DONE
+	
+	
+	********- Remove check for chapter count from the launch screen - just hide the publish button.. - DONE
+	- It should not allow publish if capsule is incomplete ie. if there is a chapter without page - should promt
+	the informative error message. --- IN PROGRESS
+		- Error : You can not publish an incomplete capsule. It seems like you have atleast one chapter without page. Go back and add atleast a page into that empty chapter or simply delete that and try publishing it again.
+
+- Launch
+	- Lauch module for published for me case - for All cases - Implement Imediate Invitation sent case.
+	- Enter : It should redirect to preview unless It is not launched/finalized by owner.
+	
+- update IsLaunched in page apis
+
+- check chapter delete and association	
+
+- Search Gallery Page - View 
+	- My Pages doesn't loads medias.
+	- update search engine as per the selected option in create.
+	
+	- Discuss
+		- different actions as per the access level i e. delete, stamp, vote etc 
+		
+	
+- Create Search Gallery Page
+	- Implement - by default case as All media.
+	
+	
+
+
+Implement acl
+- "A user can always add a Page or Chapter to a Capsule they Own (Owned either by Purchasing it, Creating it or being given Ownership of it by someone else). In that sense a Capsule is always live, not final and done ever. "
+
+
+
+Launch :
+
+Just Me - you will be able to change into the below options
+	- My Friends As Indivisual
+	- My Friends As a Group
+	- One & All
+	
+My Friends As Indivisual - you will be able to change into the below options
+	- Just Me
+	- My Friends As a Group
+	- One & All
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

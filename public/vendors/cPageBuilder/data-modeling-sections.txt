@@ -1,0 +1,238 @@
+page
+	- viewports
+		- multiple sections
+			- set background
+			- set section height
+		
+
+{
+  "_id" : ObjectId("5668fc981226a604a0d3a619"),
+  "common_params" : {
+    "is_grid" : false,
+    "is_snap" : false,
+    "background" : "",
+    "viewport_desktop" : "True",
+    "viewport_tablet" : "False",
+    "viewport_mobile" : "False"
+  },
+  "viewport_desktop_sections" : [{
+      "background" : "",
+      "height" : "",
+      "widgets" : [{
+          "type" : "background",
+          "b_type" : "image",
+          "content" : "image path",
+          "lq_content" : "image path",
+          "w" : 0,
+          "h" : 0,
+          "x" : 0,
+          "y" : 0,
+          "z" : 0
+        }, {
+		  "animation" : "fadeIn",
+          "bg_music" : "path"
+          "type" : "text",
+          "content" : "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100
+        }, {
+          "type" : "text",
+          "content" : "2222222222Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100,
+          "animation" : "fadeIn",
+          "bg_music" : "path"
+        }]
+    }, {
+      "widgets" : [{
+          "type" : "background",
+          "b_type" : "image",
+          "b_src" : "",
+          "w" : 0,
+          "h" : 0,
+          "x" : 0,
+          "y" : 0,
+          "z" : 0
+        }, {
+          "type" : "text",
+          "content" : "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100
+        }, {
+          "type" : "text",
+          "content" : "2222222222Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100
+        }]
+    }, {
+      "background" : "",
+      "height" : "",
+      "widgets" : [{
+          "type" : "background",
+          "b_type" : "image",
+          "content" : "image path",
+          "lq_content" : "image path",
+          "w" : 0,
+          "h" : 0,
+          "x" : 0,
+          "y" : 0,
+          "z" : 0
+        }, {
+          "type" : "text",
+          "content" : "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100,
+          "animation" : "fadeIn",
+          "bg_music" : "path"
+        }, {
+          "type" : "text",
+          "content" : "2222222222Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100,
+          "animation" : "fadeIn",
+          "bg_music" : "path"
+        }]
+    }],
+  "viewport_tablet_sections" : [{
+      "background" : "",
+      "height" : "",
+      "widgets" : [{
+          "type" : "background",
+          "b_type" : "image",
+          "content" : "image path",
+          "lq_content" : "image path",
+          "w" : 0,
+          "h" : 0,
+          "x" : 0,
+          "y" : 0,
+          "z" : 0
+        }, {
+          "type" : "text",
+          "content" : "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100,
+          "animation" : "fadeIn",
+          "bg_music" : "path"
+        }, {
+          "type" : "text",
+          "content" : "2222222222Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100,
+          "animation" : "fadeIn",
+          "bg_music" : "path"
+        }]
+    }, {
+      "widgets" : [{
+          "type" : "background",
+          "b_type" : "image",
+          "b_src" : "",
+          "w" : 0,
+          "h" : 0,
+          "x" : 0,
+          "y" : 0,
+          "z" : 0
+        }, {
+          "type" : "text",
+          "content" : "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100
+        }, {
+          "type" : "text",
+          "content" : "2222222222Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100
+        }]
+    }],
+  "viewport_mobile_sections" : [{
+      "background" : "",
+      "height" : "",
+      "widgets" : [{
+          "type" : "background",
+          "b_type" : "image",
+          "content" : "image path",
+          "lq_content" : "image path",
+          "w" : 0,
+          "h" : 0,
+          "x" : 0,
+          "y" : 0,
+          "z" : 0
+        }, {
+          "type" : "text",
+          "content" : "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100,
+          "animation" : "fadeIn",
+          "bg_music" : "path"
+        }, {
+          "type" : "text",
+          "content" : "2222222222Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100,
+          "animation" : "fadeIn",
+          "bg_music" : "path"
+        }]
+    }, {
+      "widgets" : [{
+          "type" : "background",
+          "b_type" : "image",
+          "b_src" : "",
+          "w" : 0,
+          "h" : 0,
+          "x" : 0,
+          "y" : 0,
+          "z" : 0
+        }, {
+          "type" : "text",
+          "content" : "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100
+        }, {
+          "type" : "text",
+          "content" : "2222222222Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          "w" : 480,
+          "h" : 360,
+          "x" : 275,
+          "y" : 157,
+          "z" : 100
+        }]
+    }]
+}

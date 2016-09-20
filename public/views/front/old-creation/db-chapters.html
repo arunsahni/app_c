@@ -1,0 +1,152 @@
+<div id="menu-button" class="toggle-menu menu-left push-body" ng-cloak>
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+</div>
+
+<div class="dropdown-menu" href="javascript:void(0)" >
+<a href="#" class="dropdown-icon">
+<img alt="chapter" src="/assets/create/images/cloud-icn.png">
+</a>
+<div class="dropdown-item">
+	<ul>
+    	<li><a href="javascript:void(0)" ng-click="DbChapters.openLaunchSetting('AI')">AUDIENCE & INVITATION</a></li>
+    	<li><a href="javascript:void(0)" ng-click="DbChapters.openLaunchSetting('DE')">DESIGN & EXPERIENCE</a></li>
+    </ul>
+</div>
+</div>
+
+<a class="back-page-btn page-btns" href="#/dashboard"><span>&lt;</span><label>Back</label></a>
+<!--<a class="next-page-btn page-btns" ng-href="#/ls/capsules/{{DbChapters.capsule_id}}"><label>Next</label><span>&gt;</span></a>-->
+<div class="head">
+	<div class="wrapper">
+		<!-- START BROWSE -->
+		<div class="browse">
+			<div class="heading-row">
+				<h2>Dashboard - Chapters</h2>
+			</div>
+			<!-- START IMAGES -->
+			<div class="browse-images browse-images2">
+				<!--<dir-pagination-controls on-page-change="DbCapsules.pageChanged(newPageNumber)"></dir-pagination-controls>-->
+                <div class="chapter-library-block">
+                	<ul>
+                    	<li ng-repeat="chapter in DbChapters.chapters">
+                      	<div class="zoomIn chapter-library-bx">
+							<img ng-if="!(chapter.CoverArt)" src="/assets/create/images/no-chapter-pic.jpg" alt="chapter" class="primary zoomIn" />
+							<img ng-if="chapter.CoverArt" src="/assets/Media/covers/small/{{chapter.CoverArt}}" alt="chapter" class="primary zoomIn" />
+							<!--<div class="chapter-overlay2" ng-click="DbCapsules.init_edit(chapter._id)"></div>-->
+							<div class="chapter-overlay2"  ng-click="DbChapters.preview(chapter._id)"></div>
+							<h3>{{chapter.Title}}</h3>
+							<ul class="chapter-library-icon">
+								<li class="preview" ng-click="DbChapters.preview(chapter._id)">
+									<a ng-if="chapter.IsLaunched==true" href="javascript:void(0)" style="text-decoration: none; color: white;">Enter</a>
+									<a ng-if="chapter.IsLaunched==false" href="javascript:void(0)" style="text-decoration: none; color: white;">Launch</a>
+								</li>
+							</ul>
+							<!--<div class="date">11/09/2014</div>-->
+						</div>
+						<div class="chapter-info">
+							<span class="chapter-no">
+								{{$index+1}}
+							</span>
+							<span class="chapter-name" data-toggle="tooltip" title="{{chapter.Title}}">
+								{{chapter.Title}}
+							</span>
+						</div>
+                        </li>
+                    </ul>
+                </div>
+				<div ng-if="DbChapters.chapters.length==0">No Record Found!</div>
+				<div class="clear"></div>
+			</div>
+			<!-- END IMAGES -->
+		</div>
+		<!-- END BROWSE -->
+		<div class="clear"></div>
+	</div>
+</div>
+<!--
+<div class="head">
+	<div class="wrapper">
+		
+		<div class="clearfix"></div>
+		
+		<div class="chapter_box chapter_box2">
+		<h2 class="width_auto">Dashboard : Chapters-under-the-Capsule</h2> 
+		<div class="clear"></div>
+		
+		
+		<div class="chapter-row">
+			
+			<ul ng-model="DbChapters.chapters">
+				<li class="testing" ng-repeat="chapter in DbChapters.chapters">
+					<div class="send-message-block scrollable" style="z-index:999999;">
+						<a href="javascript:void(0)" class="message-block-arw">
+							<img title="arrow" src="/assets/create/images/arrow-icon.png" alt="Edit" />
+						</a>
+						<div class="search-find-row">
+							<input type="text" name="name" placeholder="Search" ng-model="searchFrnd">
+						</div>
+						<div class="send-msg-description">
+							<p> <strong>Send chapters to your friends!</strong><br>Plan projects, swap ideas and share your best discoveries. </p>
+						</div>
+						<div class="search-result-block" style="height:250px;">
+							<ul style="">
+								<li ng-repeat="frnd in friends | filter : searchFrnd" ng-click="DbChapters.share(chapter._id , frnd.Friend.Email)"> 
+									<a style="" href="javascript:void(0)">
+										<div class="left-box"> 
+											<img title="{{frnd.Friend.Email}}" ng-src="{{frnd.Friend.Pic}}" />
+										</div>
+										<div class="right-box">
+											<h2 title="{{frnd.Friend.Email}}">{{frnd.Friend.Name}}</h2>
+											<p> {{frnd.Friend.Relation}} </p>
+										</div>
+									</a> 
+								</li>
+							</ul>	
+						</div>
+					</div>
+					<div class="chapter-box  zoomIn animated ">
+						<div class="chapter-pic dragBox">
+							<img ng-if="chapter.CoverArt" src="/assets/Media/covers/small/{{chapter.CoverArt}}" alt="chapter"/>
+							<img ng-if="!(chapter.CoverArt)" src="/assets/create/images/no-chapter-pic.jpg" alt="chapter"/>
+							<ul class="chapter-tool">
+								<li class="preview" ng-click="DbChapters.preview(chapter._id)">
+									<a href="javascript:void(0)" style="text-decoration: none; color: white;">Enter</a>
+								</li>
+							</ul>
+							<div class="chapter-overlay2" ng-click="DbChapters.preview(chapter._id)" >
+							</div>
+						</div>
+						<div class="chapter-info">
+							<span class="chapter-no">
+								{{$index+1}}
+							</span>
+							<span class="chapter-name" data-toggle="tooltip" title="{{chapter.Title}}">
+								{{chapter.Title}}
+							</span>
+						</div>
+					</div>
+				</li>
+				<li class="testing" ng-show="DbChapters.chapters.length==0">No Result Found!</li>
+			</ul>
+		</div>
+		
+		
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+-->
+<div id="loader" style="display: block;"><img src="/assets/create/images/ajax-loader.gif" alt="Loader" /></div>
+<div id="tips" style="display: none;"><div id="closetips"></div></div>
+<!--<script type="text/javascript" src="/assets/create/js/scripts.js"></script>-->
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+<style type="text/css">
+	.creation-section .chapter-info { font-family:"Brandon Light",Arial,sans-serif; }
+</style>

@@ -1,0 +1,194 @@
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="#/dashboard">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a href="#/grouptag">Group Tags</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row-fluid sortable">		
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-user"></i> Group Tags</h2>
+						<!--<div class="box-icon">
+							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						</div>-->
+						<a ng-if="selected.GT.length > 0" onclick="$('#deleteAll_pop').modal('show');" class="btn btn-danger" style="float: right;margin-left: 4px;margin-right: 4px;">
+							<i class="icon-trash icon-white"></i> 
+							Delete selected
+						</a><!--{{selected.GT}}-->
+						<!--<button class="btn btn-primary" style="float:right" ng-click="openadd()" >Delete</button>-->
+						<button class="btn btn-primary" style="float:right" ng-click="openadd()" >Add</button>
+					</div>
+					<div class="box-content">
+						<div id="msg"></div>
+						<div ng-show="!loaded" ><img style="display:block;margin-left:auto;margin-right:auto;" src="../assets/img/ajax-loader.gif"> </div>
+						<div ng-show="loaded">
+							<!--<table  ng-table="tableParams" show-filter="true" class="table">
+								<tr ng-repeat="x in $data|filter:query">
+									<td header-class="text-left"   data-title="'Meta Meta Tag'" ><a href="#/grouptagbindings/{{x._id}}">{{x.MetaMetaTagID.MetaMetaTagTitle}}</a></td>
+									<td header-class="text-left"   data-title="'Meta Tag'" ng-repeat="mt in x.MetaMetaTagID.MetaTags | filter: { _id: x.MetaTagID}">{{mt.MetaTagTitle}}</td>
+									<td header-class="text-left"   data-title="'Title'" filter="{ 'GroupTagTitle': 'text' }" sortable="'GroupTagTitle'">{{x.GroupTagTitle}}</td>
+									<td header-class="text-left"   data-title="'Last Modified'"  sortable="'LastModified'">{{x.LastModified | date:'medium'}}</td>
+									
+									<td header-class="text-left"   data-title="'Tags'" >
+									<a class="btn btn-success" href="#/tag/{{x._id}}">
+											<i class="icon-zoom-in icon-white"></i>  
+											View                                            
+										</a>
+									</td>
+									
+									<td  header-class="text-left"   data-title="'Action'">
+									<!-- for 5555--><!-- <a ng-show="x.MetaMetaTagID._id != '54e7211a60e85291552b1187'" class="btn btn-info" ng-click="openedit(x)">-->
+									<!-- for 8888--><!--<a ng-show="x.MetaMetaTagID._id != '54c98aab4fde7f30079fdd5a'" class="btn btn-info" ng-click="openedit(x)">	
+									<i class="icon-edit icon-white"></i>  
+										Edit                                            
+									</a>
+									<a class="btn btn-danger" ng-click="opendelete(x)">
+										<i class="icon-trash icon-white"></i> 
+										Delete
+									</a>
+									</td>
+								</tr>
+							</table>-->
+							<table class="table">
+								<tr>
+									<th><input id="selectAllGT" ng-model="gtAll" type="checkbox" value="all" ng-click="selectAll()"/></th>
+									<th>Meta Meta Tag</th>
+									<th>Meta Tag</th>
+									<th>Title</th>
+									<th>Last Modified</th>
+									<th>Tags</th>
+									<th>Action</th>
+								</tr>
+								<tr dir-paginate="gt in gtData | filter:q | itemsPerPage: pageSize" total-items="totalGT" current-page="currentPage">
+									<td><input class="gtSelect" type="checkbox" value="{{gt._id}}" checklist-model="selected.GT" checklist-value="gt._id" ng-click="setGT()" /></td>
+									<td><a href="#/grouptagbindings/{{gt._id}}">{{gt.MetaMetaTagID.MetaMetaTagTitle}}</a></td>
+									<td ng-repeat="mt in gt.MetaMetaTagID.MetaTags | filter: { _id: gt.MetaTagID}">{{mt.MetaTagTitle}}</td>
+									<td>{{gt.GroupTagTitle}}</td>
+									<td>{{gt.LastModified | date:'medium'}}</td>
+									<td>
+										<a class="btn btn-success" href="#/tag/{{gt._id}}">
+											<i class="icon-zoom-in icon-white"></i>  
+											View                                            
+										</a>
+									</td>
+									
+									<td>
+										<!-- for 5555--><!-- <a ng-show="gt.MetaMetaTagID._id != '54e7211a60e85291552b1187'" class="btn btn-info" ng-click="openedit(gt)">-->
+										<!-- for 8888--><a ng-show="gt.MetaMetaTagID._id != '54c98aab4fde7f30079fdd5a'" class="btn btn-info" ng-click="openedit(gt)">	
+										<i class="icon-edit icon-white"></i>  
+											Edit                                            
+										</a>
+										<a class="btn btn-danger" ng-click="opendelete(gt)">
+											<i class="icon-trash icon-white"></i> 
+											Delete
+										</a>
+									</td>
+								</tr>
+							</table>
+							<dir-pagination-controls on-page-change="get_groupTags(newPageNumber)" template-url="../assets/js/dirPagination.tpl.html"></dir-pagination-controls>
+						</div>
+					</div>
+				</div><!--/span-->			
+			</div><!--/row-->
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title"><span ng-hide="edit">Add</span><span ng-show="edit">Edit</span> Group Tags</h4>
+      </div>
+	  <form name="gts" id="gts" novalidate >
+      <div class="modal-body">
+        
+		 <label> Meta-Meta Tag</label>
+		 <select name="mmt" ng-model="gt.mmt" class="chzn-done" required ng-change="fetchmts()" >
+		 <option value="" >Select MMTs</option>
+		 <!--<option ng-repeat="mmt in mmts|filter:{status:1}" ng-if="mmt._id != '54e7211a60e85291552b1187'" value="{{mmt._id}}">{{mmt.MetaMetaTagTitle}}</option>
+		 -->
+		 <option ng-repeat="mmt in mmts|filter:{status:1}" value="{{mmt._id}}">{{mmt.MetaMetaTagTitle}}</option>
+		 </select>
+		<div ng-show="gts.mmt.$dirty && gts.mmt.$invalid ">
+			<p style="color:red;font-size:9pt" ng-show="gts.mmt.$error.required">Please select a meta meta tag option.</p>
+			</div>
+		 <label> Meta Tag</label>
+		 <select name="mt" ng-model="gt.mt" required>
+		 <option value="">Select MTs</option>
+		 <option ng-selected="{{mt}}" ng-repeat="mti in mts|filter:{status:1}" value="{{mti._id}}">{{mti.MetaTagTitle}}</option>
+		 </select>
+		<div ng-show="gts.mt.$dirty && gts.mt.$invalid ">
+			<p style="color:red;font-size:9pt" ng-show="gts.mt.$error.required">Please select a  meta tag option.</p>
+			</div>
+		
+		
+       <label> Name</label>
+        <input type="text" name="name" id="name" ng-model="gt.name" required />	
+		<input type="hidden" name="id" ng-model="gt.id" />
+		<div ng-show="gts.name.$dirty && gts.name.$invalid ">
+			<p style="color:red;font-size:9pt" ng-show="gts.name.$error.required">Name is required.</p>
+			</div>
+        <label> Notes</label>
+        <textarea ng-model="gt.notes" name="notes"  ></textarea>
+	
+     <div ng-if="dupMsg">{{dupMsg}}</div>
+    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="addgt(gts.$valid)" ng-hide="edit" ng-disabled="gts.$dirty && gts.$invalid" >Save changes</button>
+		<button type="button" class="btn btn-primary" ng-click="editgt(gts.$valid)"  ng-show="edit" ng-disabled="gts.$dirty && gts.$invalid" >Edit changes</button>
+      </div>
+	  </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+
+<div class="modal fade" id="delete_pop">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title"><span ng-hide="edit">Add</span><span ng-show="edit">Edit</span> Group Tags</h4>
+      </div>
+	  <form name="gts1" id="gts" novalidate >
+      <div class="modal-body">
+        Are you sure you want to delete this Group Tag?
+    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="deletegt()" >Yes</button>		
+      </div>
+	  </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade" id="deleteAll_pop">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title"><span ng-hide="edit">Add</span><span ng-show="edit">Edit</span> Group Tags</h4>
+      </div>
+	  <form name="gts1" id="gts" novalidate >
+      <div class="modal-body">
+        Are you sure you want delete these Group Tags?
+    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="deleteAll()" >Yes</button>		
+      </div>
+	  </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+

@@ -1,0 +1,301 @@
+<style type="text/css">
+	.creation-section .add-capsules-block .chapter-pic .chapter-overlay2 { border-radius:100%; }
+</style>
+<div id="menu-button" class="toggle-menu menu-left push-body">
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+</div>
+<div class="head">
+	<div class="wrapper">
+		
+		<div class="clearfix"></div>
+		
+		<div class="chapter_box chapter_box2">
+		<h2 class="width_auto">Capsules-in-the-making</h2> 
+		<span class="dragdesc">
+			Drag and move your capsules in order as you wish
+		</span>
+		<div class="clear"></div>
+		
+		<!-- chapter-row start -->
+		<div class="chapter-row">
+			<ul ui-sortable="CapsulesMgmt.sortableOptions" ng-model="CapsulesMgmt.capsules" class="testClassSortable">
+				<li class="testing" ng-repeat="chapter in CapsulesMgmt.capsules">
+					<div class="send-message-block scrollable" style="z-index:999999;">
+						<a href="javascript:void(0)" class="message-block-arw">
+							<img title="arrow" src="/assets/create/images/arrow-icon.png" alt="Edit" />
+						</a>
+						<!--<div class="add-msg-head">
+						<textarea placeholder="Add a message?"></textarea>
+						</div>-->
+						<div class="search-find-row">
+							<input type="text" name="name" placeholder="Search" ng-model="searchFrnd">
+						</div>
+						<div class="send-msg-description">
+							<p> <strong>Send capsules to your friends!</strong><br>Plan projects, swap ideas and share your best discoveries. </p>
+						</div>
+						<div class="search-result-block" style="height:250px;">
+							<ul style="">
+								<li ng-repeat="frnd in friends | filter : searchFrnd" ng-click="CapsulesMgmt.share(chapter._id , frnd.Friend.Email)"> 
+									<a style="" href="javascript:void(0)">
+										<div class="left-box"> 
+											<!--<img style="" src="https://s-passets-cache-ak0.pinimg.com/images/user/default_75.png">-->
+											<img title="{{frnd.Friend.Email}}" ng-src="{{frnd.Friend.Pic}}" />
+										</div>
+										<div class="right-box">
+											<h2 title="{{frnd.Friend.Email}}">{{frnd.Friend.Name}}</h2>
+											<p> {{frnd.Friend.Relation}} </p>
+										</div>
+									</a> 
+								</li>
+							</ul>	
+						</div>
+					</div>
+					<div class="chapter-box  zoomIn animated">
+						<div class="chapter-pic dragBox">
+							<img ng-if="chapter.CoverArt" src="/assets/Media/capsules/small/{{chapter.CoverArt}}" alt="capsule" fallback-src-rect="" />
+							<img ng-if="!(chapter.CoverArt)" src="/assets/create/images/no-chapter-pic.jpg" alt="capsule" fallback-src-rect="" />
+							<ul class="chapter-tool">
+								<li class="edit">
+									<a data-toggle="tooltip" title="Edit" href="#/manage-chapters/{{chapter._id}}"><img src="/assets/create/images/chapter/edit-chapter.png" alt="Edit" /></a>
+									<!--<span class="tooltip">Edit</span>-->
+								</li>
+								<li class="duplicate">
+									<a data-toggle="tooltip" title="Duplicate"  href="javascript:void(0)" ng-click="CapsulesMgmt.duplicate(chapter._id)"><img src="/assets/create/images/chapter/duplicate.png" alt="Duplicate" /></a>
+									<!--<span class="tooltip">Duplicate</span>-->
+								</li>
+								<li class="delete">
+									<a data-toggle="tooltip" title="Delete"  href="javascript:void(0)" ng-confirm-click="Are you sure you want to delete this capsule ?" confirmed-click="CapsulesMgmt.remove(chapter._id)"><img data-toggle="tooltip" title="Delete" src="/assets/create/images/chapter/delete-chapter.png" alt="Edit" /></a>
+									<!--<span class="tooltip">Delete</span>-->
+								</li>
+								<li class="edit">
+									<a href="javascript:void(0)" class="open_pop2"><img data-toggle="tooltip" title="Share" src="/assets/create/images/chapter/share.png" alt="Edit" /></a>
+									<!--<span class="tooltip">Share</span>-->
+								</li>
+								<li class="preview" ng-if="chapter.Chapters.length == 0">
+									<a href="javascript:void(0)"><img data-toggle="tooltip" title="Nothing to Preview" src="/assets/create/images/chapter/disable-preview-chapter.png" alt="Nothing to Preview" /></a>
+									<!--<span class="tooltip">Preview</span>-->
+								</li>
+								<li class="preview" ng-if="chapter.Chapters.length > 0">
+									<a href="#/manage-chapters/{{chapter._id}}"><img data-toggle="tooltip" title="Preview" src="/assets/create/images/chapter/preview-chapter.png" alt="Preview" /></a>
+									<!--<span class="tooltip">Preview</span>-->
+								</li>
+							</ul>
+							<div class="chapter-overlay2" ng-click="CapsulesMgmt.init_edit(chapter._id)" >
+							</div>
+						</div>
+						<div class="chapter-info">
+                        	<div class="edit-title-box edit-title-box-befor">
+                                <span class="chapter-no">
+                                    {{$index+1}}
+                                </span>
+                                <span class="chapter-name" data-toggle="tooltip" title="{{chapter.Title | limitTo: 20}} {{chapter.Title.length > 20 ? '...' : ''}}">
+                                   {{chapter.Title | limitTo: 20}} {{chapter.Title.length > 20 ? '...' : ''}}
+                                </span>
+                                <a href="javascript:void(0)" class="icon-add edit_title"><img title="Edit" src="/assets/create/images/chapter/pen-checkbox.png" alt="Edit" /></a>
+                            </div>
+                            
+                            <div class="edit-title-box edit-title-box-after" style="display:none;">
+                                <input type="text" value="{{chapter.Title}}" ng-blur="CapsulesMgmt.updateCapsuleName($index , chapter._id , $event.target.value)" placeholder="{{chapter.Title}}">
+                                <a href="javascript:void(0)" class="icon-add close_title"><img title="Close" src="/assets/create/images/chapter/cross.png" alt="Close" /></a>
+                            </div>
+						</div>
+					</div>
+				</li>
+			</ul>
+            
+            <ul class="add-capsules-block">
+            	<li>
+					<div class="chapter-box add-chapter-box" ng-click="CapsulesMgmt.create()">
+                    	<div class="chapter-pic-outer-box">
+                            <div class="chapter-pic">
+                                <span class="add-icn">
+                                        <img src="/assets/create/images/chapter/add-icn.png">
+                                </span>
+                                <div class="chapter-overlay2">
+                                </div>
+                            </div>
+                        </div>
+						<div class="chapter-info">
+							<span class="chapter-name float-lft">
+								Add New
+							</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- chapter-row end -->
+		
+		</div>
+		
+		<!-- START BROWSE -->
+		<div class="browse">
+			<div class="heading-row">
+				<h2>Capsule Library</h2>
+			</div>
+			<ul class="tabs library-qc">
+				<li><a href="javascript:void(0)" class="qc-all selected" ng-click="CapsulesMgmt.setQueryCriteria('all')">All</a></li>
+				<li><a href="javascript:void(0)" class="qc-createdByMe" ng-click="CapsulesMgmt.setQueryCriteria('createdByMe')">Created by you</a></li>
+				<li><a href="javascript:void(0)" class="qc-sharedWithMe" ng-click="CapsulesMgmt.setQueryCriteria('sharedWithMe')">Shared with you</a></li>
+				<li><a href="javascript:void(0)" class="qc-byTheHouse" ng-click="CapsulesMgmt.setQueryCriteria('byTheHouse')">By the house</a></li>
+			</ul>
+			<!--
+			<div class="select-con select-con2">
+				<select>
+					<option value="Capsule 1">Latest</option>
+					<option value="Capsule 2">Latest</option>
+					<option value="Capsule 3">Latest</option>
+				</select>
+			</div>
+			
+			<div class="select-con first  select-con2">
+				<select>
+					<option value="Capsule 1">Capsule 1</option>
+					<option value="Capsule 2">Capsule 2</option>
+					<option value="Capsule 3">Capsule 3</option>
+				</select>
+			</div>
+			-->
+			<div class="clear"></div>
+			
+			<!-- START IMAGES -->
+			<div class="browse-images browse-images2">
+				<dir-pagination-controls on-page-change="CapsulesMgmt.pageChanged(newPageNumber)"></dir-pagination-controls>
+                <div class="chapter-library-block">
+                	<ul>
+                    	<li dir-paginate="chapter in CapsulesMgmt.capsulesPaginated  | itemsPerPage: perPage" total-items="count" current-page="pageNo">
+                          <div class="send-message-block scrollable" style="z-index:999999;">
+                            <a href="javascript:void(0)" class="message-block-arw">
+                                <img title="arrow" src="/assets/create/images/arrow-icon.png" alt="Edit" />
+                            </a>
+                            <!--<div class="add-msg-head">
+                            <textarea placeholder="Add a message?"></textarea>
+                            </div>-->
+                            <div class="search-find-row">
+                                <input type="text" name="name" placeholder="Search" ng-model="searchFrnd">
+                            </div>
+                            <div class="send-msg-description">
+                                <p> <strong>Send capsules to your friends!</strong><br>Plan projects, swap ideas and share your best discoveries. </p>
+                            </div>
+                            <div class="search-result-block" style="height:250px;">
+                                <ul style="">
+                                    <li ng-repeat="frnd in friends | filter : searchFrnd" ng-click="CapsulesMgmt.share(chapter._id , frnd.Friend.Email)"> 
+                                        <a style="" href="javascript:void(0)">
+                                            <div class="left-box"> 
+                                                <!--<img style="" src="https://s-passets-cache-ak0.pinimg.com/images/user/default_75.png">-->
+                                                <img title="{{frnd.Friend.Email}}" ng-src="{{frnd.Friend.Pic}}" />
+                                            </div>
+                                            <div class="right-box">
+                                                <h2 title="{{frnd.Friend.Email}}">{{frnd.Friend.Name}}</h2>
+                                                <p> {{frnd.Friend.Relation}} </p>
+                                            </div>
+                                        </a> 
+                                    </li>
+                                </ul>	
+                            </div>
+                        </div>
+                        <div class="zoomIn chapter-library-bx">
+                            <img ng-if="!(chapter.CoverArt)" src="/assets/create/images/no-chapter-pic.jpg" alt="chapter" class="primary zoomIn" fallback-src-rect="" />
+                            <img ng-if="chapter.CoverArt" src="/assets/Media/capsules/small/{{chapter.CoverArt}}" alt="chapter" class="primary zoomIn" fallback-src-rect="" />
+                            <!--<div class="chapter-overlay2" ng-click="CapsulesMgmt.init_edit(chapter._id)"></div>-->
+                            <div class="chapter-overlay2"></div>
+                            <h3>{{chapter.Title | limitTo: 20}} {{chapter.Title.length > 20 ? '...' : ''}}</h3>
+                            <ul class="chapter-library-icon">
+                                <!--
+                                <li class="preview" ng-click="CapsulesMgmt.preview(chapter._id)">
+                                <a href="javascript:void(0)"><img data-toggle="tooltip" title="Preview" src="/assets/create/images/chapter/preview-chapter.png" alt="Preview" /></a>
+                                </li>
+                                -->
+                                <li class="add">
+                                <a href="javascript:void(0)" ng-click="CapsulesMgmt.addFromLibrary(chapter._id)"><img data-toggle="tooltip" title="Add" src="/assets/create/images/chapter/add-chapter.png" alt="Add" /></a>
+                                <!--<span class="tooltip">Add</span>-->
+                                </li>
+                                <li class="edit">
+                                <a href="javascript:void(0)" class="open_pop"><img data-toggle="tooltip" title="Share" src="/assets/create/images/chapter/share.png" alt="Share" /></a>
+                                <!--<span class="tooltip">Share</span>-->
+                                </li>
+                                <li class="delete">
+                                <a href="javascript:void(0)" ng-confirm-click="Are you sure you want to delete this capsule ?" confirmed-click="CapsulesMgmt.remove(chapter._id)"><img data-toggle="tooltip" title="Delete" src="/assets/create/images/chapter/delete-chapter.png" alt="Delete" /></a>
+                                <!--<span class="tooltip">Delete</span>-->
+                                </li>
+                            </ul>
+                            <!--<div class="date">11/09/2014</div>-->
+                        </div>
+                        
+                        <div class="chapter-info">
+                        	<div class="edit-title-box edit-title-box-befor">
+                                <span class="chapter-no">
+                                    {{$index+1}}
+                                </span>
+                                <span class="chapter-name" data-toggle="tooltip" title="{{chapter.Title | limitTo: 20}} {{chapter.Title.length > 20 ? '...' : ''}}">
+                                   {{chapter.Title | limitTo: 20}} {{chapter.Title.length > 20 ? '...' : ''}}
+                                </span>
+                                <!--<a href="javascript:void(0)" class="icon-add edit_title"><img title="Edit" src="/assets/create/images/chapter/pen-checkbox.png" alt="Edit" /></a>-->
+                            </div>
+                                                        
+                            <!--<div class="edit-title-box edit-title-box-after" style="display:none;">
+                                <input type="text" value="" placeholder="{{chapter.Title}}" >
+                                <a href="javascript:void(0)" class="icon-add close_title"><img title="Close" src="/assets/create/images/chapter/cross.png" alt="Close" /></a>
+                            </div>-->
+						</div>
+                	</li>
+                </ul>
+                    
+                </div>
+				
+				
+				<div ng-if="CapsulesMgmt.capsulesPaginated.length==0">No Record Found!</div>
+				<div class="clear"></div>
+				
+			</div>
+			<!-- END IMAGES -->
+			
+		</div>
+		<!-- END BROWSE -->
+		<!--
+		<a class="previous-link nav-link" href="javascript:void(0)">Previous</a>
+		<a class="next-link nav-link" href="javascript:void(0)">Proceed</a>
+		-->
+		<div class="clear"></div>
+		
+	</div>
+</div>
+<div id="loader" style="display: block;"><img src="/assets/create/images/ajax-loader.gif" alt="Loader" /></div>
+<div id="tips" style="display: none;"><div id="closetips"></div></div>
+<!--<script type="text/javascript" src="/assets/create/js/scripts.js"></script>-->
+
+<script>
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip();
+	});
+	
+	$( document ).ready(function() {
+		$( document ).on("click", ".edit_title", function(){
+			$(this).parent( ".edit-title-box-befor" ).hide( "slow" );
+			$(this).parent( ".edit-title-box-befor" ).next().show( "slow" );
+		});
+		
+		$( document ).on("click", ".close_title", function(){
+			$(this).parent( ".edit-title-box-after" ).hide( "slow" );
+			$(this).parent( ".edit-title-box-after" ).prev().show( "slow" );
+		});
+	});
+</script>
+
+<style type="text/css">
+	.chapter-pic-outer-box { min-height:129px; padding-top:14px; }
+	.creation-section .add-capsules-block { text-align:center; }
+	.creation-section .add-capsules-block .chapter-name.float-lft { float:none; padding-left:0; padding-right:0; }
+	.creation-section .add-capsules-block .chapter-pic { width:100px; height:100px; overflow:hidden; border-radius:100%; min-height:100px; margin:0 auto; }
+	.creation-section .add-capsules-block .add-icn { top:29%; left:29%; margin:0; }
+/*	.creation-section .add-capsules-block .add-icn img { width:26px; height:26px; }*/
+	.creation-section .chapter-info { font-family:"Brandon Light",Arial,sans-serif; }
+	.edit-title-box { position:relative; }
+	.edit-title-box .icon-add { position:absolute; width:16px; height:16px; top:2px; right:0; }
+	.creation-section .chapter-name { padding-right:20px; }
+	.edit-title-box input[type="text"] { font-family:"Brandon Light",Arial,sans-serif; width:140px; font-size:14px; border:none; border-bottom:1px solid #6b6a6f; color:#fff; padding:0 0 1px; background:none; }
+	.edit-title-box.edit-title-box-after .icon-add { top:4px; }
+	.creation-section .chapter-library-block .edit-title-box-after img { width:auto; }
+</style>

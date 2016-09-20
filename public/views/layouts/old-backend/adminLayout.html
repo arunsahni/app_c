@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="collabmedia">
+<head>
+	<meta charset="utf-8">
+	<title>Scrpt - Admin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="dashbaord template">
+	<meta name="author" content="Amit Chhangani">
+
+	<link id="bs-css" href="../assets/charisma/css/bootstrap-cerulean.css" rel="stylesheet">
+	<style type="text/css">
+	  body {
+		padding-bottom: 40px;
+	  }
+	  body.wait , body.wait *{
+          cursor: wait !important;  
+      }
+	  .sidebar-nav {
+		padding: 9px 0;
+	  }
+	  a[href], input[type='submit'], input[type='image'], label[for], select, button, .pointer {
+		    cursor: pointer;
+	     }
+	</style>
+	<link href="../assets/charisma/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="../assets/charisma/css/charisma-app.css" rel="stylesheet">
+	<link href="../assets/charisma/css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
+	<link href='../assets/charisma/css/fullcalendar.css' rel='stylesheet'>
+	<link href='../assets/charisma/css/fullcalendar.print.css' rel='stylesheet'  media='print'>
+	<link href='../assets/charisma/css/chosen.css' rel='stylesheet'>
+	<link href='../assets/charisma/css/uniform.default.css' rel='stylesheet'>
+	<link href='../assets/charisma/css/colorbox.css' rel='stylesheet'>
+	<link href='../assets/charisma/css/jquery.cleditor.css' rel='stylesheet'>
+	<link href='../assets/charisma/css/jquery.noty.css' rel='stylesheet'>
+	<link href='../assets/charisma/css/noty_theme_default.css' rel='stylesheet'>
+	<link href='../assets/charisma/css/elfinder.min.css' rel='stylesheet'>
+	<link href='../assets/charisma/css/elfinder.theme.css' rel='stylesheet'>
+	<link href='../assets/charisma/css/jquery.iphone.toggle.css' rel='stylesheet'>
+	<link href='../assets/charisma/css/opa-icons.css' rel='stylesheet'>
+	<link href='../assets/charisma/css/uploadify.css' rel='stylesheet'>
+	  
+	  
+	  
+	<!-- jQuery -->
+	<script src="../assets/charisma/js/jquery-1.7.2.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="../assets/charisma/js/jquery-ui-1.8.21.custom.min.js"></script>
+	
+	
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script src="../assets/js/angular-file-upload-shim.js"></script> 
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>	
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+	<!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-route-segment/1.3.0/angular-route-segment.min.js"></script>-->
+	<!--<script src="../controllers/adminRoutes.js"></script>-->
+	<script src="../assets/js/angular-ui-router.min.js"></script>
+	<script src="../assets/js/angular-file-upload.js"></script>
+	
+	<script src="../config/admin/bootstrap.js"></script>
+	<script src="../assets/js/bootstrap-alert.js"></script>
+	<script src="../controllers/adminRoutes.js"></script>
+	
+	<script src="../services/admin/loginService.js"></script>	
+	
+	<script src="../controllers/admin/adminDashCtrl.js"></script>
+	<script src="../controllers/admin/adminLoginCtrl.js"></script>
+	<script src="../controllers/admin/containerCtrl.js"></script>
+	<script src="../controllers/admin/logoutCtrl.js"></script>
+	<script src="../controllers/admin/collectionCtrl.js"></script>	
+	<script src="../controllers/admin/domainCtrl.js"></script>	
+	<script src="../controllers/admin/domainMmtCtrl.js"></script>	
+	<script src="../controllers/admin/groupTagCtrl.js"></script>	
+	<script src="../controllers/admin/userGroupTagCtrl.js"></script>	
+	<script src="../controllers/admin/gtBindingCtrl.js"></script>	
+	<script src="../controllers/admin/metaMetaTagCtrl.js"></script>
+	<script src="../controllers/admin/metaTagCtrl.js"></script>
+	<script src="../controllers/admin/contributionCtrl.js"></script>
+	<script src="../controllers/admin/sourceCtrl.js"></script>
+	<script src="../controllers/admin/tagCtrl.js"></script>
+	<script src="../controllers/admin/userTagCtrl.js"></script>
+	<script src="../controllers/admin/fsgCtrl.js"></script>
+	<script src="../controllers/admin/massImageUploaderCtrl.js"></script>	
+	<script src="../controllers/admin/massImageManagerCtrl.js"></script>
+	<script src="../assets/js/ng-table.js"></script>
+	<link href='../assets/charisma/css/ng-table.min.css' rel='stylesheet'>
+		
+	<script src="../controllers/admin/sidemenuCtrl.js"></script>
+	
+	<script src="../directives/enter.js"></script>
+	<script src="../assets/js/dirPagination.js"></script>
+	<!-- The fav icon -->
+	<link rel="shortcut icon" href="img/favicon.ico">
+		
+</head>
+
+<body ng-controller="adminMainCtrl">
+		<!-- topbar starts -->
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href=""><!-- <img alt="Charisma Logo" src="img/logo20.png" />--> <span>Scrpt</span></a>
+				
+				<!--  place holder for admin and change theme dropdowns    -->
+				  <div ui-view="dropdowns"></div>
+				
+			</div>
+		</div>
+	</div>
+	<!-- topbar ends -->
+		<div class="container-fluid">
+		<div class="row-fluid" >
+			<!-- left menu starts -->
+			<!---   --placeholder for left menu--    -->
+			  <div ui-view="left-menu"></div>	
+			<!-- left menu ends -->
+				<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>You need to have <a target="_blank" href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> enabled to use this site.</p>
+				</div>
+			</noscript>
+			
+			<div id="content" class="span10" ui-view></div>        
+		
+			 
+			<!--/#content.span10-->
+			</div><!--/fluid-row-->
+		<hr>
+
+		<div class="modal hide fade" id="myModal">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Settings</h3>
+			</div>
+			<div class="modal-body">
+				<p>Here settings can be configured...</p>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Close</a>
+				<a href="#" class="btn btn-primary">Save changes</a>
+			</div>
+		</div>
+
+		<footer>
+			<p class="pull-left">&copy;<a href="#" target="_blank">Scrpt</a>2014</p>
+			<p class="pull-right">Powered by: <a href="#">smartData</a></p>
+		</footer>
+		
+	</div><!--/.fluid-container-->
+
+	<!-- external javascript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+
+	<!-- jQuery -->
+	<!--<script src="../assets/charisma/js/jquery-1.7.2.min.js"></script>-->
+	<!-- jQuery UI -->
+	<!--<script src="../assets/charisma/js/jquery-ui-1.8.21.custom.min.js"></script>-->
+	<!-- transition / effect library -->
+	<script src="../assets/charisma/js/bootstrap-transition.js"></script>
+	<!-- alert enhancer library -->
+	<script src="../assets/charisma/js/bootstrap-alert.js"></script>
+	<!-- modal / dialog library -->
+	<script src="../assets/charisma/js/bootstrap-modal.js"></script>
+	<!-- custom dropdown library -->
+	<script src="../assets/charisma/js/bootstrap-dropdown.js"></script>
+	<!-- scrolspy library -->
+	<script src="../assets/charisma/js/bootstrap-scrollspy.js"></script>
+	<!-- library for creating tabs -->
+	<script src="../assets/charisma/js/bootstrap-tab.js"></script>
+	<!-- library for advanced tooltip -->
+	<script src="../assets/charisma/js/bootstrap-tooltip.js"></script>
+	<!-- popover effect library -->
+	<script src="../assets/charisma/js/bootstrap-popover.js"></script>
+	<!-- button enhancer library -->
+	<script src="../assets/charisma/js/bootstrap-button.js"></script>
+	<!-- accordion library (optional, not used in demo) -->
+	<script src="../assets/charisma/js/bootstrap-collapse.js"></script>
+	<!-- carousel slideshow library (optional, not used in demo) -->
+	<script src="../assets/charisma/js/bootstrap-carousel.js"></script>
+	<!-- autocomplete library -->
+	<script src="../assets/charisma/js/bootstrap-typeahead.js"></script>
+	<!-- tour library -->
+	<script src="../assets/charisma/js/bootstrap-tour.js"></script>
+	<!-- library for cookie management -->
+	<script src="../assets/charisma/js/jquery.cookie.js"></script>
+	<!-- calander plugin -->
+	<script src='../assets/charisma/js/fullcalendar.min.js'></script>
+	<!-- data table plugin -->
+	<script src='../assets/charisma/js/jquery.dataTables.min.js'></script>
+
+	<!-- chart libraries start -->
+	<script src="../assets/charisma/js/excanvas.js"></script>
+	<script src="../assets/charisma/js/jquery.flot.min.js"></script>
+	<script src="../assets/charisma/js/jquery.flot.pie.min.js"></script>
+	<script src="../assets/charisma/js/jquery.flot.stack.js"></script>
+	<script src="../assets/charisma/js/jquery.flot.resize.min.js"></script>
+	<!-- chart libraries end -->
+
+	<!-- select or dropdown enhancer -->
+	<script src="../assets/charisma/js/jquery.chosen.min.js"></script>
+	<!-- checkbox, radio, and file input styler -->
+	<script src="../assets/charisma/js/jquery.uniform.min.js"></script>
+	<!-- plugin for gallery image view -->
+	<script src="../assets/charisma/js/jquery.colorbox.min.js"></script>
+	<!-- rich text editor library -->
+	<script src="../assets/charisma/js/jquery.cleditor.min.js"></script>
+	<!-- notification plugin -->
+	<script src="../assets/charisma/js/jquery.noty.js"></script>
+	<!-- file manager library -->
+	<script src="../assets/charisma/js/jquery.elfinder.min.js"></script>
+	<!-- star rating plugin -->
+	<script src="../assets/charisma/js/jquery.raty.min.js"></script>
+	<!-- for iOS style toggle switch -->
+	<script src="../assets/charisma/js/jquery.iphone.toggle.js"></script>
+	<!-- autogrowing textarea plugin -->
+	<script src="../assets/charisma/js/jquery.autogrow-textarea.js"></script>
+	<!-- multiple file upload plugin -->
+	<script src="../assets/charisma/js/jquery.uploadify-3.1.min.js"></script>
+	<script src="../assets/js/checklist-model.js"></script>
+	<!-- history.js for cross-browser state change on ajax -->
+	<!--<script src="js/jquery.history.js"></script>-->
+	<!--<script src="../assets/charisma/js/jquery.history.js"></script>-->
+	<!-- application script for Charisma demo -->
+	<script src="../assets/charisma/js/charisma.js"></script>
+	<script>
+	
+	$('.main-menu li').click(function(){
+		$('.main-menu li').each(function(){
+			$(this).removeClass('active');
+		})
+		$(this).addClass('active');		
+	});
+	
+	function hoveroutgallery(id){
+		elem = id.split("-");
+		$('#div-'+elem[1]).removeClass('foreground');
+	}
+	
+	function hoverovergallery(id){
+		elem = id.split("-");
+		$('#div-'+elem[1]).addClass('foreground');		
+	}
+	
+	</script>
+	
+	
+<style>
+    .top-header{
+        margin-bottom:7px !important;
+    }
+    .top-header > li{
+        float:left !important;
+        width:auto !important;
+    }
+    .top-header > li > a{
+        border:none !important;
+    }
+    .width100p{
+        width:100% !important;
+    }
+    .span10{
+        margin-top:15px;
+        width:95% !important;
+    }
+    </style>
+
+<script type="text/javascript">
+  // added by parul 21012015
+	//$('.descriptor').live("paste", function(e) {
+	//	$(e.target).keyup(getInput);
+	//	//alert($(e.target).val()); // [object Clipboard]
+	//});
+	
+	function getInput(e){
+		$(e.target).unbind('keyup');
+		var inputText = $(e.target).val();
+		$(e.target).val('');
+		alert(inputText);
+		var dataArr=inputText.split(' ');
+		var newData="";
+		console.log(dataArr);
+		for(i in dataArr){
+			if (i==0) {
+			 
+				newData=dataArr[i];
+			}else{
+			  //alert('in else');//if(i>0 ){//&& i<((dataArr.length)-1)
+			  //alert(dataArr[i].slice(-1));
+			  //alert((dataArr[i]).slice(-1)==',');
+			  if ((dataArr[i]).slice(-1)==',') {
+				newData=newData+' '+dataArr[i];
+			  }else{
+				newData=newData+', '+dataArr[i];
+			  }
+			  
+			}
+			//newData=newData+', '+dataArr[i];
+		}
+		$(e.target).val(newData);
+	}
+</script>
+<style>
+  ul.ui-autocomplete{
+/*	background:rgba(0,0,0,0.8) !important;*/
+	z-index:1000 !important;
+	max-height: 100px;
+	overflow-y: auto;
+/*	width: 100%;*/
+/*	position: fixed !important;*/
+}
+/**/
+/*ul.ui-autocomplete.ui-widget-content a{color:#fff;}*/
+</style>
+
+</body>
+</html>

@@ -1,0 +1,202 @@
+@media(max-width:2100px){ 
+.gallery-block ul li { width:16.6666667%;}
+}
+
+@media(max-width:1600px){ 
+.gallery-block ul li { width:25%;}
+}
+
+@media all and (max-width: 1050px) {
+.quest-block .dropdown-box,
+.tag-block .dropdown-box
+{
+display:none;
+}
+.dropdown-box-mobile{display:block; width:70px;}
+}
+
+@media(max-width:850px){ 
+.gallery-block ul li { width:33.3%;}
+.board-gallery li { width:33.3% !important;} 
+
+.ansr-box {position:static;}
+.table-box .dropdown-nav { left: 0; right:auto;} /*9-9-15*/
+}
+@media(max-width:767px){ 
+/*.quest-block { padding:15px;}*/
+.quest-bx { padding:0 0 11px 0; font-size:21px;}
+.ansr-box { font-size:21px; text-align:left;}
+.quest-bx, .ansr-box { width:100%; max-width:none;}
+
+
+main.container .media-tray-rw .image-selector {
+text-align:center;
+}
+.media-tray-rw .icon-links,
+.media-tray-rw .discuss_trayArea
+{
+    padding: 0;
+}
+.media-tray-rw .icon-links {
+    border-bottom: 1px solid #dbdbdb;
+    margin: 0 0 4px; /*9-9-15*/
+    padding: 0 0 6px;
+	text-align:center;
+	height:auto; /*9-9-15*/
+}
+.media-tray-rw .icon-links a { margin:0 5px 0 0;}
+.media-tray-rw .discuss_trayArea ul { padding-left:0;}
+
+.exit-w-save,
+.post-board-btn,
+#a-tooltip8,
+#a-tooltip7,
+#a-tooltip4,
+#a-tooltip6
+{ display:none;}
+.discuss-btm-btns { display:block;}
+
+.ansr-box {width:100%; float:left;}
+.table-box { display:inline-block; vertical-align:top;} /*9-9-15*/
+.table-box .dropdown-nav {top: 26px;} /*9-9-15*/
+.table-box .dropdown-nav { left: auto; right:0;} /*9-9-15*/
+
+/*15-9-15 start*/
+.media-action-icn {
+opacity:1;
+visibility:visible;
+}
+/*15-9-15 end*/
+
+/*22-9-15 start*/
+.ansr-box {width:95%;}
+.quest-block .dropdown-box {right: 12px;
+    width: 40px;}
+/*22-9-15 end*/
+}
+
+@media(max-width:650px){ 
+.gallery-block ul li { width:50%;}
+/*.quest-bx-sml,*/
+.ansr-box-sml
+{
+padding: 10px 10px 5px;
+width: 100%;
+}
+
+.quest-bx,
+.ansr-box
+{ font-size:21px;}
+.ansr-box { padding-top:0;}
+
+.board-gallery li { width:50% !important;}
+
+
+/*.ui-dialog.ui-widget {
+    margin-left: 5%;
+    position: absolute !important;
+    width: 90% !important;
+}
+*/
+/*.ui-dialog.ui-widget {
+    top: 0 !important;
+}*/
+.ui-dialog {
+    /*left: 0 !important;*/
+    min-height: 100px;
+    outline: 0 none;
+    overflow: hidden;
+    position: fixed !important;
+    right: 0;
+}
+
+.for-mob { display:block;}
+.text-editor-2 { display:none;}
+
+/*.header-bg { background-size:150%;}*/ /*11-9-15*/
+/*20-8-15 start _Rajvir*/
+.header-bg .nav,
+.nav
+{
+    /*height: auto;*/
+}
+/*20-8-15 end _Rajvir*/
+}
+
+@media(max-width:575px){
+.media-list-rw .montage-box {
+    margin-bottom: 40px;
+    width: 100%;
+}
+.media-list-rw .montage-box .img-cont { display:block; width:100%;}
+#discuss_gallery_elements .media-list-rw .item img { max-height:none; height:auto; max-width: none;}
+
+ /*need to check class for montage view pic start*/
+ .m-gridster-2 .gridster {
+ overflow: auto;
+ }
+ /*need to check class for montage view pic end*/
+
+}
+
+@media(max-width:480px){
+.quest-bx,
+.ansr-box { width:100%;}
+
+.record-v-popup .left
+{
+width: 100%;
+padding:0 0 15px;
+}
+.tag-label, .tag-list {
+position:static;
+width:100%;
+}
+.tag-block { height:auto; padding:0;}
+.tag-label { 
+border-bottom: 1px solid #cacaca;
+padding: 10px;
+}
+.tag-list { padding:16px 10px;}
+
+
+.btns-btm {width:100%;}
+.btns-btm .col-xs-6 {
+    margin-bottom: 10px;
+    width: 100%;
+}
+/*.m-gridster .gridster.gridster-montage {
+width:100% !important;
+overflow:auto;
+}*/
+/*.btns-btm.for-mob a{ width:100%; padding:10px 0;}*/
+.quest-btm-rw { text-align:left;}
+
+/*11-9-15 start*/
+.header-bg .tag-block.tag-block-scroll {
+padding-right:0;
+}
+/*11-9-15 end*/
+}
+
+@media(max-width:400px){
+
+
+.gallery-block ul { margin-right:0;}
+.gallery-block ul li { width:100%; padding-right:0;}
+
+.board-gallery li { width:100% !important;}
+}
+
+
+.dropdown-box-block {
+    background: #aaaaaa none repeat scroll 0 0;
+    height: 300px;
+    position: relative;
+}
+
+.dropdown-box-block .dropdown-box {
+    bottom: auto;
+    top: 0;
+    z-index: 2147483647;
+}

@@ -1,0 +1,287 @@
+<!-- START SETTINGS -->
+<style>
+    p {
+        cursor: default;
+    }
+	/*.add-member.ng-hide-add{*/
+	/*	-webkit-animation: fadeOut  0.5s ;*/
+	/*	animation: fadeIn 0.5s;*/
+	/*}*/
+	.add-member.ng-hide-remove{
+		-webkit-animation: fadeIn  0.5s ;
+		animation: fadeOut 0.5s;
+	}
+	/*.add-frm-frnd.ng-hide-add{*/
+	/*	-webkit-animation: fadeOut  0.5s ;*/
+	/*	animation: fadeIn 0.5s;*/
+	/*}*/
+	.add-frm-frnd.ng-hide-remove{
+		-webkit-animation: fadeIn  0.5s ;
+		animation: fadeOut 0.5s;
+	}
+</style>
+<div id="menu-button" class="toggle-menu menu-left push-body">
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+</div>
+	<div id="settings">
+		<div id="background"></div>
+		<div class="wrapper">
+			<div class="central">
+				<h2>Launch Settings</h2>
+                
+                <h3>Making for?</h3>
+				<div class="radio-con-who">
+					<label>
+						<input type="radio" name="making" value="myself" checked="checked" ng-model="LaunchSettingsMgmt.makingFor" />
+						<span>Myself</span>
+					</label>
+					
+                    <label>
+						<input type="radio" name="making" value="others"  ng-model="LaunchSettingsMgmt.makingFor"/>
+						<span>Others</span>
+					</label>
+					
+					<div class="clear"></div>
+					<form name="others">
+						<div class="add-mail-row" ng-if="LaunchSettingsMgmt.makingFor == 'others'">
+							<input type="email" ng-model="LaunchSettingsMgmt.ownerEmail"  class="ng-invalid-required" placeholder="Enter Email.." name="name" auto-complete-members required>
+							<button class="add-btn-icon" ng-click="LaunchSettingsMgmt.addOwner(others.$invalid)">+</button>
+						</div>
+						
+					</form>
+				</div>
+                <p ng-if="LaunchSettingsMgmt.makingFor == 'myself'">
+					Myself: Making for yourself. you remain both creater and owner of this module.
+				</p>
+                <p ng-if="LaunchSettingsMgmt.makingFor != 'myself'">
+					Others: Making it for someone else, in this made you can transfer ownership later to someone else.
+				</p>
+				
+				<!--
+                <div ng-if="LaunchSettingsMgmt.chapterData.LaunchSettings.OthersData.length == 0 && LaunchSettingsMgmt.makingFor != 'myself'" class="friends add-frm-frnd add-frm-frnd2" style="padding: 45px;">
+					No one is invited right now. You can start inviting people and they will be displayed here. 
+				</div>
+				-->
+				
+				<div ng-show="LaunchSettingsMgmt.chapterData.LaunchSettings.OthersData.length != 0 && LaunchSettingsMgmt.makingFor != 'myself'" class="friends add-frm-frnd add-frm-frnd2  no-padd-tb">
+				
+					<div class="friend-list-rw">
+						<ul>
+							<li ng-repeat="invitee in LaunchSettingsMgmt.chapterData.LaunchSettings.OthersData">
+								<div class="member-box">
+									<div class="member-pic"><img ng-src="{{invitee.UserPic}}"></div>
+									<div class="member-info">
+										<p data-toggle="tooltip" title="{{invitee.UserName || 'User not registered' }}">{{invitee.UserName || 'User not registered' }}</p>
+										<p data-toggle="tooltip" title="{{invitee.UserEmail}}">{{invitee.UserEmail}}</p>
+										<div class="close-icn" href="javascript:void(0)" ng-click="LaunchSettingsMgmt.removeOwner(invitee.UserEmail)">
+											<img src="/assets/create/images/close-member-icn.png" />
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="clear"></div>
+				</div>
+                
+                <div ng-show="LaunchSettingsMgmt.makingFor == 'myself'">
+                
+				<h3>Who will participate?</h3>
+				<div class="radio-con-who  radio-con-who2">
+					<label>
+						<input type="radio" name="who" value="private" ng-model="LaunchSettingsMgmt.participation" />
+						<span>Just Me</span>
+					</label>
+					<label>
+						<input type="radio" name="who" value="friendssolo" ng-model="LaunchSettingsMgmt.participation" />
+						<span>My Friends as Individuals</span>
+					</label>
+					<label class="last">
+						<input type="radio" name="who" value="friendsgroup" ng-model="LaunchSettingsMgmt.participation" />
+						<span>My Friends as a Group</span>
+					</label>
+					<label>
+						<input type="radio" name="who" value="public" ng-model="LaunchSettingsMgmt.participation" />
+						<span>One & All</span>
+					</label>
+					<div class="clear"></div>
+				</div>
+                
+				<p ng-if="LaunchSettingsMgmt.participation == 'private'">
+					Just Me: This space will be reserved only for you.
+				</p>
+                
+				<p ng-if="LaunchSettingsMgmt.participation == 'friendssolo'">
+					My Friends as Individuals: Multiple friends will be asked to answer but they WON'T be able to see each other's answers.
+				</p>
+                
+				<p ng-if="LaunchSettingsMgmt.participation == 'friendsgroup'">
+					My Friends as a Group:Multiple friends will be asked to answer and they WILL be able to see each other's answers.
+				</p>
+                
+				<p ng-if="LaunchSettingsMgmt.participation == 'public'">
+					One & All: Any registered user on the platform, whether invited by you or not, will be able to participate
+				</p>
+				
+                
+                
+                <div ng-show="LaunchSettingsMgmt.participation != 'private'">
+					<h3>
+						Add members
+						<span class="show-members" ng-click="LaunchSettingsMgmt.showFriends = !LaunchSettingsMgmt.showFriends">Show Friends</span>
+					</h3>
+					
+					
+					<!-- START INVITE FRIENDS -->
+					<div class="members-con">
+						<div class="add-member add-member-rw" ng-show="!LaunchSettingsMgmt.showFriends">
+							<form name="invite">
+								<ul class="add-member-ul">
+									<li>
+										<input ng-model="LaunchSettingsMgmt.invitee.name" type="text" name="name" placeholder="Enter name.." class="first" required/>	
+									</li>
+									<li>
+										<input ng-model="LaunchSettingsMgmt.invitee.email" type="email" name="email" placeholder="Enter email.." required />
+									</li>
+									<li>
+										<select ng-model="LaunchSettingsMgmt.invitee.relation" name="relation" ng-model="friend.relation" required>
+											<option value="">Please select</option>
+											<option ng-repeat="relation in relations.Values" value="{{relation.valueTitle}}~{{relation._id}}">{{relation.valueTitle}}</option>
+										</select>
+									</li>
+								</ul>
+								
+								<div class="bottom-btn-rw">
+									<input type="submit" value="Invite" id="invite" ng-click="LaunchSettingsMgmt.addInvitee(invite.$invalid)"/>
+								</div>
+							</form>
+							
+							
+							<!--<div class="radio-con-two">-->
+								<!--<label>
+									<input type="radio" name="members" value="member" />
+									<span>Member</span>
+								</label>
+								<div class="clear"></div>-->
+							<!--</div>-->
+							
+							
+							
+							<div class="clear"></div>
+						</div>
+						<!--<p>Choose if they are a co-owner or a member</p>-->
+						<div class="friends " ng-show="LaunchSettingsMgmt.showFriends">
+							<div class="friend friend-box" ng-repeat="frnd in friends">
+								<a class="add-member-icon" href="javascript:void(0)" ng-click="LaunchSettingsMgmt.inviteMember(frnd)"><img src="/assets/create/images/plus-icon.png" /></a>
+								<div class="photo member-pic"><img ng-src="{{frnd.Friend.Pic}}"></div>
+								<span class="name" data-toggle="tooltip" title="{{frnd.Friend.Name}}">{{frnd.Friend.Name}}</span>
+								<span class="relationship" data-toggle="tooltip" title="{{frnd.Friend.Relation}}">{{frnd.Friend.Relation}}</span>
+							</div>
+							
+							<div class="clear"></div>
+						</div>
+						<!--
+						<div ng-if="LaunchSettingsMgmt.chapterData.LaunchSettings.Invitees.length == 0" class="friends add-frm-frnd add-frm-frnd2" style="padding: 45px;">
+							No one is invited right now. You can start inviting people and they will be displayed here. 
+						</div>
+						-->
+						<div ng-if="LaunchSettingsMgmt.chapterData.LaunchSettings.Invitees.length != 0" class="friends add-frm-frnd add-frm-frnd2  no-padd-tb">
+							
+							<div class="friend-list-rw">
+                            	<ul>
+                                	<li ng-repeat="invitee in LaunchSettingsMgmt.chapterData.LaunchSettings.Invitees">
+                                    	<div class="member-box">
+											<div class="member-pic"><img ng-src="{{invitee.UserPic}}"></div>
+											<div class="member-info">
+												<p data-toggle="tooltip" title="{{invitee.UserName}}">{{invitee.UserName}}</p>
+												<p data-toggle="tooltip" title="{{invitee.UserEmail}}">{{invitee.UserEmail}}</p>
+											<div class="close-icn" href="javascript:void(0)" ng-click="LaunchSettingsMgmt.removeInvitee(invitee)">
+												<img src="/assets/create/images/close-member-icn.png" />
+											</div>
+										</div>
+										</div>
+                                    </li>
+                                </ul>
+                            </div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<!-- END INVITE FRIENDS -->
+				</div>
+				</div>
+				
+				<div ng-show="LaunchSettingsMgmt.participation == 'friendsgroup' && LaunchSettingsMgmt.makingFor == 'myself'">
+					<label class="groupmode">
+						<input type="radio" name="groupmode" value="percentage" checked="checked" />
+						<h3>Open group mode after <span id="response"><span>25</span>%</span> responds</h3>
+					</label>
+					
+					<div id="response-slider"></div>
+	
+					<label class="groupmode">
+						<input type="radio" name="groupmode" value="days" />
+						<h3 class="days">Group mode will open <input type="text" name="group_mode_days" id="group_mode_days" value="14" /> days after launch</h3>
+					</label>
+				</div>
+				
+				<h3 class="privacy">Privacy Options</h3>
+				<div class="radio-con-privacy">
+					<label class="first">
+						<input type="radio" name="privacy" name="realnames" value="realnames" ng-model="LaunchSettingsMgmt.namingConvention"/>
+						<span>Real Names</span>
+					</label>
+					<label>
+						<input type="radio" name="privacy" name="nicknames" value="nicknames"  ng-model="LaunchSettingsMgmt.namingConvention"/>
+						<span>Nick names</span>
+					</label>
+					<div class="clear"></div>
+					<span ng-if="LaunchSettingsMgmt.namingConvention == 'realnames'">Real names: Have a users real name appear</span>
+                    <span ng-if="LaunchSettingsMgmt.namingConvention == 'nicknames'">Nick names: Have a users nick name appear</span>
+				</div>
+				
+				<h3>
+					Finishing touches
+					<span class="cover">How your cover image will look</span>
+				</h3>
+				
+				<div class="finishing-touches">
+					<div class="browse-file-box">
+                    	<div class="custom-browse-btn">
+                        <input type="file" file-model="myFile" style="cursor: pointer;" accept="image/*" ng-file-select="LaunchSettingsMgmt.uploadCover()" value="Upload" />
+                    	<span>Browse File</span>
+                    </div>
+                    </div>
+                    <div class="browse-btn-ttl">
+                    	<input type="text" name="title" placeholder="Add title" />
+                    </div>
+                    <div class="browse-pic-box" ng-if="LaunchSettingsMgmt.newCover ">
+                        <div class="browse-pic-box-inr">
+                        <img ng-src="{{LaunchSettingsMgmt.newCover}}" />
+                        </div>
+                    </div>
+				</div>
+				<div class="clear"></div>
+				<div class="launch-btm-btns">
+                <input type="submit" name="save" value="Save & Exit" id="save" class="save-btn" />
+                <input type="submit" name="save" value="Launch Now" id="save" class="save-btn" />
+                </div>
+			</div>
+		</div>
+	</div>
+	<!-- END SETTINGS -->
+	<style>
+		
+		.ui-menu-item {
+			color: #fff;
+		}
+		
+		.ui-menu-item.ui-state-focus {
+			color: #fff;
+		}
+		
+		.creation-section .ui-widget-content.ui-autocomplete li, .creation-section .ui-widget-content.ui-autocomplete li:hover {
+			height: 50px;
+		}
+	</style>

@@ -1,0 +1,84 @@
+<div class="container">
+			
+			<header class="login-hdr">
+			        <p class="logo"> Scrpt <span>Login</span></p>
+				<!--<a href="#" class="tip" id="logo" data-tip="Scrpt"></a>
+				<a class="icon-create tip" data-tip="Create"></a>
+				<a class="icon-context tip" data-tip="Context" id="trigger-overlay"></a>-->
+			</header>
+			
+			<div id="everything" class="my_profile">
+						
+				<section id="login" class="animated bounceInDown">
+                	<form name="users" autocomplete="off" class="simform" id="theForm" novalidate="true">
+						<div class="loginform-inner">
+                            <h1>Login</h1>
+                            <ul class="loginform">
+						<div class="msg1" ng-show="msg1"><p class="success msg">{{msg1}}<span class="close_icon"></span></p></div>
+                                <li>
+                                  <input type="email" name="email"  ng-model="user.email" class="textfield"  placeholder="Email "  auto-focus required/>
+					<div class="thumb"  ng-show="(users.email.$dirty && users.email.$invalid)|| users.email.$error.required">
+			                <a><img src="../assets/img/invalid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Enter a valid email id.</span></a>
+					</div>
+					<div class="thumb"  ng-show="!((users.email.$dirty && users.email.$invalid)|| users.email.$error.required)">
+			            <a><img src="../assets/img/valid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Enter a valid email id.</span></a>
+					</div>	
+				</li>
+                
+                
+				<li>
+					<input type="password" name="password" pattern=".{6,20}" ng-minlength="6" ng-model="user.password" class="textfield" placeholder="Password" required />
+					<p class="thumb" ng-show="users.password.$error.minlength || users.password.$error.required" >
+						  <a><img src="../assets/img/invalid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Use at least 6 characters. Don’t use a password from another site, or something too obvious like your pet’s name.</span></a>
+						  <!--<a class="tip" data-tip="login here"><img src="../assets/img/invalid.png" ></a>-->
+						  </p>
+					<p class="thumb" ng-show="!(users.password.$error.minlength || users.password.$error.required)" >
+						  <a><img src="../assets/img/valid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Use at least 6 characters. Don’t use a password from another site, or something too obvious like your pet’s name.</span></a>
+						  </span>
+					</p>
+				</li>
+			</ul>
+							
+			    
+			    <div class="msg" ng-show="msg"><p class="error msg">{{msg}}<span class="close_icon"></span></p></div>
+			    <div class="login-btns">
+					<input type="checkbox" name="rememberMe" ng-model="user.rememberMe" value="rememberMe" class="button"><p class="button"> Remember Me</p><br>
+					<button type="submit" class="button" ng-click="submitForm()" > <!--ng-disabled="users.$dirty && users.$invalid"--> Login</button>
+			        <button type="submit" class="button fl-rt" ng-click="redirectToRegister()" >Sign up</button>
+					<br><a class="button" style="font-size:9pt" href="#/forgotPassword" >Forgot Password?</a>
+				</div>
+			</div>
+                    </form>
+		    </section>
+<!-- Login -->				
+				
+		  </div>
+			
+			<!--<div class="overlay overlay-slidedown">
+				<button type="button" class="overlay-close">Close</button>
+				<div id="content_3" class="holder fullheight">
+					<h3>What is your aspiration?</h3>
+					<div class="imageholder"></div>
+					<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam</p>
+				</div>
+			</div>-->
+			
+			
+		</div>
+                
+
+
+   
+<style>
+	#menuicon{
+		display:none;
+	}
+	.cbp-spmenu{
+		display:none;
+	}
+	button:disabled
+	{
+		cursor: not-allowed;	
+	}
+	
+</style>

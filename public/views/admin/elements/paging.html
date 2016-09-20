@@ -1,0 +1,40 @@
+<!--
+<div class="span12">
+<div class="dataTables_info" id="DataTables_Table_0_info">
+  Showing 1 to 10 of 32 entries
+</div>
+</div>
+<div class="span12 center">
+<div class="dataTables_paginate paging_bootstrap pagination">
+  <ul>
+	<li class="prev disabled"><button ng-hide="offset == 0" ng-click="previous()"><<</button></li>
+	<span ng-repeat="i in navButtons">
+		<li ng-repeat="i in navButtons">
+			<span ng-class="offset == i * perPage && 'active'" class="button" ng-click="offset = (i * perPage)">{{i+1}}</span>
+		</li>
+	</span>
+	<li class="next"><button ng-hide="offset + perPage >= allData.length" ng-click="next()">>></button></li>
+  </ul>
+</div>
+</div>
+-->
+<div class="row-fluid">
+	<div class="span12">
+		<div class="dataTables_info" id="DataTables_Table_0_info">
+			Showing {{offset+1}} to {{offset+perPage}} of total {{allData.length}} entries
+		</div>
+	</div>
+	<div class="span12 center">
+		<div class="dataTables_paginate paging_bootstrap pagination">
+			<ul>
+				<li class="prev disabled" ng-click="previous()" ng-disabled="isPreviousDisabled"><a>← Previous</a></li>
+				<li ng-repeat="i in navButtons">
+					<!--<span ng-class="offset == i * perPage && 'active'" class="button" ng-click="offset = (i * perPage)">{{i+1}}</span>-->
+					<!--<a ng-class="$parent.offset == i * $parent.perPage && 'active'" class="button" ng-click="$parent.offset = (i * $parent.perPage)">{{i+1}}</a>-->
+					<a ng-class="offset == i * perPage && 'active'" ng-click="offset = (i * perPage)">{{i+1}}</a>
+				</li>
+				<li class="next" ng-click="next()" ng-disabled="isNextDisabled"><a>Next → </a></li>
+			</ul>
+		</div>
+	</div>
+</div>

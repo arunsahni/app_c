@@ -1,0 +1,395 @@
+<!-- START SETTINGS -->
+<style>
+    p {
+        cursor: default;
+    }
+	/*.add-member.ng-hide-add{*/
+	/*	-webkit-animation: fadeOut  0.5s ;*/
+	/*	animation: fadeIn 0.5s;*/
+	/*}*/
+	.add-member.ng-hide-remove{
+		-webkit-animation: fadeIn  0.5s ;
+		animation: fadeOut 0.5s;
+	}
+	/*.add-frm-frnd.ng-hide-add{*/
+	/*	-webkit-animation: fadeOut  0.5s ;*/
+	/*	animation: fadeIn 0.5s;*/
+	/*}*/
+	.add-frm-frnd.ng-hide-remove{
+		-webkit-animation: fadeIn  0.5s;
+		animation: fadeOut 0.5s;
+	}
+</style>
+<div id="menu-button" class="toggle-menu menu-left push-body">
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+</div>
+	<div id="settings" class="settings-block">
+		<div id="background"></div>
+		<div class="wrapper">
+			<div class="central">
+				<h2 class="page-heading">Launch Settings</h2>
+                <div ng-repeat = "chapter in LSMgmt.chapters" id="top{{$index}}">
+					
+						<h3>For the Chapter : {{chapter.Title}}</h3>
+						<div class="launch-divider">
+                        	<h2 class="AI"><u>Audience and Invitation</u></h2>
+						    <div class="launch-row">
+                                <h3>Add the user for whom you are creating this Chapter : </h3>
+                                <form name="others">
+									<div class="add-mail-row">
+										<input type="email" ng-model="LaunchSettingsMgmt.ownerEmail"  class="ng-invalid-required" placeholder="Enter Email.." name="name" required>
+										<button class="add-btn-icon" ng-click="LaunchSettingsMgmt.addOwner(others.$invalid)">+</button>
+									</div>
+								</form>
+                            </div>
+                        
+                            <div class="launch-row">
+                            <div ng-show="LSMgmt.chapterData.LaunchSettings.OthersData.length != 0 && LSMgmt.makingFor != 'myself'" class="friends add-frm-frnd add-frm-frnd2  no-padd-tb">
+                        
+                                <div class="friend-list-rw">
+                                    <ul>
+                                        <li ng-repeat="invitee in LSMgmt.chapterData.LaunchSettings.OthersData">
+                                            <div class="member-box">
+                                                <div class="member-pic"><img ng-src="{{invitee.UserPic}}"></div>
+                                                <div class="member-info">
+                                                    <p>{{invitee.UserName || 'User not registered' }}</p>
+                                                    <p>{{invitee.UserEmail}}</p>
+                                                    <div class="close-icn" href="javascript:void(0)" ng-click="LSMgmt.removeOwner(invitee.UserEmail)">
+                                                        <img src="/assets/create/images/close-member-icn.png" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            
+                            
+                            </div>
+                            
+                            <div class="launch-row">
+                            	<div ng-show="LSMgmt.makingFor == 'myself'">
+                            
+                            <h3>Who will participate?</h3>
+                            <div class="radio-con-who  radio-con-who2">
+                                <label>
+                                    <input type="radio" name="who" value="private" ng-model="LSMgmt.participation" />
+                                    <span>Just Me</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="who" value="friendssolo" ng-model="LSMgmt.participation" />
+                                    <span>My Friends as Individuals</span>
+                                </label>
+                                <label class="last">
+                                    <input type="radio" name="who" value="friendsgroup" ng-model="LSMgmt.participation" />
+                                    <span>My Friends as a Group</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="who" value="public" ng-model="LSMgmt.participation" />
+                                    <span>One & All</span>
+                                </label>
+                                <div class="clear"></div>
+                            </div>
+                            
+                            <p ng-if="LSMgmt.participation == 'private'">
+                                Just Me: This space will be reserved only for you.
+                            </p>
+                            
+                            <p ng-if="LSMgmt.participation == 'friendssolo'">
+                                My Friends as Individuals: Multiple friends will be asked to answer but they WON'T be able to see each other's answers.
+                            </p>
+                            
+                            <p ng-if="LSMgmt.participation == 'friendsgroup'">
+                                My Friends as a Group:Multiple friends will be asked to answer and they WILL be able to see each other's answers.
+                            </p>
+                            
+                            <p ng-if="LSMgmt.participation == 'public'">
+                                One & All: Any registered user on the platform, whether invited by you or not, will be able to participate
+                            </p>
+                            
+                            
+                            
+                            
+                            
+                            </div>
+                            </div>
+                            <div class="launch-row">
+                            	
+                                <h3>
+                                    Add members
+                                    <span class="show-members" ng-click="LSMgmt.showFriends = !LSMgmt.showFriends">Show Friends</span>
+                                    <span class="show-members" >Show Groups</span>
+                                </h3>
+                                
+                                
+                                <!-- START INVITE FRIENDS -->
+                                <div class="members-con">
+                                    <div class="add-member add-member-rw" ng-show="!LSMgmt.showFriends">
+                                        <form name="invite">
+                                            <ul class="add-member-ul">
+                                                <li>
+                                                    <input ng-model="LSMgmt.invitee.name" type="text" name="name" placeholder="Enter name.." class="first" required/>	
+                                                </li>
+                                                <li>
+                                                    <input ng-model="LSMgmt.invitee.email" type="email" name="email" placeholder="Enter email.." required />
+                                                </li>
+                                                <li>
+                                                    <select ng-model="LSMgmt.invitee.relation" name="relation" ng-model="friend.relation" required>
+                                                        <option value="">Please select</option>
+                                                        <option ng-repeat="relation in relations.Values" value="{{relation.valueTitle}}~{{relation._id}}">{{relation.valueTitle}}</option>
+                                                    </select>
+                                                </li>
+                                            </ul>
+                                            
+                                            <div class="bottom-btn-rw">
+                                                <input type="submit" value="Invite" id="invite" ng-click="LSMgmt.addInvitee(invite.$invalid)"/>
+                                            </div>
+                                        </form>
+                                        
+                                        
+                                        <!--<div class="radio-con-two">-->
+                                            <!--<label>
+                                                <input type="radio" name="members" value="member" />
+                                                <span>Member</span>
+                                            </label>
+                                            <div class="clear"></div>-->
+                                        <!--</div>-->
+                                        
+                                        
+                                        
+                                        <div class="clear"></div>
+                                    </div>
+                                    <!--<p>Choose if they are a co-owner or a member</p>-->
+                                    
+                                        
+                                      
+                                            <div class="friends " ng-show="LSMgmt.showFriends">
+                                        <div class="friend friend-box" ng-repeat="frnd in friends">
+                                            <a class="add-member-icon" href="javascript:void(0)" ng-click="LSMgmt.inviteMember(frnd)"><img src="/assets/create/images/plus-icon.png" /></a>
+                                            <div class="photo"><img width="45" height="45" style="border-radius: 50%;" alt="" ng-src="/assets/users/default.png" src="/assets/users/default.png"></div>
+                                            <div class="member-info2">
+                                            	<span class="name">{{frnd.Friend.Name}}</span>
+                                            	<span class="relationship">{{frnd.Friend.Relation}}</span>
+                                            </div>
+                                        </div>
+										
+                                        
+                                        <div class="clear"></div>
+                                    </div>
+                                        
+                                    
+                                    <div class="group-member-block margn-btm-0">
+                                        
+                                            <div class="group-member-heading">
+                                                <h2>Group Name</h2>
+                                                <h3 class="g-member-list">
+                                                    <a href="#">View</a>
+                                                </h3>
+                                            </div>
+                                            <div class="group-member-heading">
+                                                <h2>Group Name</h2>
+                                                <h3 class="g-member-list">
+                                                    <a href="#">View</a>
+                                                </h3>
+                                            </div>
+                                            <div class="group-member-heading">
+                                                <h2>Group Name</h2>
+                                                <h3 class="g-member-list">
+                                                    <a href="#">View</a>
+                                                </h3>
+                                            </div>
+                                            <div class="group-member-heading">
+                                                <h2>Group Name</h2>
+                                                <h3 class="g-member-list">
+                                                    <a href="#">View</a>
+                                                </h3>
+                                            </div>
+                                            <div class="group-member-heading">
+                                                <h2>Group Name</h2>
+                                                <h3 class="g-member-list">
+                                                    <a href="#">View</a>
+                                                </h3>
+                                            </div>
+                                            <div class="group-member-heading">
+                                                <h2>Group Name</h2>
+                                                <h3 class="g-member-list">
+                                                    <a href="#">View</a>
+                                                </h3>
+                                            </div>
+                                            <div class="group-member-heading">
+                                                <h2>Group Name</h2>
+                                                <h3 class="g-member-list">
+                                                    <a href="#">View</a>
+                                                </h3>
+                                            </div>
+                                            <div class="group-member-heading">
+                                                <h2>Group Name</h2>
+                                                <h3 class="g-member-list">
+                                                    <a href="#">View</a>
+                                                </h3>
+                                            </div>
+                                            <div class="group-member-heading">
+                                                <h2>Group Name</h2>
+                                                <h3 class="g-member-list">
+                                                    <a href="#">View</a>
+                                                </h3>
+                                            </div>
+                                            <div class="group-member-heading">
+                                                <h2>Group Name</h2>
+                                                <h3 class="g-member-list">
+                                                    <a href="#">View</a>
+                                                </h3>
+                                            </div>
+                                            <!--<div class="group-member-inner">
+                                                <div class="friends">
+                                            <div class="friend friend-box" >
+                                                <a class="add-member-icon" href="javascript:void(0)"> </a>
+                                                <div class="photo"></div>
+                                                <span class="name">test group</span>
+                                                <span class="relationship">View</span>
+                                            </div>
+                                            <div class="friend friend-box" >
+                                                <a class="add-member-icon" href="javascript:void(0)"> </a>
+                                                <div class="photo"></div>
+                                                <span class="name">test group</span>
+                                                <span class="relationship">View</span>
+                                            </div>
+                                            <div class="friend friend-box" >
+                                                <a class="add-member-icon" href="javascript:void(0)"> </a>
+                                                <div class="photo"></div>
+                                                <span class="name">test group</span>
+                                                <span class="relationship">View</span>
+                                            </div>
+                                            
+                                            <div class="clear"></div>
+                                        </div>
+                                            </div>-->
+                                       <ul class="pagination">
+                                            <li>
+                                                <a href="#">&lt;</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">2</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">3</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">4</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">5</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">&gt;</a>
+                                            </li>
+                                       </ul>
+                                    </div>
+                                    
+                                    <!--
+                                    <div ng-if="LSMgmt.chapterData.LaunchSettings.Invitees.length == 0" class="friends add-frm-frnd add-frm-frnd2" style="padding: 45px;">
+                                        No one is invited right now. You can start inviting people and they will be displayed here. 
+                                    </div>
+                                    -->
+                                    <!--<div ng-if="LSMgmt.chapterData.LaunchSettings.Invitees.length != 0" class="friends add-frm-frnd add-frm-frnd2  no-padd-tb">
+                                        
+                                        <div class="friend-list-rw">
+                                            <ul>
+                                                <li ng-repeat="invitee in LSMgmt.chapterData.LaunchSettings.Invitees">
+                                                    <div class="member-box">
+                                            
+                                            <div class="member-pic"><img ng-src="{{invitee.UserPic}}"></div>
+                                            <div class="member-info">
+                                                <p>{{invitee.UserName}}</p>
+                                                <p>{{invitee.UserEmail}}</p>
+                                            <div class="close-icn" href="javascript:void(0)" ng-click="LSMgmt.removeInvitee(invitee)">
+                                                <img src="/assets/create/images/close-member-icn.png" />
+                                            </div>
+                                            </div>
+                                            </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>-->
+                                </div>
+                                <!-- END INVITE FRIENDS -->
+                            </div>
+                            <div class="launch-row open-group-rw  margn-btm-0" ng-show="LSMgmt.participation == 'friendsgroup' && LSMgmt.makingFor == 'myself'">
+						
+							<div>
+							<label class="groupmode">
+								<input type="radio" name="groupmode" value="percentage" checked="checked" />
+								<h3>Open group mode after <span id="response"><span>25</span>%</span> responds</h3>
+							</label>
+							
+							<div id="response-slider"></div>
+			
+							<label class="groupmode">
+								<input type="radio" name="groupmode" value="days" />
+								<h3 class="days">Group mode will open <input type="text" name="group_mode_days" id="group_mode_days" value="14" /> days after launch</h3>
+							</label>
+						</div>
+                        	</div>
+                            
+                            <div class="launch-row">
+                                <h2 class="DE"><u>Design & Experience</u></h2>
+                                <h3 class="privacy">Privacy Options</h3>
+                                <div class="radio-con-privacy">
+                                <label class="first">
+                                <input type="radio" name="realnames" value="realnames" ng-model="LSMgmt.namingConvention"/>
+                                <span>Real Names</span>
+                                </label>
+                                <label>
+                                <input type="radio" name="nicknames" value="nicknames"  ng-model="LSMgmt.namingConvention"/>
+                                <span>Nick names</span>
+                                </label>
+                                <div class="clear"></div>
+                                <span ng-if="LSMgmt.namingConvention == 'realnames'">Real names: Have a users real name appear</span>
+                                <span ng-if="LSMgmt.namingConvention == 'nicknames'">Nick names: Have a users nick name appear</span>
+                                </div>
+                                
+                                <h3>
+                                Finishing touches
+                                <span class="cover">How your cover image will look</span>
+                                </h3>
+                                
+                                <div class="finishing-touches">
+									<div class="browse-file-box">
+										<div class="custom-browse-btn">
+											<input type="file" file-model="myFile" style="cursor: pointer;" accept="image/*" ng-file-select="LSMgmt.uploadCover()" value="Upload" />
+											<span>Browse File</span>
+										</div>
+									</div>
+									<div class="browse-btn-ttl">
+										<input type="text" name="title" placeholder="Add title" />
+									</div>
+									<div class="browse-pic-box" ng-if="LSMgmt.newCover ">
+										<div class="browse-pic-box-inr">
+											<img ng-src="{{LSMgmt.newCover}}" />
+										</div>
+									</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                 
+					
+					<div class="clear"></div>
+					<div class="launch-btm-btns">
+                    <input type="submit" name="save" value="Save" class="save-btn" />
+					<input type="submit" name="save" value="Save & Exit" id="save" class="save-btn" />
+					<input type="submit" name="save" value="Launch Now" id="save" class="save-btn" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END SETTINGS -->

@@ -1,0 +1,371 @@
+        <div id="menu-button">
+			<div id="top"></div>
+			<div id="middle"></div>
+			<div id="bottom"></div>
+		</div>
+		
+		<div class="wrapper">
+			<div class="head">
+				<div class="center">
+					<h1 class="margin_botm20 capsule_hover heading-margin border-none">
+            <span class="capsule_text">Capsule Name </span> 
+            <input type="text" value="Enter Capsule Name" class="capsule_text_field">
+            <span class="capsule_edit"><a href="javascript:void(0)"><img alt="Edit" src="/assets/create/images/chapter/edit-chapter.png"></a></span> </h1>
+                    
+					<h2>Create a Media Gallery</h2>
+					<span class="subheading">Visually see how your media gallery can aesthetically look and control what media can be displayed or selected</span>
+				</div>
+			</div>
+			<div class="upload upload-block upload-nopic">
+				<!--<div class="member-col browse-file-btn">
+					<span>
+					Upload
+					<input id="uploadHeader" type="file" style="cursor: pointer;"  file-model="myFile" ng-file-select="onHeaderSelect()" >
+					</span>
+				</div>-->
+				<div class="center">
+					<h2>Change the Header Image</h2>
+					<span class="subheading">Upload your own imagery or choose from below, then drag your image into position</span>
+					
+					<div class="select-con">
+						<select>
+							<option value="">Tone</option>
+							<option value="">Tone</option>
+							<option value="">Tone</option>
+							<option value="">Tone</option>
+						</select>
+					</div>
+					
+					<div class="select-con first">
+						<select>
+							<option value="">Industry</option>
+							<option value="">Industry</option>
+							<option value="">Industry</option>
+							<option value="">Industry</option>
+						</select>
+					</div>
+					
+					<!--<a href="javascript:void(0)" class="button">
+						<span></span>
+						Upload
+					</a>
+					-->
+					<div class="gallery-hd-rw">
+                    	<ul>
+                        	<li>
+                            	<div style="background:url(/assets/create/images/gallery-head-pic/pic1.jpg) 0 0 no-repeat; background-size:100%;"></div>
+                            </li>
+                           <li>
+                            	<div style="background:url(/assets/create/images/gallery-head-pic/pic1.jpg) 0 0 no-repeat; background-size:100%;"></div>
+                            </li>
+                            <li>
+                            	<div style="background:url(/assets/create/images/gallery-head-pic/pic1.jpg) 0 0 no-repeat; background-size:100%;"></div>
+                            </li>
+                            <li>
+                            	<div style="background:url(/assets/create/images/gallery-head-pic/pic1.jpg) 0 0 no-repeat; background-size:100%;"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+			  </div>
+			</div>
+            
+			<div class="body">
+				<div class="sidebar">
+					<h3 class="top">Filters</h3>
+					
+					<h3 class="underline">Types of Media</h3>
+					<ul class="text-audio">
+						<li>
+							<label>
+								<input type="radio" name="textaudio" value="image" checked="checked" />
+								<span>Image</span>
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" name="textaudio" value="video" checked="checked" />
+								<span>Video</span>
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" name="textaudio" value="text" checked="checked" />
+								<span>Text</span>
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" name="textaudio" value="audio" />
+								<span>Audio</span>
+							</label>
+						</li>
+					</ul>
+					
+					<h3 class="underline">Filters</h3>
+					<ul class="filters">
+						<li>
+							<div class="info">Information</div>
+							<span>Ambience</span>
+							<ul>
+								<li>
+									<label>
+										<input type="radio" name="ambience" value="inspiration" checked="checked"/>
+										<span>Inspiration</span>
+									</label>
+								</li>
+								<li>
+									<label>
+										<input type="radio" name="ambience" value="highenergy" />
+										<span>High Energy</span>
+									</label>
+									<!--<ul>
+										<li><span>Inspiration</span></li>
+										<li>
+											<label>
+												<input type="radio" name="inspiration" value="inspiration" checked="checked" />
+												<span>Inspiration</span>
+											</label>
+										</li>
+										<li>
+											<label>
+												<input type="radio" name="inspiration" value="highenergy" />
+												<span>High Energy</span>
+											</label>
+										</li>
+									</ul>-->
+								</li>
+								<li class="save">
+									<input type="submit" value="Save" />
+								</li>
+							</ul>	
+						</li>
+						<li>
+							<div class="info">Information</div>
+							<span>Collection</span>
+							<ul>
+								<li>
+									<label>
+										<input type="radio" name="collection" value="standard" checked="checked" />
+										<span>Standard</span>
+									</label>
+								</li>
+								<li>
+									<label>
+										<input type="radio" name="collection" value="vintage" />
+										<span>Vintage</span>
+									</label>
+								</li>
+								<li>
+									<label>
+										<input type="radio" name="collection" value="sport" />
+										<span>Sport</span>
+									</label>
+								</li>
+								<li class="save">
+									<input type="submit" value="Save" />
+								</li>
+							</ul>
+						</li>
+						<li>
+							<div class="info">Information</div>
+							<span>Source</span>
+							<ul>
+								<li class="desc">
+									Where will the media be pulled in from
+								</li>
+								<li>
+									<label>
+										<input type="radio" name="source" value="house" checked="checked" />
+										<span>House</span>
+									</label>
+								</li>
+								<li>
+									<label>
+										<input type="radio" name="source" value="user" />
+										<span>User Generated</span>
+									</label>
+								</li>
+								<li class="save">
+									<input type="submit" value="Save" />
+								</li>
+							</ul>
+						</li>
+					</ul>
+					
+					<div class="slide-con">
+						<span>How much media will be displayed?</span>
+						<div class="media-qty-slider"></div>
+						<span class="res">100</span>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="slide-con">
+						<span>Number of media a user can choose?</span>
+						<div class="user-qty-slider"></div>
+						<span class="res">100</span>
+						<div class="clear"></div>
+					</div>
+					
+				</div>
+				<div class="images">
+					<div class="grid">
+						<div id="container">
+						    <div class="item item-selected"><img src="/assets/create/images/grid-1.jpg" alt="img01"></div>
+						    <div class="item"><img src="/assets/create/images/grid-2.jpg" alt="img02"></div>
+						    <div class="item"><img src="/assets/create/images/grid-3.jpg" alt="img02"></div>
+							<div class="item"><img src="/assets/create/images/grid-1.jpg" alt="img01"></div>
+						    <div class="item"><img src="/assets/create/images/grid-2.jpg" alt="img02"></div>
+						    <div class="item"><img src="/assets/create/images/grid-3.jpg" alt="img02"></div>
+							<div class="item"><img src="/assets/create/images/grid-1.jpg" alt="img01"></div>
+						    <div class="item"><img src="/assets/create/images/grid-2.jpg" alt="img02"></div>
+						    <div class="item"><img src="/assets/create/images/grid-3.jpg" alt="img02"></div>
+							<div class="item"><img src="/assets/create/images/grid-1.jpg" alt="img01"></div>
+						    <div class="item"><img src="/assets/create/images/grid-2.jpg" alt="img02"></div>
+						    <div class="item"><img src="/assets/create/images/grid-3.jpg" alt="img02"></div>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="footer">
+				<a class="previous-link nav-link" href="javascript:void(0)">Previous</a>
+				<a class="next-link nav-link" href="javascript:void(0)">Proceed</a>
+			</div>
+		</div>
+	<div id="loader" style="display: block;"><img src="/assets/create/images/ajax-loader.gif" alt="Loader" /></div>
+    <div id="tips" style="display: none;"><div id="closetips"></div></div>
+	<div class="drag-popup dropzone4 popup-style">
+    	<span class="popup-close-icn  dropzone4">X</span>
+    	<div class="drag-icon dropzone4">
+   	    	<img src="images/upload-icon.png" width="82" height="70" class=" dropzone4">
+        </div>
+        <div class="drag-text dropzone4">
+        	Drop your Image or Click to Add<br>
+	    </div>
+    </div>
+	<div class="popup-overlayer"></div>
+        <script type="text/javascript" src="/assets/create/js/masonry.js"></script>
+        <!--<script type="text/javascript" src="/assets/create/js/scripts.js"></script>-->
+        <!--<script type="text/javascript" src="js/carasdfousel.js"></script>-->
+        
+            <script type="text/javascript">
+                    
+                    function DropDown(el) {
+                        this.dd = el;
+                        this.placeholder = this.dd.children('span');
+                        this.opts = this.dd.find('ul.dropdown > li');
+                        this.val = '';
+                        this.index = -1;
+                        this.initEvents();
+                    }
+                    DropDown.prototype = {
+                        initEvents : function() {
+                            var obj = this;
+        
+                            obj.dd.on('click', function(event){
+                                $(this).toggleClass('active');
+                                return false;
+                            });
+        
+                            obj.opts.on('click',function(){
+                                var opt = $(this);
+                                obj.val = opt.text();
+                                obj.index = opt.index();
+                                obj.placeholder.text(obj.val);
+                            });
+                        },
+                        getValue : function() {
+                            return this.val;
+                        },
+                        getIndex : function() {
+                            return this.index;
+                        }
+                    }
+        
+                    $(function() {
+        
+                        var dd = new DropDown( $('#dd') );
+        
+                        $(document).click(function() {
+                            // all dropdowns
+                            $('.wrapper-dropdown-2').removeClass('active');
+                        });
+        
+                    });
+        
+                </script>
+        
+        <script>
+        $(function() {
+        
+                //$('#private').click(function() {
+        //			if($('.private_text').hasClass('visible')) {
+        //				$('.private_text').fadeOut(300);
+        //				$('.private_text').removeClass('visible');
+        //			} 
+        //			
+        //			else {
+        //				$('.private_text').fadeIn(300);
+        //				$('.private_text').addClass('visible');
+        //			}
+        //									 });
+                
+        });
+        </script>
+        
+        <script> 
+        $(document).ready(function(){
+            $("#private").click(function(){
+            $(".private_text").show();
+            $(".public_text,.friendssolo_text,.friendsgroup_text").hide();
+            });
+            
+            $("#public").click(function(){
+            $(".public_text").show();
+            $(".private_text,.friendssolo_text,.friendsgroup_text").hide();
+            });
+            
+            $("#frnds").click(function(){
+            $(".friendssolo_text").show();
+            $(".private_text,.public_text,.friendsgroup_text").hide();
+            });
+            
+            $("#last").click(function(){
+            $(".friendsgroup_text").show();
+            $(".private_text,.public_text,.friendssolo_text").hide();
+            });
+            
+            $("#co-owner").click(function(){
+            $(".co-owner").show();
+            $(".member").hide();
+            });
+            
+            $("#member").click(function(){
+            $(".member").show();
+            $(".co-owner").hide();
+            });
+            
+            $("#nick").click(function(){
+            $(".nick").show();
+            $(".real").hide();
+            });
+            
+            $("#real").click(function(){
+            $(".real").show();
+            $(".nick").hide();
+            });
+            
+        });
+        </script>
+        
+        <script type="text/javascript">
+        jQuery(function () {
+            jQuery(".capsule_edit").click(function () {
+                //alert("asdas");
+                $('.capsule_text').hide(); 
+                $('.capsule_text_field').show();
+            });
+        });
+                
+        </script>

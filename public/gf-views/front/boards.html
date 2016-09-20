@@ -1,0 +1,107 @@
+<div class="container">
+
+<header>
+<p class="logo">Scrpt <span>Boards</span></p>	
+<span class="pro-span">
+<span class="brdmem_pic"><img ng-src="{{userInfo.ProfilePic}}" alt="Profile Picture" title="{{userInfo.Name}}  ({{userInfo.Email}})"></span>Welcome {{userInfo.Name}} (<a href="#/logout">Logout</a>)
+</span>
+
+</header>
+
+<div id="everything" class="boards_outer">
+<section id="login" class="animated bounceInDown simform" style="font-size:100% !important;">
+
+<div class="loginform-inner" style="width:100%">
+<h1 style="font-size:2.0em;">Boards</h1>
+<ul class="loginform">
+
+<li><a href="#/boards/add/{{projid}}" class="add_icon">Add</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="#/projects" class="add_icon">Go To Projects</a>
+</li>
+<!--
+<li>
+
+<table style="width:100%;">
+<tr>
+<th>
+Board Title
+</th>
+<th>
+Domain
+</th>
+<th>
+Collection
+</th>        
+<th>
+Actions
+</th>
+</tr>
+<tr ng-repeat="board in boards">
+<td>
+{{board.Title}}
+</td>
+<td>
+{{board.Domain.DomainTitle}}
+</td>
+<td>
+{{board.Collection.collectionTitle}}
+</td>
+
+<td>
+<a href="board/#/discuss/{{board._id}}">Enter</a>/
+<a href="#/boards/edit/{{projid}}/{{board._id}}">Edit</a>/<a ng-click="deleteBoard(board._id)">Delete</a>
+</td>
+</tr>
+
+</table></li>
+-->
+<li><div ng-show="msg"><p class="success">{{msg}}<span class="close_icon" id="close_span"></span></p></div>
+</li>
+
+<li><div ng-show="!loaded" ><img style="display:block;margin-left:auto;margin-right:auto;" src="../assets/img/ajax-loader.gif"> </div>
+<div ng-show="loaded" class="table_responsive">
+<table  ng-table="tableParams" show-filter="true" class="margin_top20" width="100%">
+<tr ng-repeat="x in $data|filter:query">
+<td header-class="text-left"   data-title="'Board Title'" filter="{ 'Title': 'text' }" sortable="'Title'">{{x.Title}}</td>
+<td header-class="text-left"   data-title="'Domain'"  sortable="'Domain.DomainTitle'">{{x.Domain.DomainTitle}}</td>
+<td header-class="text-left"   data-title="'Last Modified'"  sortable="'ModifiedDate'">{{x.ModifiedDate |date:'medium'}}</td>
+<td header-class="text-left"   data-title="'Action'">
+<a href="board/#/discuss/{{x._id}}">Enter</a>/
+<a href="#/boards/edit/{{projid}}/{{x._id}}">Edit</a>/<a ng-click="deleteBoard(x._id)">Delete</a>							    </td>
+</tr>
+</table></div></li>
+</ul>
+
+</div>
+
+</section><!-- Login -->				
+
+</div>
+
+<!--<div class="overlay overlay-slidedown">
+<button type="button" class="overlay-close">Close</button>
+<div id="content_3" class="holder fullheight">
+<h3>What is your aspiration?</h3>
+<div class="imageholder"></div>
+<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam</p>
+</div>
+</div>-->
+
+
+</div>
+
+<div>
+
+</div>
+
+
+<div id="delete_pop">
+<div class="confirmon-overlay" style="display: block;"></div>
+<div class="confirmon-box" style="display: block;">
+<p class="confirmon-content">This action cannot be undone, are you sure?</p>
+<button class="confirmon-button confirmon-button" ng-click="confirmDel()">Yes, I'm sure</button>
+<button class="confirmon-button confirmon-button" ng-click="closeDel()">No, I'm not sure</button>
+</div>
+</div>  
+</div><!-- /.modal -->
+

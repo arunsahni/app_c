@@ -1,0 +1,174 @@
+<div id="menu-button"  class="toggle-menu menu-left push-body">
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+</div>
+<div class="setting-block">
+	<form name="group">
+    	<div class="setting-heading">
+        	<h2 class="member-label">Add Groups </h2>
+            <!--<h2 class="friend-label"><a href="javascript:void(0)">Show Friends</a></h2>-->
+        </div>
+        <div class="member-form">
+        	<div class="member-row member-input-row">
+            	<div class="member-col">
+            		<input type="text" class="first" ng-model="group.title" placeholder="Enter name.." name="name" required>
+            	</div>
+            <!--    <div class="member-col">-->
+            <!--		<input type="text" placeholder="Enter email.." name="email">-->
+            <!--	</div>-->
+            	<div class="member-col browse-file-btn">
+                	<span>
+                    Choose Icon
+            		<input type="file" style="cursor: pointer;"  file-model="myFile" required>
+                    </span>
+            	</div>
+            </div>
+            <div class="member-row member-btn-rw">
+				<button ng-click="addGroup(group.$invalid)">Add Group</button>
+            </div>
+            <div class="member-row member-btn-rw">
+            	<!--<p class="m-notification"><em>Choose if they are a co-owner or a member</em></p>-->
+            </div>
+			<div class="setting-heading">
+				<!--<h2 class="member-label">Add Groups </h2>-->
+				<!--<h2 class="friend-label"><a href="javascript:void(0)">Show Friends</a></h2>-->
+			</div>
+        </div>
+	</form>
+		<div class="setting-heading setting-padd">
+			<h2 class="friend-label friend-label2"><a href="javascript:void(0)">Existing Groups</a></h2>
+        </div>
+		<dir-pagination-controls on-page-change="getAllGroupsPaginated(newPageNumber)"  pagination-id="groupsPagination"></dir-pagination-controls>
+        <div class="member-list-block">
+        	<ul ng-if="groupData.length > 0">
+            	<li dir-paginate="group in groupData |  itemsPerPage: perPageGroups"  total-items="totalGroups" current-page="pageNoGroups" pagination-id="groupsPagination">
+                	<div class="member-box">
+                        <div class="member-pic">
+                            <img ng-src="{{group.Icon}}" width="45" height="45" alt="" />
+                        </div>
+                      <div class="member-info">
+                            <p  data-toggle="tooltip" title="{{group.Title}}">{{group.Title}}</p>
+                            <p><a href="javascript:void(0)" ng-click="viewGroup(group)">View</a></p>
+                          	<div class="close-icn" ng-click="delGroup(group._id)"  data-toggle="tooltip" title="Delete group">
+                            	<img src="/assets/create/images/close-member-icn.png" alt="Member Close Icon" />
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+			<p  ng-if="groupData.length == 0" class="m-notification" ><em>Opps! You have no groups. Add a new one to get started.</em></p>
+        </div>
+		
+    </div>
+    
+    <div class="setting-block setting-popup" ng-show="groupPop">
+    	<div class="setting-heading">
+        	<h2 class="member-label">{{currentGroup.Title}} </h2>
+            <!--<h2 class="friend-label"><a href="javascript:void(0)">Show Friends</a></h2>-->
+        </div>
+        <div class="member-form">
+			<form name="membr">
+				<div class="member-row member-input-row member-input-row2">
+					<div class="member-col">
+						<input ng-model="member.name" type="text" class="first" placeholder="Enter name.." name="name1" required>
+					</div>
+					<div class="member-col">
+						<input ng-model="member.email" type="email" placeholder="Enter email.." name="email1" required>
+					</div>
+					<div class="member-col">
+						 <div class="select-wrapper">
+                         	<select name="relation" ng-model="member.relation" required>
+							<option value="">Please select</option>
+							<option ng-repeat="relation in relations.Values" value="{{relation.valueTitle}}~{{relation._id}}">{{relation.valueTitle}}</option>
+						  </select>
+                         </div> 
+					</div>
+				</div>
+				<div class="member-row member-btn-rw">
+					<button ng-click="addMember(membr.$invalid)">Add member</button>
+				</div>
+				<!--<div class="member-row member-btn-rw">
+					<p class="m-notification"><em>Choose if they are a co-owner or a member</em></p>
+				</div>-->
+			</form>
+        </div>
+		<div class="setting-heading setting-padd">
+			<h2 class="friend-label friend-label2"><a href="javascript:void(0)">Current Members</a></h2>
+        </div>
+		<dir-pagination-controls pagination-id="groupMembers"></dir-pagination-controls>
+        <div class="member-list-block">
+			<div class="noFrndBlock" ng-if="currentGroup.Members.length == 0">There is no member in this group yet. Start by adding new members or add an existing friend as a member.</div>
+        	<ul>
+            	<li dir-paginate="member in currentGroup.Members | itemsPerPage: 4" pagination-id="groupMembers">
+                	<div class="member-pic">
+               	    	<img data-toggle="tooltip" title="{{member.MemberEmail }}" ng-src="{{member.MemberPic}}" width="45" height="45" alt="" />
+                    </div>
+					<div class="member-info">
+                    	<p data-toggle="tooltip" title="{{member.MemberName }}" >{{member.MemberName}}</p>
+                    	<p>{{member.MemberRelation}}</p>
+                        
+                      <div data-toggle="tooltip" title="Delete Member"  class="close-icn" ng-click="removeMember(member.MemberEmail)" >
+                      	<img src="/assets/create/images/close-member-icn.png" alt="Member Close Icon" />
+                      </div>
+                    </div>
+                </li>
+               
+            </ul>
+        </div>
+		<div class="setting-heading setting-padd">
+        	<!--<h2 class="member-label">{{currentGroup.Title |uppercase}} </h2>-->
+            <!--<h2 class="friend-label friend-label2"><a ng-click="viewFriends()" href="javascript:void(0)">Add from friends</a></h2>-->
+			<h2 class="friend-label friend-label2"><a href="javascript:void(0)">Existing friends</a></h2>
+        </div>
+		
+		<!--<div class="member-list-block" ng-show="showFriends">-->
+		<dir-pagination-controls on-page-change="getAllFriendsPaginated(currentGroup.Members , newPageNumber)" pagination-id="groupfriends"></dir-pagination-controls>
+		<div class="member-list-block">
+		<div class="noFrndBlock" ng-if="friends.length == 0 && !gotFriends">Oops!! you have no friends yet.. Start adding friends and they will be listed here.</div>
+		<div class="noFrndBlock" ng-if="friends.length == 0 && gotFriends">You have added all your existing friends in this group. </div>
+        	<ul>
+            	<li dir-paginate="friend in friends | itemsPerPage: perPageFriends" total-items="totalFriends" current-page="pageNoFriends"   pagination-id="groupfriends">
+                	<div class="member-pic">
+               	    	<!--<img ng-src="../{{friend.Friend.Pic}}" width="45" height="45" alt="" />-->
+						<img ng-src="{{friend.Friend.Pic}}" width="45" height="45" alt=""  data-toggle="tooltip" title="{{friend.Friend.Email}}"/>
+                    </div>
+					<div class="member-info">
+                    	<p  data-toggle="tooltip" title="{{friend.Friend.Name}}">{{friend.Friend.Name }}</p>
+						<p>{{friend.Friend.Relation}}</p>
+						<div  data-toggle="tooltip" title="Add to group" ng-click="addAsMember(friend.Friend)" class="close-icn">
+                        	<img src="/assets/create/images/plus-icon.png" alt="Member Close Icon" />
+                        </div>
+                    </div>
+                </li>
+                
+            </ul>
+        </div>
+		
+    </div>
+    <div class="setting-overlayer" ng-show="groupPop">
+    	<div class="setting-popup-close" ng-click="closePop()">
+        	<img src="/assets/create/images/close-member-icn.png" alt="Member Close Icon" />
+        </div>
+    </div>
+<style>
+	
+.noFrndBlock {
+    font-family: "Brandon Light",Arial,sans-serif;
+    font-size: 16pt;
+    line-height: 1.5;
+    margin: auto;
+    padding: 10px;
+    position: relative;
+    text-align: left;
+}
+
+
+.creation-section #content.boards .friend-label2 {
+    margin-top: 30px;
+}
+
+.setting-block, .setting-block a {
+    text-decoration: none;
+}
+</style>

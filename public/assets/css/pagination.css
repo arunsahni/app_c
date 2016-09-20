@@ -1,0 +1,45 @@
+
+.pagination{display:inline-block;padding-left:0;margin:20px 0;}
+.pagination>li{display:inline}
+.pagination>li>a,.pagination>li>span{position:relative;float:left;padding:4px 0;margin-left:-1px;text-decoration:none;background-color:red;}
+.pagination>li:first-child>a,.pagination>li:first-child>span{margin-left:0;}
+.pagination>li:last-child>a,.pagination>li:last-child>span{}
+.pagination>li>a:hover,.pagination>li>span:hover,.pagination>li>a:focus,.pagination>li>span:focus{background-color:red}
+.pagination>.active>a,.pagination>.active>span,.pagination>.active>a:hover,.pagination>.active>span:hover,.pagination>.active>a:focus,.pagination>.active>span:focus{
+    z-index:2;
+    cursor:default;
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
+	transition:ease-in-out 0.5s;
+	-webkit-transition:ease-in-out 0.5s;
+	-moz-transition:ease-in-out 0.5s;
+    }
+.pagination>.disabled>span,.pagination>.disabled>a,.pagination>.disabled>a:hover,.pagination>.disabled>a:focus{
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
+	transition:ease-in-out 0.5s;
+	-webkit-transition:ease-in-out 0.5s;
+	-moz-transition:ease-in-out 0.5s;
+    
+}
+.pagination-lg>li>a,.pagination-lg>li>span{padding:10px;font-size:18px}.pagination-lg>li:first-child>a,.pagination-lg>li:first-child>span{}
+.pagination-lg>li:last-child>a,.pagination-lg>li:last-child>span{}
+.pagination-sm>li>a,.pagination-sm>li>span{padding:10px;font-size:15px}
+.pagination-sm>li:first-child>a,.pagination-sm>li:first-child>span{}
+.pagination-sm>li:last-child>a,.pagination-sm>li:last-child>span{}
+
+
+
+.pager .active{
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
+	transition:ease-in-out 0.5s;
+	-webkit-transition:ease-in-out 0.5s;
+	-moz-transition:ease-in-out 0.5s;
+    }
+.pager:before,.pager:after{display:table;content:" "}
+.pager:after{clear:both}
+.pager:before,.pager:after{display:table;content:" "}
+.pager:after{clear:both}.pager li{display:inline}
+.pager li>a,.pager li>span{display:inline-block;padding:10px;background-color:#fff;border:1px solid #ddd;border-radius:15px}
+.pager li>a:hover,.pager li>a:focus{text-decoration:none;background-color:#eee}
+.pager .next>a,.pager .next>span{float:right}
+.pager .previous>a,.pager .previous>span{float:left}
+.pager .disabled>a,.pager .disabled>a:hover,.pager .disabled>a:focus,.pager .disabled>span{color:#999;cursor:not-allowed;background-color:#fff}

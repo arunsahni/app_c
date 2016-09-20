@@ -1,0 +1,520 @@
+<!--text-box Start-->
+<div class="box text-box text-box-edit border" title="block block-text"
+ style=" height: 360px; left: 275px; top: 157px; width: 480px;">
+	<div class="text-box-bg"></div>
+	<div class="content-frame" style="z-index:100;">
+		<div class="select-txt" style="display:block;">
+			<div class="select-txt-inner" style="left:0; top:0;">
+				<div class="select-margin-t" style=" display:block; height: 44px; left: 0; top: 140px; width: 480px; ">
+				</div>
+			  <div class="select-margin-b" style="display:none;"></div>
+				<div class="select-margin-l" style="display:none;"></div>
+				<div class="select-margin-r" style="display:none;"></div>
+			<div class="select-outer-frame boxsizing" style="
+				display: block;
+				height: 140px;
+				left: 0;
+				top: 0;
+				width: 480px;
+				"></div>
+				<div class="select-inr-frame" style="
+				display: block;
+				height: 140px;
+				left: 0;
+				top: 0;
+				width: 480px; 
+				">
+				</div>
+			</div>
+		</div>
+		<div class="text-view" style=" 
+		-moz-column-count: auto;
+		-moz-column-gap: 16px;">
+			<p>
+				00Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>                               		
+		</div>
+	</div>
+	
+	<!--text-box-resize-handle start-->
+	<div class="border-box">
+		<div data-ind="0" class="resize lt"  data-visual-direction="nw" style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="1" class="resize t"  data-visual-direction="n" style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="2" class="resize rt"  data-visual-direction="ne"  style=" height: 13px;
+		margin-right: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="3" class="resize r"  data-visual-direction="e"  style="height: 13px;
+		margin-right: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="4" class="resize rb"  data-visual-direction="se"  style="   height: 13px;
+		margin-bottom: -5px;
+		margin-right: -5px;
+		width: 13px;"></div>
+		<div data-ind="5" class="resize b"  data-visual-direction="s" style="height: 13px;
+		margin-left: -6px;
+		margin-bottom: -6px;
+		width: 13px;"></div>
+		<div data-ind="6" class="resize lb"  data-visual-direction="sw"  style=" 
+			height: 13px;
+			margin-bottom: -6px;
+			margin-left: -6px;
+			width: 13px;">				
+		</div>
+		<div data-ind="7" class="resize l"  data-visual-direction="w"  style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+	</div>
+	
+	<div class="resize-handle resize-disable resize-handle-b" style="left: 0px; top: 139px; width: 480px; height: 4px;">
+  <div class="resize-label" style="left: 201px; top: auto;">
+			<div class="resize-label-inpt">
+				<input type="text" data-mousespeed="2" value="10" spellcheck="false" class="resize-input">
+			</div>
+		</div>
+	</div>
+	
+	<div class="resize-handle resize-disable resize-handle-t" style="display: block !important;
+	height: 4px;
+	left: 0;
+	top: -3px;
+	width: 480px;">
+		<div class="resize-label" style="left: 201px; top: auto;">
+			<div class="resize-label-inpt">
+				<input type="text" data-mousespeed="2" value="10" spellcheck="false" class="resize-input">
+			</div>
+		</div>
+	</div>
+	
+	<div class="resize-handle resize-disable resize-handle-l" style="display: block !important;
+	height: 140px;
+	left: -3px;
+	top: 0;
+	width: 4px;">
+		<div class="resize-label" style=" left: auto;
+			top: 45px;">
+			<div class="resize-label-inpt">
+				<input type="text" data-mousespeed="2" value="10" spellcheck="false" class="resize-input">
+			</div>
+		</div>
+	</div>
+	
+	<div class="resize-handle resize-disable resize-handle-r" style="display: block !important;
+	height: 140px;
+	left: 479px;
+	top: 0;
+	width: 4px;">
+		<div class="resize-label" style=" left: auto;
+		top: 45px;">
+			<div class="resize-label-inpt">
+				<input type="text" data-mousespeed="2" value="10" spellcheck="false" class="resize-input">
+			</div>
+		</div>
+	</div>
+	<!--text-box-resize-handle start-->
+</div>
+<!--text-box End-->                    
+			  
+						
+<!--picture-box Start-->
+<div class="box pic-box border" style="
+height: 360px;
+left: 275px;
+top: 157px;
+width: 480px;">
+	<div class="content-frame" style="z-index: 100; opacity: 1;">
+		<div style="background-image:url('../assets/cpage/images/pic1.jpg');
+		border-radius: 0;
+		box-shadow: none;
+		opacity: 1; 
+		"></div>
+	</div>
+	
+	 
+	<div class="border-box">
+		<div data-ind="0" class="resize lt"  data-visual-direction="nw" style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		 <div data-ind="1" class="resize t"  data-visual-direction="n" style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="2" class="resize rt"  data-visual-direction="ne"  style=" height: 13px;
+		margin-right: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="3" class="resize r"  data-visual-direction="e"  style="height: 13px;
+		margin-right: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="4" class="resize rb"  data-visual-direction="se"  style="   height: 13px;
+		margin-bottom: -5px;
+		margin-right: -5px;
+		width: 13px;"></div>
+		 <div data-ind="5" class="resize b"  data-visual-direction="s" style="height: 13px;
+		margin-left: -6px;
+		margin-bottom: -6px;
+		width: 13px;"></div>
+		<div data-ind="6" class="resize lb"  data-visual-direction="sw"  style=" 
+			height: 13px;
+			margin-bottom: -6px;
+			margin-left: -6px;
+			width: 13px;">				
+		</div>
+		<div data-ind="7" class="resize l"  data-visual-direction="w"  style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+	</div>
+	
+</div>
+<!--picture-box End-->
+
+<!--video-box Start-->
+<div class="box video-box border" style="
+height: 360px;
+left: 275px;
+top: 157px;
+width: 480px;">
+	<div class="content-frame" style="z-index: 100;">
+		<div style="width: 100%; height: 100%; position: absolute;"></div>
+		<!--<iframe width="480" height="360" frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/Vv8hzWaZ0eY?wmode=opaque&amp;enablejsapi=1&amp;playlist=&amp;autohide=1&amp;loop=0&amp;showinfo=1&amp;theme=dark&amp;controls=1&amp;html5=1&amp;rel=0"></iframe>-->
+	</div>
+	
+	<div class="border-box">
+		<div data-ind="0" class="resize lt"  data-visual-direction="nw" style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		 <div data-ind="1" class="resize t"  data-visual-direction="n" style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="2" class="resize rt"  data-visual-direction="ne"  style=" height: 13px;
+		margin-right: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="3" class="resize r"  data-visual-direction="e"  style="height: 13px;
+		margin-right: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="4" class="resize rb"  data-visual-direction="se"  style="   height: 13px;
+		margin-bottom: -5px;
+		margin-right: -5px;
+		width: 13px;"></div>
+		 <div data-ind="5" class="resize b"  data-visual-direction="s" style="height: 13px;
+		margin-left: -6px;
+		margin-bottom: -6px;
+		width: 13px;"></div>
+		<div data-ind="6" class="resize lb"  data-visual-direction="sw"  style=" 
+			height: 13px;
+			margin-bottom: -6px;
+			margin-left: -6px;
+			width: 13px;">				
+		</div>
+		<div data-ind="7" class="resize l"  data-visual-direction="w"  style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+	</div>
+</div>
+<!--video-box End-->
+
+ <!--audio-box Start-->
+<div class="box audio-box border" style="
+height: 400px;
+left: 313px;
+top: 81px;
+width: 400px;">
+	<div class="content-frame" style="z-index: 100;">
+		<div class="player-wrapper"></div>
+		<div class="overlay"></div>
+	</div>
+	
+	<div class="border-box">
+		<div data-ind="0" class="resize lt"  data-visual-direction="nw" style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		 <div data-ind="1" class="resize t"  data-visual-direction="n" style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="2" class="resize rt"  data-visual-direction="ne"  style=" height: 13px;
+		margin-right: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="3" class="resize r"  data-visual-direction="e"  style="height: 13px;
+		margin-right: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="4" class="resize rb"  data-visual-direction="se"  style="   height: 13px;
+		margin-bottom: -5px;
+		margin-right: -5px;
+		width: 13px;"></div>
+		 <div data-ind="5" class="resize b"  data-visual-direction="s" style="height: 13px;
+		margin-left: -6px;
+		margin-bottom: -6px;
+		width: 13px;"></div>
+		<div data-ind="6" class="resize lb"  data-visual-direction="sw"  style=" 
+			height: 13px;
+			margin-bottom: -6px;
+			margin-left: -6px;
+			width: 13px;">				
+		</div>
+		<div data-ind="7" class="resize l"  data-visual-direction="w"  style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+	</div>
+	
+</div>
+<!--audio-box End-->
+
+<!--embed-box Start-->
+<div class="box embed-box border rotation-border" style="
+height: 360px;
+left: 275px;
+top: 157px;
+width: 480px;">
+	<div class="content-frame" style="z-index: 100;">
+		<div class="container-bx">
+			<!--<iframe width="560" height="315" src="http://www.youtube.com/embed/5PIBMLvcAzc" style="width: 100%; height: 100%;"></iframe>-->
+		</div>
+		<div class="overlay-bx"></div>
+	</div>
+	
+	<div class="border-box">
+		<div data-ind="0" class="resize lt"  data-visual-direction="nw" style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		 <div data-ind="1" class="resize t"  data-visual-direction="n" style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="2" class="resize rt"  data-visual-direction="ne"  style=" height: 13px;
+		margin-right: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="3" class="resize r"  data-visual-direction="e"  style="height: 13px;
+		margin-right: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="4" class="resize rb"  data-visual-direction="se"  style="   height: 13px;
+		margin-bottom: -5px;
+		margin-right: -5px;
+		width: 13px;"></div>
+		 <div data-ind="5" class="resize b"  data-visual-direction="s" style="height: 13px;
+		margin-left: -6px;
+		margin-bottom: -6px;
+		width: 13px;"></div>
+		<div data-ind="6" class="resize lb"  data-visual-direction="sw"  style=" 
+			height: 13px;
+			margin-bottom: -6px;
+			margin-left: -6px;
+			width: 13px;">				
+		</div>
+		<div data-ind="7" class="resize l"  data-visual-direction="w"  style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+	</div>
+	
+</div>
+<!--embed-box End-->
+
+<!--button-box Start-->
+<div class="box button-box border" style="
+height: 29px;
+left: 445px;
+top: 167px;
+width: 134px;">
+	<div class="content-frame" style="z-index: 100;">
+		<div class="button btn-bg">
+			<input type="text" name="" value="Edit" />
+		</div>
+	</div>
+	
+	<div class="border-box">
+		<div data-ind="0" class="resize lt"  data-visual-direction="nw" style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		 <div data-ind="1" class="resize t"  data-visual-direction="n" style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="2" class="resize rt"  data-visual-direction="ne"  style=" height: 13px;
+		margin-right: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="3" class="resize r"  data-visual-direction="e"  style="height: 13px;
+		margin-right: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+		<div data-ind="4" class="resize rb"  data-visual-direction="se"  style="   height: 13px;
+		margin-bottom: -5px;
+		margin-right: -5px;
+		width: 13px;"></div>
+		 <div data-ind="5" class="resize b"  data-visual-direction="s" style="height: 13px;
+		margin-left: -6px;
+		margin-bottom: -6px;
+		width: 13px;"></div>
+		<div data-ind="6" class="resize lb"  data-visual-direction="sw"  style=" 
+			height: 13px;
+			margin-bottom: -6px;
+			margin-left: -6px;
+			width: 13px;">				
+		</div>
+		<div data-ind="7" class="resize l"  data-visual-direction="w"  style="height: 13px;
+		margin-left: -6px;
+		margin-top: -6px;
+		width: 13px;"></div>
+	</div>
+	
+</div>
+<!--button-box End-->
+
+
+
+<div id="grid-guide">
+					<div class="guide-block" style="
+					display: block;
+					margin: 0 40px;
+					width: 944px;">
+						<table class="gide-tbl" style="
+						border-collapse: separate;
+						border-spacing: 20px 0;
+						left: -20px;
+						table-layout: auto;
+						width: 988px;
+						">
+							<colgroup><col style="width: 85px; ">
+							
+							<col style="width: 85px; ">
+							
+							<col style="width: 85px; ">
+							
+							<col style="width: 86px; ">
+							
+							<col style="width: 86px; ">
+							
+							<col style="width: 86px; ">
+							
+							<col style="width: 85px; ">
+							
+							<col style="width: 85px; ">
+							
+							<col style="width: 85px; ">
+							
+							</colgroup>		
+							<tbody>
+								<tr style="height: 19px;">
+								
+								<td style="padding-left:22px" class="tp-margin first"></td>
+								
+								<td style="" class="tp-margin "></td>
+								
+								<td style="" class="tp-margin "></td>
+								
+								<td style="" class="tp-margin "></td>
+								
+								<td style="" class="tp-margin "></td>
+								
+								<td style="" class="tp-margin "></td>
+								
+								<td style="" class="tp-margin "></td>
+								
+								<td style="" class="tp-margin "></td>
+								
+								<td style="" class="tp-margin "></td>
+								
+								</tr>
+								<tr tyle="height: 636px;">
+								
+								<td class="col-cell first"></td>
+								
+								<td class="col-cell "></td>
+								
+								<td class="col-cell "></td>
+								
+								<td class="col-cell "></td>
+								
+								<td class="col-cell "></td>
+								
+								<td class="col-cell "></td>
+								
+								<td class="col-cell "></td>
+								
+								<td class="col-cell "></td>
+								
+								<td class="col-cell "></td>
+								
+								</tr>
+								<tr style="height: 17px;">
+								
+								<td class="btmmargin first"></td>
+								
+								<td class="btmmargin "></td>
+								
+								<td class="btmmargin "></td>
+								
+								<td class="btmmargin "></td>
+								
+								<td class="btmmargin "></td>
+								
+								<td class="btmmargin "></td>
+								
+								<td class="btmmargin "></td>
+								
+								<td class="btmmargin "></td>
+								
+								<td class="btmmargin "></td>
+								
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="baseline-block">
+						<ul>
+							<li class="baseline-bdr fade" style=" 
+							left: 0;
+							top: 31px;
+							width: 40px;"></li>
+							<li class="baseline-bdr" style="left: 40px;
+							opacity: 1;
+							top: 31px;
+							width: 944px;"></li>
+							<li class="baseline-bdr fade" style=" 
+							right: 0;
+							top: 31px;
+							width: 40px;"></li>
+							
+							<li class="baseline-bdr fade" style=" 
+							left: 0;
+							top: 62px;
+							width: 40px;"></li>
+							<li class="baseline-bdr" style="left: 40px;
+							opacity: 1;
+							top: 62px;
+							width: 944px;"></li>
+							<li class="baseline-bdr fade" style=" 
+							right: 0;
+							top: 62px;
+							width: 40px;"></li>
+						</ul>
+					</div>
+					<div class="grid-bg">
+						
+					</div>
+				</div>

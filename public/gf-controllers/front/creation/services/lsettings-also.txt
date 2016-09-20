@@ -1,0 +1,24 @@
+
+var launchSettings = function() {
+	
+	//Properties
+	var audience = "ME";						//ME - [ PRIVATE , SOLO , GROUP , PUBLIC ] / OTHERS - [PRIVATE , SOLO , GROUP , PUBLIC]			
+	var participation = "PRIVATE";				//[ PRIVATE , SOLO , GROUP , PUBLIC ]
+	
+	audience = getAudience();
+	participation = getAudience();
+	
+	switch (audience){
+		case "ME":
+			
+			break;
+		
+		case "OTHERS":
+			
+			break;
+			
+		default : 
+			console.log("-------ERROR-------");
+	}
+	
+}

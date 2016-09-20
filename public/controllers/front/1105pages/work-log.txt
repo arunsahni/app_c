@@ -1,0 +1,149 @@
+
+
+Admin Panel Build : 18 July - 
+
+Media Search Algorithm : 18 August
+
+Milestone -2 Release : Search Media & Board management : 19 August
+
+27 November : 
+-------------------
+As discussed in the last call, Please find the attached files of all 3 milestone points.
+We have divided the project plan into 3 milestones. Description of the milestones are as below :
+1) Milestone-1:
+It will cover all the feedback points of boards.
+
+2) Milestone-2:
+It will cover all the points of boards which are not finalized or not discussed or new for development team or pending from design.
+Some of the points are those which have been finalized in the last discussion (these will be priority and will be delivered first).
+
+3) Milestone-3:
+Capsule,Company & Payment Section points.
+
+We will provide you time estimate for Milestone-2 & Milestone-3 after getting finalized designs.
+Please let us know if we have missed anything.
+
+
+
+As discussed, We have divided the delivery plan into 4 categories as below :
+Delivery-1 : Date - 17/12/2014
+    - Montage / Act Page
+
+Delivery-2 : Date - 20/12/2014
+    - Page Theme movement on Discuss Page
+    - Page Theme movement on Search Page (With arrows showing preview of next and previous Page Theme)
+   
+Delivery-3 : Date - 23/12/2014
+    - Overpass
+    - Media movement on Act Page on Search Page (With arrows showing preview of next and previous Media)
+    - Filters - Enablers & Barrier case - update in search api
+    - Media Tray (Expansion of the tray)
+    - Dialogs (Change in the dialog design)
+    - Board Upload (Change in the design of the "Upload to Board" pop-up)
+
+Feedback Points & Live Server Configuration : Date - 24/12/2014 - 31/12/2014
+
+
+Client on holidays - 22 December - 12 January
+
+
+Created New Milestones 1,2,3 - 5 January
+
+media uploading priority : 25 February
+
+11 March -------
+--------------------
+In discussion:
+1. Simplifying this to only 1, 2, 3 and 4 media and no more. Will send pdf.
+2.Media tray will be same expanded/collapsed view options?
+<D>Yes but need to improve design... Let's discuss
+3.User image display with their statements?
+<D>Will share pdf for how this will be displayed.
+4. Share: In discussion.
+5. Search Gallery view in discussion.(as per given pdf page no. 17,18,19)
+
+
+12 March ----
+---------------
+
+This is to notify you that we are going through our internal project process audit this week and we have to submit acceptance email of the project's till date work from you.
+As you have already provided acceptance on the points in the feedback documents of different versions. I request you to provide acceptance over this email as per the below description.
+
+Milestone - 1 (Boards) :
+All feedback points of the Boards have been completed and accepted except the below remaining points - Kindly provide us your approval here or let us know if you have any issue ?
+
+Below are the list of remaining points of the boards which I am categorizing as Milestone-2 :
+Milestone - 2 :
+1) Known, In Testing & Pending Points mentioned of last feedback doc (Milestone 1- DC21)
+2) New estimated points / Related to New Points of last feedback doc (Milestone 1- DC21)
+3) New Montage Points - Under Discussion
+
+
+
+967 hours - December to May		- 321+272		(370)
+------------------------------ 
+
+17 December - 
+271 + 50 = 321 hours
+
+Developer timeline : - 271 hours
+1. For which we are going to give you estimate on.
+    Filters (Changes in design of the filters) - 18 hrs
+      - Enablers & Barrier case - update in search api
+   
+    Media Tray (Expansion of the tray) - 15 hrs
+     
+    Dialogs (Change in the dialog design) - 9 hrs
+   
+    Board Upload (Change in the design of the "Upload to Board" pop-up) - 9 hrs
+      - Add tag information
+    
+    Page Theme movement on Discuss Page - 55 hrs
+      - Change page-theme on scroll - update changePT algorithm
+      - Different case implementation
+        - The first time view
+        - The page theme block identifier management - define the minimum requirement setting and the best case setting checks.
+        - media loading on scroll - lazy loading of media
+                   
+    Overpass - 15 hrs
+    
+    Page Theme movement on Search Page (With arrows showing preview of next and previous Page Theme) - 15 hrs
+    
+    Media movement on Act Page on Search Page (With arrows showing preview of next and previous Media) - 40 hrs
+   
+    Montage - 95 hrs
+      - Drag and Drop to add media in the montage
+      - Re-position
+      - Resize
+      - Crop
+      - Delete
+      - Upload style attribute of the montage
+      - Montage view on all place - search gallery & discuss
+      - Update db schema & apis
+
+Designer timeline : - 50 hours
+    act page - 10 hr
+    Page theme movement - 2 hr
+    Overpass - 6 hr
+    search filters - 3 hr
+    Expand media tray - 3 hr
+    Arrow to change theme/media - 5 hr
+    simple popup - 3 hr
+    popup - 6 hr
+    responsive design settings/ testing - 12 hr
+
+D - 307 hours			(Milestone- 5 : 321 hours) - 340 hours
+J - 1 W - 32.40
+= 340 hours
+
+J - 78.6 hours			(Server Hosting and urgent requirement points)
+F - 24.2 hours			(Server Hosting and urgent requirement points)
+
+a - 250.8 hours			(Milestone - 6 : 272 hours)
+M : 1 W - 77.9
+= 328 hours 
+
+M :  2,3,4th week - 183 hours	- (Milestone - 7 - Requirement Gathering, Analysis, R&D and Implementation)
+M - 70 hours			(Milestone - 7 : 440 hours)
+
+

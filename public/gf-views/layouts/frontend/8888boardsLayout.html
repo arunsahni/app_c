@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7">
+<![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8">
+<![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" ng-app="collabmedia">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
+<title>Scrpt - Discuss</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no"/>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta property="og:title" content=""/>
+<meta property="og:type" content="Link"/>
+<meta property="og:url" content=""/>
+<meta property="og:image" content=""/>
+<link rel="image_src" href="">
+<link rel="stylesheet" href="../assets/board/css/main.css">
+<link rel="stylesheet" href="../assets/board/css/jquery-ui.css">
+<link rel="stylesheet" href="../assets/board/css/redactor.css">
+<link rel="stylesheet" href="../assets/board/css/jPushMenu.css">
+<link rel="stylesheet" href="../assets/board/css/animate1.css">
+
+<!-- Custom scrollbars CSS -->
+<style>          
+	#content_1, #content_10{display:none;}
+</style>
+<link href="../assets/board/css/jquery.mCustomScrollbar.css" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/board/css/media.css" />
+
+<script src="../assets/board/js/vendor/jquery-1.11.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>	
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
+<script src="../assets/js/angular-ui-router.min.js"></script>
+<script src="../assets/js/angular-file-upload.js"></script>
+<script src="../assets/js/angular-redactor.js"></script>
+
+<script src="../vendors/$script.js"></script>	
+<script src="../vendors/angular-flash.js"></script>		
+<script src="../config/front/bootstrap.js"></script>
+<!--<script src="../interceptors/adminInterceptor.js"></script>-->
+<script src="../controllers/boardsRoutes.js"></script>
+<!--
+<script src="../services/front/board/loginService.js"></script>
+
+<script src="../controllers/front/boards/indexCtrl.js"></script>
+<script src="../controllers/front/boards/searchCtrl.js"></script>
+-->
+<script src="../assets/board/assets/js/plugin.min.js"></script>
+<script src="../assets/board/assets/js/core.min.js"></script>    
+<script src="../assets/board/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+<script src="../assets/board/js/vendor/masonry.pkgd.min.js"></script>
+<script src="../assets/board/js/vendor/jquery.cycle2.min.js"></script>
+<script src="../assets/board/js/vendor/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="../assets/board/js/vendor/redactor.min.js"></script>
+<script src="../assets/board/js/vendor/jquery.tinysort.min.js"></script>
+<script src="../assets/board/js/vendor/jquery.mCustomScrollbar.min.js"></script>
+<script src="../assets/board/js/vendor/jquery.queryloader2.min.js"></script>
+<script src="../assets/board/js/jPushMenu.js"></script>
+
+<script>
+jQuery(document).ready(function($) {
+$('.toggle-menu').jPushMenu();
+});
+</script>
+<script src="../assets/board/js/custom.js"></script>
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../assets/board/http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+
+
+<body  class="anim home-page" data-page-class="home-page">
+<a id="menuicon" class="button toggle-menu menu-left push-body" href="javascript:void(0)" ng-click="openmenu()" title="Menu"></a>
+
+<!-- Left menu element-->
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
+<h4><img src="../assets/board/img/avatar.png" alt="" width="30"><span id="leaderName">Leads Name</span></h4>
+<a href="/#/" class="border-top">Home</a>
+<a href="/#/myprofile">My Profile</a>
+<a href="/#/projects">Projects</a>
+<a href="/#/board">Invited to Boards</a>
+<a href="/#/logout">Logout</a>
+<a href="javascript:muteaudio()" class="audio_options">
+	<img src="../assets/board/img/icons/icon-audio.png" alt="audio" width="15">
+</a>
+<a href="javascript:pauseaudio()" class="audio_options">
+	<img src="../assets/board/img/icons/icon-pause.png" alt="audio" width="15">
+</a>
+<a href="javascript:playaudio()" class="audio_options">
+	<img src="../assets/board/img/icons/icon-play.png" alt="audio" width="15">
+</a>
+
+</nav>	
+
+<div id="content" ui-view></div>
+<!--<audio controls autoplay>
+	<source src="../assets/board/backgroundAudio/AshqNaHo.mp3" type="audio/mpeg">
+	Your browser does not support the audio element.
+</audio>-->
+
+<script language="javascript" type="text/javascript">
+function limitText(limitField, limitCount, limitNum) {
+if (limitField.value.length > limitNum) {
+limitField.value = limitField.value.substring(0, limitNum);
+} else {
+limitCount.value = limitNum - limitField.value.length;
+}
+}
+</script>
+  
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="../assets/board/js/minified/jquery-1.9.1.min.js"%3E%3C/script%3E'))</script>
+	<!-- custom scrollbars plugin -->
+	<script src="../assets/board/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script>
+		(function($){
+			$(window).load(function(){
+				$("#content_1").mCustomScrollbar();
+			   
+				//demo fn
+				$("a[rel='tips-content']").click(function(e){
+					e.preventDefault();
+					$("#content_1").fadeToggle("slow",function(){
+						var customScrollbar=$("#content_1").find(".mCSB_scrollTools");
+						customScrollbar.css({"opacity":0});
+						$("#content_1").mCustomScrollbar("update");
+						customScrollbar.animate({opacity:1},"slow");
+					});
+				});
+			});
+		})(jQuery);
+	</script>
+</body>
+</html>
+<script>
+function pauseaudio(){
+var audio = document.getElementById("audio");
+audio.loop=true;
+audio.pause();		
+}
+
+function playaudio(){
+var audio = document.getElementById("audio");
+audio.loop=true;
+audio.play();			
+}
+
+function muteaudio(){
+var audio = document.getElementById("audio");
+audio.loop=true;
+if (audio.volume==0.2) {
+audio.volume=1;
+}
+else{
+audio.volume=0.2;
+}			
+}
+</script>
+<!-- Localized -->

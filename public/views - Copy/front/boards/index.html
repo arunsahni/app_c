@@ -1,0 +1,3323 @@
+<link rel="stylesheet" href="../assets/board/css/token-input.css" type="text/css" />
+<link rel="stylesheet" href="../assets/board/css/token-input-facebook.css" type="text/css" />
+<!--<script src="../assets/board/js/browser.js"></script>-->
+<script>
+jQuery(document).ready(function(){
+	//commented by manishp 29 April 2015
+	/*
+	$("body").queryLoader2({
+		minimumTime: 10,
+		backgroundColor:'#111111',
+		barColor:'#000',
+		percentage: true,
+		completeAnimation: "grow"
+	});
+	*/
+	setTimeout(function(){
+		if ($(window).width() <= 900) {
+			$('[title]').removeAttr('title');
+		}
+	},8000);
+	
+		
+});
+</script>
+<style>
+	.loader_overlay{
+		background: none repeat scroll 0 0 #000;
+		display: none;
+		height: 100%;
+		left: 0;
+		opacity: 0.8;
+		position: fixed !important;
+		top: 0;
+		width: 100%;
+		z-index: 98;
+	}
+	#private_media_pop{
+		display: none;
+	}
+	/*.dragable{*/
+	/*position: relative;*/
+	/*z-index: 9999999 !important;*/
+	/*}*/
+	.loader_overlay_full{
+		background: none repeat scroll 0 0 #000;
+		display: none;
+		height: 100%;
+		left: 0;
+		opacity: 0.8;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 101;
+	}
+	.loader_img_overlay{
+		display: none;
+		height: 100%;
+		margin: auto;
+		position: fixed !important;
+		right: 0;
+		text-align: center;		
+		width: 100%; 
+		left: 0%;
+		position: fixed !important;
+		top: 10px  !important;
+		z-index: 99 !important;
+	}
+	.loader_img_overlay_full{
+		display: none;
+		height: 100%;
+		margin: auto;
+		position: fixed !important;
+		right: 0;
+		text-align: center;		
+		width: 100%; 
+		left: 0%;
+		position: fixed !important;
+		top: 10px  !important;
+		z-index: 102 !important;
+	}
+	
+</style>
+<div id="note_forMontage2" style="display:none">
+	<main class="container note-popup bx-sz">
+	<div class="popup-textarea bx-sz">
+		<section id="editor">
+			<div id="edit" class="edit_froala3 bx-sz">
+				<p>Start writing...</p>
+			</div>
+		</section>
+		<section class="btns-btm for-mob bx-sz">
+			<section class="col-xs-6"><a ng-click="post_noteToBoard()" href="javascript:void(0)" class="circle-btn"><span>Post to board</span></a></section>
+			<section class="col-xs-6"><a  ng-click="close_noteBoardCase()" onClick="$('#note_forMontage2').fadeOut()"  href="javascript:void(0)"  class="square-btn"><span>Exit without save</span></a></section>
+	   </section>
+	</div>
+	
+	<div class="bg-popup"></div>
+	
+		<section class="tooltips">
+			<a  ng-click="post_noteToBoard()" onClick="" href="javascript:void(0)" class="a-circle" id="a-tooltip5">
+				<span id="tooltip5" class="tooltip-box animated"><b class="animated fadeIn">Post note to board</b></span>
+			</a>
+			<a  class="a-square" ng-click="close_noteBoardCase()" id="a-tooltip3" onClick="$('#note_forMontage2').fadeOut()" >
+				<span id="tooltip3" class="tooltip-box animated"><b class="animated fadeIn">Exit without save</b></span>
+			</a>
+		</section>
+		
+	</main>
+</div>
+<!--overlay for loader by parul 19032015-->
+<div id="overlay2" style="display: none;"></div>
+<div id="overlayContent2" style="display: none;">
+   <img style="display:block;margin-left:auto;margin-right:auto; border: none !important;" src="../../assets/img/loader.png"/>
+</div>
+
+<div class="loader_overlay"></div>
+<div class="loader_img loader_img_overlay_full"></div>
+<div class="loader_overlay_full"></div>
+<div class="loader_img loader_img_overlay"></div>
+
+<div ng-if="boardsMedia" ng-click="boardsMedia=0" style="z-index:99999; top:0px; left:0px; width:100%; height:100%; position:fixed; background:#000; opacity:.7"></div>
+
+<div id="discuss">
+
+<!--<div ng-include="'../views/front/boards/elements/dialogs.html'"></div>-->
+<!--<div include-static="'../views/front/boards/elements/dialogs.html'"></div>-->
+<!-- Right menu element-->
+
+<div id="meta_overlay">
+	<div class="confirmon-overlay" style="display: block;z-index:99;"></div>
+	<div id="meta_comment">
+		<!--Comments Section Start-->	
+		<div class="commentsframe">
+				<a class="prev_comment"></a>
+			<a class="next_comment"></a>
+			<a class="close_comment close_view_comment"></a>
+			<div class="comments-widget">
+			<!--<a class="prev_comment"></a>
+			<a class="next_comment"></a>
+			<a class="close_comment close_view_comment"></a>-->
+			<div class="comment_holder">
+				<div ng-if="!boardComments">No comments!</div>
+					<div class="comment current commentsp" ng-click="commentIndex($index)" ng-repeat="comment in boarddata[0].Comments" scrollable>
+						<span class="usrpic" title='{{comment.CommentedBy.Name}}'><img ng-src="{{comment.CommentedBy.ProfilePic}}"  class="avatar" style="border-radius: 50% !important;height: 34px;width:34px;"></span><!--parul 5jan 2015-->
+						<div class="usrcomt">
+							<div class="usercom_text">{{comment.CommentText}}</div>
+							<div class="vote-widget">
+								<a title="Delete" class="i-ico i-ico5 sml-ico right-del" href="javascript:void(0);" ng-click="delcmntPop(comment)" ng-show="(userInfo._id==boarddata[0].OwnerID._id)||(userInfo._id==comment.CommentedBy._id)"></a>
+								<div class="vote-counter"><a id='{{comment._id}}' title="Vote" ng-click="commentVote(comment)" class="i-ico ico-thumb ico-middle p-l0" href="javascript:void(0)" ></a>{{comment.Votes.length}} &nbsp;Vote<span ng-if="comment.Votes.length>1||comment.Votes.length==0">s</span></div>
+								
+							</div><!--/Vote-->
+						</div>
+						
+					</div>
+				</div>
+			</div>  
+			<div class="add-comment" id='add-cmnt'><a href="javascript:void(0)">Add Comment</a></div>
+		</div>	
+		<!--Comments Section Closed-->
+
+		<!--Write Comment Start-->   	
+		<div class="write-comment" style="display:none;">
+			<a class="close_comment close_add_comment"></a>
+			<div class="writecomment">
+			<p class="pdrt"> <form name="myform">
+                <!--<textarea id="comment-box" name="limitedtextarea" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,470);"
+onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,470);" cols="" rows="" class="textarea" ng-model="comment.title" placeholder="Describe yourself with 4 words..."></textarea>-->
+                <textarea id="comment-box" name="limitedtextarea"  cols="" rows="" class="textarea" ng-model="comment.title" placeholder="Describe yourself with 4 words..." ng-keyup="countWords()"></textarea>
+
+            </form> {{50-noOfWords.length}} words remaining..</p>
+			</div>  
+			<div class="add-comment"><a href="javascript:void(0)" ng-click="addcomment()" id="donebtn">Done</a></div>
+		</div>	
+		<!--Write Comment  Closed-->
+	</div>
+</div>
+
+<!--Not in use-->
+<div class="dialog ui-helper-hidden" data-dialog-id="1" title="Basic dialog 1">
+	<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
+<div class="dialog ui-helper-hidden" data-dialog-id="2" title="Basic dialog 2">
+	<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
+<!--Not in use-->
+
+
+<!--Write Note  Start-->
+<div id="writenote"  class="dialog dialog-redactor ui-helper-hidden" data-dialog-id="4" title="Write Note">
+	<a class="addmediamodal" title="Add Media"></a>
+	<a class="hidetoolbar" title="Toolbar"></a>
+	<textarea htmleditor-redactor ng-model="notes.comment" style="max-height:150px;"></textarea>
+	<a href="javascript:void(0)" ng-click="checknotes()" class="btn btn_add_text">Done</a>
+</div>
+<!--Write Note  Closed-->
+
+<!--Link Upload Start-->
+<!--Link Upload-1 Start-->
+<div class="dialog ui-helper-hidden window_button_theme dialog-redactor" data-dialog-id="221" title="Link Upload">
+	<div class="linkupload">
+	<textarea placeholder="Drag and Drop Youtube/Vimeo videos or Google Images" style="max-height:100px;" id="capturetext" ng-model="link.content"  class="fullwidth"></textarea>
+	<a type="button" ng-click="uploadLink()" class="btn btn_add_text blkbtn">Done</a>
+	</div>
+</div>
+<!--Link Upload-1 Closed-->
+
+<a href="javascript:void(0)" class="link_upload_themes" style="display:none" data-dialog-id="420" rel="dialog">test</a>
+
+<!--Link Upload-2 Start working add tags-->
+<div class="dialog dialog-redactor ui-helper-hidden window_media_load akkadbakkad" data-dialog-id="420" style="width:100%; overflow:visible;">
+	<div class="clear">
+		<!--<input type="text" placeholder="Label your media" class="keyword-search bx-sz" id="tag-Input-Token" name="abc" tag-input-token="selectedgt" />--><!--commented by parul 07012015-->
+		<input type="text" placeholder="Label your media" class="keyword-search bx-sz" id="tag-Input-Token2" name="abc" />
+	</div>
+	<form action="#">
+	<div class="left leftcol">
+	<div class="img_holder link_holder" style="max-height:150px; height:150px; overflow:auto"></div>
+	 <p class="img-label">{{webLinkTitle}}</p>
+	</div>
+
+	<div class="left rightcol">
+	<div class="padded">
+	<h3>What theme does this represent?</h3>
+	<div class="option_info">
+		<p>Essentially, a</p>
+		<ul>                
+			<!--<li ng-repeat="mmts in mmt" ng-if="mmts._id != '54e7211a60e85291552b1187'"  ng-click="changemmtlink(mmts._id)">
+			-->
+			<li ng-repeat="mmts in mmt" ng-click="changemmtlink(mmts._id)">	
+				<input id="{{mmts._id}}" ng-model="link.mmt" type="radio" name="radio" value="{{mmts._id}}" hidden/>
+				<label for="{{mmts._id}}" title="">{{mmts.MetaMetaTagTitle}}</label>
+			</li>
+		</ul>
+	</div>
+	<div id="dialog1" class="option_info">
+	<p>Which I want to</p>
+	<ul>                
+		<li>
+			<input value='1' id="privateLink" ng-model="link.isPrivate" type="radio" name="radio31"  hidden/>
+			<label for="privateLink">Keep private</label>
+		</li>
+		<li>
+			<input value='0' id="shareLink" ng-model="link.isPrivate" type="radio" name="radio31" checked="true" hidden/>
+			<label for="shareLink">Share with others</label>
+		</li>
+	</ul>
+	</div>
+	</div>
+	</div>
+
+	<div class="clear">
+	<!--<input ui-items="groupt" ng-model="link.gtsa" id="tags2" placeholder="What does this represent?" auto-complete-link class="keyword-search" />
+	<input ng-model="link.gt" type="hidden" />-->
+	<input type="button" ng-click="addTags()" value="Done">
+	</div>
+	</form>
+</div>
+
+<!--Link Upload-2 Closed-->
+<!--Link Upload Closed-->
+
+<div class="dialog dialog-redactor ui-helper-hidden window_media_load akkadbakkad" data-dialog-id="21" style="overflow: visible;">
+	<div class="clear">
+		<!--<input type="text" placeholder="Label your media" class="keyword-search bx-sz" id="tag-Input-Token" name="abc" tag-input-token="selectedgt" />--><!--commented by parul 07012015-->
+		<input type="text" placeholder="Label your media" class="keyword-search bx-sz" id="tag-Input-Token" name="abc" />
+	</div>
+	<form action="#">
+	<div class="left leftcol">
+		<div class="img_holder" style="max-height:150px; overflow:auto">
+			<img ng-if="uploadedMedia.ContentType=='application/pdf'" class="" style="max-height:180px"  ng-src="../assets/img/PDF.png" alt="Sample PDF 1">
+			<img ng-if="uploadedMedia.ContentType=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || uploadedMedia.ContentType=='application/msword'" class=""  ng-src="../assets/img/Icon-Document.jpg" style="max-height:180px" alt="Sample Word 1">
+			<img ng-if="uploadedMedia.ContentType=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || uploadedMedia.ContentType=='application/vnd.ms-excel' || uploadedMedia.ContentType=='application/vnd.oasis.opendocument.spreadsheet'" class=""  ng-src="../assets/img/excel.png" style="max-height:180px" alt="Sample Excel 1">
+			<img ng-if="uploadedMedia.ContentType=='application/vnd.openxmlformats-officedocument.presentationml.presentation' || uploadedMedia.ContentType=='application/vnd.ms-powerpoint'" class=""  ng-src="../assets/img/ppt.png" style="max-height:180px" alt="Sample PPT 1">
+			<img ng-if="uploadedMedia.ContentType=='image/png' || uploadedMedia.ContentType=='image/jpeg' || uploadedMedia.ContentType=='image/gif' || uploadedMedia.ContentType==null" class=""  ng-src="../assets/Media/img/{{uploadedMedia.Location[0].URL}}" style="max-height:180px" alt="Sample Image 1">
+		</div>
+		<!--<p class="img-label">The Ruins of Lodhi Garden, Delhi</p>-->
+	</div>	
+	<div class="left rightcol">
+		<div class="padded">
+			<h3>What theme does this represent?</h3>
+			<div class="option_info">
+				<p>Essentially, a</p>
+				<ul>                
+					<li ng-repeat="mmts in mmt" ng-if="mmts._id != '54e7211a60e85291552b1187'"  ng-click="changemmt(mmts._id)">
+					<input id="{{mmts._id}}" ng-model="media.mmt" type="radio" name="radio" value="{{mmts._id}}" hidden/>
+					<label for="{{mmts._id}}" title="">{{mmts.MetaMetaTagTitle}}</label>
+					</li>
+				</ul>
+			</div>
+			<div id="dialog2" class="option_info">
+				<p>Which I want to</p>
+				<!--
+				<input id="private" ng-model="media.isPrivate" type="checkbox" name="private" hidden/>
+				<label for="private">Private</label>
+				-->
+				<ul>                
+					<li>
+						<input id="private" value='1' ng-model="media.isPrivate" type="radio" name="radio1Media" hidden/>
+						<label for="private">Keep private</label>
+					</li>
+					<li>
+						<input id="share" value='0' ng-model="media.isPrivate" type="radio" name="radio1Media" hidden/>
+						<label for="share">Share with others</label>
+					</li>
+				</ul>			
+			</div>
+		</div>
+	</div>
+
+	<div class="clear">
+	<!--<input ui-items="groupt" ng-model="media.gtsa" id="tags2" placeholder="What does this represent?" auto-complete class="keyword-search" />-->
+		<input ng-model="media.gt" type="hidden" />
+		<input type="button" ng-click="addTags()" value="Done">
+	</div>
+	</form>
+</div>
+
+<!-- Record Video Start-->
+<div class="dialog dialog-redactor ui-helper-hidden window_media_load akkadbakkad" data-dialog-id="421" title="Record Video">
+	<form>
+	<div class="left">
+	<div class="img_holder">
+	<p class="video-wrap" ng-show="!mobileDevice">
+		<span id="loaderImg" style="display:none;"><img src="/assets/img/ajax-loader.gif" alt="" /></span>
+		<!--<video height="180px" width="100%"></video> -->
+		<video id="popUpVideoTag" height="100%" width="100%"></video> 
+		
+	</p>
+	<p class="video-wrap2" ng-show="mobileDevice && recordingMode == 'video'">
+		<label class='recordVideo'>
+			Click to Record Video
+			<span><input  type="file" accept="video/*" file-model="myFile" capture></span>
+		</label>
+		<!--<input class='recordVideo' type="file" accept="video/*" file-model="myFile" capture>-->
+	</p>
+	<p class="video-wrap2" ng-show="mobileDevice && recordingMode == 'audio'">
+		<label class='recordAudio'>
+			Click to Record audio
+			<span><input  type="file" accept="audio/*" file-model="myFile" capture="microphone"></span>
+		</label>
+		<!--<input class='recordVideo' type="file" accept="video/*" file-model="myFile" capture>-->
+	</p>
+	</div>
+	<div>
+	<label id="percentage" style="display:none">0%</label>
+	<progress id="progress-bar" value=0 style="display:none"></progress><br />
+	</div>
+	<ul class="buttons-section">                
+		<li>
+			<button ng-click="startrecording()" ng-show="!mobileDevice" class="dark_btn" id="btn-start-recording" >Start Recording</button>
+		</li>
+		<li>
+			<button ng-click="stoprecording()" ng-show="!mobileDevice" class="dark_btn" id="btn-stop-recording" style="display:none" disabled="">Stop Recording</button>
+		</li>
+	</ul>
+	</div>
+
+	<div class="left">
+		<div class="padded">
+			<h3>What theme does this represent?</h3>
+			<div class="option_info">
+				<p>Essentially, a</p>
+				<ul class="">                
+					<li ng-repeat="mmts in mmt" ng-if="mmts._id != '54e7211a60e85291552b1187'"   ng-click="changemmt(mmts._id)">
+					<input id="{{mmts._id}}" ng-model="media.mmt" type="radio" name="radio" value="{{mmts._id}}" hidden/>
+					<label for="{{mmts._id}}" title="">{{mmts.MetaMetaTagTitle}}</label>
+					</li>
+				</ul>
+
+			</div>
+			<!--<div id="dialog3" class="option_info" stye="display:none">
+				<p>Which I want to</p>
+				
+				<ul>                
+					<li>
+						<input id="private" value='1' ng-model="media.isPrivate" type="radio" name="radio1Media" hidden/>
+						<label for="private">Keep private</label>
+					</li>
+					
+				</ul>			
+			</div>-->
+		</div>
+	</div>
+
+	<div class="clear">
+		<!--<input ui-items="groupt" ng-model="media.gtsa" id="tags2" placeholder="What does this represent?" auto-complete class="keyword-search bx-sz" />-->
+		<input ng-model="uploadedMedia123" value="" id="uploadedvideo" type="text" style="display:none" />
+		<input ng-model="media.gt" type="hidden" />
+		<input type="button" ng-click="addTags()" ng-show="!mobileDevice" value="Done">
+		<input type="button" ng-click="postVideo()" ng-show="mobileDevice && recordingMode == 'video'" value="Done" >
+		<input type="button" ng-click="postAudio()" ng-show="mobileDevice && recordingMode == 'audio'" value="Done" >
+	</div>
+	</form>
+</div>
+<!-- Record Video Closed-->
+
+<!-- Add theme Start-->
+<div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="6" title="Add Theme">
+	<div class="addtheme">
+	<textarea placeholder="Your theme's title.." class="fullwidth" ng-model="GroupTagTitle"></textarea>
+	<textarea placeholder="Enter your theme description..." ng-model="GroupTagNotes"></textarea>
+	<input ng-click="createGroupTag()" type="submit" value="Create">
+	</div>
+	<a href="javascript:void(0)" class="link_themes">See all themes</a>
+</div>
+<!-- Add theme Closed-->
+
+<!--Probably not in use-->
+<div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="7" title="All Themes">
+	<div>
+	<input placeholder="Search themes.." class="searchthemes"></input>
+	<ul>
+	<li><a href="#">Theme Name</a></li>
+	<li><a href="#">Theme Name</a></li>
+	<li><a href="#">Theme Name</a></li>
+	<li><a href="#">Theme Name</a></li>
+	<li><a href="#">Theme Name</a></li>
+	<li><a href="#">Theme Name</a></li>
+	<li><a href="#">Theme Name</a></li>
+	<li><a href="#">Theme Name</a></li>
+	<li><a href="#">Theme Name</a></li>
+	</ul>
+	</div>
+	<div class="centerlinks">
+	<a href="#" class="link_themes">&laquo;</a>
+	<a href="#" class="link_themes">1</a>
+	<a href="#" class="link_themes">2</a>
+	<a href="#" class="link_themes">3</a>
+	<a href="#" class="link_themes">&raquo;</a>
+	</div>
+</div>
+<!--Probably not in use-->
+
+<!--Probably not in use-->
+<div id="notepad" class="dialog dialog-redactor ui-helper-hidden" data-dialog-id="8" title="Notepad">
+	<a class="addmediamodal" title="Add Media"></a>
+	<a class="hidetoolbar" title="Toolbar"></a>
+	<div class="redactor"></div>
+	<a href="javascript:void(0)" class="btn btn_add_text">Done</a>
+</div>
+<!--Probably not in use-->
+
+<!--Duplicate Board Start-->
+<div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="25" title="Duplicate Board">
+	<div class="addtheme">
+	<textarea placeholder="Enter Board Title" ng-model="duplicate.title"  class="fullwidth"></textarea>
+	<input type="submit" ng-click="duplicate()" value="Create">
+	</div>
+	<a href="javascript:void(0)" class="link_themes"></a>
+</div>
+<!--Duplicate Board Closed-->
+
+<!--Rename Board Start-->
+<div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="52" title="Renaming Board">
+	<div class="addtheme">
+	<textarea placeholder="Enter Board Title" ng-model="rename.title"  class="fullwidth"></textarea>
+	<input type="submit" ng-click="renameBoard()" value="Rename">
+	</div>
+	<a href="javascript:void(0)" class="link_themes"></a>
+</div>
+<!--Rename Board Closed-->
+
+<!--Rename Theme Start-->
+<div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="53" title="Rename Theme">
+	<div class="addtheme">
+	<textarea placeholder="Enter Theme Name" ng-model="renametheme.title"  class="fullwidth"></textarea>
+	<input type="submit" ng-click="renameTheme()" value="Rename">
+	</div>
+	<a href="javascript:void(0)" class="link_themes"></a>
+</div>
+<!--Rename Theme Closed-->
+
+<!--Add Member Start-->
+<div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="26" title="Add Member">
+	<div class="addtheme">
+		<form name="addMem">
+			<input placeholder="Member's Name" ui-items="myInvitee" auto-complete-invitees autocomplete="off" ng-model="member.name"  class="keyword-search fullwidth" style="padding:15px 20px" />
+			<textarea type="email" placeholder="Member's Email" ng-model="member.email"  class="fullwidth" required></textarea>
+			<select ng-model="member.relation"  style="padding:15px 18px"  class="fullwidth" >
+				<option value="">Select Relationship</option>
+				<option ng-repeat="val in fsgs[1].Values">{{val.valueTitle}}</option>
+			</select>
+			<input type="submit" ng-click="addMembers()" value="Add" ng-disabled="addMem.$invalid ">
+		</form>
+	</div>
+	<a href="javascript:void(0)" class="link_themes"></a>
+</div>
+<!--Add Member Closed-->
+
+<!--Current Member Start-->
+<div class="dialog dialog-redactor ui-helper-hidden window_media_load akkadbakkad" data-dialog-id="29" title="Members List">
+	<div id="tabs" class="tabs-container">
+		<ul>
+			<li id='tb-1'><a href="#tabs-1">Current Members</a></li>
+			<li id='tb-2'><a href="#tabs-2">Invited Members</a></li>			
+		</ul>
+			<div id="tabs-1">
+				<form action="javascript:void(0);">
+				<div ng-if="!boardMembers">No current member. </div>
+				<div ng-show="boardMembers">
+					<input id="cur_txt" type="text" class="f-w-s" placeholder="Search current members" ng-model="memSearch" auto-focus>
+				</div>
+				<div class="current_member2 content12" scrollable>
+				<div class="padded">
+					<h3 title="{{invitee.UserID.Email}}" ng-repeat="invitee in boarddata[0].Invitees | filter:memSearch">
+					<span class="user_profile" >
+						<i><img  ng-src="{{invitee.UserID.ProfilePic}}" style="height:30px; width:30px; border-radius:30px;" ></i>
+					</span>
+					{{invitee.UserName}}
+					<span class="ui-dialog-titlebar-close-btn" ng-click="deleteMember(invitee.UserID._id)"> </span>
+					</h3>
+				</div>
+				</div>
+			</form>
+			</div>
+			<div id="tabs-2">
+				<form action="javascript:void(0);">
+				<div ng-show="myBoardInvitees.length == 0">No Invitation sent yet!!! </div>
+				<div ng-show="myBoardInvitees.length != 0">
+					<input id="invt_txt" type="text" class="f-w-s" placeholder="Search Invites" ng-model="memSearch2" />
+				</div>
+				<div class="current_member2 content12" scrollable>
+				<div class="padded">
+					<h3 title="{{invitee.UserEmail}}" ng-repeat="invitee in myBoardInvitees| filter:{UserName:memSearch2}">
+					
+					{{invitee.UserName}}
+					
+					</h3>
+				</div>
+				</div>
+			</form>
+			</div>		
+		</div>
+</div>
+<!--Current Member Closed-->
+
+<!--Move Board Start-->
+<div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="32" title="Move Project">
+	<div class="addtheme">
+	<textarea placeholder="Enter project name to move board" ui-items="projectsa" auto-complete-project  ng-model="project.project"  class="fullwidth"></textarea>
+	<input type="hidden" ng-model="project.projectid">
+	<input type="submit" ng-click="moveBoard()" value="Move">
+	</div>
+	<a href="javascript:void(0)" class="link_themes"></a>
+</div>
+<!--Move Board Closed-->
+
+<!--Header Container Start-->
+<div class="header-container" include-static="'../views/front/boards/elements/header1.html'"></div>
+<!--Header Container Closed-->
+
+<div class="main-container">
+	<div class="main wrapper">
+		<!-- ///////////////////////////// -->
+		<!--<div id="discuss_elements" ng-include="'../views/front/boards/elements/discuss_list.html'"></div>-->
+		<div id="discuss_elements" style="display:none" include-static="'../views/front/boards/elements/discuss_list_new.html'"></div>
+		<div id="search_elements" class="main wrapper" style="display:none" include-static="'../views/front/boards/elements/search_list.html'"></div>
+		<div class='holder-act' include-static="'../views/front/boards/elements/act_page.html'"></div>
+		<!--<div class='search-view' ng-include="'../views/front/boards/elements/search_view.html'" style="display: block"></div>-->
+	</div>
+</div>
+<!--Tips Star-->
+<section id="tips" include-static="'../views/front/boards/elements/tips.html'"></section>
+<!--Tips Closed-->
+
+<div class="ui-widget-overlay ui-front" style="display:none;"></div>
+
+<audio autoplay loop id="audio">                        
+Your browser does not support the audio element.
+</audio>
+<script src="../assets/board/js/dropzone.js"></script>
+<script src="../assets/board/js/scripts.js"></script>
+<script src="../assets/board/js/oEmbeder.js"></script>
+<script src="../assets/board/js/browserDetecter.js"></script>
+</div>
+
+<!--/////// My Board Medias //////-->
+<div class="main-container-boards-index dialog-redactor" ng-if="boardsMedia" include-static="'../views/front/boards/elements/myboardmedia.html'"></div>
+<div include-static="'../views/front/boards/elements/popups.html'"></div>
+
+<div ng-show="pageThemeMovement" include-static="'../views/front/boards/elements/page_theme_movement.html'"></div>
+<!--<div ng-show="sMediaMovement" include-static="'../views/front/boards/elements/s_media_movement.html'"></div>-->
+<div ng-show="dMediaMovement" include-static="'../views/front/boards/elements/d_media_movement.html'"></div>
+
+
+<style>
+/*ul.ui-autocomplete{*/
+/*	background:rgba(0,0,0,0.8) !important;*/
+/*	z-index:1000 !important;*/
+/*	width: 100%;*/
+/*	position: fixed !important;*/
+/*}*/
+/**/
+/*ul.ui-autocomplete.ui-widget-content a{color:#fff;}*/
+
+::-webkit-input-placeholder { /* WebKit browsers */
+color:    #999;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+color:    #999;
+opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+color:    #999;
+opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+color:    #999;
+}
+
+.main-container-boards-index{
+width:83% !important;
+margin-left: 10% !important;
+top:10% !important;
+height:80% !important;
+position:fixed;
+overflow:auto;
+z-index:100000;
+}
+.main-container-boards-index .main.wrapper{
+background:#fff;
+height: 80%;
+overflow-y: scroll;
+}
+.ui-dialog-title {
+float: left;
+letter-spacing: 5px;
+margin: 0.1em 0;
+overflow: hidden;
+text-overflow: ellipsis;
+text-transform: uppercase;
+white-space: nowrap;
+width: 90%;
+}
+.backgroundaaa{
+background:#aaa;
+
+}
+
+.links iframe{
+position: relative;
+left:-50%
+}
+
+.md-pic img{
+	max-height:100px;
+	max-width: 100px;
+}
+
+</style>
+
+<script>
+
+/*
+function clicked(obj,event){
+var mediaElements = $('#discuss_elements');
+var body = $("html, body");
+var holderAct = $('.holder-act');
+$('.ticked').hide()
+console.log("ticked disabled")
+// Remove masonry elements and show page act
+mediaElements.fadeOut(400,function(){					
+holderAct.fadeIn();
+if (typeof(obj.find('.media_img').attr('src'))=='string') {
+
+$('.holder_bulb').html('<img src="'+obj.find('.media_img').attr('src')+'">')				
+}
+else if(obj.find('.text_wrap_index').html()){
+console.log('else if')
+$('.holder_bulb').html(obj.find('.text_wrap_index').html())						
+}
+else{
+console.log('else')
+$('.holder_bulb').html('<video controls>'+obj.find('.media_video').html()+'</video>')						
+}
+// Hide filter sidebar, if clicked, for remove his height from DOM
+$('.filterMenu-sidebar').hide();
+});
+
+// hide all icons, except search
+//$('#filterbar').find('a').filter(':not(.searchBar)').hide();
+$('#filterbar').find('a').hide();
+// init redactor
+
+// add placeholder for redactor
+holderAct.find('.wrapper-redactor .redactor_editor').on('focus',function(e){
+$(this).parents('.wrapper-redactor').addClass('focus');
+});
+holderAct.find('.wrapper-redactor .redactor_editor').on('blur',function(e){
+$(this).parents('.wrapper-redactor').removeClass('focus');
+});
+
+
+return false;
+}
+*/
+//parul 22012015
+ 
+function clickAll(obj) {
+	var name=obj.attr('name');
+	//alert(obj.prop('checked'));
+	if (obj.prop('checked')) {
+		$('.filter_checbox').each(function(){
+			if($(this).find('.radiobb').attr('name')==name){
+				$(this).find('.radiobb').prop("checked",true);
+			}
+		});
+	}
+	else{
+		$('.filter_checbox').each(function(){
+			if($(this).find('.radiobb').attr('name')==name){
+				$(this).find('.radiobb').prop("checked",false);
+			}
+		});
+		
+	}
+}
+
+// end parul 22012015
+
+// montage prev and next
+function monPrev(){
+	//alert('prev')
+	if ($('.holder-act').css('display') == 'none') {
+		var obj=$('#holder-box li:eq('+(monIndex-1)+')');
+		montageObject.gsView(obj);
+	}else{
+		var obj=$('.holder_bulb li:eq('+(monIndex-1)+')');
+		montageObject.gsView(obj);
+	}
+}
+function monNext(){
+	if ($('.holder-act').css('display') == 'none') {
+		var obj=$('#holder-box li:eq('+(monIndex+1)+')');
+		montageObject.gsView(obj);
+	}else{
+		var obj=$('.holder_bulb li:eq('+(monIndex+1)+')');
+		montageObject.gsView(obj);
+	}
+}
+///end
+// parul15012015
+function mediaMove(index){
+	$('.holder_bulb').css({'width':'600px'});
+	var discuss_list = $('.col-xs-4');
+	//alert('mediamove');
+	$('#dM-prev-m2').find('img').attr("src","");
+	$('#dM-next-m2').find('img').attr("src","");
+	//$('.i-ico5').hide();
+	var obj=discuss_list.find('a').eq(index);
+	//alert(1);
+	console.log(obj);
+	var scope = angular.element($(".search-view")).scope();
+	var id = obj.attr('data-id');
+	console.log(id)
+    scope.$apply(function () {
+        scope.setMediaIdd_uploadCase(id);
+    });
+	scope = null;
+	//alert("name="+obj.attr("name"));
+	
+	//code from clicked function---start
+	
+	if ($(obj).attr("name")>0 && (parseInt($(obj).attr("name"),10)+1)<discuss_list.find('a').length) {
+		
+		//-------------------------------alert('case center');
+		//alert('case center');
+		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+		if (discuss_list.find('a').eq(index+1).find('.media_img').is("img")) {
+			//alert('img/montage');
+			var url_next=discuss_list.find('a').eq(index+1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+			$('#dM-next-m2').find('img').attr("src",url_next);
+		}else if(discuss_list.find('a').eq(index+1).find('.linkElement').is("img")){
+			//alert('link');
+			//var url_next=discuss_list.find('a').eq(index+1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+			var url_next=discuss_list.find('a').eq(index+1).find('.linkElement').attr('src');
+			$('#dM-next-m2').find('img').attr("src",url_next);
+			$('#dM-next-m2').find('img').attr("height","100px");
+			$('#dM-next-m2').find('img').attr("width","100px");
+		}else if (discuss_list.find('a').eq(index+1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			//alert('note');
+			$('#dM-next-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+			$('#dM-next-m2').find('img').attr("height","100px");
+			$('#dM-next-m2').find('img').attr("width","100px");
+		}
+		if (discuss_list.find('a').eq(index-1).find('.media_img').is("img")) {
+			//alert('img/montage2');
+			var url_prev=discuss_list.find('a').eq(index-1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+			$('#dM-prev-m2').find('img').attr("src",url_prev);
+		}else if(discuss_list.find('a').eq(index-1).find('.linkElement').is("img")){
+			//alert('link2');
+			//alert(index);
+			//var url_prev=discuss_list.find('a').eq(index-1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+			var url_prev=discuss_list.find('a').eq(index-1).find('.linkElement').attr('src');
+			//alert(url_prev);
+			$('#dM-prev-m2').find('img').attr("src",url_prev);
+			$('#dM-prev-m2').find('img').attr("height","100px");
+			$('#dM-prev-m2').find('img').attr("width","100px");
+		}else if (discuss_list.find('a').eq(index-1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			//alert('note2');
+			$('#dM-prev-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+			$('#dM-prev-m2').find('img').attr("height","100px");
+			$('#dM-prev-m2').find('img').attr("width","100px");
+		}
+		
+		$('#dM-next-m1').show();
+		$('#dM-next-m2').show();
+		$('#dM-prev-m1').show();
+		$('#dM-prev-m2').show();
+	}
+	else if (parseInt($(obj).attr("name"),10)==0 && (discuss_list.find('a').length==1)) {
+		
+		//--------------alert('case only one');
+		//alert('case only one');
+		$('#dM-next-m1').hide();
+		$('#dM-next-m2').hide();
+		$('#dM-prev-m1').hide();
+		$('#dM-prev-m2').hide();
+	}
+	else if ((parseInt($(obj).attr("name"),10)+1)==discuss_list.find('a').length) {
+		
+		//=============================alert('case last');
+		//alert('case last');
+		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+		
+		if (discuss_list.find('a').eq(index-1).find('.media_img').is("img")) {
+			var url_prev=discuss_list.find('a').eq(index-1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+			$('#dM-prev-m2').find('img').attr("src",url_prev);
+		}else if(discuss_list.find('a').eq(index-1).find('.linkElement').is("img")){
+			//var url_prev=discuss_list.find('a').eq(index-1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+			var url_prev=discuss_list.find('a').eq(index-1).find('.linkElement').attr('src');
+			$('#dM-prev-m2').find('img').attr("src",url_prev);
+			$('#dM-prev-m2').find('img').attr("height","100px");
+			$('#dM-prev-m2').find('img').attr("width","100px");
+		}else if (discuss_list.find('a').eq(index-1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-prev-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+			$('#dM-prev-m2').find('img').attr("height","100px");
+			$('#dM-prev-m2').find('img').attr("width","100px");
+		}
+		
+		$('#dM-next-m1').hide();
+		$('#dM-next-m2').hide();
+		$('#dM-prev-m1').show();
+		$('#dM-prev-m2').show();
+	}
+	else if ((parseInt($(obj).attr("name"),10))==0) {
+		//alert('case first');
+		//alert('case first');
+		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+		
+		if (discuss_list.find('a').eq(index+1).find('.media_img').is("img")) {
+			var url_next=discuss_list.find('a').eq(index+1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+			$('#dM-next-m2').find('img').attr("src",url_next);
+		}else if(discuss_list.find('a').eq(index+1).find('.linkElement').is("img")){
+			//var url_next=discuss_list.find('a').eq(index+1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+			var url_next=discuss_list.find('a').eq(index+1).find('.linkElement').attr('src');
+			$('#dM-next-m2').find('img').attr("src",url_next);
+			$('#dM-next-m2').find('img').attr("height","100px");
+			$('#dM-next-m2').find('img').attr("width","100px");
+		}else if (discuss_list.find('a').eq(index+1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-next-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+			$('#dM-next-m2').find('img').attr("height","100px");
+			$('#dM-next-m2').find('img').attr("width","100px");
+		}
+		
+		$('#dM-next-m1').show();
+		$('#dM-next-m2').show();
+		$('#dM-prev-m1').hide();
+		$('#dM-prev-m2').hide();
+	}
+	$('#media-row2').css({'display':'block'});
+	if(obj.find('.montageElement')){
+	//alert(1);
+	}
+	
+	$('.button-btn').css({'display':'none'}); //--19 Dec
+	//$('#saveMontage').css({'display': 'none'}); //--20 Dec
+	var mediaElements = $('#discuss_elements');
+	var body = $("html, body");
+	var bodyClass = $('body');
+	var currentPageClass = bodyClass.data('page-class');
+	var holderAct = $('.holder-act');
+	$('.ticked').hide()
+	console.log("ticked disabled")
+	// Remove masonry elements and show page act
+	mediaElements.fadeOut(400,function(){					
+		holderAct.fadeIn(function(){
+			// modified by parul to changr body padding 13012015
+			//$('body').css('padding-top')=$('body').css('padding-top')-
+			//var bodyHeight=parseInt(($("body").css('padding-top')).replace("px",""),10);
+			//bodyHeight=bodyHeight-43;
+			//bodyHeight=234-43;
+			//$("body").css({'padding-top':bodyHeight+'px'});
+			//$('#filterbar').find('a').hide();	
+		});
+		$('#media_advanced').show();
+		//code added to show hide media rows
+		//parul 24 dec
+		//if (obj.find(".montageContent").attr('class')) {
+		//	//alert(1);
+		//$('.media-row').hide()
+		//}else{
+		//	//alert(2);
+		//	$('.media-row').show()
+		//}
+		//$('#media-row1').hide()
+		//end
+		media=true;
+		media_from="discuss";
+		if (obj.find(".montageContent").attr('class')) {
+			//$('#media-row1').hide()
+			$('.holder_bulb').css({'width':'444px'});
+			var data=obj.find('.montageContent').html();
+			$('.holder_bulb').html($('<div/>').html(data).text());
+			$('.holder_bulb').find('li').attr("onClick","montageObject.gsView($(this))");
+			// commented by gaurav 5 jan2015
+			//var gridster_bulb = $(".holder_bulb ul").gridster({
+			//	widget_margins: [1, 1],
+			//	widget_base_dimensions: ['98', '98'],
+			//	autogenerate_stylesheet: true,
+			//	resize: {
+			//		enabled: false
+			//	}
+			//});
+			//
+			//gridster_bulb.gridster().data('gridster').disable();
+			$('.s-media-con').hide();
+			$('.d-media-con').hide();
+		}//end
+		else if (obj.find(".noteContent").attr('class')) {
+			//$('#media-row1').hide()
+			var data=obj.find('.noteContent').html();
+			$('.holder_bulb').html('<div id="noteContainer">'+$('<div/>').html(data).text()+'</div>');
+			//$('.holder_bulb').find('li').attr("onClick","montageObject.gsView($(this))");
+			// commented by gaurav 5 jan2015
+			//var gridster_bulb = $(".holder_bulb ul").gridster({
+			//	widget_margins: [1, 1],
+			//	widget_base_dimensions: ['98', '98'],
+			//	autogenerate_stylesheet: true,
+			//	resize: {
+			//		enabled: false
+			//	}
+			//});
+			//
+			//gridster_bulb.gridster().data('gridster').disable();
+			$('.s-media-con').hide();
+			$('.d-media-con').hide();
+		}//end
+		//added by parul 25 dec
+		//parul 20032015=======Start
+        else if(obj.find('.videoContent').is('p')){
+            //alert('video clicked');
+			$('.holder_bulb').html('<div class="video-box"><video class="media_video" controls ><'+obj.find('.videoContent').html()+'></video></div>');
+			var whichBrowser = BrowserDetecter.whichBrowser();
+			var videoSrc = $('.holder_bulb').find('source').attr('src');
+			//alert(videoSrc);
+			var ext = videoSrc.split('.').pop();
+			
+			if (whichBrowser == "FireFox") {
+			  if ( ext.toUpperCase() != 'WEBM' ) {
+				videoSrc = videoSrc.replace('.'+ext,'.webm');
+			  }
+			}
+			else if (whichBrowser == 'Safari') {
+			  if ( ext.toUpperCase() != 'MP4' ) {
+				videoSrc = videoSrc.replace('.'+ext,'.mp4');	
+			  }
+			}
+			else{
+			  if ( ext.toUpperCase() != 'MP4' ) {
+				videoSrc = videoSrc.replace('.'+ext,'.mp4');	
+			  }
+			}
+            $('.holder_bulb').find('source').attr('src', videoSrc);
+			
+			var ext = videoSrc.split('.').pop();
+			$('.s-media-con').hide();
+            $('.d-media-con').hide();
+            media_type="text";
+        }
+		else if(obj.find('.audioContent').is('p')){
+            //alert('audio clicked');
+			$('.holder_bulb').html('<video class="media_video" controls poster="../assets/img/audio-recording-thumb.jpg"><'+obj.find('.audioContent').html()+'></video>');
+			var whichBrowser = BrowserDetecter.whichBrowser();
+			var audioSrc = $('.holder_bulb').find('source').attr('src');
+			//alert(audioSrc);
+			var ext = audioSrc.split('.').pop();
+			audioSrc = audioSrc.replace('.'+ext,'.mp3');	
+			$('.holder_bulb').find('source').attr('src', audioSrc);
+			
+			var ext = audioSrc.split('.').pop();
+			$('.s-media-con').hide();
+            $('.d-media-con').hide();
+            media_type="text";
+        }
+		//parul 20032015===========Ends
+		else if (obj.find(".linkContent").attr('class')) {
+                    //$('.media-row').hide()
+					var data=obj.find('.linkContent').html();
+					$('.holder_bulb').html("<div id='iframeContainer' class='holder_bulb_iframe'></div>")
+					$('#iframeContainer').append($('<div/>').html(data).text());
+					$('.s-media-con').hide();
+					$('.d-media-con').hide();
+		}//end
+		else if (obj.find(".linkContent").attr('class')) {
+			//$('.media-row').hide() 
+			var data=obj.find('.linkContent').html();
+			$('.holder_bulb').html("<div id='iframeContainer' class='holder_bulb_iframe'></div>")
+			$('#iframeContainer').append($('<div/>').html(data).text());
+			$('.s-media-con').hide();
+			$('.d-media-con').hide();
+		}
+		else if (typeof(obj.find('.media_img').attr('src'))=='string') {
+			
+			//$('.holder_bulb').html('<img src="'+obj.find('.media_img').attr('src')+'">');
+			
+		/*-----remove medium from img url---15Jan15--*/
+			var orgUrl = obj.find('.media_img').attr('src');			
+			//var n = str400.search("/"+medium__thumbnail);
+			//if(n>=0){
+			//	var str400 = str400.replace("/"+medium__thumbnail, "");
+			//}
+			var thumbSize = "/"+medium__thumbnail;
+			var replaceWith="";
+			imgStr = getResizedThumbnail(orgUrl,thumbSize,replaceWith);
+			$('.holder_bulb').html('<img src="'+imgStr+'">');
+		/*-----end------*/
+			$('.s-media-con').hide();
+			$('.d-media-con').hide();
+			media_type="visual";
+		}
+		else if(obj.find('.text_wrap_index').html()){
+			console.log('else if');
+			$('.holder_bulb').html(obj.find('.text_wrap_index').html());
+			$('.s-media-con').hide();
+			$('.d-media-con').hide();
+			media_type="text";
+		}
+		else{
+			console.log('else');
+			$('.holder_bulb').html('<video controls>'+obj.find('.media_video').html()+'</video>');
+			$('.s-media-con').hide();
+			$('.d-media-con').hide();
+		}
+		// Hide filter sidebar, if clicked, for remove his height from DOM
+		$('.filterMenu-sidebar').hide();
+	});
+	// hide all icons, except search
+	//$('#filterbar').find('a').filter(':not(.searchBar)').hide();
+	//$('#filterbar').find('a').hide();
+	
+	// init redactor
+
+	// add placeholder for redactor
+	holderAct.find('.wrapper-redactor .redactor_editor').on('focus',function(e){
+		$(this).parents('.wrapper-redactor').addClass('focus');
+	});
+	holderAct.find('.wrapper-redactor .redactor_editor').on('blur',function(e){
+		$(this).parents('.wrapper-redactor').removeClass('focus');
+	});
+	return false;
+	
+	//code from clicked function---end
+	
+}
+
+//function edited by parul
+//this is the function to open ACT page in discuss.
+/*
+function clicked(obj,event){
+	obj.attr("href","javascript:void(0)");// 10-2-15
+	$('.i-ico5').show(); // delete button on view discuss media
+	$('#dM-prev-m2').find('img').attr("src","");
+	$('#dM-next-m2').find('img').attr("src","");
+	var index=parseInt($(obj).attr("name"),10);
+	console.log('clicked function');
+	console.log(obj);
+	if ($(obj).attr("name")>0 && (parseInt($(obj).attr("name"),10)+1)<discuss_list.find('a').length) {
+		
+		//-------------------------------alert('case center');
+		//alert('case center');
+		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+		if ($('.col-sm-6').find('a').eq(index+1).find('.media_img').is("img")) {
+			//alert('1');
+			var url_next=$('.col-sm-6').find('a').eq(index+1).find('.media_img').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+			$('#dM-next-m2').find('img').attr("src",url_next);
+		}else if($('.col-sm-6').find('a').eq(index+1).find('.linkElement').is("img")){
+			//var url_next=$('.col-sm-6').find('a').eq(index+1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+			var url_next=$('.col-sm-6').find('a').eq(index+1).find('.linkElement').attr('src');
+			$('#dM-next-m2').find('img').attr("src",url_next);
+			$('#dM-next-m2').find('img').attr("height","100px");
+			$('#dM-next-m2').find('img').attr("width","100px");
+		}else if ($('.col-sm-6').find('a').eq(index+1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-next-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+			$('#dM-next-m2').find('img').attr("height","100px");
+			$('#dM-next-m2').find('img').attr("width","100px");
+		}
+		if ($('.col-sm-6').find('a').eq(index-1).find('.media_img').is("img")) {
+			//alert(2);
+			var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.media_img').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+			$('#dM-prev-m2').find('img').attr("src",url_prev);
+		}else if($('.col-sm-6').find('a').eq(index-1).find('.linkElement').is("img")){
+			//var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+			var url_next=$('.col-sm-6').find('a').eq(index+1).find('.linkElement').attr('src');
+			$('#dM-prev-m2').find('img').attr("src",url_prev);
+			$('#dM-prev-m2').find('img').attr("height","100px");
+			$('#dM-prev-m2').find('img').attr("width","100px");
+		}else if ($('.col-sm-6').find('a').eq(index-1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-prev-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+			$('#dM-prev-m2').find('img').attr("height","100px");
+			$('#dM-prev-m2').find('img').attr("width","100px");
+		}
+		
+		$('#dM-next-m1').show();
+		$('#dM-next-m2').show();
+		$('#dM-prev-m1').show();
+		$('#dM-prev-m2').show();
+	}
+	else if (parseInt($(obj).attr("name"),10)==0 && ($('.col-sm-6').find('a').length==1)) {
+		
+		//--------------alert('case only one');
+		//alert('case only one');
+		$('#dM-next-m1').hide();
+		$('#dM-next-m2').hide();
+		$('#dM-prev-m1').hide();
+		$('#dM-prev-m2').hide();
+	}
+	else if ((parseInt($(obj).attr("name"),10)+1)==$('.col-sm-6').find('a').length) {
+		
+		//=============================alert('case last');
+		//alert('case last');
+		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+		
+		if ($('.col-sm-6').find('a').eq(index-1).find('.media_img').is("img")) {
+			var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.media_img').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+			$('#dM-prev-m2').find('img').attr("src",url_prev);
+		}else if($('.col-sm-6').find('a').eq(index-1).find('.linkElement').is("img")){
+			//var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+			var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.linkElement').attr('src');
+			$('#dM-prev-m2').find('img').attr("src",url_prev);
+			$('#dM-prev-m2').find('img').attr("height","100px");
+			$('#dM-prev-m2').find('img').attr("width","100px");
+		}else if ($('.col-sm-6').find('a').eq(index-1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-prev-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+			$('#dM-prev-m2').find('img').attr("height","100px");
+			$('#dM-prev-m2').find('img').attr("width","100px");
+		}
+		
+		$('#dM-next-m1').hide();
+		$('#dM-next-m2').hide();
+		$('#dM-prev-m1').show();
+		$('#dM-prev-m2').show();
+	}
+	else if ((parseInt($(obj).attr("name"),10))==0) {
+		//alert('case first');
+		//alert('case first');
+		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+		
+		if ($('.col-sm-6').find('a').eq(index-1).find('.media_img').is("img")) {
+			var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.media_img').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+			$('#dM-prev-m2').find('img').attr("src",url_prev);
+		}else if($('.col-sm-6').find('a').eq(index+1).find('.linkElement').is("img")){
+			//var url_next=$('.col-sm-6').find('a').eq(index+1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+			var url_next=$('.col-sm-6').find('a').eq(index+1).find('.linkElement').attr('src');
+			$('#dM-next-m2').find('img').attr("src",url_next);
+			$('#dM-next-m2').find('img').attr("height","100px");
+			$('#dM-next-m2').find('img').attr("width","100px");
+		}else if ($('.col-sm-6').find('a').eq(index+1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-next-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+			$('#dM-next-m2').find('img').attr("height","100px");
+			$('#dM-next-m2').find('img').attr("width","100px");
+		}
+		
+		$('#dM-next-m1').show();
+		$('#dM-next-m2').show();
+		$('#dM-prev-m1').hide();
+		$('#dM-prev-m2').hide();
+	}
+	$('#media-row2').css({'display':'block'});
+	if(obj.find('.montageElement')){
+	//alert(1);
+	}
+	
+	$('.button-btn').css({'display':'none'}); //--19 Dec
+	//$('#saveMontage').css({'display': 'none'}); //--20 Dec
+	var mediaElements = $('#discuss_elements');
+	var body = $("html, body");
+	var bodyClass = $('body');
+	var currentPageClass = bodyClass.data('page-class');
+	var holderAct = $('.holder-act');
+	$('.ticked').hide()
+	console.log("ticked disabled")
+	// Remove masonry elements and show page act
+	mediaElements.fadeOut(400,function(){					
+		holderAct.fadeIn(function(){
+			// modified by parul to changr body padding 13012015
+			//$('body').css('padding-top')=$('body').css('padding-top')-
+			//var bodyHeight=parseInt(($("body").css('padding-top')).replace("px",""),10);
+			//bodyHeight=bodyHeight-43;
+			bodyHeight=234-43;
+			$("body").css({'padding-top':bodyHeight+'px'});
+			$('#filterbar').find('a').hide();	
+		});
+		$('#media_advanced').show();
+		//code added to show hide media rows
+		//parul 24 dec
+		//if (obj.find(".montageContent").attr('class')) {
+		//	//alert(1);
+		//$('.media-row').hide()
+		//}else{
+		//	//alert(2);
+		//	$('.media-row').show()
+		//}
+		//$('#media-row1').hide()
+		//end
+		media=true;
+		media_from="discuss";
+		if (obj.find(".montageContent").attr('class')) {
+			//$('#media-row1').hide()
+			var data=obj.find('.montageContent').html();
+			$('.holder_bulb').html($('<div/>').html(data).text());
+			$('.holder_bulb').find('li').attr("onClick","montageObject.gsView($(this))");
+			// commented by gaurav 5 jan2015
+			//var gridster_bulb = $(".holder_bulb ul").gridster({
+			//	widget_margins: [1, 1],
+			//	widget_base_dimensions: ['98', '98'],
+			//	autogenerate_stylesheet: true,
+			//	resize: {
+			//		enabled: false
+			//	}
+			//});
+			//
+			//gridster_bulb.gridster().data('gridster').disable();
+			$('.s-media-con').hide();
+			$('.d-media-con').hide();
+		}//end
+		//added by parul 25 dec
+		else if (obj.find(".linkContent").attr('class')) {
+                    //$('.media-row').hide()
+					var data=obj.find('.linkContent').html();
+					$('.holder_bulb').html("<div id='iframeContainer' class='holder_bulb_iframe'></div>")
+					$('#iframeContainer').append($('<div/>').html(data).text());
+					$('.s-media-con').hide();
+					$('.d-media-con').hide();
+		}//end
+		else if (obj.find(".linkContent").attr('class')) {
+			//$('.media-row').hide() 
+			var data=obj.find('.linkContent').html();
+			$('.holder_bulb').html("<div id='iframeContainer' class='holder_bulb_iframe'></div>")
+			$('#iframeContainer').append($('<div/>').html(data).text());
+			$('.s-media-con').hide();
+			$('.d-media-con').hide();
+		}
+		else if (typeof(obj.find('.media_img').attr('src'))=='string') {
+			
+			//$('.holder_bulb').html('<img src="'+obj.find('.media_img').attr('src')+'">');
+			
+		//-----remove medium from img url---15Jan15--
+			//var orgUrl = obj.find('.media_img').attr('src');	//20022015		
+			//var n = str400.search("/"+medium__thumbnail);
+			//if(n>=0){
+			//	var str400 = str400.replace("/"+medium__thumbnail, "");
+			//}
+			//var thumbSize = "/"+discuss__thumbnail; //20022015
+			//var replaceWith="/"+large__thumbnail; //20022015
+			//alert(discuss__thumbnail)
+			//imgStr = getResizedThumbnail(orgUrl,thumbSize,replaceWith);	//20022015
+			imgStr = obj.find('.media_img').attr('src');	//20022015
+			$('.holder_bulb').html('<img src="'+imgStr+'">');
+		///-----end------
+			$('.s-media-con').hide();
+			$('.d-media-con').hide();
+			media_type="visual";
+		}
+		else if(obj.find('.text_wrap_index').html()){
+			console.log('else if');
+			$('.holder_bulb').html(obj.find('.text_wrap_index').html());
+			$('.s-media-con').hide();
+			$('.d-media-con').hide();
+			media_type="text";
+		}
+		else{
+			console.log('else');
+			$('.holder_bulb').html('<video controls>'+obj.find('.media_video').html()+'</video>');
+			$('.s-media-con').hide();
+			$('.d-media-con').hide();
+		}
+		// Hide filter sidebar, if clicked, for remove his height from DOM
+		$('.filterMenu-sidebar').hide();
+	});
+	// hide all icons, except search
+	//$('#filterbar').find('a').filter(':not(.searchBar)').hide();
+	//$('#filterbar').find('a').hide();
+	
+	// init redactor
+
+	// add placeholder for redactor
+	holderAct.find('.wrapper-redactor .redactor_editor').on('focus',function(e){
+		$(this).parents('.wrapper-redactor').addClass('focus');
+	});
+	holderAct.find('.wrapper-redactor .redactor_editor').on('blur',function(e){
+		$(this).parents('.wrapper-redactor').removeClass('focus');
+	});
+	
+	
+	
+	return false;
+}
+*/
+//function edited by parul
+//this is the function to open ACT page in discuss.
+//function clicked(obj,event){
+//    obj.attr("href","javascript:void(0)");// 10-2-15
+//    $('.i-ico5').show(); // delete button on view discuss media
+//    $('#dM-prev-m2').find('img').attr("src","");
+//    $('#dM-next-m2').find('img').attr("src","");
+//    var index=parseInt($(obj).attr("name"),10);
+//    console.log('clicked function');
+//    console.log(obj);
+//    if ($(obj).attr("name")>0 && (parseInt($(obj).attr("name"),10)+1)<$('.col-sm-6').find('a').length) {
+//
+//        //-------------------------------alert('case center');
+//        //alert('case center');
+//		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+//		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+//		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+//		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+//        if ($('.col-sm-6').find('a').eq(index+1).find('.media_img').is("img")) {
+//            //alert('1');
+//            var url_next=$('.col-sm-6').find('a').eq(index+1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+//            $('#dM-next-m2').find('img').attr("src",url_next);
+//        }else if($('.col-sm-6').find('a').eq(index+1).find('.linkElement').is("img")){
+//            //var url_next=$('.col-sm-6').find('a').eq(index+1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+//            var url_next=$('.col-sm-6').find('a').eq(index+1).find('.linkElement').attr('src');
+//            $('#dM-next-m2').find('img').attr("src",url_next);
+//            $('#dM-next-m2').find('img').attr("height","100px");
+//            $('#dM-next-m2').find('img').attr("width","100px");
+//        }else if ($('.col-sm-6').find('a').eq(index+1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+//			$('#dM-next-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+//            $('#dM-next-m2').find('img').attr("height","100px");
+//            $('#dM-next-m2').find('img').attr("width","100px");
+//        }
+//        if ($('.col-sm-6').find('a').eq(index-1).find('.media_img').is("img")) {
+//            //alert(2);
+//            var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+//            $('#dM-prev-m2').find('img').attr("src",url_prev);
+//        }else if($('.col-sm-6').find('a').eq(index-1).find('.linkElement').is("img")){
+//            //var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+//            var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.linkElement').attr('src');
+//            $('#dM-prev-m2').find('img').attr("src",url_prev);
+//            $('#dM-prev-m2').find('img').attr("height","100px");
+//            $('#dM-prev-m2').find('img').attr("width","100px");
+//        }else if ($('.col-sm-6').find('a').eq(index-1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+//			$('#dM-prev-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+//            $('#dM-prev-m2').find('img').attr("height","100px");
+//            $('#dM-prev-m2').find('img').attr("width","100px");
+//        }
+//
+//        $('#dM-next-m1').show();
+//        $('#dM-next-m2').show();
+//        $('#dM-prev-m1').show();
+//        $('#dM-prev-m2').show();
+//    }
+//    else if (parseInt($(obj).attr("name"),10)==0 && ($('.col-sm-6').find('a').length==1)) {
+//
+//        //--------------alert('case only one');
+//        //alert('case only one');
+//        $('#dM-next-m1').hide();
+//        $('#dM-next-m2').hide();
+//        $('#dM-prev-m1').hide();
+//        $('#dM-prev-m2').hide();
+//    }
+//    else if ((parseInt($(obj).attr("name"),10)+1)==$('.col-sm-6').find('a').length) {
+//
+//        //=============================alert('case last');
+//        //alert('case last');
+//		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+//		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+//		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+//		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+//
+//        if ($('.col-sm-6').find('a').eq(index-1).find('.media_img').is("img")) {
+//            var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+//            $('#dM-prev-m2').find('img').attr("src",url_prev);
+//        }else if($('.col-sm-6').find('a').eq(index-1).find('.linkElement').is("img")){
+//            //var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+//            var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.linkElement').attr('src');
+//            $('#dM-prev-m2').find('img').attr("src",url_prev);
+//            $('#dM-prev-m2').find('img').attr("height","100px");
+//            $('#dM-prev-m2').find('img').attr("width","100px");
+//        }else if ($('.col-sm-6').find('a').eq(index-1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+//			$('#dM-prev-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+//            $('#dM-prev-m2').find('img').attr("height","100px");
+//            $('#dM-prev-m2').find('img').attr("width","100px");
+//        }
+//
+//        $('#dM-next-m1').hide();
+//        $('#dM-next-m2').hide();
+//        $('#dM-prev-m1').show();
+//        $('#dM-prev-m2').show();
+//    }
+//    else if ((parseInt($(obj).attr("name"),10))==0) {
+//        //alert('case first');
+//        //alert('case first');
+//		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+//		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+//		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+//		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+//
+//        if ($('.col-sm-6').find('a').eq(index+1).find('.media_img').is("img")) {
+//            var url_next=$('.col-sm-6').find('a').eq(index+1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+//            $('#dM-next-m2').find('img').attr("src",url_next);
+//        }else if($('.col-sm-6').find('a').eq(index+1).find('.linkElement').is("img")){
+//            //var url_next=$('.col-sm-6').find('a').eq(index+1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+//            var url_next=$('.col-sm-6').find('a').eq(index+1).find('.linkElement').attr('src');
+//            $('#dM-next-m2').find('img').attr("src",url_next);
+//            $('#dM-next-m2').find('img').attr("height","100px");
+//            $('#dM-next-m2').find('img').attr("width","100px");
+//        }else if ($('.col-sm-6').find('a').eq(index+1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+//			$('#dM-next-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+//            $('#dM-next-m2').find('img').attr("height","100px");
+//            $('#dM-next-m2').find('img').attr("width","100px");
+//        }
+//
+//        $('#dM-next-m1').show();
+//        $('#dM-next-m2').show();
+//        $('#dM-prev-m1').hide();
+//        $('#dM-prev-m2').hide();
+//    }
+//    $('#media-row2').css({'display':'block'});
+//    if(obj.find('.montageElement')){
+//    //alert(1);
+//    }
+//
+//    $('.button-btn').css({'display':'none'}); //--19 Dec
+//    //$('#saveMontage').css({'display': 'none'}); //--20 Dec
+//    var mediaElements = $('#discuss_elements');
+//    var body = $("html, body");
+//    var bodyClass = $('body');
+//    var currentPageClass = bodyClass.data('page-class');
+//    var holderAct = $('.holder-act');
+//    $('.ticked').hide()
+//    console.log("ticked disabled")
+//    // Remove masonry elements and show page act
+//    mediaElements.fadeOut(400,function(){
+//        holderAct.fadeIn(function(){
+//            // modified by parul to changr body padding 13012015
+////$('body').css('padding-top')=$('body').css('padding-top')-
+//            //var bodyHeight=parseInt(($("body").css('padding-top')).replace("px",""),10);
+//            //bodyHeight=bodyHeight-43;
+//            bodyHeight=234-43;
+//            $("body").css({'padding-top':bodyHeight+'px'});
+//            $('#filterbar').find('a').hide();
+//        });
+//        $('#media_advanced').show();
+//        //code added to show hide media rows
+//        //parul 24 dec
+//        //if (obj.find(".montageContent").attr('class')) {
+//        //    //alert(1);
+//        //$('.media-row').hide()
+//        //}else{
+//        //    //alert(2);
+//        //    $('.media-row').show()
+//        //}
+//        //$('#media-row1').hide()
+//        //end
+//        media=true;
+//        media_from="discuss";
+//        if (obj.find(".montageContent").attr('class')) {
+//            //$('#media-row1').hide()
+//            var data=obj.find('.montageContent').html();
+//			$('.holder_bulb').html($('<div/>').html(data).text());
+//			$('.holder_bulb').find('li').attr("onClick","montageObject.gsView($(this))");
+//            // commented by gaurav 5 jan2015
+//            //var gridster_bulb = $(".holder_bulb ul").gridster({
+//            //    widget_margins: [1, 1],
+//            //    widget_base_dimensions: ['98', '98'],
+//            //    autogenerate_stylesheet: true,
+//            //    resize: {
+//            //        enabled: false
+//            //    }
+//            //});
+//            //
+//            //gridster_bulb.gridster().data('gridster').disable();
+//            $('.s-media-con').hide();
+//            $('.d-media-con').hide();
+//        }//end
+//        //added by parul 25 dec
+//        else if (obj.find(".linkContent").attr('class')) {
+//                    //$('.media-row').hide()
+//                    var data=obj.find('.linkContent').html();
+//                    $('.holder_bulb').html("<div id='iframeContainer' class='holder_bulb_iframe'></div>")
+//					$('#iframeContainer').append($('<div/>').html(data).text());
+//                    $('.s-media-con').hide();
+//                    $('.d-media-con').hide();
+//        }//end
+//        else if (obj.find(".linkContent").attr('class')) {
+//            //$('.media-row').hide()
+//            var data=obj.find('.linkContent').html();
+//            $('.holder_bulb').html("<div id='iframeContainer' class='holder_bulb_iframe'></div>")
+//			$('#iframeContainer').append($('<div/>').html(data).text());
+//            $('.s-media-con').hide();
+//            $('.d-media-con').hide();
+//        }
+//        else if (typeof(obj.find('.media_img').attr('src'))=='string') {
+//
+//            //$('.holder_bulb').html('<img src="'+obj.find('.media_img').attr('src')+'">');
+//
+//        /*-----remove medium from img url---15Jan15--*/
+//            //var orgUrl = obj.find('.media_img').attr('src'); //20022015
+//            //var n = str400.search("/"+medium__thumbnail);
+//            //if(n>=0){
+//            //    var str400 = str400.replace("/"+medium__thumbnail, "");
+//            //}
+//            //var thumbSize = "/"+discuss__thumbnail; //20022015
+//            //var replaceWith="/"+large__thumbnail; //20022015
+//            //alert(discuss__thumbnail)
+//            //imgStr = getResizedThumbnail(orgUrl,thumbSize,replaceWith);    //20022015
+//            imgStr = obj.find('.media_img').attr('src'); //20022015
+//            $('.holder_bulb').html('<img src="'+imgStr+'">');
+//        /*-----end------*/
+//            $('.s-media-con').hide();
+//            $('.d-media-con').hide();
+//            media_type="visual";
+//        }
+//        else if(obj.find('.text_wrap_index').html()){
+//            console.log('else if');
+//			$('.holder_bulb').html(obj.find('.text_wrap_index').html());
+//            $('.s-media-con').hide();
+//            $('.d-media-con').hide();
+//            media_type="text";
+//        }
+//        else{
+//            console.log('else');
+//
+//            var videoInnerHtml = obj.find('.media_video').html();
+//            var whichBrowser = BrowserDetecter.whichBrowser()
+//            //alert("whichBrowser = "+whichBrowser);
+//            //if (whichBrowser == 'Safari') {
+//            //    //either false or updated innerHtml - .webm to .mp4
+//            //    var videoInnerHtml = videoInnerHtml.replaceAll('.webm','.mp4');
+//            //    //videoInnerHtml = videoInnerHtml.replace('.webm','.mp4');
+//            //    alert("videoInnerHtml = "+videoInnerHtml);
+//            //}
+//            //if (whichBrowser == 'FireFox') {
+//            //    //either false or updated innerHtml - .webm to .mp4
+//            //    var videoInnerHtml = videoInnerHtml.replace('.webm','.mp4');
+//            //    alert("videoInnerHtml = "+videoInnerHtml);
+//            //}
+//            $('.holder_bulb').html('<video controls>'+videoInnerHtml+'</video>');
+//            $('.s-media-con').hide();
+//            $('.d-media-con').hide();
+//        }
+//        // Hide filter sidebar, if clicked, for remove his height from DOM
+//        $('.filterMenu-sidebar').hide();
+//    });
+//    // hide all icons, except search
+//    //$('#filterbar').find('a').filter(':not(.searchBar)').hide();
+//    //$('#filterbar').find('a').hide();
+//
+//    // init redactor
+//
+//    // add placeholder for redactor
+//    holderAct.find('.wrapper-redactor .redactor_editor').on('focus',function(e){
+//        $(this).parents('.wrapper-redactor').addClass('focus');
+//    });
+//    holderAct.find('.wrapper-redactor .redactor_editor').on('blur',function(e){
+//        $(this).parents('.wrapper-redactor').removeClass('focus');
+//    });
+//
+//
+//
+//    return false;
+//}
+//function edited by parul
+//this is the function to open ACT page in discuss.
+function clicked(obj,event){
+	var scope36 = angular.element($(".search-view")).scope();
+	scope36.__isMontagePrivate = false;
+	scope36 = null;
+    obj.attr("href","javascript:void(0)");// 10-2-15
+    $('.i-ico5').show(); // delete button on view discuss media
+    $('#dM-prev-m2').find('img').attr("src","");
+    $('#dM-next-m2').find('img').attr("src","");
+	var discuss_list = $('.col-xs-4');
+    var index=parseInt($(obj).attr("name"),10);
+    console.log('clicked function');
+	console.log(index)
+    console.log(obj);
+    if ($(obj).attr("name")>0 && (parseInt($(obj).attr("name"),10)+1)<discuss_list.find('a').length) {
+
+        //-------------------------------alert('case center');
+        //alert('case center');
+		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+        if (discuss_list.find('a').eq(index+1).find('.media_img').is("img")) {
+            //alert('1');
+            var url_next=discuss_list.find('a').eq(index+1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+            $('#dM-next-m2').find('img').attr("src",url_next);
+        }else if(discuss_list.find('a').eq(index+1).find('.linkElement').is("img")){
+            //var url_next=discuss_list.find('a').eq(index+1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+            var url_next=discuss_list.find('a').eq(index+1).find('.linkElement').attr('src');
+            $('#dM-next-m2').find('img').attr("src",url_next);
+            $('#dM-next-m2').find('img').attr("height","100px");
+            $('#dM-next-m2').find('img').attr("width","100px");
+        }else if (discuss_list.find('a').eq(index+1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-next-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+            $('#dM-next-m2').find('img').attr("height","100px");
+            $('#dM-next-m2').find('img').attr("width","100px");
+        }
+        if (discuss_list.find('a').eq(index-1).find('.media_img').is("img")) {
+            //alert(2);
+            var url_prev=discuss_list.find('a').eq(index-1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+            $('#dM-prev-m2').find('img').attr("src",url_prev);
+        }else if(discuss_list.find('a').eq(index-1).find('.linkElement').is("img")){
+            //var url_prev=discuss_list.find('a').eq(index-1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+            var url_prev=discuss_list.find('a').eq(index-1).find('.linkElement').attr('src');
+            $('#dM-prev-m2').find('img').attr("src",url_prev);
+            $('#dM-prev-m2').find('img').attr("height","100px");
+            $('#dM-prev-m2').find('img').attr("width","100px");
+        }else if (discuss_list.find('a').eq(index-1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-prev-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+            $('#dM-prev-m2').find('img').attr("height","100px");
+            $('#dM-prev-m2').find('img').attr("width","100px");
+        }
+
+        $('#dM-next-m1').show();
+        $('#dM-next-m2').show();
+        $('#dM-prev-m1').show();
+        $('#dM-prev-m2').show();
+    }
+    else if (parseInt($(obj).attr("name"),10)==0 && (discuss_list.find('a').length==1)) {
+
+        //--------------alert('case only one');
+        //alert('case only one');
+        $('#dM-next-m1').hide();
+        $('#dM-next-m2').hide();
+        $('#dM-prev-m1').hide();
+        $('#dM-prev-m2').hide();
+    }
+    else if ((parseInt($(obj).attr("name"),10)+1)==discuss_list.find('a').length) {
+
+        //=============================alert('case last');
+        //alert('case last');
+		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+
+        if (discuss_list.find('a').eq(index-1).find('.media_img').is("img")) {
+            var url_prev=discuss_list.find('a').eq(index-1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+            $('#dM-prev-m2').find('img').attr("src",url_prev);
+        }else if(discuss_list.find('a').eq(index-1).find('.linkElement').is("img")){
+            //var url_prev=discuss_list.find('a').eq(index-1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+            var url_prev=discuss_list.find('a').eq(index-1).find('.linkElement').attr('src');
+            $('#dM-prev-m2').find('img').attr("src",url_prev);
+            $('#dM-prev-m2').find('img').attr("height","100px");
+            $('#dM-prev-m2').find('img').attr("width","100px");
+        }else if (discuss_list.find('a').eq(index-1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-prev-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+            $('#dM-prev-m2').find('img').attr("height","100px");
+            $('#dM-prev-m2').find('img').attr("width","100px");
+        }
+
+        $('#dM-next-m1').hide();
+        $('#dM-next-m2').hide();
+        $('#dM-prev-m1').show();
+        $('#dM-prev-m2').show();
+    }
+    else if ((parseInt($(obj).attr("name"),10))==0) {
+        //alert('case first');
+        //alert('case first');
+		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+
+        if (discuss_list.find('a').eq(index+1).find('.media_img').is("img")) {
+            var url_next=discuss_list.find('a').eq(index+1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+            $('#dM-next-m2').find('img').attr("src",url_next);
+        }else if(discuss_list.find('a').eq(index+1).find('.linkElement').is("img")){
+            //var url_next=discuss_list.find('a').eq(index+1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+            var url_next=discuss_list.find('a').eq(index+1).find('.linkElement').attr('src');
+            $('#dM-next-m2').find('img').attr("src",url_next);
+            $('#dM-next-m2').find('img').attr("height","100px");
+            $('#dM-next-m2').find('img').attr("width","100px");
+        }else if (discuss_list.find('a').eq(index+1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-next-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+            $('#dM-next-m2').find('img').attr("height","100px");
+            $('#dM-next-m2').find('img').attr("width","100px");
+        }
+
+        $('#dM-next-m1').show();
+        $('#dM-next-m2').show();
+        $('#dM-prev-m1').hide();
+        $('#dM-prev-m2').hide();
+    }
+    $('#media-row2').css({'display':'block'});
+    if(obj.find('.montageElement')){
+    //alert(1);
+    }
+
+    $('.button-btn').css({'display':'none'}); //--19 Dec
+    //$('#saveMontage').css({'display': 'none'}); //--20 Dec
+    var mediaElements = $('#discuss_elements');
+    var body = $("html, body");
+    var bodyClass = $('body');
+    var currentPageClass = bodyClass.data('page-class');
+    var holderAct = $('.holder-act');
+    $('.ticked').hide()
+    console.log("ticked disabled")
+    // Remove masonry elements and show page act
+    mediaElements.fadeOut(400,function(){
+        holderAct.fadeIn(function(){
+            // modified by parul to changr body padding 13012015
+			//$('body').css('padding-top')=$('body').css('padding-top')-
+            //var bodyHeight=parseInt(($("body").css('padding-top')).replace("px",""),10);
+            //bodyHeight=bodyHeight-43;
+            bodyHeight=234-43;
+            //$("body").css({'padding-top':bodyHeight+'px'}); //commented by manishp 22042015
+			$('body').css({'background':'none repeat scroll 0 0 #181818'});  //for background color
+			$('body').css({'padding-top':'0px'});
+			
+			$('#filterbar').find('a').hide();
+        });
+        $('#media_advanced').show();
+        //code added to show hide media rows
+        //parul 24 dec
+        //if (obj.find(".montageContent").attr('class')) {
+        //    //alert(1);
+        //$('.media-row').hide()
+        //}else{
+        //    //alert(2);
+        //    $('.media-row').show()
+        //}
+        //$('#media-row1').hide()
+        //end
+        media=true;
+        media_from="discuss";
+        if (obj.find(".montageContent").attr('class')) {
+            //$('#media-row1').hide()
+            var data=obj.find('.montageContent').html();
+			$('.holder_bulb').html($('<div/>').html(data).text());
+			$('.holder_bulb').css({'width':'444px'});
+			$('.holder_bulb').find('li').attr("onClick","montageObject.gsView($(this))");
+            // commented by gaurav 5 jan2015
+            //var gridster_bulb = $(".holder_bulb ul").gridster({
+            //    widget_margins: [1, 1],
+            //    widget_base_dimensions: ['98', '98'],
+            //    autogenerate_stylesheet: true,
+            //    resize: {
+            //        enabled: false
+            //    }
+            //});
+            //
+            //gridster_bulb.gridster().data('gridster').disable();
+            $('.s-media-con').hide();
+            $('.d-media-con').hide();
+        }//end
+		else if (obj.find(".noteContent").attr('class')) {
+            var data=obj.find('.noteContent').html();
+			$('.holder_bulb').html('<div id="noteContainer">'+$('<div/>').html(data).text()+'</div>');
+            $('.s-media-con').hide();
+            $('.d-media-con').hide();
+        }//end
+		//parul 20032015=======Start
+        else if(obj.find('.videoContent').is('p')){
+            //alert('video clicked');
+			$('.holder_bulb').html('<div class="video-box"><video class="media_video" controls ><'+obj.find('.videoContent').html()+'></video></div>');
+			var whichBrowser = BrowserDetecter.whichBrowser();
+			var videoSrc = $('.holder_bulb').find('source').attr('src');
+			//alert(videoSrc);
+			var ext = videoSrc.split('.').pop();
+			
+			if (whichBrowser == "FireFox") {
+			  if ( ext.toUpperCase() != 'WEBM' ) {
+				videoSrc = videoSrc.replace('.'+ext,'.webm');
+			  }
+			}
+			else if (whichBrowser == 'Safari') {
+			  if ( ext.toUpperCase() != 'MP4' ) {
+				videoSrc = videoSrc.replace('.'+ext,'.mp4');	
+			  }
+			}
+			else{
+			  if ( ext.toUpperCase() != 'MP4' ) {
+				videoSrc = videoSrc.replace('.'+ext,'.mp4');	
+			  }
+			}
+            $('.holder_bulb').find('source').attr('src', videoSrc);
+			
+			var ext = videoSrc.split('.').pop();
+			$('.s-media-con').hide();
+            $('.d-media-con').hide();
+            media_type="text";
+        }
+		else if(obj.find('.audioContent').is('p')){
+            //alert('audio clicked');
+			$('.holder_bulb').html('<video class="media_video" controls poster="../assets/img/audio-recording-thumb.jpg"><'+obj.find('.audioContent').html()+'></video>');
+			var whichBrowser = BrowserDetecter.whichBrowser();
+			var audioSrc = $('.holder_bulb').find('source').attr('src');
+			
+			var ext = audioSrc.split('.').pop();
+			audioSrc = audioSrc.replace('.'+ext,'.mp3');
+			//console.log(audioSrc);
+			$('.holder_bulb').find('source').attr('src', audioSrc);
+			
+			var ext = audioSrc.split('.').pop();
+			$('.s-media-con').hide();
+            $('.d-media-con').hide();
+            media_type="text";
+        }
+		//parul 20032015===========Ends
+        //added by parul 25 dec
+        else if (obj.find(".linkContent").attr('class')) {
+                    //$('.media-row').hide()
+                    var data=obj.find('.linkContent').html();
+                    $('.holder_bulb').html("<div id='iframeContainer' class='holder_bulb_iframe'></div>")
+					$('#iframeContainer').append($('<div/>').html(data).text());
+                    $('.s-media-con').hide();
+                    $('.d-media-con').hide();
+        }//end
+		/*
+		else if (obj.find(".noteContent").attr('class')) {
+            //$('#media-row1').hide()
+            var data=obj.find('.noteContent').html();
+			$('.holder_bulb').html('<div id="noteContainer">'+$('<div/>').html(data).text()+'</div>');
+			
+            $('.s-media-con').hide();
+            $('.d-media-con').hide();
+        }
+        */
+        else if (obj.find(".linkContent").attr('class')) {
+            //$('.media-row').hide()
+            var data=obj.find('.linkContent').html();
+            $('.holder_bulb').html("<div id='iframeContainer' class='holder_bulb_iframe'></div>")
+			$('#iframeContainer').append($('<div/>').html(data).text());
+            $('.s-media-con').hide();
+            $('.d-media-con').hide();
+        }
+        else if (typeof(obj.find('.media_img').attr('src'))=='string') {
+
+            //$('.holder_bulb').html('<img src="'+obj.find('.media_img').attr('src')+'">');
+
+        /*-----remove medium from img url---15Jan15--*/
+            //var orgUrl = obj.find('.media_img').attr('src'); //20022015
+            //var n = str400.search("/"+medium__thumbnail);
+            //if(n>=0){
+            //    var str400 = str400.replace("/"+medium__thumbnail, "");
+            //}
+            //var thumbSize = "/"+discuss__thumbnail; //20022015
+            //var replaceWith="/"+large__thumbnail; //20022015
+            //alert(discuss__thumbnail)
+            //imgStr = getResizedThumbnail(orgUrl,thumbSize,replaceWith);    //20022015
+            imgStr = obj.find('.media_img').attr('src'); //20022015
+            $('.holder_bulb').html('<img src="'+imgStr+'">');
+        /*-----end------*/
+            $('.s-media-con').hide();
+            $('.d-media-con').hide();
+            media_type="visual";
+        }
+        else if(obj.find('.text_wrap_index').html()){
+            console.log('else if');
+			$('.holder_bulb').html(obj.find('.text_wrap_index').html());
+            $('.s-media-con').hide();
+            $('.d-media-con').hide();
+            media_type="text";
+        }
+		
+        else{
+            console.log('else');
+
+            var videoInnerHtml = obj.find('.media_video').html();
+            var whichBrowser = BrowserDetecter.whichBrowser()
+            //alert("whichBrowser = "+whichBrowser);
+            //if (whichBrowser == 'Safari') {
+            //    //either false or updated innerHtml - .webm to .mp4
+            //    var videoInnerHtml = videoInnerHtml.replaceAll('.webm','.mp4');
+            //    //videoInnerHtml = videoInnerHtml.replace('.webm','.mp4');
+            //    alert("videoInnerHtml = "+videoInnerHtml);
+            //}
+            //if (whichBrowser == 'FireFox') {
+            //    //either false or updated innerHtml - .webm to .mp4
+            //    var videoInnerHtml = videoInnerHtml.replace('.webm','.mp4');
+            //    alert("videoInnerHtml = "+videoInnerHtml);
+            //}
+            $('.holder_bulb').html('<video controls>'+videoInnerHtml+'</video>');
+            $('.s-media-con').hide();
+            $('.d-media-con').hide();
+        }
+        // Hide filter sidebar, if clicked, for remove his height from DOM
+        $('.filterMenu-sidebar').hide();
+    });
+    // hide all icons, except search
+    //$('#filterbar').find('a').filter(':not(.searchBar)').hide();
+    //$('#filterbar').find('a').hide();
+
+    // init redactor
+
+    // add placeholder for redactor
+    holderAct.find('.wrapper-redactor .redactor_editor').on('focus',function(e){
+        $(this).parents('.wrapper-redactor').addClass('focus');
+    });
+    holderAct.find('.wrapper-redactor .redactor_editor').on('blur',function(e){
+        $(this).parents('.wrapper-redactor').removeClass('focus');
+    });
+
+
+
+    return false;
+}
+
+
+
+//function edited by parul
+//this is the function to open ACT page in discuss.
+function clicked_old(obj,event){
+    obj.attr("href","javascript:void(0)");// 10-2-15
+    $('.i-ico5').show(); // delete button on view discuss media
+    $('#dM-prev-m2').find('img').attr("src","");
+    $('#dM-next-m2').find('img').attr("src","");
+    var index=parseInt($(obj).attr("name"),10);
+    console.log('clicked function');
+    console.log(obj);
+    if ($(obj).attr("name")>0 && (parseInt($(obj).attr("name"),10)+1)<$('.col-sm-6').find('a').length) {
+
+        //-------------------------------alert('case center');
+        //alert('case center');
+		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+        if ($('.col-sm-6').find('a').eq(index+1).find('.media_img').is("img")) {
+            //alert('1');
+            var url_next=$('.col-sm-6').find('a').eq(index+1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+            $('#dM-next-m2').find('img').attr("src",url_next);
+        }else if($('.col-sm-6').find('a').eq(index+1).find('.linkElement').is("img")){
+            //var url_next=$('.col-sm-6').find('a').eq(index+1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+            var url_next=$('.col-sm-6').find('a').eq(index+1).find('.linkElement').attr('src');
+            $('#dM-next-m2').find('img').attr("src",url_next);
+            $('#dM-next-m2').find('img').attr("height","100px");
+            $('#dM-next-m2').find('img').attr("width","100px");
+        }else if ($('.col-sm-6').find('a').eq(index+1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-next-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+            $('#dM-next-m2').find('img').attr("height","100px");
+            $('#dM-next-m2').find('img').attr("width","100px");
+        }
+        if ($('.col-sm-6').find('a').eq(index-1).find('.media_img').is("img")) {
+            //alert(2);
+            var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+            $('#dM-prev-m2').find('img').attr("src",url_prev);
+        }else if($('.col-sm-6').find('a').eq(index-1).find('.linkElement').is("img")){
+            //var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+            var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.linkElement').attr('src');
+            $('#dM-prev-m2').find('img').attr("src",url_prev);
+            $('#dM-prev-m2').find('img').attr("height","100px");
+            $('#dM-prev-m2').find('img').attr("width","100px");
+        }else if ($('.col-sm-6').find('a').eq(index-1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-prev-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+            $('#dM-prev-m2').find('img').attr("height","100px");
+            $('#dM-prev-m2').find('img').attr("width","100px");
+        }
+
+        $('#dM-next-m1').show();
+        $('#dM-next-m2').show();
+        $('#dM-prev-m1').show();
+        $('#dM-prev-m2').show();
+    }
+    else if (parseInt($(obj).attr("name"),10)==0 && ($('.col-sm-6').find('a').length==1)) {
+
+        //--------------alert('case only one');
+        //alert('case only one');
+        $('#dM-next-m1').hide();
+        $('#dM-next-m2').hide();
+        $('#dM-prev-m1').hide();
+        $('#dM-prev-m2').hide();
+    }
+    else if ((parseInt($(obj).attr("name"),10)+1)==$('.col-sm-6').find('a').length) {
+
+        //=============================alert('case last');
+        //alert('case last');
+		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+
+        if ($('.col-sm-6').find('a').eq(index-1).find('.media_img').is("img")) {
+            var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+            $('#dM-prev-m2').find('img').attr("src",url_prev);
+        }else if($('.col-sm-6').find('a').eq(index-1).find('.linkElement').is("img")){
+            //var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+            var url_prev=$('.col-sm-6').find('a').eq(index-1).find('.linkElement').attr('src');
+            $('#dM-prev-m2').find('img').attr("src",url_prev);
+            $('#dM-prev-m2').find('img').attr("height","100px");
+            $('#dM-prev-m2').find('img').attr("width","100px");
+        }else if ($('.col-sm-6').find('a').eq(index-1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-prev-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+            $('#dM-prev-m2').find('img').attr("height","100px");
+            $('#dM-prev-m2').find('img').attr("width","100px");
+        }
+
+        $('#dM-next-m1').hide();
+        $('#dM-next-m2').hide();
+        $('#dM-prev-m1').show();
+        $('#dM-prev-m2').show();
+    }
+    else if ((parseInt($(obj).attr("name"),10))==0) {
+        //alert('case first');
+        //alert('case first');
+		$('#dM-next-m1').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-next-m2').attr("onClick","mediaMove("+(index+1)+")");
+		$('#dM-prev-m1').attr("onClick","mediaMove("+(index-1)+")");
+		$('#dM-prev-m2').attr("onClick","mediaMove("+(index-1)+")");
+
+        if ($('.col-sm-6').find('a').eq(index+1).find('.media_img').is("img")) {
+            var url_next=$('.col-sm-6').find('a').eq(index+1).find('.media_img').attr('src').replace('/'+discuss__thumbnail,'/'+small__thumbnail);
+            $('#dM-next-m2').find('img').attr("src",url_next);
+        }else if($('.col-sm-6').find('a').eq(index+1).find('.linkElement').is("img")){
+            //var url_next=$('.col-sm-6').find('a').eq(index+1).find('.linkElement').attr('src').replace('/'+medium__thumbnail,'/'+small__thumbnail);
+            var url_next=$('.col-sm-6').find('a').eq(index+1).find('.linkElement').attr('src');
+            $('#dM-next-m2').find('img').attr("src",url_next);
+            $('#dM-next-m2').find('img').attr("height","100px");
+            $('#dM-next-m2').find('img').attr("width","100px");
+        }else if ($('.col-sm-6').find('a').eq(index+1).find('span').attr("ng-if")=="media.MediaType=='Notes'") {
+			$('#dM-next-m2').find('img').attr("src","/assets/board/img/Sticky-Notes-Pro.png");
+            $('#dM-next-m2').find('img').attr("height","100px");
+            $('#dM-next-m2').find('img').attr("width","100px");
+        }
+
+        $('#dM-next-m1').show();
+        $('#dM-next-m2').show();
+        $('#dM-prev-m1').hide();
+        $('#dM-prev-m2').hide();
+    }
+    $('#media-row2').css({'display':'block'});
+    if(obj.find('.montageElement')){
+    //alert(1);
+    }
+
+    $('.button-btn').css({'display':'none'}); //--19 Dec
+    //$('#saveMontage').css({'display': 'none'}); //--20 Dec
+    var mediaElements = $('#discuss_elements');
+    var body = $("html, body");
+    var bodyClass = $('body');
+    var currentPageClass = bodyClass.data('page-class');
+    var holderAct = $('.holder-act');
+    $('.ticked').hide()
+    console.log("ticked disabled")
+    // Remove masonry elements and show page act
+    mediaElements.fadeOut(400,function(){
+        holderAct.fadeIn(function(){
+            // modified by parul to changr body padding 13012015
+			//$('body').css('padding-top')=$('body').css('padding-top')-
+            //var bodyHeight=parseInt(($("body").css('padding-top')).replace("px",""),10);
+            //bodyHeight=bodyHeight-43;
+           // bodyHeight=234-43;
+            //$("body").css({'padding-top':bodyHeight+'px'}); //commented by manishp 22042015
+			$('body').css({'background':'none repeat scroll 0 0 #181818'});  //for background color
+			$('body').css({'padding-top':'0px'});
+			
+			$('#filterbar').find('a').hide();
+        });
+        $('#media_advanced').show();
+        //code added to show hide media rows
+        //parul 24 dec
+        //if (obj.find(".montageContent").attr('class')) {
+        //    //alert(1);
+        //$('.media-row').hide()
+        //}else{
+        //    //alert(2);
+        //    $('.media-row').show()
+        //}
+        //$('#media-row1').hide()
+        //end
+        media=true;
+        media_from="discuss";
+        if (obj.find(".montageContent").attr('class')) {
+            //$('#media-row1').hide()
+            var data=obj.find('.montageContent').html();
+			$('.holder_bulb').html($('<div/>').html(data).text());
+			$('.holder_bulb').find('li').attr("onClick","montageObject.gsView($(this))");
+            // commented by gaurav 5 jan2015
+            //var gridster_bulb = $(".holder_bulb ul").gridster({
+            //    widget_margins: [1, 1],
+            //    widget_base_dimensions: ['98', '98'],
+            //    autogenerate_stylesheet: true,
+            //    resize: {
+            //        enabled: false
+            //    }
+            //});
+            //
+            //gridster_bulb.gridster().data('gridster').disable();
+            $('.s-media-con').hide();
+            $('.d-media-con').hide();
+        }//end
+		//parul 20032015=======Start
+        else if(obj.find('.videoContent').is('p')){
+            //alert('video clicked');
+			$('.holder_bulb').html('<video class="media_video" controls ><'+obj.find('.videoContent').html()+'></video>');
+			var whichBrowser = BrowserDetecter.whichBrowser();
+			var videoSrc = $('.holder_bulb').find('source').attr('src');
+			//alert(videoSrc);
+			var ext = videoSrc.split('.').pop();
+			
+			if (whichBrowser == "FireFox") {
+			  if ( ext.toUpperCase() != 'WEBM' ) {
+				videoSrc = videoSrc.replace('.'+ext,'.webm');
+			  }
+			}
+			else if (whichBrowser == 'Safari') {
+			  if ( ext.toUpperCase() != 'MP4' ) {
+				videoSrc = videoSrc.replace('.'+ext,'.mp4');	
+			  }
+			}
+			else{
+			  if ( ext.toUpperCase() != 'MP4' ) {
+				videoSrc = videoSrc.replace('.'+ext,'.mp4');	
+			  }
+			}
+            $('.holder_bulb').find('source').attr('src', videoSrc);
+			
+			var ext = videoSrc.split('.').pop();
+			$('.s-media-con').hide();
+            $('.d-media-con').hide();
+            media_type="text";
+        }
+		else if(obj.find('.audioContent').is('p')){
+            //alert('audio clicked');
+			$('.holder_bulb').html('<video class="media_video" controls poster="../assets/img/audio-recording-thumb.jpg"><'+obj.find('.audioContent').html()+'></video>');
+			var whichBrowser = BrowserDetecter.whichBrowser();
+			var audioSrc = $('.holder_bulb').find('source').attr('src');
+			
+			var ext = audioSrc.split('.').pop();
+			audioSrc = audioSrc.replace('.'+ext,'.mp3');
+			//console.log(audioSrc);
+			$('.holder_bulb').find('source').attr('src', audioSrc);
+			
+			var ext = audioSrc.split('.').pop();
+			$('.s-media-con').hide();
+            $('.d-media-con').hide();
+            media_type="text";
+        }
+		//parul 20032015===========Ends
+        //added by parul 25 dec
+        else if (obj.find(".linkContent").attr('class')) {
+                    //$('.media-row').hide()
+                    var data=obj.find('.linkContent').html();
+                    $('.holder_bulb').html("<div id='iframeContainer' class='holder_bulb_iframe'></div>")
+					$('#iframeContainer').append($('<div/>').html(data).text());
+                    $('.s-media-con').hide();
+                    $('.d-media-con').hide();
+        }//end
+		else if (obj.find(".noteContent").attr('class')) {
+            //$('#media-row1').hide()
+            var data=obj.find('.noteContent').html();
+			$('.holder_bulb').html('<div id="noteContainer">'+$('<div/>').html(data).text()+'</div>');
+			
+            $('.s-media-con').hide();
+            $('.d-media-con').hide();
+        }
+        else if (obj.find(".linkContent").attr('class')) {
+            //$('.media-row').hide()
+            var data=obj.find('.linkContent').html();
+            $('.holder_bulb').html("<div id='iframeContainer' class='holder_bulb_iframe'></div>")
+			$('#iframeContainer').append($('<div/>').html(data).text());
+            $('.s-media-con').hide();
+            $('.d-media-con').hide();
+        }
+        else if (typeof(obj.find('.media_img').attr('src'))=='string') {
+
+            //$('.holder_bulb').html('<img src="'+obj.find('.media_img').attr('src')+'">');
+
+        /*-----remove medium from img url---15Jan15--*/
+            //var orgUrl = obj.find('.media_img').attr('src'); //20022015
+            //var n = str400.search("/"+medium__thumbnail);
+            //if(n>=0){
+            //    var str400 = str400.replace("/"+medium__thumbnail, "");
+            //}
+            //var thumbSize = "/"+discuss__thumbnail; //20022015
+            //var replaceWith="/"+large__thumbnail; //20022015
+            //alert(discuss__thumbnail)
+            //imgStr = getResizedThumbnail(orgUrl,thumbSize,replaceWith);    //20022015
+            imgStr = obj.find('.media_img').attr('src'); //20022015
+            $('.holder_bulb').html('<img src="'+imgStr+'">');
+        /*-----end------*/
+            $('.s-media-con').hide();
+            $('.d-media-con').hide();
+            media_type="visual";
+        }
+        else if(obj.find('.text_wrap_index').html()){
+            console.log('else if');
+			$('.holder_bulb').html(obj.find('.text_wrap_index').html());
+            $('.s-media-con').hide();
+            $('.d-media-con').hide();
+            media_type="text";
+        }
+		
+        else{
+            //console.log('else');
+
+            var videoInnerHtml = obj.find('.media_video').html();
+            var whichBrowser = BrowserDetecter.whichBrowser()
+            //alert("whichBrowser = "+whichBrowser);
+            //if (whichBrowser == 'Safari') {
+            //    //either false or updated innerHtml - .webm to .mp4
+            //    var videoInnerHtml = videoInnerHtml.replaceAll('.webm','.mp4');
+            //    //videoInnerHtml = videoInnerHtml.replace('.webm','.mp4');
+            //    alert("videoInnerHtml = "+videoInnerHtml);
+            //}
+            //if (whichBrowser == 'FireFox') {
+            //    //either false or updated innerHtml - .webm to .mp4
+            //    var videoInnerHtml = videoInnerHtml.replace('.webm','.mp4');
+            //    alert("videoInnerHtml = "+videoInnerHtml);
+            //}
+            $('.holder_bulb').html('<video controls>'+videoInnerHtml+'</video>');
+            $('.s-media-con').hide();
+            $('.d-media-con').hide();
+        }
+        // Hide filter sidebar, if clicked, for remove his height from DOM
+        $('.filterMenu-sidebar').hide();
+    });
+    // hide all icons, except search
+    //$('#filterbar').find('a').filter(':not(.searchBar)').hide();
+    //$('#filterbar').find('a').hide();
+
+    // init redactor
+
+    // add placeholder for redactor
+    holderAct.find('.wrapper-redactor .redactor_editor').on('focus',function(e){
+        $(this).parents('.wrapper-redactor').addClass('focus');
+    });
+    holderAct.find('.wrapper-redactor .redactor_editor').on('blur',function(e){
+        $(this).parents('.wrapper-redactor').removeClass('focus');
+    });
+
+
+
+    return false;
+}
+
+
+
+
+/*
+$('.holder-act').on('click','.close_media',function(){
+// Scroll to top of page after exit from act-page
+body = $("html, body");
+var bodyClass = $('body');
+var currentPageClass = bodyClass.data('page-class');
+
+body.animate('500');
+
+$('#discuss_elements').fadeIn();
+$('.holder_bulb').html("");
+// Back sidebar
+$('.filterMenu-sidebar').show();
+bodyClass.addClass(currentPageClass);
+$('.holder-act').fadeOut(400)
+// Remove page act
+bodyClass.removeClass('act-page');
+
+// Back full header only for home page
+if(bodyClass.hasClass('home-page')){
+bodyClass.removeClass('small-fixed-header');
+}
+if ($('.ticked').css('display')=='none') {
+$('#discuss_elements').fadeIn();
+$('#search_elements').hide();
+}
+else{
+$('#discuss_elements').hide();
+$('#thumbs, #search_elements').fadeIn();
+}
+// show back all icons
+$('#filterbar').find('a').show();
+
+return false;
+});
+*/
+/*
+//this function is to close ACT Page in both - search-gallery & discuss page
+function close_holder_act(){
+	//$('#media-row2').hide();
+	//if ($(".media-tray").css("display")!="none") {
+	//	var bodyHeight=parseInt(($("body").css('padding-top')).replace("px",""),10);
+	//	bodyHeight=bodyHeight-parseInt(($(".media-tray").css('height')).replace("px",""),10);
+	//	$("body").css({'padding-top':bodyHeight+'px'});
+		$(".media-tray").css({"display":"none"});
+	//}
+	$("body").css({'padding-top':'234px'});//--26Dec
+	//alert("m here----");
+	// code added by parul to manage classes of s-media and d-media buttons on closing act page
+	//---- 19 dec 2014
+	$('#s-media').addClass('active');
+	$('#d-media').removeClass('active');
+	//---- end
+	$(".gridster_div").css({"display":"none"}); //--18 Dec..
+	 //$('#confirmSend').css({'display': 'block'}); //-- 18 Dec
+	// Scroll to top of page after exit from act-page
+	body = $("html, body");
+	var bodyClass = $('body');
+	var currentPageClass = bodyClass.data('page-class');
+	//alert("currentPageClass = "+currentPageClass)            
+	body.animate('500');
+
+	//$('#discuss_elements').show();
+	$('.holder_bulb').html("");
+	// Back sidebar
+	$('.filterMenu-sidebar').show();
+	bodyClass.addClass(currentPageClass);
+	$('.holder-act').fadeOut(400)
+	// Remove page act
+	bodyClass.removeClass('act-page');
+
+	// Back full header only for home page
+	if(bodyClass.hasClass('home-page')){
+	bodyClass.removeClass('small-fixed-header');
+	}
+	
+	if ($('.ticked').css('display')=='none') {
+		alert("in if");
+		$('#discuss_elements').show();
+		//$('#search_elements').hide();
+		$('#search_elements').hide();
+	}
+	else{
+		alert("in else");
+		$('#discuss_elements').hide();
+		$('#thumbs, #search_elements').show();
+	}
+	
+	// show back all icons
+	$('#filterbar').find('a').show();
+	return false;
+}
+*/
+
+var theWidth=69;
+intIndex=0;
+
+
+
+/*-----Modify at 29Dec-------*/
+showComment=2;
+commentWidth=85;
+$('.prev_comment').on('click',function(){
+	if ($('.comment_holder').find('.comment').length>3) {
+		if (parseInt(showComment)>2) {
+			//$('.comment_holder').animate({
+			//	"margin-top": (-(showComment - 1) * commentWidth)				
+			//}, 500);
+			//alert(1)
+			
+			var height=parseInt($('.comment_holder').find('.comment:eq('+(showComment)+')').css('height'))+22;
+			var newMargin = parseInt($('.comment_holder').css('margin-top'))+height;
+			console.log("newMargin"+newMargin);
+			$('.comment_holder').animate({
+				"margin-top": (newMargin>0?-(newMargin):(newMargin))				
+			}, 100);
+			showComment--;
+		}
+	}
+})			
+showComment=2;
+$('.next_comment').on('click',function(){
+	if ($('.comment_holder').find('.comment').length > 3 && (showComment+1) < $('.comment_holder').find('.comment').length) {
+		//alert(2)
+		var com_count = $('.comment_holder .comment').length;
+		//lastComment=$('.commentsp').length*commentWidth
+		//if (-(showComment + 1) * commentWidth<=lastComment) {
+		
+		if(parseInt(showComment) < parseInt(com_count)){ 
+			//$('.comment_holder').animate({
+			//	//"margin-top": (-(showComment + 1) * commentWidth)
+			//	"margin-top": (-(showComment) * commentWidth)
+			//}, 500);
+			showComment++;
+			var height=parseInt($('.comment_holder').find('.comment:eq('+showComment+')').css('height'))+22;
+			var newMargin = parseInt($('.comment_holder').css('margin-top'))-height;
+			console.log("newMargin"+newMargin);
+			$('.comment_holder').animate({
+				//"margin-top": (-(showComment + 1) * commentWidth)
+				"margin-top": (newMargin)
+			}, 100);
+		}	
+	}
+	
+})			
+
+/*
+$(window).resize(function() {
+	$('.thumbs li').each(function(){
+		$(this).height($(this).width())
+	})
+
+	$('.thumbs li a').each(function(){
+		$(this).height($(this).width())
+		height=$(this).height()	
+	})
+	$('.innerimg-wrap').each(function(){
+		height=$(this).parent().height();
+		imgheight=$(this).children().first('img').height();
+		imgwidth=$(this).children().first('img').width();
+		
+		if(imgheight<imgwidth){
+		    $(this).children().first('img').height(height)
+		}
+		else if(imgwidth<imgheight){
+		    $(this).children().first('img').width(height)
+		}
+		else{
+		    $(this).children().first('img').width(height)
+		}
+	})
+});
+*/
+/*
+var theWidth=68;
+intIndex=0;
+
+$('.avarrow-right').on('click',function(){
+	theWidthu=$('.avatarlist li').length*theWidth;
+	if (theWidthu>=(((intIndex + 1)+5) * theWidth)) {
+		$('.avatarlist').animate({
+			"margin-left": (-(intIndex + 1) * theWidth)-4				
+		}, 1000);
+		intIndex++;
+	}
+
+})
+*/
+/*
+function deleteMedia(obj){
+	if (confirm('Are you sure you want to delete this media from tray')) {
+		obj.parent().remove();	
+	}
+	
+	if($('.avatarlist').children().length<=5){
+		$('.avarrow-left').hide()
+		$('.avatarlist').css('margin-left','0px');
+		$('.avarrow-right').hide()
+	}	
+}	
+*/
+//
+function deleteMediaPop(obj){
+	$('#tray_dmedia_delete').show();
+	$('#confirmBtn').attr('onclick','deleteMedia('+obj+')');
+	
+}
+function closeDel(){
+	$('#tray_dmedia_delete').hide();
+}
+//used by mediaTray to remove object from Tray
+function deleteMedia(obj){
+	if (confirm('Are you sure you want to delete this media from tray')) {
+		//var trayheight=parseInt(($('.media-tray').css('height')).replace("px",""),10)
+		var index=obj.parent().index();
+		//if ($('.media-tray').css('display')!='none') {
+		if ($('#search-media-tray').css('display')!='none') {
+			$('.avatarwdgt ul li:eq('+index+')').remove();
+			obj.parent().remove();
+		}else{
+			obj.parent().remove();
+		}
+		//if ($('.media-tray ul li').length == 0) {
+		//	var bodyHeight=parseInt(($("body").css('padding-top')).replace("px",""),10);
+		//	bodyHeight=bodyHeight-trayheight;
+		//	$("body").css({'padding-top':bodyHeight+'px'});
+		//	$('.media-tray').hide();
+		//}
+	}
+	
+	if ($('#img-list li').length>=3) {
+		$('#img-list').removeAttr("");
+	}
+	if ($('.media-tray').css('display')!='none') {
+		//alert(trayheight)
+	 if (trayheight!=$('.media-tray').css('height')) {
+		//alert(trayheight-parseInt(($('.media-tray').css('height')).replace("px",""),10))
+		var bodyHeight=parseInt(($("body").css('padding-top')).replace("px",""),10);
+		bodyHeight=bodyHeight-(trayheight-parseInt(($('.media-tray').css('height')).replace("px",""),10));
+		$("body").css({'padding-top':bodyHeight+'px'});
+	 }
+	 
+	}
+	
+	if($('.avatarlist').children().length<=5){
+		$('.avarrow-left').hide()
+		$('.avatarlist').css('margin-left','0px');
+		$('.avarrow-right').hide()
+	}	
+}		
+
+/*
+$('.avarrow-left').on('click',function(){	
+	if(intIndex>0){
+		$('.avatarlist').animate({
+			"margin-left": (-(intIndex - 1) * theWidth)				
+		}, 1000);
+		intIndex--; 
+	}
+})
+ */
+/*
+function openMediaDetail(obj){
+//alert("i got the point");
+//console.log(obj.html())
+var mediaElements = $('#thumbs, #search_elements');
+var holderAct = $('.holder-act');
+var body = $("html, body");
+var bodyClass = $('body');
+var currentPageClass = bodyClass.data('page-class');
+
+$('.holder_bulb').html(obj.html())
+
+
+body.animate({scrollTop:0}, '500');
+
+bodyClass.addClass('small-fixed-header act-page');
+bodyClass.removeClass(currentPageClass);
+
+mediaElements.fadeOut(400,function(){					
+holderAct.fadeIn();
+// Hide filter sidebar, if clicked, for remove his height from DOM
+$('.filterMenu-sidebar').hide();
+});
+
+$('#filterbar').find('a').filter(':not(.searchBar)').hide();
+
+holderAct.find('.wrapper-redactor .redactor_editor').on('focus',function(e){
+$(this).parents('.wrapper-redactor').addClass('focus');
+});
+holderAct.find('.wrapper-redactor .redactor_editor').on('blur',function(e){
+$(this).parents('.wrapper-redactor').removeClass('focus');
+});
+
+}
+*/
+//edited by parul
+//used by media tray
+
+/************************** OpenMediaDetail commented by parul 07042015 Start*************************************/
+/*
+function openMediaDetail(obj){
+	//alert("i got the point");
+	
+	media_from="search";
+	//console.log(obj.html())
+	var mediaElements = $('#thumbs, #search_elements');
+	var holderAct = $('.holder-act');
+	var body = $("html, body");
+	var bodyClass = $('body');
+	var currentPageClass = bodyClass.data('page-class');
+	//alert(obj.find(".linkContent").attr('class'));
+	if (obj.find(".linkContent").attr('class')) {
+		//alert('link');
+		media=true;
+		//$('.media-row').hide()
+		var data=obj.find('.linkContent').html();
+		data = data.replace("less","<");
+		data = data.replace("greater",">");
+		
+		//data=data+"<div id='linkActual' style='diaplay:none'>"+obj.html()+"</div>";
+		//alert(data);
+		$('.holder_bulb').html('');
+		$('.holder_bulb').html("<div id='iframeContainer' class='holder_bulb_iframe'></div>")
+		$('#iframeContainer').append(data);
+		//$('.holder_bulb').append(data);
+		$('.holder_bulb').append("<div id='linkActual' style='display:none'>"+obj.html()+"</div>");
+		//$('.holder_bulb').append($('<div/>').html(data).text());
+		//alert($('.holder_bulb').html());
+	}else{
+		
+		if(obj.find('img').is('img')){
+			//alert('image');
+			var orgUrl = obj.find('img').attr('src');
+			var thumbSize = "/"+small__thumbnail;
+			//var replaceWith="/"+large__thumbnail;		//20022015
+			var replaceWith="/"+discuss__thumbnail;		//20022015
+			imgStr = getResizedThumbnail(orgUrl,thumbSize,replaceWith);
+			obj.find('img').attr('src',imgStr);
+			//console.log('Gaurav: ',obj.html());
+		}
+		//console.log(obj.html());
+		
+		$('.holder_bulb').html(obj.html())
+	}
+
+	body.animate({scrollTop:0}, '500');
+
+	//bodyClass.addClass('small-fixed-header act-page');
+	//bodyClass.removeClass(currentPageClass);
+
+	mediaElements.fadeOut(400,function(){					
+		holderAct.fadeIn(function(){
+			if($('#filterbar').find('a').css('display')!='none')
+			{
+				//alert('here');
+				//var bodyHeight=parseInt(($("body").css('padding-top')).replace("px",""),10);
+				//bodyHeight=bodyHeight-43;
+				bodyHeight=234-43;
+				$("body").css({'padding-top':bodyHeight+'px'});
+				$('#filterbar').find('a').hide();
+			}	
+		});
+		media=true;
+		$('.s-media-con').fadeOut();
+		$('.d-media-con').fadeOut();
+		// Hide filter sidebar, if clicked, for remove his height from DOM
+		$('.filterMenu-sidebar').hide();
+	});
+
+	//$('#filterbar').find('a').filter(':not(.searchBar)').hide();
+	//$('#filterbar').find('a').hide(); //updated on 09012015 by manishp
+	// modified by parul to changr body padding 13012015
+	//$('body').css('padding-top')=$('body').css('padding-top')-
+	
+	holderAct.find('.wrapper-redactor .redactor_editor').on('focus',function(e){
+		$(this).parents('.wrapper-redactor').addClass('focus');
+	});
+	holderAct.find('.wrapper-redactor .redactor_editor').on('blur',function(e){
+		$(this).parents('.wrapper-redactor').removeClass('focus');
+	});
+
+}
+
+*/
+/************************** OpenMediaDetail commented by parul 07042015 Ends*************************************/
+
+/*________________________________________________________________________
+* @Date:      	15 April 2015
+* @Method :   	remove_from_list_searchCase
+* Created By: 	smartData Enterprises Ltd
+* Modified On:	16 April 2015,
+* @Purpose:   	This is to remove media entry from media trays.
+* @Param:     	1
+* @Return:    	no
+_________________________________________________________________________
+*/
+function remove_from_list_searchCase(obj) {
+	var index = obj.parent().index();
+	$('#media-tray-elements li:eq('+index+')').remove();
+	$('.search-view #search-media-tray li:eq('+index+')').remove();
+	$('#discuss_elements #search-media-tray li:eq('+index+')').remove();
+	
+	//obj.parent().remove();
+}
+/********************************************END******************************************************/
+
+
+/*________________________________________________________________________
+* @Date:      	21 April 2015
+* @Method :   	remove_from_list
+* Created By: 	smartData Enterprises Ltd
+* Modified On:	16 April 2015, 20 may 2015,
+* @Purpose:   	This is used to open montage.
+* @Param:     	1
+* @Return:    	no
+_________________________________________________________________________
+*/
+function openMontage(){
+	var scope = angular.element($(".search-view")).scope();
+	var id = trayObject.attr('data-id');
+	var temp = angular.element(trayObject);
+    scope.$apply(function () {
+		if ($('#grid').css('display') == 'none' ) {
+			var items = $(".search-view #search-media-tray li").length;
+			if ( items <= 15) {
+				scope.addtoTray_delCase(scope.mediasData._id);
+			}
+		}else{
+			if (((4-$('#grid').find('.addnote').length) + $('.search-view #search-media-tray li').length) <= 16) {
+				for(i in item_ids){
+					if (item_ids[i] != '' && item_ids[i] != 'mon_note' && item_ids[i] != 'mon_note_unknown') {
+						console.log('---------------------------------------------------');
+						console.log(item_ids[i]);
+						scope.addtoTray_delCase(item_ids[i]);	
+						console.log('---------------------------------------------------');
+					}
+				}
+			}else{
+				alert('else OPen montage');
+			}
+		}
+        scope.setMediaIdd_uploadCase(id);
+    });
+	openMediaDetail(temp);
+	$('#montage_pop').css({'display':'none'});
+	$('#montage_replace_pop').css({'display':'none'});
+	scope = null;
+}
+/********************************************END******************************************************/
+
+
+
+function fix_wMode() {
+	$("object[type='application/x-shockwave-flash']").append('<param name="wMode" value="transparent"/>');
+	$("embed[type='application/x-shockwave-flash']").append('<param name="wMode" value="transparent"/>'); 
+}
+/********************************************END******************************************************/
+
+
+
+/*________________________________________________________________________
+	* @Date:      	27 Apr 2015
+	* @Method :   	openMediaDetail_discuss
+	* Created By: 	smartData Enterprises Ltd
+	* Modified On:	-
+	* @Purpose:   	This is called when user clicks on media tray of search page( displays clicked item in search_view)--for disscuss page.
+	* @Param:     	1
+	* @Return:    	no
+_________________________________________________________________________
+*/ 
+function openMediaDetail_discuss(obj){
+	var scope = angular.element($(".search-view")).scope();
+	scope.$apply(function(){
+		console.log('===========================================================')
+		//console.log(item_ids[i]);
+		scope.setMediaIdd_uploadCase(obj.attr('data-id'));
+	})
+	scope=null;
+	openMediaDetail(obj);
+}
+/********************************************END******************************************************/
+
+
+
+/*________________________________________________________________________
+	* @Date:      	16 Jan 2015
+	* @Method :   	openMediaDetail
+	* Created By: 	smartData Enterprises Ltd
+	* Modified On:	07 Apr 2015, 08 April 2015,16 april 2015
+	* @Purpose:   	This is called when user clicks on media tray of search page( displays clicked item in search_view)--for search page.
+	* @Param:     	1
+	* @Return:    	Yes
+_________________________________________________________________________
+*/  
+
+//parul 07042015 
+function openMediaDetail(obj){
+	
+	$('#discuss_elements').hide();
+	var scope35 = angular.element($(".search-view")).scope();
+	scope35.__isMontagePrivate = false;
+	var grid_li = [];
+	angular.element($(".search-view")).injector().invoke(function($compile) {
+		for (i=0;i<4;i++) {
+			grid_li[i] = angular.element('<a href="javascript:void(0)" ng-click="openNote_mctrl()" onClick="openNote($(this))" class="addnote drop-here"><span class="tb-cell"><span class="fa fa-plus-circle"></span> <b>Click to add note</b></span></a>');
+			grid_li[i] = $compile(grid_li[i])(scope35);
+		}
+		//grid_li = $compile(grid_li)(scope);
+	});
+	$('#grid').find('li').each(function(){
+		$(this).html(grid_li[$(this).index()]);
+	})
+	//alert(id)
+	//setTimeout(function(){
+		scope35.init__stateVar();
+	//},1)
+	//scope.$apply(function () {
+		//scope.init__stateVar();
+	//});
+	scope35=null;
+	if (obj.attr('is-private')=='1') {
+		//alert('is-private')
+		obj_stage_index = obj.parent().index();
+	}else{
+		obj_stage_index = null;
+	}
+	media_from="search";
+	var mediaElements = $('#thumbs, #search_elements');
+	var holderAct = $('.holder-act');
+	var holder = $('#holder');
+	var searchView = $('.search-view');
+	var body = $("html, body");
+	var bodyClass = $('body');
+	var currentPageClass = bodyClass.data('page-class');
+	$('.image-selector').html('<ul id="search-media-tray" class="avatarlist clearfix">'+$('#media-tray-elements').html()+'</ul>');
+	$("#search-media-tray li").each(function(){
+		//console.log($(this));
+		$(this).find('a').attr('onClick','gridster_tray($(this))')
+		$(this).addClass('drag-me');
+	})
+	setTimeout(function(){$('.drag-me').draggable({revert:'invalid',helper: 'clone'})},50);
+	$('#holder-box').show();
+	$('#grid').hide();
+	if (obj.find(".montageContent").attr('class')) {
+		//alert('montage');
+		//return;
+		media=true;
+		var data=obj.find('.montageContent').html();
+		data = data.replace(/@less@/g,"<");
+		data = data.replace(/gre@ter/g,">");
+		//data = data.replace("less","<");
+		//data = data.replace("greater",">");
+		
+		$('#holder-box').html('');
+		$('#holder-box').html("<div id='montageContainer'></div>")
+		console.log(data);
+		$('#montageContainer').append(data);
+		$('#holder-box').append("<div id='montageActual' style='display:none'>"+obj.html()+"</div>");
+	}
+	else if (obj.find(".linkContent").attr('class')) {
+		//alert('link');
+		media=true;
+		var data=obj.find('.linkContent').html();
+		data = data.replace("less","<");
+		data = data.replace("greater",">");
+		$('#holder-box').html('');
+		$('#holder-box').html("<div id='iframeContainer' class='holder_bulb_iframe'></div>")
+		$('#iframeContainer').append(data);
+		$('#holder-box').append("<div id='linkActual' style='display:none'>"+obj.html()+"</div>");
+	}else if(obj.find('.videoContent').is('p')){
+		//alert('video clicked');
+		$('#holder-box').html("<div id='videoContainer' class='holder_bulb_iframe'></div>");
+		$('#videoContainer').append('<video class="media_video" controls ><'+obj.find('.videoContent').html()+'></video>');
+		var whichBrowser = BrowserDetecter.whichBrowser();
+		var videoSrc = $('#holder-box').find('source').attr('src');
+		//alert(videoSrc);
+		var ext = videoSrc.split('.').pop();
+		
+		if (whichBrowser == "FireFox") {
+		  if ( ext.toUpperCase() != 'WEBM' ) {
+			videoSrc = videoSrc.replace('.'+ext,'.webm');
+		  }
+		}
+		else if (whichBrowser == 'Safari') {
+		  if ( ext.toUpperCase() != 'MP4' ) {
+			videoSrc = videoSrc.replace('.'+ext,'.mp4');	
+		  }
+		}
+		else{
+		  if ( ext.toUpperCase() != 'MP4' ) {
+			videoSrc = videoSrc.replace('.'+ext,'.mp4');	
+		  }
+		}
+		$('#holder-box').find('source').attr('src', videoSrc);
+		
+		var ext = videoSrc.split('.').pop();
+		$('.s-media-con').hide();
+		$('.d-media-con').hide();
+		media_type="video";
+		$('#holder-box').append("<div id='videoActual' style='display:none'>"+obj.html()+"</div>");
+		
+	}
+	else if (obj.find(".noteContent").attr('class')) {
+		//alert('note');
+		//return;
+		media = true;
+		var data = obj.find('.noteContent').html();
+		data = data.replace(/@less@/g,"<");
+		data = data.replace(/gre@ter/g,">");
+		$('#holder-box').html('');
+		$('#holder-box').html("<div id='noteContainer'></div>")
+		$('#noteContainer').append(data);
+		$('#holder-box').append("<div id='noteActual' style='display:none'>"+obj.html()+"</div>");
+	}
+	else{
+		if(obj.find('img').is('img')){
+			//alert('image');
+			var orgUrl = obj.find('img').attr('src');
+			var thumbSize = "/"+small__thumbnail;
+			var replaceWith="/"+discuss__thumbnail;		//20022015
+			imgStr = getResizedThumbnail(orgUrl,thumbSize,replaceWith);
+			obj.find('img').attr('src',imgStr);
+			$('#holder-box').html(obj.html())
+		}else{
+			var objj=obj.clone();
+			if (objj.find('.avatar-name').find('p').is('p')) {
+				objj.find('.avatar-name').find('p').addClass('textWrap');
+				objj.find('.textWrap').unwrap();
+				objj.find('.avtar_list_overlay').remove();
+			}
+			
+			$('#holder-box').html(objj.html())
+		}
+		
+	}
+	body.animate({scrollTop:0}, '500');
+
+	mediaElements.fadeOut(400,function(){
+		holderAct.fadeOut();
+		//$('.wrapper').fadeOut();//0602015 Parul
+		$('#bighead-header1').fadeOut();
+		$('body').css({'padding-top':'0px'});//0602015 Parul
+		$('body').css({'background':'none repeat scroll 0 0 #fff'});//0802015 Parul
+		searchView.fadeIn(function(){
+		});
+		media=true;
+		$('.s-media-con').fadeOut();
+		$('.d-media-con').fadeOut();
+		// Hide filter sidebar, if clicked, for remove his height from DOM
+		$('.filterMenu-sidebar').hide();
+	});
+	
+	//$('#filterbar').find('a').filter(':not(.searchBar)').hide();
+	//$('#filterbar').find('a').hide(); //updated on 09012015 by manishp
+	// modified by parul to changr body padding 13012015
+	//$('body').css('padding-top')=$('body').css('padding-top')-
+	
+	holderAct.find('.wrapper-redactor .redactor_editor').on('focus',function(e){
+		$(this).parents('.wrapper-redactor').addClass('focus');
+	});
+	holderAct.find('.wrapper-redactor .redactor_editor').on('blur',function(e){
+		$(this).parents('.wrapper-redactor').removeClass('focus');
+	});
+	if (obj.attr('is-private') == '1') {
+		$('#holder-box').attr({'is-private':'1'});
+	}
+	else{
+		$('#holder-box').attr({'is-private':'0'});
+	}
+	//fix_wMode();
+	remove_from_list_searchCase(obj);
+}
+
+
+
+function openAccordion(obj){
+	if (obj.next('.accordion-pop').css('display')=='none') {
+		obj.addClass('ui-state-active');
+		obj.next('.accordion-pop').slideDown('slow')				
+	}
+	else{
+		obj.removeClass('ui-state-active');
+		obj.next('.accordion-pop').slideUp('slow')
+	
+	}
+}
+
+$("#menuicon").click(function (){
+	if($('.masonry-container').hasClass('with-sidebar')){
+		$('.masonry-container').removeClass('with-sidebar');
+		$('._mCS_1').addClass('hidden'); 
+	}
+});
+
+$("#menuicon2").click(function (){
+	if($('.masonry-container').hasClass('with-sidebar')){
+		$('.masonry-container').removeClass('with-sidebar');
+		$('._mCS_1').addClass('hidden'); 
+	}
+});
+</script>
+
+<style>
+
+
+.avatarlist li{
+	display:inline-block;
+	width:68px !important;
+	height:68px !important;
+	overflow:hidden !important;
+}
+
+.avatarlist li iframe{
+	width:68px !important;
+	height:68px !important;
+}
+
+.avatarlist li avatar-name{
+	display:block;
+	width:68px !important;
+	height:68px !important;
+	overflow:hidden;
+
+}
+
+.avatarlist li avatar-name a{
+	display:block;
+	width:68px !important;
+	height:68px !important;
+	overflow:hidden;	
+}
+
+.avatarlist li avatar-name p{
+	display:block;
+	width:68px !important;
+	height:68px !important;
+	overflow:hidden;	
+}
+
+.avatarlist li img{	
+	width:68px !important;
+	height:68px !important;
+	overflow:hidden;	
+}
+
+.avatarlist { width: auto !important;}
+.avatarlist li {float:left;  }
+
+.comment_holder{position:relative;z-index:-1;margin-top:0px;}
+.avatarlist { width: auto !important;}
+.avatarlist li {float:left;  }
+/*.commentsp{max-height:144px !important;}*/
+.holder_bulb{
+	height:100%;
+}
+
+.holder_bulb iframe{
+	width:100% !important;
+	height:100% !important;
+}
+</style>
+
+<style>
+
+/* added by parul 19032015*/	
+#overlay2 {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: #000;
+    opacity: 0.7;
+    filter: alpha(opacity=70) !important;
+    display: none;
+    z-index: 9990;
+}
+
+/*#overlayContent2 {
+	max-height: 125px;
+	max-width: 125px;
+	display:none;
+	left: 0 !important;
+	margin: 0 auto;
+	min-height: 100px;
+	outline: 0 none;
+	overflow: hidden;
+	padding: 20px;
+	position: fixed;
+	right: 0;
+	text-align: center;
+	top: 50%;
+	width: auto;
+	z-index: 9999;
+	
+}*/
+
+/*5-5-15 start*/
+
+#overlayContent2 {
+	max-height: 125px;
+	max-width: 125px;
+	display:none;
+	margin:-62px  0 0 -62px	;
+	min-height: 100px;
+	outline: 0 none;
+	overflow: hidden;
+	padding: 20px;
+	position: fixed;
+	text-align: center;
+	top: 50%;
+	left:50%;
+	width: auto;
+	z-index: 9999;
+	
+}
+
+/*5-5-15 end*/
+#overlayContent2 img{width:100%}
+/*.recordVideo {
+    background: url(../../assets/img/background.png);
+    width: 200px; 
+    height: 50px; 
+    border: 0;
+}*/
+
+.video-wrap2{height: 144px;}
+.video-wrap2{background-color: #000 !important; position: relative;}
+.video-wrap2 video, .video-wrap video img{max-width: 100%; /*width: auto!important;*/}
+.video-wrap2 video img{position: absolute; top: 50%; left: 50%; margin: -5px 0 0 -5px;}
+.recordVideo {
+	
+	background: url(/assets/img/recorder.png );
+	
+	background-repeat: no-repeat;
+	background-size: 100% 144px;
+    width:100% !important;
+    height:100% !important;
+    overflow:hidden;
+    position:absolute;
+   background-color: black;
+}
+
+label span input {
+    z-index: 999;
+    line-height: 0;
+    font-size: 50px;
+    position: absolute;
+    top: -2px;
+    left: -700px;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    -ms-filter: "alpha(opacity=0)";
+    cursor: pointer;
+    _cursor: hand;
+    margin: 0;
+    padding:0;
+}
+/*END 19032015*/
+
+.upload-dropdown{
+	top:30px;        
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+	color:    #999;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+color:    #999;
+opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color:    #999;
+opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color:    #999;
+}
+
+.main-container-boards{
+	width:83% !important;
+	margin-left: 10% !important;
+	top:10% !important;
+	height:80% !important;
+	position:fixed;
+	overflow:auto;
+	z-index:100000;
+}
+.main-container-boards .main.wrapper{
+	background:#fff;
+	height: 80%;
+	overflow-y: scroll;
+}
+.ui-dialog-title {
+	float: left;
+	letter-spacing: 5px;
+	margin: 0.1em 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-transform: uppercase;
+	white-space: nowrap;
+	width: 90%;
+}
+.backgroundaaa{
+	background:#aaa;
+
+}
+
+.holder_bulb{
+	height:100%;
+}
+
+.holder_bulb iframe{
+	width:100% !important;
+	height:100% !important;
+}
+.accordion-pop{
+	height: 100%;
+}
+
+/*.links iframe{
+position: relative;
+left:-50%
+}*/
+.avatarlist li{
+display:inline-block;
+width:68px !important;
+height:68px !important;
+overflow:hidden !important;
+}
+
+.avatarlist li iframe{
+width:68px !important;
+height:68px !important;
+}
+
+.avatarlist li avatar-name{
+display:block;
+width:68px !important;
+height:68px !important;
+overflow:hidden;
+
+}
+
+.avatarlist li avatar-name a{
+display:block;
+width:68px !important;
+height:68px !important;
+overflow:hidden;	
+}
+
+.avatarlist li avatar-name p{
+display:block;
+width:68px !important;
+height:68px !important;
+overflow:hidden;	
+}
+
+.avatarlist li img{	
+width:68px !important;
+height:68px !important;
+overflow:hidden;	
+}
+
+.avatarlist { width: auto !important;}
+.avatarlist li {float:left;  }
+li { display: block;}
+
+</style>
+<script>
+$(document).ready(function(){
+$("#capturetext").on('keypress',function(){
+return false;	
+})
+$("#capturetext").on("drop", function(event) {
+event.stopPropagation();
+if ($(this).val()!="") {
+$(this).val("")
+$(this).focus();
+}		
+});
+/*
+new Ext.ToolTip({
+target: 'my_id',
+html: 'the stuff to display',
+autoWidth: 1,
+style: 'background-color: yellow;'
+});
+*/
+
+});
+</script>
+<script type="text/javascript">
+	
+/*________________________________________________________________________
+	* @Date:      	16 Jan 2015
+	* @Method :   	getResizedThumbnail
+	* Created By: 	smartData Enterprises Ltd
+	* Modified On:	-
+	* @Purpose:   	This function is used for Check media Thumbnails.
+	* @Param:     	3
+	* @Return:    	Yes
+_________________________________________________________________________
+*/                                            
+function getResizedThumbnail(url,thumbSize,replaceWith){
+	//alert('functioncalled');
+    if(url!='' && thumbSize!=''){
+        var newUrl = url;
+        var n = newUrl.search(thumbSize);
+        if(n>=0){
+			newUrl = newUrl.replace(thumbSize, replaceWith);
+			//alert(newUrl);
+            return newUrl;
+        }else{
+			//alert(newUrl);
+            return newUrl;
+        }        
+    }else{
+		//alert(newUrl);
+        return url;
+    }    
+}
+	/*
+	$(document).ready(function(){
+		$("#filterbar").hover(function(){
+			$(".searchinglist").addClass("highlight")
+		},
+		function(){
+			$(".searchinglist").removeClass("highlight")
+		});  
+
+		$('.searchBar').click(function () {
+			alert("m here---");
+			$("input#searchfld").focus(); 
+		});
+	});
+	*/
+	$(document).ready(function(){
+		$(document).on("click", ".ui-dialog-titlebar button.ui-dialog-titlebar-close", function(){
+			$("#capturetext").val("");
+		})
+	})
+	
+</script>
+<style>
+	
+</style>
+<!--overlay and its container for gridster view-->
+<div id="overlay"></div>
+<div id="overlayContent">
+	<a class="prev-m trans navarrow-left"><span class="i-ico i-prev"></span></a>
+	<a class="next-m trans navarrow-right"><span class="i-ico i-next"></span></a>
+	<a id="closeBtn"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span></a>
+	<!--<img id="imgBig" src="{{imageName}}" alt="" width="400" />-->
+	
+</div>
+<!--overlay and its container for gridster view end-->
+
+<div class='search-view' include-static="'../views/front/boards/elements/search_view.html'" style="display: none;padding:0; background:#fff; color: black;"></div>
+<!--<div include-static="'../views/front/boards/elements/media_view_statements.html'"></div>-->

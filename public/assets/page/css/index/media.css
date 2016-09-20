@@ -1,0 +1,164 @@
+html{-webkit-text-size-adjust: none; /* Prevent font scaling in landscape */}
+
+
+@media all and (max-width: 850px) {
+	html, body{height:100%; min-height:100%; background: url("../img/highway.jpg") no-repeat fixed center center;
+-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;}
+
+	header{position:inherit;}
+	.ca-container{width:100%; margin:0 auto;}
+	.ca-wrapper{margin:0 50px; width:auto;}
+	#everything{top:80px!important; left:0!important; width:100%;}
+	.simform-inner{max-width:none; width:100%;}
+	.simform ol:before{display:none;}
+	.ca-nav span.ca-nav-next{right:10px;}
+	.ca-nav span.ca-nav-prev{left:10px;}
+	section{padding:0;}
+	.tabletfull, .simform .error-message{width:100%;}
+	.ca-item{width:50%;}
+	section#themes, section#tips{padding:10px;}
+	
+	/*-----20150122------*/
+	
+	.boards_outer, .my_profile{padding:0;}
+	.boards_outer h1{margin: 0.5em 0 0.67em;}
+	.logo{text-align: left; padding-left: 70px;}
+	.login-hdr .logo{text-align: center; padding-left: 0;}
+}
+/*10-7-15 start*/
+@media all and (max-width: 991px) {
+.popup-textarea-mn  main.container .a-circle,
+.popup-textarea-mn  main.container #a-tooltip6,
+main.container #a-tooltip6
+{left:-120px;}
+.popup-textarea-mn main.container .tooltips {right:42px;}
+}
+/*10-7-15 end*/
+
+
+@media all and (max-width: 767px) {
+/*10-7-15 start*/
+.btns-btm {display: block;}
+.popup-textarea-mn .tooltips,
+main.container .popup-textarea .a-circle.note-board-btn /*10-9-15*/
+{ display: none;}
+/*10-7-15 end*/
+
+/*10-9-15 start*/
+/*.note-montage-btm-btn {
+width:100%;
+}*/
+.note-montage-btm-btn a{
+width:100%;
+padding:6px;
+}
+/*10-9-15 end*/
+
+
+/*20-7-15 start*/
+.text-editor.text-editor-2{ display: none;}
+
+#searchView-media-tray {
+padding:0;
+}
+/*20-7-15 end*/
+
+
+/*21-9-15 start*/
+.note-btm-btns {width:100%;}
+/*21-9-15 end*/
+
+
+}
+
+
+@media all and (max-width: 650px) {
+	.iphone-visible{display:block;}
+	.iphone-hidden{display:none;}	
+	.mobilefull, .overlay .holder{width:100%;}
+	#sub-q > label{font-size:10px; line-height:18px; margin:12px 0;}
+	.questions li > span label, #tips #holder .half p, #tips #holder .half ul li, .ca-item h3{font-size:14px;}
+	#tips #holder .half h3, #tips #holder h2, .questions li > span label, .ca-item h3{letter-spacing:4px;}
+	
+	#columns .simform{padding:0;}
+	.columns .simform ol.questions.questions-cols{width:100%;}
+	.overlay .holder.fullheight{height:100%; width:100%;}
+	.overlay .holder.fullheight .imageholder{max-width:100%; margin:0 auto; background-position:center center; background-size:100% auto;}
+	
+	.loginform-inner{width:90%; margin:0 auto;}
+	
+	.media-content{min-height: inherit;}
+	
+	/*---------20150122----------*/
+	.logo{padding-left: 0; text-align: center; }
+	header span.pro-span.ng-binding { display: block;  margin-top: 15px; position: inherit; right: 0; text-align: center;
+    width: 100%; top: auto;}
+    #menuicon{top: 0; left: 0; padding-left: 0; background-color:  rgba(0,0,0,0.5); height: 30px; width: 30px;}
+    h1{font-size: 2em; margin: 0 0 0.5em;}
+}
+
+@media all and (max-width: 500px) {	
+	.ca-item{width:100%;}
+	#tips #holder .half.content{width:100%;}
+	.half content iframe, #themes #holder #categories, #themes #holder #themelist{width:100%!important;}	
+	iframe{width:100%!important;}
+	#theme-btn{right:4%;}
+	#tips-btn{left:4%; width:20px; height:20px; }
+	.my_profile .login-btns .button.fws-mob{width:100%!important;}
+	
+	#everything{max-width: 95%;}
+	.loginform .table_responsive table{min-width: 500px;}
+	
+/*10-7-15 start*/
+.popup-textarea-mn .popup-textarea{
+left:0;
+max-width:none;
+width: 100%;
+}
+
+.popup-textarea-mn .popup-textarea {
+    left: 0;
+    margin: auto !important;
+    right: 0;
+    top: 20%;
+    width: 96%;
+}
+/*10-7-15 end*/	
+	
+}
+
+@media all and (max-width: 480px) {
+
+.m-gridster .gridster.gridster-montage {
+width:100% !important;
+overflow:auto;
+}
+.gridster-montage-close { position:relative; width:100%;}
+}
+
+@media all and (max-width: 400px) {
+	.questions textarea{margin:20px auto;}
+	.questions li > span{overflow:visible;}
+	.columns .questions.questions-cols li #tips-btn{top:0;}
+	.questions.questions-cols textarea{margin:0;}
+	.simform ol:before, .simform ol:before, .columns .simform ol{height:auto; min-height:inherit;}
+	.columns .simform ol{margin-bottom:30px;}
+	.login_form { 
+width: 88% !important;
+}
+
+
+/*21-7-15 start*/
+.confirmon-box {
+width: 300px;
+margin-left: -150px !important;
+}
+/*21-7-15 end*/
+
+}
+
+
+

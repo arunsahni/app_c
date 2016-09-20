@@ -1,0 +1,135 @@
+<!--delete comments poopup-->
+
+<div id="delete_cmnt_pop" style="display: none;">
+	<div class="confirmon-overlay" style="display: block;"></div>
+	<div class="confirmon-box" style="display: block;">
+		<div ng-click="closeCmntDel()" class="close_icon" style="top:0" title="Close"></div>
+		<p class="confirmon-content">Are you sure, you want to delelte this comment?</p>
+		<button class="confirmon-button confirmon-button" ng-click="delBoardComment()">Yes, I'm sure</button>
+		<button class="confirmon-button confirmon-button" ng-click="closeCmntDel()">No, I'm not sure</button>
+	</div>
+</div>
+
+<!--delete comments poopup-->
+
+
+<!--montage case poopup-->
+
+<div id="montage_pop" style="display: none;">
+	<div class="confirmon-overlay" style="display: block;"></div>
+	<div class="confirmon-box" style="display: block;">
+		<div ng-click="closeMontagePop()" class="close_icon" style="top:0" title="Close"></div>
+		<p class="confirmon-content">You have selected a montage.<br/> It will replace the current media on stage. Are you sure you want to proceed ?</p>
+		<button class="confirmon-button confirmon-button" onClick="openMontage()">Yes, I'm sure</button>
+		<button class="confirmon-button confirmon-button" ng-click="closeMontagePop()">No, I'm not sure</button>
+	</div>
+</div>
+
+<!--montage case poopup-->
+
+<!--montage replace case poopup-->
+
+<div id="montage_replace_pop" style="display: none;">
+	<div class="confirmon-overlay" style="display: block;"></div>
+	<div class="confirmon-box" style="display: block;">
+		<div ng-click="closeMontagePop()" class="close_icon" style="top:0" title="Close"></div>
+		<p class="confirmon-content">You have a montage on your stage.<br/> It will be replaced by the media you selected. Are you sure you want to proceed ?</p>
+		<button class="confirmon-button confirmon-button" onClick="openMontage()">Yes, I'm sure</button>
+		<button class="confirmon-button confirmon-button" ng-click="closeMontagePop()">No, I'm not sure</button>
+	</div>
+</div>
+
+<!--montage replace  case poopup-->
+
+
+<!--popup fon click of close holder act button-->
+
+<div id="closeMontage_pop" style="display: none;">
+	<div class="confirmon-overlay" style="display: block;"></div>
+	<div class="confirmon-box" style="display: block;">
+		<div ng-click="closeMonDel()" class="close_icon" style="top:0" title="Close"></div>
+		<p class="confirmon-content">Are you sure, you want to close this? </p>
+		<button class="confirmon-button confirmon-button" ng-click="close_holder_act_final()">Yes, I'm sure</button>
+		<button class="confirmon-button confirmon-button" ng-click="closeMonDel()">No, I'm not sure</button>
+	</div>
+</div>
+
+<!--popup fon click of close button-->
+
+<!--/////// My Board Medias //////-->
+
+<div id="delete_pop"  style="display: none;">
+	<div class="confirmon-overlay" style="display: block;"></div>
+	<div class="confirmon-box" style="display: block;">
+		<div ng-click="closeDel()" class="close_icon" style="top:0" title="Close"></div>
+		<p class="confirmon-content">This action cannot be undone, are you sure?</p>
+		<button class="confirmon-button confirmon-button" ng-click="confirmDel()">Yes, I'm sure</button>
+		<button class="confirmon-button confirmon-button" ng-click="closeDel()">No, I'm not sure</button>
+	</div>
+</div>
+<div id="private_media_pop"  style="display: none;">
+	<div class="confirmon-overlay" style="display: block;"></div>
+	<div class="confirmon-box" style="display: block;">
+		<div ng-click="closePrivate()" class="close_icon" style="top:0" title="Close"></div>
+		<p class="confirmon-content">This media is privte. Hence, it will not be visible outside Board. Do you want to proceed?</p>
+		<button id="make_public"  class="confirmon-button confirmon-button" onClick="mkPublic()">Make it Public</button>
+		<button id="leave_private" class="confirmon-button confirmon-button" ng-click="keep_private()">Keep it private</button>
+	</div>
+</div>
+
+<div id="private_media_pop1" style='display: none'>
+	<div class="confirmon-overlay" style="display: block;"></div>
+	<div class="confirmon-box" style="display: block;">
+		<div ng-click="closePrivate()" class="close_icon" style="top:0" title="Close"></div>
+		<p class="confirmon-content">Media in your stage is private. if you continue with this media, the montage you make will be private as well</p>
+		<button id="make_public"  class="confirmon-button confirmon-button" ng-click="makePublic()">Make it Public</button>
+		<button id="leave_private" class="confirmon-button confirmon-button" ng-click="keep_private()">Keep it private</button>
+	</div>
+</div>
+
+<div id="media_tray_full_pop" style='display: none'>
+	<div class="confirmon-overlay" style="display: block;"></div>
+	<div class="confirmon-box" style="display: block;">
+		<p class="confirmon-content">Please remove an object to add one more</p>
+		<button id="leave_private" class="confirmon-button confirmon-button" onClick="$('#media_tray_full_pop').hide()">Okay ! Got it</button>
+	</div>
+</div>
+
+<div id="media_tray_full_board_pop" style='display: none'>
+	<div class="confirmon-overlay" style="display: block;"></div>
+	<div class="confirmon-box" style="display: block;">
+		<p class="confirmon-content">Ooops! Media count exceeds media tray limit. either reduce the number of media or delete some old media to make room for new media</p>
+		<button id="leave_private" class="confirmon-button confirmon-button" onClick="$('#media_tray_full_board_pop').hide()">Okay ! Got it</button>
+	</div>
+</div>
+
+
+<div id="tray_dmedia_delete">
+	<div class="confirmon-overlay" style="display: none;"></div>
+	<div class="confirmon-box" style="display: none;">
+		<div onClick="closeDel()" class="close_icon" style="top:0" title="Close"></div>
+		<p class="confirmon-content">This action cannot be undone, are you sure?</p>
+		<button id="confirmBtn" class="confirmon-button confirmon-button" >Yes, I'm sure</button>
+		<button class="confirmon-button confirmon-button" onClick="closeDel()">No, I'm not sure</button>
+	</div>
+</div>
+
+<div id="tary_full_onClose" style='display: none'>
+	<div class="confirmon-overlay" style='display: block'></div>
+	<div class="confirmon-box" style='display: block'>
+		<div onClick="$('#tary_full_onClose').hide()" class="close_icon" style="top:0" title="Close"></div>
+		<p class="confirmon-content">You don't have enough space in your media tray. If you close it now you may lose media on platform?</p>
+		<button id="confirmBtn" class="confirmon-button confirmon-button" ng-click='close_holder_act_final()'>Yes, close it</button>
+		<button class="confirmon-button confirmon-button" onClick="$('#tary_full_onClose').hide()">No, return</button>
+	</div>
+</div>
+
+<div id="tary_full_onClose_openSearch" style='display: none'>
+	<div class="confirmon-overlay" style='display: block'></div>
+	<div class="confirmon-box" style='display: block'>
+		<div onClick="$('#tary_full_onClose_openSearch').hide()" class="close_icon" style="top:0" title="Close"></div>
+		<p class="confirmon-content">You don't have enough space in your media tray. If you close it now you may lose media on platform?</p>
+		<button id="confirmBtn" class="confirmon-button confirmon-button" ng-click='opensearchContainer_final()'>Yes, close it</button>
+		<button class="confirmon-button confirmon-button" onClick="$('#tary_full_onClose_openSearch').hide()">No, return</button>
+	</div>
+</div>

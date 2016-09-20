@@ -1,0 +1,5 @@
+Smart Uploader function:
+------------------------
+1) google link regular expression
+2) Check oEmbedd Api with both protocal Embedding Video/Audio case Handling
+3) 

@@ -1,0 +1,47 @@
+<section class="content content grey_bg">
+<script language="javascript">
+		$(function(){
+			//$('form').jqTransform({imgPath:'/css/img/'});
+		});
+</script>
+        <div class="container con_pos"  ng-controller="merchantSignupCtrl">
+            <div class="left_img"></div>
+            <div class="right_img"></div>
+            
+            <!-- Login Section Starts-->
+            <section class="login_sec">
+            	<div class="cap_img"><img src="assets/img/cap.png" alt="" title="" /></div>
+            	<h3>Sign up</h3>
+                <form name="merchantSignup" id="merchantSignup" novalidate>
+                <ul class="loginform">
+                    <li>
+                      <img src="assets/img/username_img.png" width="60" height="54" alt="" class="wrapimg" />
+                      <p class="padlt"><input type="text" name="email" ng-model="merlog.email" class="textfield inputlogin" placeholder="Email" required></p>
+                    </li>
+                    <li>
+                      <img src="assets/img/username_img.png" width="60" height="54" alt="" class="wrapimg" />
+                      <p class="padlt"><input type="text" name="username" ng-model="merlog.name" class="textfield inputlogin" placeholder="Username" required></p>
+                    </li>                    
+                    <li>
+                      <img src="assets/img/password_img.png" width="60" height="54" alt="" class="wrapimg" />
+                      <p class="padlt"><input type="password" name="password" ng-model="merlog.password" class="textfield inputlogin" placeholder="Password" required></p>
+                    </li>                  
+                    <li>
+                      <input type="submit" class="button loginbtn" ng-click="submitForm(merchantSignup.$valid)" name="commit" value="Signup" ng-disabled="userForm.$invalid">
+                    </li>
+                    <li>
+                    	<div class="social_list">
+                        	<img src="assets/img/facebook_icon.png" alt="" title="" />
+                            <a href="#">Signup with Facebook</a>
+                        </div>
+                        <div class="social_list fl_rt">
+                        	<img src="assets/img/twitter_icon.png" alt="" title="" />
+                            <a href="#">Signup+ with Twitter</a>
+                        </div>
+                    </li>
+                </ul>
+            	</form>
+            </section>
+            <!-- Login Section Ends -->
+        </div>
+</section>

@@ -1,0 +1,10 @@
+<form name="projects21" novalidate>
+    <input type="text" placeholder="Title" ng-model="project.name" value="" required>
+    <!--<select data-ng-options="dom.DomainTitle for dom in domains track by dom._id" ng-model="project.domain"></select>-->
+    <select ng-model="project.domain" id="domain" required auto-fill-sync>
+        <option value="">Select Domain</option>
+        <option ng-repeat="dom in domains" ng-selected="selectedVal" value="{{dom._id}}">{{dom.DomainTitle}}</option>    </select>        
+    <input type="submit" value="Submit" ng-click="addProject(projects21.$valid)" >
+</form>
+
+<a ui-sref="projects">Cancel</a>

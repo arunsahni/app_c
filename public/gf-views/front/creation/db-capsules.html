@@ -1,0 +1,90 @@
+<div id="menu-button" class="toggle-menu menu-left push-body">
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+</div>
+<div class="head">
+	<div class="wrapper">
+		<!-- START BROWSE -->
+		<div class="browse">
+			<div class="heading-row">
+				<h2>Dashboard : Capsules</h2>
+			</div>
+			<ul class="tabs library-qc">
+				<li><a href="javascript:void(0)" class="qc-allPublished selected" ng-click="DbCapsules.setQueryCriteria('allPublished')">All</a></li>
+				<li><a href="javascript:void(0)" class="qc-publishedByMe" ng-click="DbCapsules.setQueryCriteria('publishedByMe')">Published by you</a></li>
+				<li><a href="javascript:void(0)" class="qc-publishedForMe" ng-click="DbCapsules.setQueryCriteria('publishedForMe')">Published for you</a></li>
+				<li><a href="javascript:void(0)" class="qc-invitationForMe" ng-click="DbCapsules.setQueryCriteria('invitationForMe')">Invitation for you</a></li>
+				<li><a href="javascript:void(0)" class="qc-byTheHouse" ng-click="DbCapsules.setQueryCriteria('byTheHouse')">By the house</a></li>
+			</ul>
+			<!--
+			<div class="select-con select-con2">
+				<select>
+					<option value="Capsule 1">Latest</option>
+					<option value="Capsule 2">Latest</option>
+					<option value="Capsule 3">Latest</option>
+				</select>
+			</div>
+			
+			<div class="select-con first  select-con2">
+				<select>
+					<option value="Capsule 1">Capsule 1</option>
+					<option value="Capsule 2">Capsule 2</option>
+					<option value="Capsule 3">Capsule 3</option>
+				</select>
+			</div>
+			-->
+			<div class="clear"></div>
+			
+			<!-- START IMAGES -->
+			<div class="browse-images browse-images2">
+				<dir-pagination-controls on-page-change="DbCapsules.pageChanged(newPageNumber)"></dir-pagination-controls>
+                <div class="chapter-library-block">
+                	<ul>
+                    	<li dir-paginate="chapter in DbCapsules.capsulesPaginated  | itemsPerPage: perPage" total-items="count" current-page="pageNo">
+                      	<div class="zoomIn chapter-library-bx">
+							<img ng-if="!(chapter.CoverArt)" src="/assets/create/images/no-chapter-pic.jpg" alt="chapter" class="primary zoomIn" />
+							<img ng-if="chapter.CoverArt" src="/assets/Media/capsules/small/{{chapter.CoverArt}}" alt="chapter" class="primary zoomIn" />
+							<!--<div class="chapter-overlay2" ng-click="DbCapsules.init_edit(chapter._id)"></div>-->
+							<div class="chapter-overlay2" ng-click="DbCapsules.init_edit(chapter._id)"></div>
+							<h3>{{chapter.Title}}</h3>
+							<ul class="chapter-library-icon">
+								<li class="preview" ng-click="DbCapsules.init_edit(chapter._id)">
+									<a ng-if="chapter.IsPublished==true && chapter.IsLaunched==true" href="javascript:void(0)" style="text-decoration: none; color: white;">Enter</a>
+									<a ng-if="chapter.IsPublished==true && chapter.IsLaunched==false" href="javascript:void(0)" style="text-decoration: none; color: white;">Launch</a>
+								</li>
+							</ul>
+							<!--<div class="date">11/09/2014</div>-->
+						</div>
+						<div class="chapter-info">
+							<span class="chapter-no">
+								{{$index+1}}
+							</span>
+							<span class="chapter-name" data-toggle="tooltip" title="{{chapter.Title}}">
+								{{chapter.Title}}
+							</span>
+						</div>
+                        </li>
+                    </ul>
+                </div>
+				<div ng-if="DbCapsules.capsulesPaginated.length==0">No Record Found!</div>
+				<div class="clear"></div>
+			</div>
+			<!-- END IMAGES -->
+		</div>
+		<!-- END BROWSE -->
+		<div class="clear"></div>
+	</div>
+</div>
+<div id="loader" style="display: block;"><img src="/assets/create/images/ajax-loader.gif" alt="Loader" /></div>
+<div id="tips" style="display: none;"><div id="closetips"></div></div>
+<!--<script type="text/javascript" src="/assets/create/js/scripts.js"></script>-->
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+<style type="text/css">
+	.creation-section .chapter-info { font-family:"Brandon Light",Arial,sans-serif; }
+</style>

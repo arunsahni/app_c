@@ -1,0 +1,156 @@
+<style type="text/css">
+	.froala-editor {z-index: 9999 !important}
+	.image-selector li {
+		display: inline-block;
+		margin-left: 2px;
+		position: relative;
+	}
+</style>
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<div id="note_forMontage" style="display:none" class="popup-textarea-mn">
+	<div class="popup-textarea montage-popup-bx bx-sz">
+		<section id="editor">
+			<div id="edit" class="edit_froala2 bx-sz">
+				<p>Start writing...</p>
+			</div>
+		</section>
+		<section class="btns-btm for-mob bx-sz">
+			<section ng-show="note_montage_case == true" class="col-xs-6"><a  ng-click="note_screenshot_for_montage()" onClick="montage_ele.add_id_forNote()" href="javascript:void(0)" class="circle-btn"><span>Add to montage</span></a></section>
+			<section ng-show="note_montage_case == true" class="col-xs-6"><a  ng-click="close_note();" href="javascript:void(0)"  class="square-btn"><span>Exit without save</span></a></section>
+	   </section>
+	</div>
+	<div class="bg-popup"></div>
+</div>
+
+<!-- Header -->
+<main class="container bx-sz">
+  
+	<!--<header class="row nw-header bx-sz" include-static="'../views/front/boards/elements/header2.html'"></header>-->
+	<header class="row quest-row quest-row-2 bx-sz" >
+		<section class="col-sm-12 nw-header-left">
+			<h3 class="title"><a href="javascript:void(0)" ng-click="openmenu()" class="toggle-menu menu-left push-body"><i class="fa fa-bars"></i></a> <span>{{title}}</span></h3>
+		</section>
+	</header>
+	<!--<section class="nw-subheader row bx-sz" include-static="'../views/front/boards/elements/h2_search_tray.html'"></section>-->
+	<section class="nw-subheader nw-subheader-2 row bx-sz media-tray-rw">
+		<section class="col-md-2 col-sm-3  icon-links">
+			  <a class="reset_header" href="javascript:void(0)"  ng-click="prior_switch__toSearch()" title="Go To Search Gallery"><i class="fa fa-th "></i></a> 
+			  <a href="javascript:void(0)" class="noteIcons" ng-click="setPageFlag('D')" title="Add note"><i class="fa fa-file-text-o"></i></a> 
+			  <a ng-show="search_view_case == true" href="javascript:void(0)" title="Statements" onClick="alert('On Hold...')"><i class="fa fa-lightbulb-o"></i></a> 
+		</section>
+		<section class="col-md-10 col-sm-9  image-selector searchView_trayArea"></section>
+	 </section>
+	
+	<div class="froala-edtr-box">
+        <section class="text-editor  bx-sz">
+            <section id="editor">
+              <div id="edit" class="edit_froala1">
+                <p>Start writing...</p>
+              </div>
+            </section>
+            <section class="tooltips tooltips2">
+            
+                <!----------------------------------   Post to board butons  ---------------------------------------------------->
+               <!-- <a ng-show="search_view_case == true" ng-click="postMedia()" href="javascript:void(0)" class="a-circle" id="a-tooltip1">
+                   <span id="tooltip1" class="tooltip-box animated"><b class="animated fadeIn">Post to board</b></span>
+                </a>-->
+                <a ng-show="note_montage_case == true" ng-click="note_screenshot_for_montage()" onClick="montage_ele.add_id_forNote()" href="javascript:void(0)" class="a-circle" id="a-tooltip6">
+                   <span id="tooltip6" class="tooltip-box animated"><b class="animated fadeIn">Add to montage</b></span>
+                </a>
+                <a ng-show="post_montage_case == true" ng-click="postMontage_mCtrl()" href="javascript:void(0)" class="a-circle" id="a-tooltip7">
+                   <span id="tooltip7" class="tooltip-box animated"><b class="animated fadeIn">Post montage </b></span>
+                </a>
+                <!----------------------------------   Post to board butons ends ---------------------------------------------------->
+                
+                
+                <!----------------------------------   Exit without save butons  ---------------------------------------------------->
+                <a ng-show="search_view_case == true" class="a-square exit-w-save" id="a-tooltip2" onClick="/*grid_init()*/"  ng-click="prior_close_holderAct();">
+                    <span  id="tooltip2" class="tooltip-box animated"><b class="animated fadeIn">Exit without save</b></span>
+                </a>
+                <a ng-show="post_montage_case == true" class="a-square" id="a-tooltip8" onClick="/*grid_init()*/"  ng-click="prior_close_holderAct();">
+                    <span  id="tooltip8" class="tooltip-box animated"><b class="animated fadeIn">Exit without save</b></span>
+                </a>
+                <a ng-show="note_montage_case == true" class="a-square" id="a-tooltip4" ng-click="close_note()" >
+                    <span id="tooltip4" class="tooltip-box animated"><b class="animated fadeIn">Exit without save</b></span>
+                </a>
+                <!----------------------------------   Exit without save butons Ends ---------------------------------------------------->
+            
+           </section>
+           
+        </section>
+        
+        <section class="m-gridster clear">
+          <div class="gridster gridster-montage ">
+            <div id="holder-box" class="single-img testing123"></div>
+            <ul id="grid" style="display: none">
+                <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" ><a ng-click="openNote_mctrl()" onClick="montage_ele.openNote($(this))" href="javascript:void(0)" class="addnote drop-here"><span class="tb-cell"><span class="fa fa-plus-circle"></span> <b>Click to add note</b></span></a></li>
+                <li data-row="1" data-col="2" data-sizex="1" data-sizey="1" ><a ng-click="openNote_mctrl()" onClick="montage_ele.openNote($(this))" href="javascript:void(0)" class="addnote drop-here"><span class="tb-cell"><span class="fa fa-plus-circle"></span> <b>Click to add note</b></span></a></li>
+                <li data-row="2" data-col="1" data-sizex="1" data-sizey="1" ><a ng-click="openNote_mctrl()" onClick="montage_ele.openNote($(this))" href="javascript:void(0)" class="addnote drop-here"><span class="tb-cell"><span class="fa fa-plus-circle"></span> <b>Click to add note</b></span></a></li>
+                <li data-row="2" data-col="2" data-sizex="1" data-sizey="1" ><a ng-click="openNote_mctrl()" onClick="montage_ele.openNote($(this))" href="javascript:void(0)" class="addnote drop-here"><span class="tb-cell"><span class="fa fa-plus-circle"></span> <b>Click to add note</b></span></a></li>
+            </ul>
+            <ul id="grid_clone" style="display: none; height:555px !important;width: 555px !important;">
+            </ul>
+            
+             <a ng-show="search_view_case == true" ng-click="postMedia()" href="javascript:void(0)" class="a-circle a-circle-2 post-board-btn" id="a-tooltip1">
+                   <span id="tooltip1" class="tooltip-box animated"><b class="animated fadeIn">Post to board</b></span>
+			 </a>
+            
+          </div>
+          
+        </section>
+    </div>
+	
+	<section class="btns-btm for-mob discuss-btm-btns bx-sz">
+		<section ng-show="search_view_case == true" class="col-xs-6"><a ng-click="postMedia()" href="javascript:void(0)" class="circle-btn"><span>Post to board</span></a></section>
+		<section ng-show="search_view_case == true" class="col-xs-6"><a onClick="/*grid_init()*/" ng-click="prior_close_holderAct();" href="javascript:void(0)"  class="square-btn"><span>Exit without save</span></a></section>
+		
+		<section ng-show="post_montage_case == true" class="col-xs-6"><a ng-click="postMontage_mCtrl()" href="javascript:void(0)" class="circle-btn"><span>Post montage</span></a></section>
+		<section ng-show="post_montage_case == true" class="col-xs-6"><a onClick="/*grid_init()*/" ng-click="prior_close_holderAct();" href="javascript:void(0)"  class="square-btn"><span>Exit without save</span></a></section>
+		
+		<section ng-show="note_montage_case == true" class="col-xs-6"><a ng-click="note_screenshot_for_montage()" onClick="montage_ele.add_id_forNote()" href="javascript:void(0)" class="circle-btn"><span>Add to montage</span></a></section>
+		<section ng-show="note_montage_case == true" class="col-xs-6"><a onClick="/*grid_init()*/" ng-click="close_note()" href="javascript:void(0)"  class="square-btn"><span>Exit without save</span></a></section>
+		
+   </section>
+</main>
+<!-- /Header --> 
+
+
+
+
+
+
+<!--<script>
+  $.Editable.DEFAULTS.key = 'DA6C5veuxA-63B15hce1==';
+</script>-->
+
+
+<!--<script src="../assets/board/js/cjquery.js"></script>-->
+<script>
+	jQuery(document).ready(function($) {
+		setTimeout(function(){
+			window.obj_stage_index = null;
+				mediaSite.initSmallHeader();
+				//mediaSite.jscriptNgcommon.init__urlLocations();
+				mediaSite.init_jpushMEnu_left();
+				//mediaSite.init_fraola();
+				//mediaSite.initModalPopup();
+				mediaSite.init_captureText();
+				mediaSite.initSlider();
+				//mediaSite.init_linkDropTextBox();
+				mediaSite.initSearchAnim();
+				//mediaSite.init_button_effect();
+				//mediaSite.init__discussClick();
+				mediaSite.initAnsboxAnim();
+				mediaSite.resetSearchHeader();
+				//mediaSite.init__searchClick();
+		},5000);
+		//startupall_montage();
+	});
+</script>

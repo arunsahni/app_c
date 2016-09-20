@@ -1,0 +1,454 @@
+<!-- START CONTENT -->
+<div id="content" class="chapter experience2">    
+    <span class="setting"><img src="../assets/capsule/images/filter-options-hover.png" alt=""/></span>
+    <div id="menu-button">
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+    </div>
+    <div class="head">
+        <div class="wrapper">
+            <h1 class="margin_botm20 capsule_hover">
+                <span class="capsule_text">Capsule Name </span>
+                <input type="text" value="capsule.title" ng-model="capsule.title" placeholder="Enter Capsule Name" class="capsule_text_field" ng-blur="createCapsule()">
+                <span class="capsule_edit"><a href="javascript:void(0);"><img alt="Edit" src="../assets/capsule/images/chapter/edit-chapter.png"></a></span>
+		<span class="" id="add_capsule" style="display:none;"><a href="javascript:void(0);" ng-click="createCapsule();">+</a></span>
+	    </h1>
+           
+            <!--<h2 class="chapter">Chapter Name</h2>-->
+	    
+	  
+	    
+            <div class="center">
+		<h2>Choose your audio</h2>
+		<span class="subheading">Preview the audio by clicking on it, then drag it into the playlist to apply to your experience</span>
+                <div class="left">
+                    <div class="audio-items">
+                        <div class="audio-item">
+                            <div class="title">Audio Name 1</div>
+                            <div class="time">3:23</div>
+                        </div>
+                        <div class="audio-item">
+                            <div class="title">Audio Name 1</div>
+                            <div class="time">3:23</div>
+                        </div>
+                        <div class="audio-item">
+                            <div class="title">Audio Name 1</div>
+                            <div class="time">3:23</div>
+                        </div>
+                        <div class="audio-item">
+                            <div class="title">Audio Name 1</div>
+                            <div class="time">3:23</div>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0);" class="add-audio-btn">Add Audio</a>
+                </div>
+                <div class="right">
+                    <div class="bg"></div>
+                    <div class="audio-items">
+                        <div class="audio-item">
+                            <div class="title">Audio Name 1</div>
+                            <div class="time">3:23</div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="audio-item">
+                            <div class="title">Audio Name 1</div>
+                            <div class="time">3:23</div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="audio-item">
+                            <div class="title">Audio Name 1</div>
+                            <div class="time">3:23</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <span class="total">Total duration of tracks: 10:09</span>
+                </div>
+                <div class="clear"></div>
+	    </div>
+            
+            <div class="clearfix"></div>
+            
+            <div class="chapter_box">
+                <h2 class="width_auto">Chapters-in-the-making</h2>
+                <span class="dragdesc">
+                        Drag and move your chapters in order as you wish
+                </span>
+                <div class="clear"></div>
+                <!-- START CAROUSEL -->
+                <div class="carousel">
+		    <div ng-repeat="chapter in chaptersImages">
+                        <img src="../assets/images/chapters/{{chapter._id}}_profile_image{{chapter.ImageExtension}}" height="133" alt="chapter" class="primary" />
+                        <span> <em>{{$index+1}}</em> {{chapter.Title}}</span>
+                        <div class="menu"></div>
+                        <ul>
+                            <li class="edit">
+                                    <a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/share.png" alt="Edit" /></a>
+                                    <span class="tooltip">Share</span>
+                            </li>
+                            <li class="edit">
+                                    <a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/edit-chapter.png" alt="Edit" /></a>
+                                    <span class="tooltip">Edit</span>
+                            </li>
+                            <li class="duplicate">
+                                    <a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/duplicate.png" alt="Duplicate" /></a>
+                                    <span class="tooltip">Duplicate</span>
+                            </li>
+                            <li class="delete">
+                                    <a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/delete-chapter.png" alt="Edit" /></a>
+                                    <span class="tooltip">Delete</span>
+                            </li>
+                        </ul>
+		    </div>
+		</div>
+			
+		<div class="add-carousel" id="tips-btn" ng-click="openChapterPopup();">
+			<img src="../assets/capsule/images/chapter/add.jpg" alt="chapter" class="primary" />
+			<span>Add New</span>
+		</div>
+            
+           <a class="see_chapter btn" href="javascript:void(0);">See all Chapters</a>
+			
+			<!-- END CAROUSEL -->
+			
+            </div>
+            
+			<!-- START BROWSE -->
+			<div class="browse">
+				<ul class="tabs">
+					<li><a href="javascript:void(0);">All</a></li>
+					<li><a href="javascript:void(0);">Created by you</a></li>
+					<li><a href="javascript:void(0);" class="selected">Shared with you</a></li>
+					<li><a href="javascript:void(0);">By the house</a></li>
+				</ul>
+				
+				<div class="select-con">
+					<select>
+						<option value="Capsule 1">Latest</option>
+						<option value="Capsule 2">Latest</option>
+						<option value="Capsule 3">Latest</option>
+					</select>
+				</div>
+				
+				<div class="select-con first">
+					<select>
+						<option value="Capsule 1">Capsule 1</option>
+						<option value="Capsule 2">Capsule 2</option>
+						<option value="Capsule 3">Capsule 3</option>
+					</select>
+				</div>
+				
+				<div class="clear"></div>
+				
+				<!-- START IMAGES -->
+				<div class="browse-images">
+					
+					<div class="item">
+						<img src="../assets/capsule/images/browse/1.jpg" alt="chapter" class="primary" />
+						<div class="menu"></div>
+						<h3>Chapter name</h3>
+						<ul>
+							<li class="preview">
+								<a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/preview-chapter.png" alt="Preview" /></a>
+								<span class="tooltip">Preview</span>
+							</li>
+							<li class="add">
+								<a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/add-chapter.png" alt="Add" /></a>
+								<span class="tooltip">Add</span>
+							</li>
+						</ul>
+						<div class="date">11/09/2014</div>
+					</div>
+					<div class="item">
+						<img src="../assets/capsule/images/browse/2.jpg" alt="chapter" class="primary" />
+						<div class="menu"></div>
+						<h3>Chapter name</h3>
+						<ul>
+							<li class="preview">
+								<a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/preview-chapter.png" alt="Preview" /></a>
+								<span class="tooltip">Preview</span>
+							</li>
+							<li class="add">
+								<a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/add-chapter.png" alt="Add" /></a>
+								<span class="tooltip">Add</span>
+							</li>
+						</ul>
+						<div class="date">11/09/2014</div>
+					</div>
+					<div class="item">
+						<img src="../assets/capsule/images/browse/3.jpg" alt="chapter" class="primary" />
+						<div class="menu"></div>
+						<h3>Chapter name</h3>
+						<ul>
+							<li class="preview">
+								<a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/preview-chapter.png" alt="Preview" /></a>
+								<span class="tooltip">Preview</span>
+							</li>
+							<li class="add">
+								<a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/add-chapter.png" alt="Add" /></a>
+								<span class="tooltip">Add</span>
+							</li>
+						</ul>
+						<div class="date">11/09/2014</div>
+					</div>
+					<div class="item">
+						<img src="../assets/capsule/images/browse/4.jpg" alt="chapter" class="primary" />
+						<div class="menu"></div>
+						<h3>Chapter name</h3>
+						<ul>
+							<li class="preview">
+								<a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/preview-chapter.png" alt="Preview" /></a>
+								<span class="tooltip">Preview</span>
+							</li>
+							<li class="add">
+								<a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/add-chapter.png" alt="Add" /></a>
+								<span class="tooltip">Add</span>
+							</li>
+						</ul>
+						<div class="date">11/09/2014</div>
+					</div>
+					<div class="item">
+						<img src="../assets/capsule/images/browse/5.jpg" alt="chapter" class="primary" />
+						<div class="menu"></div>
+						<h3>Chapter name</h3>
+						<ul>
+							<li class="preview">
+								<a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/preview-chapter.png" alt="Preview" /></a>
+								<span class="tooltip">Preview</span>
+							</li>
+							<li class="add">
+								<a href="javascript:void(0);"><img src="../assets/capsule/images/chapter/add-chapter.png" alt="Add" /></a>
+								<span class="tooltip">Add</span>
+							</li>
+						</ul>
+						<div class="date">11/09/2014</div>
+					</div>
+					
+					<div class="clear"></div>
+					
+				</div>
+				<!-- END IMAGES -->
+				
+			</div>
+			<!-- END BROWSE -->
+			
+			<a class="previous-link nav-link" href="javascript:void(0);">Previous</a>
+			<a class="next-link nav-link" ui-sref="pageContent">Proceed</a>
+			
+			<div class="clear"></div>
+			
+		</div>
+	</div>
+    </div>
+	<!-- END CONTENT -->
+	
+	<!-- START SETTINGS -->
+	<div id="settings">
+		<div id="background"></div>
+		<div class="wrapper">
+			<div class="central">
+				<div class="close"></div>
+				<h2>Launch Settings</h2>
+				<h3>Who will participate?</h3>
+				<div class="radio-con-who">
+					<label>
+						<input type="radio" name="who" value="private" checked="checked" />
+						<span>Private</span>
+					</label>
+					<label>
+						<input type="radio" name="who" value="public" />
+						<span>Public</span>
+					</label>
+					<label>
+						<input type="radio" name="who" value="friendssolo" />
+						<span>Friends - Solo</span>
+					</label>
+					<label class="last">
+						<input type="radio" name="who" value="friendsgroup" />
+						<span>Friends - Group</span>
+					</label>
+					<div class="clear"></div>
+				</div>
+				<p>
+					Friends Solo: Multiple friends will be asked to answer but they 
+					won't be able to see each others answers.
+				</p>
+				
+				<h3>
+					Add members
+					<span class="show-members">Show Friends</span>
+				</h3>
+				
+				
+				<!-- START INVITE FRIENDS -->
+				<div class="members-con">
+					<input type="text" name="name" placeholder="Enter name.." class="first" />
+					<input type="text" name="email" placeholder="Enter email.." />
+					
+					<div class="radio-con-two">
+						<label class="first">
+							<input type="radio" name="members" value="coowner" checked="checked" />
+							<span>Co-owner</span>
+						</label>
+						<label>
+							<input type="radio" name="members" value="member" />
+							<span>Member</span>
+						</label>
+						<div class="clear"></div>
+					</div>
+					
+					<input type="submit" value="Invite Group" id="invite" />
+					
+					<div class="clear"></div>
+					
+					<p>Choose if they are a co-owner or a member</p>
+					
+					<div class="friends">
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						
+						<div class="clear"></div>
+					</div>
+				</div>
+				<!-- END INVITE FRIENDS -->
+				
+				
+				
+				<label class="groupmode">
+					<input type="radio" name="groupmode" value="percentage" checked="checked" />
+					<h3>Open group mode after <span id="response"><span>25</span>%</span> responds</h3>
+				</label>
+				
+				<div id="response-slider"></div>
+
+				<label class="groupmode">
+					<input type="radio" name="groupmode" value="days" />
+					<h3 class="days">Group mode will open <input type="text" name="group_mode_days" id="group_mode_days" value="14" /> days after launch</h3>
+				</label>
+				
+				
+				<h3 class="privacy">Privacy Options</h3>
+				<div class="radio-con-privacy">
+					<label class="first">
+						<input type="radio" name="realnames" checked="checked" />
+						<span>Real Names</span>
+					</label>
+					<label>
+						<input type="radio" name="nicknames" />
+						<span>Nick names</span>
+					</label>
+					<div class="clear"></div>
+					<span>Have a users real name appear</span>
+				</div>
+				
+				<h3>
+					Finishing touches
+					<span class="cover">How your cover image will look</span>
+				</h3>
+				
+				<div class="finishing-touches">
+					<input type="submit" value="Upload" />
+					<input type="text" name="title" placeholder="Add title" />
+				</div>
+				
+				<input type="submit" name="save" value="Save" id="save" />
+			</div>
+		</div>
+	</div>
+	<!-- END SETTINGS -->
+	
+	<div class="modal fixed chapter">
+		<div class="bg"></div>
+		<div class="close"></div>
+		<div class="content">
+			<h2>Chapter name</h2>
+			<div class="images">
+				<div class="image">
+					<span><span></span>1</span>
+					<img src="../assets/capsule/images/chapter-modal-image.png" alt="" />
+				</div>
+				<div class="image">
+					<span><span></span>2</span>
+					<img src="../assets/capsule/images/chapter-modal-image.png" alt="" />
+				</div>
+				<div class="image">
+					<span><span></span>3</span>
+					<img src="../assets/capsule/images/chapter-modal-image.png" alt="" />
+				</div>
+				<div class="image">
+					<span><span></span>4</span>
+					<img src="../assets/capsule/images/chapter-modal-image.png" alt="" />
+				</div>
+				<div class="clear"></div>
+			</div>
+			<span class="left">Add & Edit</span>
+			<span class="right">Back</span>
+		</div>
+	</div>
+	
+    <div class="popup" style="display: none;">
+    	<!-- <input type="text" placeholder="Add image" class="primary-question upload" name=""> <a href="javascript:void(0);" class="btn upload_btn">Upload Image</a> -->
+    	<!-- <input type="file"  name="..." file-model="myFile"> -->
+			<div class="fileUpload upload_btn">
+				<span>Upload</span>
+				<input type="file" class="upload" name="..." file-model="myFile" />
+			</div>	
+		<input type="text" placeholder="Chapter Name " ng-model="chapter.name" class="primary-question" name="chapter_name"></br></br>
+        <input type="button" class="btn" value="Add Chapter" ng-click="createChapter();">
+			<span style="color:red">{{failuremessage}}</span><span style="color:green">{{successmessage}}</span>
+    </div>
+    <div id="tips" style="display: none;"><div id="closetips" ng-click="closeChapterPopup();"></div></div>
+<!-- Loading necessary files for design -->
+<script type="text/javascript" src="../assets/capsule/js/slick.min.js"></script>
+<script type="text/javascript" src="../assets/capsule/js/scripts.js"></script>
+<script type="text/javascript" src="../assets/capsule/js/carousel.js"></script>
+<script type="text/javascript" src="../assets/capsule/js/browse.js"></script>
+
+<script>
+    jQuery(function () {
+        jQuery(".capsule_edit").click(function () {
+            $('.capsule_text').hide();
+            $('.capsule_text_field').show();
+	    $('#add_capsule').show();
+	    $('.capsule_edit').hide();
+        });
+    });
+</script>

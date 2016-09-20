@@ -1,0 +1,155 @@
+    <!--<link rel="stylesheet" type="text/css" href="/assets/create/css/create.css" />-->
+	
+	<!-- START SETTINGS -->
+	<div id="settings" style="display: none;">
+		<div id="background"></div>
+		<div class="wrapper">
+			<div class="central">
+				<div class="close"></div>
+				<h2>Launch Settings</h2>
+				<h3>Who will participate?</h3>
+				<div class="radio-con-who">
+					<label>
+						<input type="radio" name="who" value="private" checked="checked" />
+						<span>Private</span>
+					</label>
+					<label>
+						<input type="radio" name="who" value="public" />
+						<span>Public</span>
+					</label>
+					<label>
+						<input type="radio" name="who" value="friendssolo" />
+						<span>Friends - Solo</span>
+					</label>
+					<label class="last">
+						<input type="radio" name="who" value="friendsgroup" />
+						<span>Friends - Group</span>
+					</label>
+					<div class="clear"></div>
+				</div>
+				<p>
+					Friends Solo: Multiple friends will be asked to answer but they 
+					won't be able to see each others answers.
+				</p>
+				
+				<h3>
+					Add members
+					<span class="show-members">Show Friends</span>
+				</h3>
+				
+				
+				<!-- START INVITE FRIENDS -->
+				<div class="members-con">
+					<input type="text" name="name" placeholder="Enter name.." class="first" />
+					<input type="text" name="email" placeholder="Enter email.." />
+					
+					<div class="radio-con-two">
+						<label class="first">
+							<input type="radio" name="members" value="coowner" checked="checked" />
+							<span>Co-owner</span>
+						</label>
+						<label>
+							<input type="radio" name="members" value="member" />
+							<span>Member</span>
+						</label>
+						<div class="clear"></div>
+					</div>
+					
+					<input type="submit" value="Invite Group" id="invite" />
+					
+					<div class="clear"></div>
+					
+					<p>Choose if they are a co-owner or a member</p>
+					
+					<div class="friends">
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						<div class="friend">
+							<div class="photo"></div>
+							<span class="name">John Smith</span>
+							<span class="relationship">Family</span>
+						</div>
+						
+						<div class="clear"></div>
+					</div>
+				</div>
+				<!-- END INVITE FRIENDS -->
+				
+				
+				
+				<label class="groupmode">
+					<input type="radio" name="groupmode" value="percentage" checked="checked" />
+					<h3>Open group mode after <span id="response"><span>25</span>%</span> responds</h3>
+				</label>
+				
+				<div id="response-slider"></div>
+
+				<label class="groupmode">
+					<input type="radio" name="groupmode" value="days" />
+					<h3 class="days">Group mode will open <input type="text" name="group_mode_days" id="group_mode_days" value="14" /> days after launch</h3>
+				</label>
+				
+				
+				<h3 class="privacy">Privacy Options</h3>
+				<div class="radio-con-privacy">
+					<label class="first">
+						<input type="radio" name="realnames" checked="checked" />
+						<span>Real Names</span>
+					</label>
+					<label>
+						<input type="radio" name="nicknames" />
+						<span>Nick names</span>
+					</label>
+					<div class="clear"></div>
+					<span>Have a users real name appear</span>
+				</div>
+				
+				<h3>
+					Finishing touches
+					<span class="cover">How your cover image will look</span>
+				</h3>
+				
+				<div class="finishing-touches">
+					<input type="submit" value="Upload" />
+					<input type="text" name="title" placeholder="Add title" />
+				</div>
+				
+				<input type="submit" name="save" value="Save" id="save" />
+			</div>
+		</div>
+	</div>
+    <!--<script type="text/javascript" src="/assets/create/js/scripts.js"></script>-->
+	<!-- END SETTINGS -->

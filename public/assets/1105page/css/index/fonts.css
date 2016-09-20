@@ -1,0 +1,55 @@
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon/icomoon.eot?-9heso');
+	src:url('../fonts/icomoon/icomoon.eot?#iefix-9heso') format('embedded-opentype'),
+		url('../fonts/icomoon/icomoon.woff?-9heso') format('woff'),
+		url('../fonts/icomoon/icomoon.ttf?-9heso') format('truetype'),
+		url('../fonts/icomoon/icomoon.svg?-9heso#icomoon') format('svg');
+}
+
+@font-face {
+    font-family: 'brandon';
+    src: url('../fonts/brandon_med-webfont.eot');
+    src: url('../fonts/brandon_med-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/brandon_med-webfont.woff') format('woff'),
+         url('../fonts/brandon_med-webfont.ttf') format('truetype'),
+         url('../fonts/brandon_med-webfont.svg#brandon_grotesquemedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'brandon-light';
+    src: url('../fonts/brandon_light-webfont.eot');
+    src: url('../fonts/brandon_light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/brandon_light-webfont.woff') format('woff'),
+         url('../fonts/brandon_light-webfont.ttf') format('truetype'),
+         url('../fonts/brandon_light-webfont.svg#brandon_grotesquelight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'regal';
+    src: url('../fonts/pfregalfinessepro-italic-webfont.eot');
+    src: url('../fonts/pfregalfinessepro-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/pfregalfinessepro-italic-webfont.woff') format('woff'),
+         url('../fonts/pfregalfinessepro-italic-webfont.ttf') format('truetype'),
+         url('../fonts/pfregalfinessepro-italic-webfont.svg#pf_regal_finesse_proitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'brandon-bold';
+    src: url('../fonts/brandon_bld-webfont.eot');
+    src: url('../fonts/brandon_bld-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/brandon_bld-webfont.woff') format('woff'),
+         url('../fonts/brandon_bld-webfont.ttf') format('truetype'),
+         url('../fonts/brandon_bld-webfont.svg#brandon_grotesquemedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

@@ -1,0 +1,461 @@
+<!-- Right menu element-->
+<a href="javascript:void(0)" data-dialog-id="21" rel='dialog' class="upload_img" style="display: none;"></a>
+<a href="javascript:void(0)" class="link_upload_themes" style="display:none" data-dialog-id="420" rel="dialog">test</a>
+<!--Link Upload start (1 & 2)-->
+<!--Link Upload-1 Start-->
+<div class="dialog ui-helper-hidden window_button_theme dialog-redactor" data-dialog-id="221" title="Link Upload">
+	<div class="linkupload linkupload2 common-popup-inner">
+        <textarea placeholder="Drag and Drop Youtube/Vimeo videos or Google Images" style="max-height:100px;" id="capturetext" ng-model="link.content"  class="fullwidth"></textarea>
+       
+	</div>
+    <div class="clear clearfixx p-btm-btn">
+     <a type="button" ng-click="uploadLink()" class="btn btn_add_text">Done</a>
+     </div>
+</div>
+<!--Link Upload-1 Closed-->
+
+<!--<a href="javascript:void(0)" class="link_upload_themes" style="display:none" data-dialog-id="420" rel="dialog">test</a>-->
+
+<!--Link Upload-2 Start working add tags-->
+<div class="dialog dialog-redactor ui-helper-hidden window_media_load akkadbakkad" data-dialog-id="420" style="width:100%; overflow:visible;">
+<div class="media-input-ttl">
+<input type="text" placeholder="Label your media" class="keyword-search bx-sz" id="tag-Input-Token2" name="abc" />
+</div>
+<form action="#">
+<div class="common-popup-inner record-v-popup">
+    <div class="left left1 leftcol">
+        <div class="img_holder link_holder" style="max-height:150px; height:150px; overflow:auto"></div>
+         <p class="img-label video-label">{{webLinkTitle}}</p>
+    </div>
+    <div class="left rightcol">
+        <div class="padded">
+            <h3>What theme does this represent?</h3>
+            <div class="option_info">
+                <p>Essentially, a</p>
+                <ul class="options-ul">                
+                    <!--<li ng-repeat="mmts in mmt" ng-if="mmts._id != '54e7211a60e85291552b1187'"  ng-click="changemmtlink(mmts._id)">
+                    -->
+                    <li ng-repeat="mmts in mmt" ng-click="changemmtlink(mmts._id)">	
+                        <!--<input id="{{mmts._id}}" ng-model="link.mmt" type="radio" name="radio" value="{{mmts._id}}" hidden/>-->
+                        <!--<input id="{{mmts._id}}" ng-model="link.mmt" type="radio" name="radio" value="{{mmts._id}}" />
+                        <label for="{{mmts._id}}" title="">{{mmts.MetaMetaTagTitle}}</label>-->
+                        
+                         <span class="checkbox-rw">
+                                <input id="{{mmts._id}}" ng-model="link.mmt" type="radio" name="radio" value="{{mmts._id}}" />
+                                <span class="checbox-icn"></span>
+                        	</span>
+						<label for="{{mmts._id}}" title="">{{mmts.MetaMetaTagTitle}}</label>
+                    </li>
+                </ul>
+            </div>
+            <div id="dialog1" class="option_info">
+                <p>Which I want to</p>
+                <ul class="options-ul">                
+                    <li>
+                        <!--<input value='1' id="privateLink" ng-model="link.isPrivate" type="radio" name="radio31"  hidden/>-->
+                        
+                        <!--<input value='1' id="privateLink" ng-model="link.isPrivate" type="radio" name="radio31" />
+                        <label for="privateLink">Keep private</label>-->
+                        
+                         <span class="checkbox-rw">
+                               <input value='1' id="privateLink" ng-model="link.isPrivate" type="radio" name="radio31" />
+                                <span class="checbox-icn"></span>
+                        	</span>
+						 <label class="ng-binding" for="privateLink">Keep private</label>
+                    </li>
+                    <li>
+                        <!--<input value='0' id="shareLink" ng-model="link.isPrivate" type="radio" name="radio31" checked="true" hidden/>-->
+                       <!-- <input value='0' id="shareLink" ng-model="link.isPrivate" type="radio" name="radio31" checked="true" />
+                        <label for="shareLink">Share with others</label>-->
+                        
+                         <span class="checkbox-rw">
+                               <input value='0' id="shareLink" ng-model="link.isPrivate" type="radio" name="radio31" checked="true" />
+                                <span class="checbox-icn"></span>
+                        	</span>
+						 <label  class="ng-binding" for="shareLink">Share with others</label>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear p-btm-btn">
+            <!--<input ui-items="groupt" ng-model="link.gtsa" id="tags2" placeholder="What does this represent?" auto-complete-link class="keyword-search" />
+            <input ng-model="link.gt" type="hidden" />-->
+            <input type="button" ng-click="addTags()" value="Done">
+        </div>
+
+	</form>
+
+
+<div class="clear">
+<!--<input type="text" placeholder="Label your media" class="keyword-search bx-sz" id="tag-Input-Token" name="abc" tag-input-token="selectedgt" />--><!--commented by parul 07012015-->
+</div>
+	
+
+</div>
+
+<!--Link Upload-2 Closed-->
+<!--Link Upload Closed-->
+
+<div class="dialog dialog-redactor ui-helper-hidden window_media_load akkadbakkad" data-dialog-id="21" style="overflow: visible;">
+	<div class="clear media-input-ttl">
+		<!--<input type="text" placeholder="Label your media" class="keyword-search bx-sz" id="tag-Input-Token" name="abc" tag-input-token="selectedgt" />--><!--commented by parul 07012015-->
+		<input type="text" placeholder="Label your media" class="keyword-search bx-sz  " id="tag-Input-Token" name="abc" />
+	</div>
+	<form action="#">
+    	<div class="common-popup-inner record-v-popup">
+            <div class="left leftcol left1">
+                <div class="img_holder" style="max-height:150px; overflow:auto">
+                    <img ng-if="uploadedMedia.ContentType=='application/pdf'" class="" style="max-height:180px"  ng-src="../assets/img/PDF.png" alt="Sample PDF 1">
+                    <img ng-if="uploadedMedia.ContentType=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || uploadedMedia.ContentType=='application/msword'" class=""  ng-src="../assets/img/Icon-Document.jpg" style="max-height:180px" alt="Sample Word 1">
+                    <img ng-if="uploadedMedia.ContentType=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || uploadedMedia.ContentType=='application/vnd.ms-excel' || uploadedMedia.ContentType=='application/vnd.oasis.opendocument.spreadsheet'" class=""  ng-src="../assets/img/excel.png" style="max-height:180px" alt="Sample Excel 1">
+                    <img ng-if="uploadedMedia.ContentType=='application/vnd.openxmlformats-officedocument.presentationml.presentation' || uploadedMedia.ContentType=='application/vnd.ms-powerpoint'" class=""  ng-src="../assets/img/ppt.png" style="max-height:180px" alt="Sample PPT 1">
+                    <img ng-if="uploadedMedia.ContentType=='image/png' || uploadedMedia.ContentType=='image/jpeg' || uploadedMedia.ContentType=='image/gif' || uploadedMedia.ContentType==null" class=""  ng-src="../assets/Media/img/{{uploadedMedia.Location[0].URL}}" style="max-height:180px" alt="Sample Image 1">
+                </div>
+                <!--<p class="img-label">The Ruins of Lodhi Garden, Delhi</p>-->
+            </div>	
+            <div class="left rightcol">
+                <div class="padded">
+                    <h3>What theme does this represent?</h3>
+                    <div class="option_info">
+                        <p>Essentially, a</p>
+                        <ul>                
+                            <li ng-repeat="mmts in mmt" ng-if="mmts._id != '54e7211a60e85291552b1187'"  ng-click="changemmt(mmts._id)">
+                            <!--<input id="{{mmts._id}}" ng-model="media.mmt" type="radio" name="radio" value="{{mmts._id}}" hidden/>-->
+                            <input id="{{mmts._id}}" ng-model="media.mmt" type="radio" name="radio" value="{{mmts._id}}" />
+                            <label for="{{mmts._id}}" title="">{{mmts.MetaMetaTagTitle}}</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="option_info">
+                        <p>Which I want to</p>
+                        <!--
+                        <input id="private" ng-model="media.isPrivate" type="checkbox" name="private" hidden/>
+                        <label for="private">Private</label>
+                        -->
+                        <ul>                
+                            <li>
+                                <!--<input id="private" value='1' ng-model="media.isPrivate" type="radio" name="radio1Media" hidden/>-->
+                                <input id="private" value='1' ng-model="media.isPrivate" type="radio" name="radio1Media" />
+                                <label for="private">Keep private</label>
+                            </li>
+                            <li>
+                                <!--<input id="share" value='0' ng-model="media.isPrivate" type="radio" name="radio1Media" hidden/>-->
+                                <input id="share" value='0' ng-model="media.isPrivate" type="radio" name="radio1Media" />
+                                <label for="share">Share with others</label>
+                            </li>
+                        </ul>			
+                    </div>
+                </div>
+            </div>
+		</div>
+        <div class="clear p-btm-btn">
+            <!--<input ui-items="groupt" ng-model="media.gtsa" id="tags2" placeholder="What does this represent?" auto-complete class="keyword-search" />-->
+            <input ng-model="media.gt" type="hidden" />
+            <input type="button" ng-click="addTags()" value="Done">
+        </div>
+	</form>
+</div>
+
+<!-- Record Video Start-->
+<div class="dialog dialog-redactor ui-helper-hidden window_media_load akkadbakkad" data-dialog-id="421" title="Record Video">
+	
+	<form>
+        <div class="record-v-popup common-popup-inner clearfixx">
+        	<div class="left left1">
+            <div class="img_holder">
+                <p class="video-wrap" ng-show="!mobileDevice">
+                	<a id="ply-btn" href="javascript:void(0)"><img src="/assets/page/img/v-icn.png" alt="" /></a>
+                    <span id="loaderImg" style="display:none;"><img src="/assets/img/ajax-loader.gif" alt="" /></span>
+                    <!--<video height="180px" width="100%"></video> -->
+                    <video id="popUpVideoTag" height="100%" width="100%"></video> 
+                    
+                </p>
+               <div class="record-v-box">
+               <h4>Click to Record Video</h4>
+               	 <p class="video-wrap2 record-v-pic" ng-show="mobileDevice && recordingMode == 'video'">
+                	<img src="/assets/img/video-record-pic.jpg" alt="Record Video" />
+                    <input class='recordVideo' type="file" accept="video/*" file-model="myFile" capture>
+                   <!-- <label class='recordVideo'>
+                        Click to Record Video
+                        <span><input  type="file" accept="video/*" file-model="myFile" capture></span>
+                    </label>-->
+                    <!--<input class='recordVideo' type="file" accept="video/*" file-model="myFile" capture>-->
+                    
+                  
+                </p>
+               </div>
+                <p class="video-wrap2" ng-show="mobileDevice && recordingMode == 'audio'">
+                    <label class='recordAudio'>
+                        Click to Record audio
+                        <span><input  type="file" accept="audio/*" file-model="myFile" capture="microphone"></span>
+                    </label>
+                    <!--<input class='recordVideo' type="file" accept="video/*" file-model="myFile" capture>-->
+                </p>
+            </div>
+            <div>
+                <label id="percentage" style="display:none">0%</label>
+                <progress id="progress-bar" value=0 style="display:none"></progress>
+            </div>
+            <ul class="buttons-section">                
+                <li>
+                    <button ng-click="startrecording()" ng-show="!mobileDevice" class="dark_btn" id="btn-start-recording" >Start Recording</button>
+                </li>
+                <li>
+                    <button ng-click="stoprecording()" ng-show="!mobileDevice" class="dark_btn" id="btn-stop-recording" style="display:none" >Stop Recording</button>
+                </li>
+            </ul>
+        </div>
+        	<div class="left">
+            <div class="padded">
+                <h3>What theme does this represent?</h3>
+                <div class="option_info">
+                    <p>Essentially, a</p>
+                    <ul class="options-ul">                
+                        <li ng-repeat="mmts in mmt" ng-if="mmts._id != '54e7211a60e85291552b1187'"   ng-click="changemmt(mmts._id)">
+                        <!--<input id="{{mmts._id}}" ng-model="media.mmt" type="radio" name="radio" value="{{mmts._id}}" hidden/>-->
+                        <!--<input id="{{mmts._id}}" ng-model="media.mmt" type="radio" name="radio" value="{{mmts._id}}" />
+                        <label for="{{mmts._id}}" title="">{{mmts.MetaMetaTagTitle}}</label>-->
+                        
+                        <span class="checkbox-rw">
+                        	<input id="{{mmts._id}}" ng-model="media.mmt" type="radio" name="radio" value="{{mmts._id}}" />
+                            <span class="checbox-icn"></span>
+                        </span>
+                        <label for="{{mmts._id}}" title="">{{mmts.MetaMetaTagTitle}}</label>
+                        </li>
+                    </ul>
+    
+                </div>
+                <div class="option_info" hidden>
+                    <p>Which I want to</p>
+                    <!--
+                    <input id="private" ng-model="media.isPrivate" type="checkbox" name="private" hidden/>
+                    <label for="private">Private</label>
+                    -->
+                    <ul class="options-ul">                
+                        <li>
+                            <!--<input id="private" value='1' ng-model="media.isPrivate" type="radio" name="radio1Media" hidden/>-->
+                            <!--<input id="private" value='1' ng-model="media.isPrivate" type="radio" name="radio1Media" />
+                            <label for="private">Keep private</label>-->
+                            
+                             <span class="checkbox-rw">
+                                <input id="private" value='1' ng-model="media.isPrivate" type="radio" name="radio1Media" />
+                                <span class="checbox-icn"></span>
+                        	</span>
+                            <label for="private">Keep private</label>
+                            
+                        </li>
+                        <!--<li>-->
+                        <!--	<input id="share" value='0' ng-model="media.isPrivate" type="radio" name="radio1Media" hidden/>-->
+                        <!--	<label for="share">Share with others</label>-->
+                        <!--</li>-->
+                    </ul>			
+                </div>
+            </div>
+        </div>
+		</div>
+        <div class="clear clearfixx p-btm-btn">
+            <!--<input ui-items="groupt" ng-model="media.gtsa" id="tags2" placeholder="What does this represent?" auto-complete class="keyword-search bx-sz" />-->
+            <input ng-model="uploadedMedia123" value="" id="uploadedvideo" type="text" style="display:none" />
+            <input ng-model="media.gt" type="hidden" />
+            <input type="button" ng-click="addTags()" ng-show="!mobileDevice" value="Done">
+            <input type="button" ng-click="postVideo()" ng-show="mobileDevice && recordingMode == 'video'" value="Done" >
+            <input type="button" ng-click="postAudio()" ng-show="mobileDevice && recordingMode == 'audio'" value="Done" >
+        </div>
+	</form>
+</div>
+<!-- Record Video Closed-->
+
+
+
+<!--Duplicate Board Start-->
+<div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="25" title="Duplicate Board">
+	<div class="addtheme">
+        <textarea placeholder="Enter Board Title" ng-model="duplicate.title"  class="fullwidth"></textarea>
+        <input type="submit" ng-click="duplicate()" value="Create">
+	</div>
+	<a href="javascript:void(0)" class="link_themes"></a>
+</div>
+<!--Duplicate Board Closed-->
+
+<!--Rename Board Start-->
+<div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="52" title="Renaming Board">
+	<div class="addtheme">
+        <textarea placeholder="Enter Board Title" ng-model="rename.title"  class="fullwidth"></textarea>
+        <input type="submit" ng-click="renameBoard()" value="Rename">
+	</div>
+	<a href="javascript:void(0)" class="link_themes"></a>
+</div>
+<!--Rename Board Closed-->
+
+
+<!--Add Member Start-->
+<div class="dialog ui-helper-hidden window_button_theme" data-dialog-id="26" title="Add Member">
+	<div class="addtheme">
+		<form name="addMem">
+			<input placeholder="Member's Name" ui-items="myInvitee" auto-complete-invitees autocomplete="off" ng-model="member.name"  class="keyword-search fullwidth" style="padding:15px 20px" />
+			<textarea type="email" placeholder="Member's Email" ng-model="member.email"  class="fullwidth" required></textarea>
+			<select ng-model="member.relation"  style="padding:15px 18px"  class="fullwidth" >
+				<option value="">Select Relationship</option>
+				<option ng-repeat="val in fsgs[1].Values">{{val.valueTitle}}</option>
+			</select>
+			<input type="submit" ng-click="addMembers()" value="Add" ng-disabled="addMem.$invalid ">
+		</form>
+	</div>
+	<a href="javascript:void(0)" class="link_themes"></a>
+</div>
+<!--Add Member Closed-->
+
+<!--Current Member Start-->
+<div class="dialog dialog-redactor ui-helper-hidden window_media_load akkadbakkad" data-dialog-id="29" title="Members List">
+	<div id="tabs" class="tabs-container">
+		<ul>
+			<li id='tb-1'><a href="#tabs-1">Current Members</a></li>
+			<li id='tb-2'><a href="#tabs-2">Invited Members</a></li>			
+		</ul>
+			<div id="tabs-1">
+				<form action="javascript:void(0);">
+                    <div ng-if="!boardMembers">No current member. </div>
+                    <div ng-show="boardMembers">
+                        <input id="cur_txt" type="text" class="f-w-s" placeholder="Search current members" ng-model="memSearch" auto-focus>
+                    </div>
+                    <div class="current_member2 content12" scrollable>
+                        <div class="padded">
+                            <h3 title="{{invitee.UserID.Email}}" ng-repeat="invitee in boarddata[0].Invitees | filter:memSearch">
+                                <span class="user_profile" >
+                                    <i><img  ng-src="{{invitee.UserID.ProfilePic}}" style="height:30px; width:30px; border-radius:30px;" ></i>
+                                </span>
+                                {{invitee.UserName}}
+                                <span class="ui-dialog-titlebar-close-btn" ng-click="deleteMember(invitee.UserID._id)"> </span>
+                            </h3>
+                        </div>
+                    </div>
+                </form>
+			</div>
+			<div id="tabs-2">
+				<form action="javascript:void(0);">
+                    <div ng-show="myBoardInvitees.length == 0">No Invitation sent yet!!! </div>
+                    <div ng-show="myBoardInvitees.length != 0">
+                        <input id="invt_txt" type="text" class="f-w-s" placeholder="Search Invites" ng-model="memSearch2" />
+                    </div>
+                    <div class="current_member2 content12" scrollable>
+                        <div class="padded">
+                            <h3 title="{{invitee.UserEmail}}" ng-repeat="invitee in myBoardInvitees| filter:{UserName:memSearch2}">
+                            
+                            {{invitee.UserName}}
+                            
+                            </h3>
+                        </div>
+                    </div>
+                </form>
+			</div>		
+		</div>
+</div>
+<!--Current Member Closed-->
+
+<div id="addFromBoards" class="main-container-boards-index main-container-boards-index2 dialog-redactor ng-scope" ng-show="boardsMedia">
+	<div class="confirmon-overlay" style='display: block'></div>
+	
+		<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"> 
+				<div class="popup-ttl-bg">
+					<div class="ui-dialog-title">
+					<span style="cursor:pointer" ng-click="showMyBoard()">Pages</span> 
+					<span ng-if="boardMedia != null"> >> {{current_board_name}} </span> 
+					
+					<span class="popup-cls-icn board_pop_close" ng-click="closeBoardMedia()"> </span>
+					</div>
+				</div>
+			 
+		</div>
+		
+		<div class="main wrapper">    
+			<div class="pading_top_botm board-gallery">
+				<ul>
+					<li id="{{board._id}}" class="" ng-repeat="board in myboardsMedia" ng-click="showMyBoardMedia(board)" ng-show="!boardMedia && board._id != page_id">
+						<a href="javascript:void(0)" class="pic-item">
+							<p class="pic-item-inr">
+								<img ng-src="../assets/board/img/bg-hills.jpg" ng-if="board.HeaderImage==null || !board.HeaderImage" alt="Board {{$index+1}}">
+								<img ng-src="../assets/Media/headers/sg/{{board.HeaderImage}}" ng-if="board.HeaderImage!=null" alt="Board {{$index+1}}" fallback-src-header="">    
+								<!--<img src="../assets/board/headerImg/1427105870338.jpg" />-->
+							</p>
+							<div class="pic-overlayer">
+								<div class="pic-item-txt">
+									{{board.Title}}
+								</div>
+							</div>
+						</a>
+					</li>
+					
+					<li id="{{media.Medias._id}}" class="" ng-show="boardMedia" ng-repeat="media in boardMedia" ng-click="selectBoardMedia(media.Medias)">
+						<a href="javascript:void(0)" class="pic-item board-pic-item">
+							<p class="pic-item-inr">
+								<img fallback-src="" ng-if="media.Medias.ContentType=='application/pdf'" class=""  ng-src="../assets/img/PDF.png" alt="Sample PDF 1">
+								<img fallback-src="" ng-if="media.Medias.ContentType=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || media.ContentType=='application/msword'" class=""  ng-src="../assets/img/Icon-Document.jpg" alt="Sample Word 1">
+								<img fallback-src="" ng-if="media.Medias.ContentType=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || media.ContentType=='application/vnd.ms-excel' || media.ContentType=='application/vnd.oasis.opendocument.spreadsheet'" class=""  ng-src="../assets/img/excel.png" alt="Sample Excel 1">
+								<img fallback-src="" ng-if="media.Medias.ContentType=='application/vnd.openxmlformats-officedocument.presentationml.presentation' || media.ContentType=='application/vnd.ms-powerpoint'" class=""  src="../assets/img/ppt.png" alt="Sample PPT 1">
+								<img fallback-src="" ng-if="media.Medias.MediaType=='Image'" class=""  ng-src="../assets/Media/img/300/{{media.Medias.MediaURL}}" alt="Sample Image 1">
+								<img fallback-src="" ng-if="media.Medias.MediaType=='Montage' || media.Medias.ContentType=='Montage'"  class="montageElement"  ng-src="../assets/Media/img/{{medium__thumbnail}}/{{media.Medias.thumbnail}}" alt="Montage">
+								<img fallback-src="" ng-if="media.Medias.MediaType=='Link'"  class="linkElement"  ng-src="../assets/Media/img/{{medium__thumbnail}}/{{media.Medias.thumbnail}}" alt="Link">
+								<img fallback-src="" ng-if="media.Medias.MediaType=='Notes'"  class="noteElement"  ng-src="../assets/Media/img/{{medium__thumbnail}}/{{media.Medias.thumbnail}}" alt="note">
+								<img fallback-src="" ng-if="media.Medias.MediaType=='Video'"  class="videoElement"  ng-src="../assets/Media/img/{{medium__thumbnail}}/{{media.Medias.thumbnail}}" alt="video">
+								<!--<img src="../assets/board/headerImg/1427105870338.jpg" />-->
+							</p>
+							<div class="pic-overlayer">
+								<div class="pic-item-txt">
+									
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<div ng-show="boardMedia.length == 0" class="noMediaBoard"><span>This page does not have any media.</span></div>
+				<div class=" show-count1">
+					<p class="more-btn-rw">
+						<!--<button class="btn btn-info" ng-show="has_more_discuss()" ng-click="show_more_discuss()">-->
+						<button class="btn btn-info" ng-show="has_more_MyBoard && boardMedia" ng-click="showMore_MyBoard()">	
+								<i class="fa fa-plus"></i>Show More media
+								<span id="loading" class="loading-bar" ng-show="show_img_MyBoard">
+										<img src="../../assets/img/show-more-loader.GIF" />
+								</span>
+						</button> 
+					</p>
+				</div>
+				<div class=" show-count1">
+					<p class="more-btn-rw">
+						<!--<button class="btn btn-info" ng-show="has_more_discuss()" ng-click="show_more_discuss()">-->
+						<!--<button class="btn btn-info" ng-show="has_more_Boards && !boardMedia" ng-click="showMore_MyBoard()">	-->
+						<button class="btn btn-info" ng-show="has_more_Pages && !boardMedia" ng-click="showMore_Pages()">	
+								<i class="fa fa-plus"></i>Show More pages
+								<span id="loading" class="loading-bar" ng-show="show_img_Page">
+										<img src="../../assets/img/show-more-loader.GIF" />
+								</span>
+						</button> 
+					</p>
+				</div>
+			</div>
+			
+		</div>
+		<div class="p-btm-btn">
+			<!--<a href="#" class="link">Add</a>-->
+			<a ng-if="boardMedia && selectedMediaFromBoards.length" style="cursor:pointer;" class="link" ng-click="AddBoardsMediasToBoard_v_2()">Add</a>
+		</div>
+	
+</div>
+<style>
+.noMediaBoard {
+    color: #000;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+
+.noMediaBoard > span {
+    border: 1px solid;
+    padding: 20px;
+    position: relative;
+    top: 30px;
+}
+</style>

@@ -1,0 +1,156 @@
+<div class="container">
+			
+			<header>
+						<p class="logo">Scrpt <span>Boards</span></p>	
+						<span class="pro-span">
+									<span class="brdmem_pic"><img ng-src="{{userInfo.ProfilePic}}" alt="Profile Picture" title="{{userInfo.Name}}  ({{userInfo.Email}})"></span>Welcome {{userInfo.Name}} (<a href="#/logout">Logout</a>)
+						</span> 
+						</span>
+			
+			</header>
+			
+			<div id="everything" class="my_profile">
+                        <section id="login" class="animated bounceInDown">
+                	<form class="well simform" style="font-size:100% !important;" novalidate id="theForm" name="boards">                        
+			    <div class="loginform-inner">
+                            <h1 style="font-size:2.0em !important;"><span ng-show="id">Edit</span><span ng-hide="id">Add</span> Board <span ng-show="id">Settings</span></h1>
+                            <ul class="loginform cross">
+				<!--
+				<li>
+						<div  ng-show="msg2">
+			        <p class="error" id="msg2">{{msg2}}<span class="close_icon"></span></p>
+			        </div></li>-->
+				<li><a href="#/boards/{{projid}}" class="add_icon">Go To Boards</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="#/projects" class="add_icon">Go To Projects</a>
+                                </li>		
+                                <li>
+				<div style="float:left; width:150px;">Title</div>				 <div>
+                                <input style="width:410px; margin-top:0px; padding-top:0px;" type="text" class="textfield" name="name" placeholder="Title" ng-model="board.name" required auto-focus>
+			        
+                    <p class="thumb" ng-show="boards.name.$error.required">
+                    <a><img src="../assets/img/invalid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Board title is required.</span></a>
+                    </p>
+                    
+				<p class="thumb" ng-show="!(boards.name.$error.required)"><a><img src="../assets/img/valid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Board title is required.</span></a></p>
+				</div>
+				
+				</li>
+				<li>
+				<div style="float:left; width:150px;">		
+				Page Theme
+				</div>
+				<div style="padding-bottom:20px">
+                                <select ng-disabled="id" style="width:410px;" name="gt" multiple ng-model="board.gt" required>					
+					<!--<option ng-repeat="gt in gts"  ng-if="gt._id != '54e7214560e85291552b1189'" value="{{gt._id}}~{{gt.GroupTagTitle}}">{{gt.GroupTagTitle}}</option>-->
+					<option ng-repeat="gt in gts"  value="{{gt._id}}~{{gt.GroupTagTitle}}">{{gt.GroupTagTitle}}</option>
+						
+				</select>
+			        <p class="thumb" ng-show="boards.gt.$error.required"><a><img src="../assets/img/invalid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right">Please select a page theme.</span></a></p>
+				<p class="thumb" ng-show="!(boards.gt.$error.required)"><a><img src="../assets/img/valid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right">Please select a page theme.</span></a></p>
+				</div>
+				</li>
+				<!--
+				<li>
+			        <div style="float:left; width:150px;">
+						Domain
+			        </div>
+			        <div style="padding-bottom:20px">
+                                <select ng-disabled="id" style="width:410px;" name="domain" placeholder="Name" ng-model="board.domain" required>
+					<option value="">Select Domain</option>
+					<option ng-repeat="domain in domains" value="{{domain._id}}">{{domain.DomainTitle}}</option>
+						
+				</select>
+			        <p class="thumb" ng-show="boards.domain.$error.required"><a><img src="../assets/img/invalid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Please seclect Domain.</span></a></p>
+				<p class="thumb" ng-show="!(boards.domain.$error.required)"><a><img src="../assets/img/valid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Please seclect Domain.</span></a></p>
+				<input type="hidden" name="project" ng-model="board.project" value="{{projid}}">
+				</div>
+				</li>
+				<li>
+				<div style="float:left; width:150px;">		
+				Collection
+				</div>
+				<div style="padding-bottom:20px">
+                                <select ng-disabled="id" style="width:410px;" name="collection1" ng-model="board.collection" required>
+					<option value="">Select Collection</option>
+					<option ng-repeat="collection in collections" value="{{collection._id}}">{{collection.collectionTitle}}</option>
+						
+				</select>
+			        <p class="thumb" ng-show="boards.collection1.$error.required"><a><img src="../assets/img/invalid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Please select collection.</span></a></p>
+				<p class="thumb" ng-show="!(boards.collection1.$error.required)"><a><img src="../assets/img/valid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right"> Please select collection.</span></a></p>
+				</div>
+				</li>
+				-->
+                
+				<!--<li>
+				<div style="float:left; width:150px;">Start Date</div>				 <div>
+                                <input style="width:410px; margin-top:0px; padding-top:0px;" type="text" class="textfield" name="begin" id="begin" placeholder="Start Date" ng-model="board.begin" required>
+				</div>
+				</li>
+				
+				<li>
+				<div style="float:left; width:150px;">End Date</div>				 <div>
+                                <input style="width:410px; margin-top:0px; padding-top:0px;" type="text" class="textfield" name="end" placeholder="End Date" ng-model="board.end" required>
+				</div>
+				</li>
+				-->
+				
+				<li>
+				<div style="float:left; width:150px;">		
+				Board Type
+				</div>
+				<div style="padding-bottom:20px">
+                                <select ng-disabled="id" style="width:410px;" name="collection2" ng-model="board.boardType" required>
+					<option value="">Select Board Type</option>
+					<option value="OnlyYou">Only You</option>
+					<option value="FriendsSolo">Friends - Solo mode</option>
+					<option value="FriendsGroup">Friends - Group mode</option>
+					<option value="Public">Any visitor from the web</option>	
+				</select>
+			        <p class="thumb" ng-show="boards.collection2.$error.required"><a><img src="../assets/img/invalid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right">Please select board type.</span></a></p>
+				<p class="thumb" ng-show="!(boards.collection2.$error.required)"><a><img src="../assets/img/valid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right">Please select board type.</span></a></p>
+				</div>
+				</li>
+				
+				<li>
+				<div style="float:left; width:150px;">		
+				Display Names
+				</div>
+				<div style="padding-bottom:20px">
+                                <select style="width:410px;" name="collection3" ng-model="board.displayName" required>
+					<option value="">Select Display Names</option>
+					<option value="RealNames">Show Real Names</option>
+					<option value="NickNames">Show Nick Names</option>
+						
+				</select>
+			        <p class="thumb" ng-show="boards.collection3.$error.required"><a><img src="../assets/img/invalid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right">Please select an option for Display names.</span></a></p>
+				<p class="thumb" ng-show="!(boards.collection3.$error.required)"><a><img src="../assets/img/valid.png" ><span class="tooltip" style="width: 200px;position: relative;float: right">Please select an option for Display names.</span></a></p>
+				</div>
+				</li>
+				
+                            </ul>
+			    <div id="btns" class="wrapper-of-disabled-button btns_box">
+                <button ng-hide="id" type="submit" class="button" ng-click="submitForm(boards.$valid)" >Create Board</button>
+			    <button ng-show="id" type="submit" class="button" ng-click="submitForm(boards.$valid)" >Edit Board Settings</button>
+                        
+			    </div>
+			    </div>
+                    </form>
+				</section><!-- Login -->				
+				
+		  </div>
+			
+			<!--<div class="overlay overlay-slidedown">
+				<button type="button" class="overlay-close">Close</button>
+				<div id="content_3" class="holder fullheight">
+					<h3>What is your aspiration?</h3>
+					<div class="imageholder"></div>
+					<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam</p>
+				</div>
+			</div>-->
+			
+			
+		</div>
+<script>
+  
+	
+</script>

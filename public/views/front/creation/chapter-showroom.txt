@@ -1,0 +1,20 @@
+
+Current MAGS/showroom need to be modified as per below :
+	
+	chapter-preview
+	page-preview
+		- different views for both preview 
+		- same controllers
+				
+	MODIFICATION : 
+		Need to create a combine preview section - chapter-preview 
+			1) 	In case user preview a specific page from anywhere
+					- Chapter-preview : Starting from any page as user wish to preview with arrows
+			2)	In case preview a chapter
+					- Chapter-preview : with default page hierachy.
+		
+	chapter-view
+		- Chapter-view : with default page hierachy.	
+		
+		
+		

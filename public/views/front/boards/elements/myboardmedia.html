@@ -1,0 +1,63 @@
+<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"> 
+
+<div  class="ui-dialog-title">
+<span style="cursor:pointer" ng-click="showMyBoard()">Boards</span> 
+<span ng-if="boardMedia"> >> {{boardMedia.Title}} </span> 
+</div>
+
+<span class="ui-button-icon-primary ui-icon ui-icon-closethick ui-dialog-titlebar-close" style="float: right;" ng-click="closeBoardMedia()"> X </span> 
+
+</div>
+
+<div class="main wrapper">    
+<div class="pading_top_botm">
+<ul id="thumbs" style="margin-top:0px" class="thumbs thmb-home masonry-container anim">
+
+<li id="{{board._id}}" ng-repeat="board in myboardsMedia" style="position: relative; float:left;" ng-click="showMyBoardMedia(board)" ng-if="!boardMedia">
+<a class="item" href="">
+<p class="innerimg-wrap" >
+<img ng-src="../assets/board/img/bg-hills.jpg" ng-if="board.HeaderImage==null || !board.HeaderImage" alt="Board {{$index+1}}">
+<img ng-src="../assets/board/headerImg/{{board.HeaderImage}}" ng-if="board.HeaderImage!=null" alt="Board {{$index+1}}">    
+</p>
+
+
+
+<div class="overlay anim">
+<div class="caption">
+<h3>{{board.Title}}</h3>
+</div>
+</div>
+</a>
+</li>
+<p ng-if="boardMedia.Medias === null" style="color: green;">No Media available.</p>
+<li id="{{media._id}}" ng-if="boardMedia" ng-repeat="media in boardMedia.Medias | filter:{MediaType:'!Video'} |filter:{MediaType:'!Audio'}" ng-click="selectBoardMedia(media)" style=" position: relative; float:left;">
+<a class="item" href="">
+<p class="innerimg-wrap" >
+<img ng-if="media.ContentType=='application/pdf'" class=""  ng-src="../assets/img/PDF.png" alt="Sample PDF 1">
+<img ng-if="media.ContentType=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || media.ContentType=='application/msword'" class=""  ng-src="../assets/img/Icon-Document.jpg" alt="Sample Word 1">
+<img ng-if="media.ContentType=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || media.ContentType=='application/vnd.ms-excel' || media.ContentType=='application/vnd.oasis.opendocument.spreadsheet'" class=""  ng-src="../assets/img/excel.png" alt="Sample Excel 1">
+<img ng-if="media.ContentType=='application/vnd.openxmlformats-officedocument.presentationml.presentation' || media.ContentType=='application/vnd.ms-powerpoint'" class=""  ng-src="../assets/img/ppt.png" alt="Sample PPT 1">
+<img ng-if="media.ContentType=='image/png' || media.ContentType=='image/jpeg' || media.ContentType=='image/gif' || media.ContentType==null" class=""  ng-src="../assets/Media/img/300/{{media.MediaURL}}" alt="Sample Image 1">
+
+<img ng-if="media.MediaType=='Montage'"  class="montageElement"  ng-src="../assets/Media/img/{{medium__thumbnail}}/{{media.thumbnail}}" alt="Montage">
+<img ng-if="media.MediaType=='Link'"  class="linkElement"  ng-src="../assets/Media/img/{{media.thumbnail}}" alt="Link">
+</p>
+<div class="text_wrap" ng-if="media.MediaType=='Notes'">
+<span ng-if="media.MediaType=='Notes'" style="color:#fff"  ng-bind-html="media.Content | to_trusted" ></span>    
+</div>
+
+
+<div class="overlay anim">
+<div class="caption">
+<h3>{{board.Title}}</h3>
+</div>
+</div>
+</a>
+</li>	
+</ul>
+
+</div>
+
+
+</div>
+<a ng-if="boardMedia && selectedMediaFromBoards.length" style="cursor:pointer;" class="btn btn_add_text" ng-click="AddBoardsMediasToBoard_v_2()">Add</a>

@@ -1,0 +1,488 @@
+<style>
+       .removeSelMEdiaIcon{ width:30px;height:30px;float:right;margin-top:10px};
+</style>
+<!--header-bg style end-->
+ <div id="note_forAnswer" style="display:none; z-index:999999999;">
+	<div class="popup-textarea bx-sz">
+		 <section id="editor">
+			<!--<div id="edit" class="edit_froala2 bx-sz">
+				<p>Start writing...</p>
+			</div>-->
+			<div id="ans_screen" class="ansr-box"  style="left: 0;max-height: none;">
+				
+			</div>
+		 </section>
+	</div>
+	<div class="bg-popup ans-note-popup"></div>
+</div>
+   
+<!--<header class="header" style="{{headerstyle}}" ng-class="{'header-bg': (headerstyle != undefined && headerstyle != null && headerstyle != '')}">-->
+<header class="header" bg-image="{{previewIndex.headerImg}}" >
+		<div class="header-pic-overlayer"></div>
+		<div id="dropzone" >
+			<nav class="nav dropzone3">
+				<a href="javascript:void(0)" class="dropzone3 nav-toggle animated bounce toggle-menu menu-left push-body ">
+					<!--<img src="images/menu-icn.png" width="21" height="16" alt="" />-->
+				   <!--<i class="fa fa-bars"></i>-->
+				   <span></span>
+				</a>
+				<div class="quest-row-sml dropzone3">
+					<div ng-show="small_header" class="quest-bx-sml dropzone3" data-toggle="tooltip" data-placement="bottom" title="{{previewIndex.pageData.Title}}">
+						{{previewIndex.pageData.Title}} 
+					</div>
+					 <!--<div ng-show="small_header" class="dropzone3 ansr-box-sml" ng-bind-html="answerText |htmlToPlaintext" data-toggle="tooltip" title="{{answerText|htmlToPlaintext}}" data-placement="bottom">-->
+					 <div ng-show="small_header" class="dropzone3 ansr-box-sml" ng-bind-html="answerText |htmlToPlaintext">
+   						Start typing and click on the keywords OR drop any media from the web or your drive.
+					 </div>
+				</div>
+				<!--
+				<div class="top-nav-bx dropzone3">
+					<a class="setting-icon dropzone3">
+						<i class="fa fa-cog dropzone3"></i>
+				   </a>
+				   <div class="user-pic animated bounceInLeft dropzone3"  ng-click="switch__toDiscuss()">
+					<ul id="searchList__mediaTray" class="dropzone3">
+						<li ng-if="countOfTrayMedia == 0" class="dropzone3">
+							<div class="blank-tray dropzone3"><img class="empty-list" width="44" height="44" alt="" src="/assets/img/no-image.png"></div>
+						</li>
+						
+						
+					</ul>
+					  <span class="dropzone3 item-counter-overlay"><p class="media-count">{{countOfTrayMedia}}</p></span>
+				   </div>               
+				</div>
+				-->
+			 </nav>
+			<section class="quest-block padding-30 dropzone3">
+			   <div  ng-hide="small_header"  class="quest-bx dropzone3" data-toggle="tooltip" title="{{previewIndex.pageData.Title}}">
+				   {{previewIndex.pageData.Title}}          	
+			   </div>
+              
+                
+			  <div class="ansr-box">
+               <div id="edit55" class="ansr-box-inr  dropzone3"  ng-hide="small_header" contenteditable="true" ng-model="answerText" ng-change="previewIndex.parseKeywords()" placeholder="Start typing..." >
+				Start typing and click on the keywords OR drop any media from the web or your drive.
+			    
+			   </div>
+			   <div class="ansr-box-focus"></div>
+               <div class="quest-btm-rw">
+                <!--<a href="javascript:void(0)" ng-click="post_ansNote()" id="dn-btn" class="quest-btm-btn" style="display: none;">Post as Note</a>-->
+                </div>
+				
+              </div>
+			   		    
+               
+               
+			   <div class="dropdown-box dropzone3"  ng-hide="small_header">
+				   <!--<a href="javascript:void(0)" class="dropdown-icn dropzone3">
+				   <i class="fa fa-download dropzone3"></i> 
+				  </a>-->
+				  <div class="dropdown-nav dropzone3">
+				   <ul>
+						<li  ng-hide="whichBrowser == 'InternetExplorer' || whichBrowser == 'Opera'  || whichBrowser == 'Safari'">
+							<a id="recVideo" ng-click="isRecording('video')" href="javascript:void(0)"  rel="dialog" data-dialog-id="421">
+								Web-Cam
+							</a>
+					 </li>
+						<li>
+						   <a href="javascript:void(0)">
+                           	<span class="browse-data">
+                                <span class="browse-label">
+                                	Hard-drive
+                                </span>
+                                <input type="file" name="" ng-disabled="false" ng-file-select="onFileSelect($files)" accept="image/*" value="Add Files" />
+                            </span>
+                           
+                           </a>
+					 </li>
+						<li>
+						   <a ng-click="checkTray()" href="javascript:void(0)" data-dialog-id="221" rel="dialog">Link/Embed</a>
+					 </li>
+					   <li>
+						   <a href="javascript:void(0)" ng-click="viewBoardsMedia()">My Boards</a>
+					   </li>
+					<li>
+						<a href="javascript:void(0)">
+							<span class="browse-data">
+								<span class="browse-label">
+									Header Image
+								</span>
+								<input id='headerUpload_search' type="file" name="" ng-disabled="false" ng-file-select="onHeaderSelect($files)" accept="image/*" value="Add Files" />
+							</span>
+						</a>
+					</li>
+					 </ul>
+				  </div>
+			   </div>
+			</section>
+		</div> 
+		 <section class="tag-block padding-30">
+         	
+            <div class="tag-list" ng-show="previewIndex.keywordsSelcted.length >0">
+            	<div class="tag-list-inr">
+                	<div id="lmn_slider" class="slider">
+					<ul>
+						
+						<li class='keys' ng-click="previewIndex.setGT(keyword.id)" title='{{keyword.title}}'  ng-repeat="keyword in previewIndex.keywordsSelcted | unique:'id'">
+							<span id="{{keyword.id}}">
+								<i onclick="mediaSite.del_keyword_page(event,$(this))" data-id="{{keyword.id}}"></i>{{keyword.title}}
+							</span>
+						</li>
+					 </ul>
+				  <!--<div ng-repeat="keyword in keywordsArr">
+                     <span><i></i>{{keyword.title}}</span>
+                  </div>-->
+				</div>
+                <div class="controls">
+					<a href="javascript:void(0)" class="prev-page">Prev Page</a> 
+					<a href="javascript:void(0)" class="prev-slide" style="display: none;">Prev Slide</a> 
+					<a href="javascript:void(0)" class="next-slide" style="display: none;">Next Slide</a> 
+					<a href="javascript:void(0)" class="next-page">Next Page</a>
+				</div>
+                </div>
+            </div>
+            <div class="dropdown-box dropdown-box2 dropzone3" ng-show="small_header">
+				   <!--<a class="dropdown-icn dropzone3" href="javascript:void(0)" >
+				   <i class="fa fa-download dropzone3"></i> 
+				  </a>-->
+				  <div class="dropdown-nav dropzone3">
+				   <ul>
+						<li ng-hide="whichBrowser == 'InternetExplorer' || whichBrowser == 'Opera'  || whichBrowser == 'Safari'">
+							<a data-dialog-id="421" rel="dialog" href="javascript:void(0)" ng-click="isRecording('video')" id="recVideo">
+								Web-Cam
+							</a>
+						</li>
+						<li>
+						   <a href="javascript:void(0)">
+                           	<span class="browse-data">
+                                <span class="browse-label">
+                                	Hard-drive
+                                </span>
+                                <input type="file" value="Add Files" accept="image/*" ng-file-select="onFileSelect($files)" ng-disabled="false" name="">
+                            </span>
+                           
+                           </a>
+						</li>
+						<li>
+						   <a ng-click="checkTray()" rel="dialog" data-dialog-id="221" href="javascript:void(0)">Link/Embed</a>
+						 </li>
+						<li>
+						   <a ng-click="viewBoardsMedia()" href="javascript:void(0)">My Boards</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)">
+								<span class="browse-data">
+									<span class="browse-label">
+										Header Image
+									</span>
+									<input id='headerUpload_search' type="file" name="" ng-disabled="false" ng-file-select="onHeaderSelect($files)" accept="image/*" value="Add Files" />
+								</span>
+							</a>
+						</li>
+					 </ul>
+				  </div>
+			   </div>
+    </section>
+</header>
+<div class="inner-container">
+	<div class="sidebar-panel filterMenu-sidebar anim filterlist">
+		<div class="sidebar-col">
+			<div class="sidebar-ttl">
+            	<h2><i class="fa fa-info"></i> Stand Point</h2>
+            </div>
+			<ul class="custom-radio listul sidebar-link">
+					<!--<li class="filter_checbox"><input type="radio" name="radiog_lite1" ng-click="changeOwner(0)" id="yourFSG" class="css-checkbox" checked="checked"/><label for="yourFSG" class="css-label"><span></span>Your Preferences</label></li>-->
+					<!--<li class="filter_checbox"><input type="radio" name="radiog_lite1" ng-click="changeOwner(1)" id="ownerFSG" class="css-checkbox" /><label for="ownerFSG" class="css-label"><span></span>Receiver's Preferences</label></li>-->
+                <li  class="filter_checbox">
+					<label>
+						<input type="radio"  name="radiog_lite1" ng-click="previewIndex.changeOwner(0)" id="yourFSG" class="css-checkbox" checked="checked">
+						<span class="check-pic"></span>
+						<span class="check-label" class="">Yours </span>
+					</label>
+               </li>
+				<li  class="filter_checbox">
+					<label>
+						<input type="radio"  name="radiog_lite1" ng-click="previewIndex.changeOwner(1)" id="ownerFSG" class="css-checkbox" >
+						<span class="check-pic"></span>
+						<span class="check-label" class="">Theirs </span>
+					</label>
+               </li>
+			</ul>
+         	<div class="sidebar-ttl">
+            	<h2><i class="fa fa-info"></i> Format</h2>
+            </div>
+          	<ul class="sidebar-link">
+            	<!--<input ng-click="changeMediaType('Image')" value="Image" type="checkbox" name="radiog_lite3" id="radioImage" class="css-checkbox select_media">-->
+               <!--<li>-->
+               <!--	<label>-->
+               <!--   <input type="checkbox" onclick="/*clickAll($(this))*/alert(0)" name="Gender" value="text"  data="" class="radiobb all">-->
+               <!--   <span class="check-pic"></span>-->
+               <!--   <span class="check-label" ng-click="changeCss(sg._id,sg.Title,fsg.valueTitle)" subfilter="Gender" data="Gender~" class="">All</span>-->
+               <!--   </label>-->
+               <!--</li>-->
+                <li>
+               	<label>
+                  <input type="checkbox"  ng-click="previewIndex.changeMediaType('Image')" name="MediaType" value="Image" id="radioImage" class="select_media">
+                  <span class="check-pic"></span>
+                  <span class="check-label" class="">Photo</span>
+                  </label>
+               </li>
+               <li>
+               	<label>
+                  <input type="checkbox"  ng-click="previewIndex.changeMediaType('Image')" name="MediaType" value="Link" id="radioLink" class="select_media">
+                  <span class="check-pic"></span>
+                  <span class="check-label" class="">Film & Sound</span>
+                  </label>
+               </li>
+               <li>
+               	<label>
+                  <input type="checkbox"  ng-click="previewIndex.changeMediaType('Image')" name="MediaType" value="Montage" id="radioMontage"  class="select_media">
+                  <span class="check-pic"></span>
+                  <span class="check-label" class="">Montage</span>
+                </label>
+               </li>
+             <!--<li>
+               	<label>
+                  <input type="checkbox"  ng-click="changeMediaType('Image')" name="MediaType" value="Notes"  id="radioNotes" class="select_media">
+                  <span class="check-pic"></span>
+                  <span class="check-label" class="">Text/Note</span>
+                  </label>
+               </li>-->
+           </ul>
+           	<!--<div class="default-btn">
+            	<a href="javascript:void(0)" ng-click="saveFormat()">Save As Default</a>
+            </div>-->
+        </div>
+		<div class="sidebar-col" ng-repeat="sg in fsgs">
+			<div class="sidebar-ttl accordian">
+				<h2 ng-if="'Country of Affiliation' !== sg.Title"><i class="fa fa-info"></i> {{sg.Title}}</h2>
+			</div>
+			<div class="accordion-pop" ng-if="'Country of Affiliation' !== sg.Title">
+				<ul class="sidebar-link">
+					<li class="filter_checbox">
+						<label>
+							<input type="checkbox" onclick="mediaSite.clickAll($(this))" value="text" id="{{sg._id}}" name="{{sg.Title}}" data="" class="radiobb all">
+                             <span class="check-pic"></span>
+                  			<span class="check-label" data="{{sg.Title}}~{{fsg.valueTitle}}"  ng-click="previewIndex.changeCss(sg._id,sg.Title,fsg.valueTitle)" subfilter="{{sg.Title}}" >All</span>
+						</label>
+					</li>
+					<li class="filter_checbox" ng-repeat="fsg in sg.Values">
+						<label>
+                        
+							<input class="radiobb" type="checkbox" data="{{sg.Title}}~{{fsg.valueTitle}}"  id="{{fsg._id}}" subfilter="{{sg.Title}}" value="text" name="{{sg.Title}}">
+                             <span class="check-pic"></span>
+							<span class="check-label" data="{{sg.Title}}~{{fsg.valueTitle}}" subfilter="{{sg.Title}}" ng-click="previewIndex.changeCss(fsg._id,sg.Title,fsg.valueTitle)">{{fsg.valueTitle}}</span>
+						</label>
+					</li>
+				</ul>
+				<div class="default-btn" ng-click="saveDefault(sg.Title)">
+					<!--<a href="javascript:void(0)">Save As Default</a>-->
+				</div>
+			</div>
+			<div ng-if="'Country of Affiliation' === sg.Title" class="add-country-col" id="countries_div">
+				<div class="sidebar-ttl">
+                	<h2>Country of Affiliation </h2>
+                </div>
+				
+				<!--<input type="text" ng-model="selectedCountries" id="demo-input-local" name="blah" demoinputlocal />-->
+				
+				<!--<input type="button" value="Search" id="countrySel" ng-click="getCountrySel()" />-->
+				<!--<input type="submit" value="Save As Default" ng-click="saveCon()" class="btn_border">-->
+				<!--<input type="button" value="Clear All" id="clearAllSelected" ng-click="clearAllSelected()" onClick="claerContries()"/>-->
+				
+				<div class="selected_country_container" >
+					<ul>
+						<li ng-repeat="country in currentCountries">{{country.valueTitle}}
+						<span class='c-close-icn' onclick="/*$(this).parent().remove()*/" ng-click="previewIndex.removeSelected_country(country)">X</span></li>
+					</ul>
+				</div>
+				
+				<div class="input-country">
+					<input type="text"  ng-model="ctryName" class="country_input" placeholder="search countries"/>
+				</div>
+				<div class="country_container" >
+					<ul>
+						<li ng-repeat="country in restCountries | filter: ctryName |limitTo:10" ng-click="previewIndex.addToSelected_country(country)">{{country.valueTitle}} <span onclick="/*$(this).parent().remove()*/">+</span></li>
+					</ul>
+				</div>
+				<div class="default-btn"  id="countrySel" ng-click="previewIndex.getCountrySel()" >
+					<a href="javascript:void(0)">Search</a>
+				</div>
+				<div class="default-btn" ng-click="saveCon()" >
+					<!--<a href="javascript:void(0)">Save As Default</a>-->
+				</div>
+				<div class="default-btn"  id="clearAllSelected" ng-click="previewIndex.clearAllSelected()">
+					<a href="javascript:void(0)">Clear All</a>
+				</div>
+			</div>
+		</div>
+    </div> 
+    
+    <section class="gallery-block-mn">  
+        <section class="gallery-block padding-30">
+            <ul>
+                <!-- <li>-->
+                <!-- <div class="gallery-pic-bx">-->
+                <!--     <div class="hover-icon">-->
+                <!--     -->
+                <!--   </div>-->
+                <!--     <img src="../assets/page/img/pic1.jpg" width="215" height="215" alt="" />-->
+                <!--   </div>-->
+                <!--</li>-->
+                {{userGalleryMedia}}
+                <li  ng-repeat="media in medias">
+                    <!---Anchor tag for Images--->
+                    <a ng-click="setMediaId(media)" class="item search_item" ng-if="media.MediaType=='Image' || media.ContentType=='image/png' || media.ContentType=='image/jpeg' || media.ContentType=='image/gif' " href="../assets/Media/img/600/{{media.URL}}" ><!--modified on19022015-->
+                        <!--<span class="loader_img"></span>-->
+                        <div class="gallery-pic-bx" style="color:#fff;">
+                            <img ng-if="media.MediaType=='Image' || media.ContentType=='image/png' || media.ContentType=='image/jpeg' || media.ContentType=='image/gif' || media.ContentType==null" class="" fallback-src = "../assets/Media/img/{{medium__thumbnail}}/{{media.Location[0].URL}}" alt="Loading..."  ng-src="../assets/Media/img/{{medium__thumbnail}}/{{media.Location[0].URL}}" alt="Loading..." />
+                            <!--<div class="hover-icon" ng-click="addToMediaTray(media,$event)" title="Add in media-tray"></div>-->
+                            <div class="hover-overlayer" >
+				  <div class="removeSelMEdiaIcon" ng-click="previewIndex.deleteGalleryMedia(media._id)">X</div>
+				 
+				 <!-- <img alt="" src="/assets/img/delete-icon-blue.png" height=30 width=30 style="cursor:pointer">-->
+			    </div>
+			     
+			    <div class="media-label">{{media.Title}}</div>
+                        </div>
+                        
+                        <!--<div class="format_file_mid tick_format_heart anim" ng-if="media.MediaType!='Montage' && media.MediaType!='Document'" ng-click="addToMediaTray(media)" style="display:none" title="Add in media-tray"></div>--><!--edited by parul-->
+                        <!--<div class="overlay anim">-->
+                        <!--<div class="caption">-->
+                            <!--<h3>{{media.Title}}</h3>-->
+                            <!--<span>{{media.Prompt}}</span>-->
+                        <!--</div>-->
+                    </a>
+                    <!---Anchor tag for Images Ends--->
+                    
+                    
+                    <!---Anchor tag for Montage starts--->
+                    <a ng-click="setMediaId(media)" class="item search_item" ng-if="media.MediaType=='Montage'"  href="../assets/Media/img/{{media.thumbnail}}" >
+                        <!--<span class="loader_img"></span>-->
+                        <div class="gallery-pic-bx" style="color:#fff;">
+                            <img ng-if="media.MediaType=='Montage'"  class="montageElement" fallback-src="../assets/Media/img/{{medium__thumbnail}}/{{media.thumbnail}}" ng-src="../assets/Media/img/{{medium__thumbnail}}/{{media.thumbnail}}" alt="Montage">
+                            <!--<div class="hover-icon" ng-click="addToMediaTray(media,$event)" title="Add in media-tray"></div>-->
+                            <div class="hover-overlayer"></div>
+			      <div class="hover-overlayer" >
+				  <div class="removeSelMEdiaIcon" ng-click="previewIndex.deleteGalleryMedia(media._id)">X</div>
+				 
+				 <!-- <img alt="" src="/assets/img/delete-icon-blue.png" height=30 width=30 style="cursor:pointer">-->
+			    </div>
+			    <div class="media-label">{{media.Title}}</div>
+                        </div>
+                        <p class="montageContent" style="display: none"  ng-if="media.MediaType=='Montage'">{{media.Content}}</p>
+                        <!--<div class="format_file_mid tick_format_heart anim"  ng-click="addToMediaTray(media)" style="display: none" title="Add in media-tray"></div>--><!--edited by parul-->
+                        <!--<div class="overlay anim">-->
+                        <!--<div class="caption">-->
+                        <!--<h3>{{media.Title}}</h3>-->
+                        <!--<span>{{media.Prompt}}</span>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    </a>
+                    <!---Anchor tag for Montage Ends--->
+                    
+                    <!---Anchor tag for Note starts--->
+                    <a ng-click="setMediaId(media)" class="item search_item" ng-if="media.MediaType=='Notes'"  href="../assets/Media/img/{{media.thumbnail}}" >
+                        <span class="loader_img"></span>
+                        <div class="gallery-pic-bx" style="color:#fff;">
+                            <img ng-if="media.MediaType=='Notes'"  class="noteElement" fallback-src="../assets/Media/img/{{medium__thumbnail}}/{{media.thumbnail}}" ng-src="../assets/Media/img/{{medium__thumbnail}}/{{media.thumbnail}}" alt="Notes">
+                            <!--<div class="hover-icon" ng-click="addToMediaTray(media,$event)" title="Add in media-tray"></div>-->
+                            <div class="hover-overlayer"></div>
+			      <div class="hover-overlayer" >
+				  <div class="removeSelMEdiaIcon" ng-click="previewIndex.deleteGalleryMedia(media._id)">X</div>
+				 
+				 <!-- <img alt="" src="/assets/img/delete-icon-blue.png" height=30 width=30 style="cursor:pointer">-->
+			    </div>
+							<div class="media-label">{{media.Title}}</div>
+                        </div>
+                        <p class="noteContent" style="display: none"  ng-if="media.MediaType=='Notes'">{{media.Content}}</p>
+                        <!--<div class="format_file_mid tick_format_heart anim"  ng-click="addToMediaTray(media)" style="display: none" title="Add in media-tray"></div>--><!--edited by parul-->
+                        <!--<div class="overlay anim">-->
+                        <!--<div class="caption">-->
+                        <!--<h3>{{media.Title}}</h3>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    </a>
+                    
+                    <!---Anchor tag for Note Ends--->
+                    
+                    
+                    <!---Anchor tag for LEft cases starts--->
+                    <a ng-click="setMediaId(media)" class="item search_item" ng-href='/media/view?mid={{media._id}}' ng-if="(media.MediaType!='Image' && media.ContentType != 'image/png' && media.ContentType != 'image/jpeg' && media.ContentType != 'image/gif') && media.MediaType != 'Montage' && media.MediaType!='Notes'" >								
+                        <div class="gallery-pic-bx" style="color:#fff;">
+                            <img ng-if="media.ContentType=='application/pdf'" class=""  ng-src="../assets/img/PDF.png" alt="Sample PDF 1">
+                            <img ng-if="media.ContentType=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || media.ContentType=='application/msword'" class=""  ng-src="../assets/img/Icon-Document.jpg" alt="Sample Word 1">
+                            <img ng-if="media.ContentType=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || media.ContentType=='application/vnd.ms-excel' || media.ContentType=='application/vnd.oasis.opendocument.spreadsheet'" class=""  ng-src="../assets/img/excel.png" alt="Sample Excel 1">
+                            <img ng-if="media.ContentType=='application/vnd.openxmlformats-officedocument.presentationml.presentation' || media.ContentType=='application/vnd.ms-powerpoint'" class=""  ng-src="../assets/img/ppt.png" alt="Sample PPT 1">
+                            <img ng-if="media.MediaType=='Link'"  class="linkElement"  ng-src="../assets/Media/img/{{medium__thumbnail}}/{{media.thumbnail}}" fallback-src="https://developers.google.com/games/services/images/branding/ic_play_games_badge_green.png" alt="Link">
+                            <!--<div class="hover-icon" ng-click="addToMediaTray(media,$event)" title="Add in media-tray"></div>-->
+                            <div class="hover-overlayer"></div>
+			      <div class="hover-overlayer" >
+				  <div class="removeSelMEdiaIcon" ng-click="previewIndex.deleteGalleryMedia(media._id)">X</div>
+				 
+				 <!-- <img alt="" src="/assets/img/delete-icon-blue.png" height=30 width=30 style="cursor:pointer">-->
+			    </div>
+                            <p class="linkContent" style="display: none"  ng-if="media.MediaType=='Link'">{{media.Content}}</p>
+							<div class="media-label">{{media.Title}}</div>
+						</div>
+                    </a>
+                    <!---Anchor tag for LEft cases Ends--->
+    
+                </li>
+            </ul>
+			<div class=" show-count">
+			   <p class="more-btn-rw">
+				   <button class="btn btn-info" ng-show="previewIndex.has_more()" ng-click="previewIndex.show_more()">
+						   <i class="fa fa-plus"></i>Show More
+						   <span id="loading" class="loading-bar" style="display: none;">
+								   <img src="../../assets/img/show-more-loader.GIF" />
+						   </span>
+				   </button> 
+			   </p>
+			   
+			</div>
+        </section>
+		
+    </section>
+</div>
+<div  style="display: none;">
+<div id="overlay3"></div>
+<div id="overlayContent3">
+   <img style="display:block;margin-left:auto;margin-right:auto; border: none !important;" src="../../assets/img/loader.png"/>
+</div>
+</div>
+
+<!--<script type="text/javascript" src="../assets/page/js/slick.js"></script>-->
+
+
+<style type="text/css">
+	
+	.tag-list ul li.activeKey span{
+		color: #000;
+	}
+	.tag-list ul li.activeKey span i {
+    background-position: 0 -12px;
+	}
+	.tag-list ul li span{
+		overflow: hidden;
+		white-space: nowrap;
+		max-width: 320px;
+		text-overflow : ellipsis;
+	}
+
+.overlay-text-cont {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    border: 2px solid #666;
+    border-radius: 6px;
+    padding: 15px;
+	word-break: break-all;
+}
+[contenteditable=true]:empty:before {
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+  color:#aaa;
+  font-style: italic;
+}
+.header-bg [contenteditable=true]:empty:before { color:#ddd;}
+
+</style>

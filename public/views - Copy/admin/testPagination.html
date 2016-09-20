@@ -1,0 +1,9 @@
+<script src="../release/pagination.i.min.js"></script>
+<div id="paging"></div>
+<script type="text/javascript">
+(function() {
+	var paginator = new pagination.ItemPaginator({prelink:'/', current: 3, rowsPerPage: 200, totalResult: 10020});
+	var html = paginator.render();
+	document.getElementById("paging").innerHTML = html;
+})();
+</script>

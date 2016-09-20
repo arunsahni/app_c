@@ -1,0 +1,463 @@
+@charset "utf-8";
+/* CSS Document */
+
+html, body {
+	height: 100%;
+	min-width: 1024px;
+	overflow: hidden;
+	border: 0 none;
+	margin: 0;
+	min-height: 100%;
+	padding: 0;
+}
+body {
+	line-height: 1;
+}
+body.builder {
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+	font-family:"arial";
+	font-style: normal;
+	font-weight: 500;
+	min-width: 1024px;
+	position: relative;
+}
+#builder {
+	height: 100%;
+	-webkit-transition: -webkit-filter 0.3s ease-out;
+	transition: -webkit-filter 0.3s ease-out;
+}
+#container {
+	bottom: 0;
+	height: 100%;
+	left: 0;
+	opacity: 1;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: relative;
+	top: 0;
+	transition: opacity 0.5s ease-out 0s;
+	width: 100%;
+}
+/*workarea css start*/
+.main-bg {
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	z-index: -1;
+}
+.picture-bg {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	bottom: -2px;
+	left: -2px;
+	position: absolute;
+	right: -2px;
+	top: -2px;
+	z-index: 2;
+	opacity:0.1;
+}
+.workarea {
+	position: absolute;
+	z-index: 20;
+}
+.workarea-inr {
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+	position: absolute;
+}
+.video-overlay, .video-block {
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+.video-block iframe {
+	border: medium none;
+	display: block;
+	position: absolute;
+}
+/*text-box css start*/
+.workarea-inr .box {
+	border-color: #1cdeb4;
+	pointer-events: none;
+	position: absolute;
+	transition: opacity 0.2s ease-out 0s;
+}
+.text-box .text-box-bg {
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+.text-box .text-content {
+	height: 100%;
+	overflow: hidden;
+	width: 100%;
+	position: relative;
+}
+.select-txt {
+	bottom: -1px;
+	left: 0;
+	overflow: hidden;
+	pointer-events: none;
+	position: absolute;
+	right: -1px;
+	top: 0;
+}
+.select-txt-inner {
+	position: absolute;
+}
+.select-outer-frame {
+	border:1px solid #1cdeb4;
+}
+.text-box .text-view {
+	-moz-column-fill: auto;
+	cursor: default;
+	font-family: "Source Sans Pro";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	height: 100%;
+	line-height: 20px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	word-wrap: break-word;
+}
+.text-box .text-view p {
+	margin:0;
+}
+/*text-box css end*/
+
+/*pic-box css start*/
+.pic-box {
+    background:url("../images/pic-default.png") 50% 50% no-repeat #c9cdd4;
+}
+.pic-box .content div {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+/*pic-box css end*/
+
+
+.box > div {
+	pointer-events: all;
+}
+.workarea-border {
+	background: url(../images/border.png) 0 0 repeat;
+	bottom: -1px;
+	left: -1px;
+	pointer-events: none;
+	position: absolute;
+	right: -1px;
+	top: -1px;
+	z-index: 2500;
+}
+/*t-border-box css start*/
+.border .border-box {
+	border: 1px solid #1cdeb4;
+	display: block;
+}
+.text-box-edit .border-box {
+	border: 1px solid rgba(28, 222, 180, 0.28);
+}
+.border .border-box {
+	bottom: -1px;
+	left: 0;
+	margin: 0;
+	pointer-events: none;
+	position: absolute;
+	right: -1px;
+	top: 0;
+	transition: color 0.2s ease-out 0s;
+	z-index: 2505;
+}
+.border-box {
+	bottom: -1px;
+	left: 0;
+	margin: 0;
+	pointer-events: none;
+	position: absolute;
+	right: -1px;
+	top: 0;
+	transition: color 0.2s ease-out 0s;
+	z-index: 2505;
+}
+.border-box .resize {
+	background-color: #1cdeb4;
+	border-radius: 100%;
+	opacity: 1;
+	pointer-events: all;
+	position: absolute;
+	transition: opacity 0.2s linear 0s;
+	z-index: 2505;
+}
+.border-box .resize.lt {
+	left: 0;
+	top: 0;
+}
+.border-box .resize.t {
+	left: 50%;
+	top: 0;
+}
+.border-box .resize.rt {
+	right: -1px;
+	top: 0;
+}
+.border-box .resize.r {
+	right: -1px;
+	top: 50%;
+}
+.border-box .resize.rb {
+	bottom: -1px;
+	right: -1px;
+}
+.border-box .resize.b {
+	bottom: -1px;
+	left: 50%;
+}
+.border-box .resize.lb {
+	bottom: -1px;
+	left: 0;
+}
+.border-box .resize.l {
+	left: 0;
+	top: 50%;
+}
+/*resize circle cursor directions css start*/
+.resize[data-visual-direction="nw"] {
+	cursor: nwse-resize;
+}
+.resize[data-visual-direction="n"] {
+	cursor: ns-resize;
+}
+.resize[data-visual-direction="ne"] {
+	cursor: nesw-resize;
+}
+.resize[data-visual-direction="e"] {
+	cursor: ew-resize;
+}
+.resize[data-visual-direction="se"] {
+	cursor: nwse-resize;
+}
+.resize[data-visual-direction="s"] {
+	cursor: ns-resize;
+}
+.resize[data-visual-direction="sw"] {
+	cursor: nesw-resize;
+}
+.resize[data-visual-direction="w"] {
+	cursor: ew-resize;
+}
+/*resize circle cursor directions css end*/
+
+
+/*resize circle css after add this text-box-edit*/
+.text-box-edit .border-box .resize.lt {
+	left: -13px;
+	top: -13px;
+}
+.text-box-edit .border-box .resize.t {
+	left: 50%;
+	top: -13px;
+}
+.text-box-edit .border-box .resize.rt {
+	right: -14px;
+	top: -13px;
+}
+.text-box-edit .border-box .resize.r {
+	right: -14px;
+	top: 50%;
+}
+.text-box-edit .border-box .resize.rb {
+	bottom: -14px;
+	right: -14px;
+}
+.text-box-edit .border-box .resize.b {
+	bottom: -14px;
+	left: 50%;
+}
+.text-box-edit .border-box .resize.lb {
+	bottom: -14px;
+	left: -13px;
+}
+.text-box-edit .border-box .resize.l {
+	left: -13px;
+	top: 50%;
+}
+/*resize circle css after add this text-box-edit*/
+
+/*resize-handle css start*/
+.resize-handle {
+	position: absolute;
+	z-index: 2506;
+}
+.resize-label {
+	bottom: -39px;
+	height: 43px;
+	width: 43px;
+	position: absolute;
+}
+.resize-label-inpt {
+	background: #222;
+	height: 100%;
+	position: absolute;
+	width: 100%;
+	text-align:center;
+}
+.resize-input {
+	cursor: row-resize !important;
+	-moz-appearance: none;
+	background:none;
+	border: none;
+	color: #ffffff;
+	font-family: "Avenir Next", sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 600;
+	height: 18px;
+	line-height: 18px;
+	outline: 0 none;
+	padding: 0;
+	text-align: center;
+	width: 26px;
+	margin:13px 0 0;
+}
+
+
+.resize-handle-t {
+box-shadow:0 -2px 0 0 #222 inset;
+}
+.resize-handle-r {
+box-shadow: 2px 0 0 0 #222 inset;
+}
+.resize-handle-b {
+box-shadow: 0 2px 0 0 #222 inset;
+}
+.resize-handle-l {
+box-shadow:-2px 0 0 0 #222 inset;
+}
+
+
+.resize-handle-t .resize-label{bottom: 0;}
+.resize-handle-b .resize-label{bottom: -39px;}
+.resize-handle-l .resize-label{right:0;}
+.resize-handle-r .resize-label{right:-41px; /*pending positon check*/}
+
+.resize-handle-t .resize-label-inpt
+{
+border-radius: 22px 22px 0 0;
+}
+.resize-handle-b .resize-label-inpt
+{
+border-radius: 0 0 22px 22px;
+}
+.resize-handle-l .resize-label-inpt
+{
+border-radius: 22px 0 0 22px;
+}
+.resize-handle-r .resize-label-inpt
+{
+border-radius:0 22px 22px 0;
+}
+
+
+.resize-handle-t,
+.resize-handle-b 
+{cursor: row-resize;}
+
+.resize-handle-r,
+.resize-handle-l
+{cursor: col-resize;}
+
+/*resize-handle css end*/
+
+/*t-border-box css end*/
+
+
+/*grid-guide css start*/
+#grid-guide {
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 2500;
+}
+#grid-guide .guide-block {
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+}
+.guide-block .gide-tbl {
+	height: 100%;
+	position: absolute;
+}
+.guide-block .gide-tbl .tp-margin, .guide-block .gide-tbl .btmmargin {
+	background-color: rgba(70, 108, 254, 0.06);
+	border-color: -moz-use-text-color rgba(70, 108, 254, 0.32);
+	border-style: none solid;
+	border-width: medium 1px;
+}
+/*.guide-block .gide-tbl .col-cell {
+    background-color: rgba(70, 108, 254, 0.18);
+    border: 1px solid #448afe;
+}*/
+/*grid-guide css end*/
+
+
+/*baseline-block css start*/
+.baseline-block {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+.baseline-block .baseline-bdr {
+	border-top: 1px solid rgba(240, 8, 20, 0.68);
+	float: none;
+	height: 2px;
+	position: absolute;
+}
+.baseline-block .baseline-bdr.fade {
+	border-top: 1px solid rgba(240, 8, 20, 0.22);
+}
+.baseline-block ul li {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+/*baseline-block css end*/
+
+/*grid-bg css start*/
+/*.grid-bg {
+    background:url(../images/grid.png) 0 0 repeat;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}*/
+
+/*grid-bg css end*/
+
+
+/*workarea-css end*/
+
+/*common-class always should be at bottom*/
+.boxsizing {
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	-o-box-sizing:border-box;
+}

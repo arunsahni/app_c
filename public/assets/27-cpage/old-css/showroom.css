@@ -1,0 +1,31 @@
+.showroom { background-color:#fff; height: 100%; left: 0;  min-width: 1024px; overflow: hidden; position: absolute;  top: 0; width: 100%; }
+.showroom .showroom-container { background: #000 none repeat scroll 0 0;  height: 100%;left: 0; overflow: hidden; position: absolute; top: 0; width: 100%; z-index: 1; }
+.showroom .showroom-container .container { height: 100%; position: absolute; top: 0; padding:0; }
+.showroom.viewer-type-horizontal .showroom-container .container { perspective: 600px; }
+
+.showroom.viewer-horizontal.showroom-pages-overlap .showroom-container .container.disable-effect .showroom-page:after { -webkit-transition: all 0s ease; transition: all 0s ease; }
+.showroom.viewer-horizontal .showroom-container .container .showroom-page:after { content: ''; background: #000; pointer-events: none; opacity: 0; position: absolute; left: 0;  top: 0; width: 100%; height: 100%; z-index: 9999;  -webkit-transition: all 0.5s ease-out;  transition: all 0.5s ease-out;-webkit-backface-visibility: hidden; backface-visibility: hidden; visibility: hidden; }
+.showroom.viewer-horizontal .showroom-container .container .blackout { background: #000; pointer-events: none; position: absolute; left: 0; top: 0;width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; display: none; }
+		/**************************** BACKGROUND FIXED CSS ****************************/
+.showroom .showroom-container .container .showroom-page .showroom-fixed-bg-container { height: 100%; overflow: hidden; position: absolute;  width: 100%; }
+.collab-widget { position: absolute; }
+.collab-widget.cm-widget-bg, .collab-widget.cm-widget-bg .collab-video-background { height: 100%; width: 100%; }
+.collab-widget .collob-video-container {  height: 100%; left: 0; position: absolute;  top: 0; width: 100%; }
+.collab-widget .collob-video-overlay {  height: 100%; left: 0; position: absolute; top: 0; width: 100%; }
+.collab-widget .collob-video-container .collab-video-snapshot { position: absolute; }
+.collab-widget .collob-video-container iframe { height: 100%; left: 0; opacity: 0; position: absolute; top: 0; transition: opacity 0.5s ease-in-out 1s; width: 100%; }
+.collab-widget .collob-video-container iframe.video-fade-out { opacity: 1; }
+		/**************************** CONTENT OVER BACKGROUND FIXED CSS ****************************/
+.showroom .showroom-container .container .showroom-page .showroom-content-wrap { height:100%; left:0; overflow-x:hidden; overflow-y:auto; position:absolute; top:0; width:100%; }
+.showroom .showroom-content-wrap .content-page-width { overflow:hidden; position:absolute; }
+.showroom .showroom-content-wrap .content-page-width .content-page-width-frame { outline: 0 none; overflow: visible; position: relative; transform-origin: 0 0 0; }
+.cm-widget-ab { position:absolute; }
+.cm-widget-ab.cm-hidden-text { overflow:hidden; }
+.cm-hidden-text div { } 
+.cm-used-fonts, .cm-widget-ab.cm-hidden-text div { width: 100%; height: 100%; word-wrap: break-word;  font-family:'BrandonGrotesque-Regular'; font-weight: 400; font-style: normal; font-size: 16px; line-height: 20px; margin: 0; padding:5px; -webkit-margin-before: 0em; -webkit-margin-after: 0em; -webkit-margin-start: 0px; -webkit-margin-end: 0px; -webkit-column-fill: auto; -moz-column-fill: auto; column-fill: auto; }
+.cm-used-fonts p, .cm-widget-ab.cm-hidden-text div p { color: #000000; margin: 0;  padding: 0; -webkit-margin-before: 0em; -webkit-margin-after: 0em; -webkit-margin-start: 0px; -webkit-margin-end: 0px; } 
+.cm-used-fonts a, .cm-widget-ab.cm-hidden-text div a { color: inherit; text-decoration: underline; }
+.cm-used-fonts a.hovered, .cm-widget-ab.cm-hidden-text div a.hovered { text-decoration: none !important; }
+.cm-used-fonts a.hovered *, .cm-widget-ab.cm-hidden-text div a.hovered * { text-decoration: none !important; }
+.cm-used-fonts a *, .cm-widget-ab.cm-hidden-text div a * { text-decoration: underline; } 
+.cm-used-fonts a, .cm-widget-ab.cm-hidden-text div a, .cm-used-fonts span, .cm-widget-ab.cm-hidden-text div span { line-height: 1px; }

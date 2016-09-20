@@ -1,0 +1,21 @@
+<!--overlay and its container for gridster view-->
+<div id="overlay"></div>
+<div id="overlayContent">
+	<a class="prev-m trans navarrow-left"><span class="i-ico i-prev"></span></a>
+	<a class="next-m trans navarrow-right"><span class="i-ico i-next"></span></a>
+	<a id="closeBtn">
+		<span>X</span>
+	</a>
+</div>
+<!--overlay and its container for gridster view end-->
+<div id="search_gallery_elements" include-static="'../views/front/preview/elements/search_list.html'"></div>
+<div id="search_view" include-static="'../views/front/preview/elements/search_view.html'" style="display: none"></div>
+
+<!--overlay for loader-->
+<div id="overlay2" style="display: none;"></div>
+<div id="overlayContent2" style="display: none;">
+   <img style="display:block;margin-left:auto;margin-right:auto; border: none !important;" src="../../assets/img/loader.png"/>
+</div>
+<div id="loader" ng-show="showLoader"><img src="/assets/create/images/ajax-loader.gif" alt="Loader" /></div>
+<div ng-click="previewIndex.navigateLeft()" ng-show="isChapterPreview && previewIndex.allPages.length > 1" style="position: fixed; left: 0px; z-index:  9; top: 50%; width: 80px; height: 130px; border-width: 1px 1px 1px medium; border-style: solid solid solid none; border-color: black black black -moz-use-text-color; -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; text-align: center; text-rendering: optimizespeed; cursor: pointer; background-color: white ! important; color: gray;" ><span style="position: relative; font-size: 35pt; top: 27%;"><i class="fa fa-backward"></i></span></div>
+<div ng-click="previewIndex.navigateRight()" ng-show="isChapterPreview && previewIndex.allPages.length > 1" style="position: fixed; right: 0px; z-index: 9; top: 50%; width: 80px; height: 130px; border-width: 1px medium 1px 1px; border-style: solid none solid solid; border-color: black -moz-use-text-color black black; -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; text-align: center; text-rendering: optimizespeed; cursor: pointer; background-color: white ! important; color: gray;"><span style="position: relative; font-size: 35pt; top: 27%;"><i class="fa fa-forward"></i></span></div>

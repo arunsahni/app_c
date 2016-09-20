@@ -1,0 +1,195 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<!--Already Used CSS-->
+<link rel="stylesheet" type="text/css" href="../assets/page/css/font-awesome.css" />
+<link rel="stylesheet" type="text/css" href="../assets/page/css/index/style.css" />
+<link rel="stylesheet" type="text/css" href="../assets/page/css/index/animate.css" />
+<link rel="stylesheet" type="text/css" href="../assets/page/css/index/media.css" />
+
+<!--Home Page CSS-->
+<link rel="stylesheet" type="text/css" href="../assets/page/css/index/style-01.css" />
+<link rel="stylesheet" type="text/css" href="../assets/page/css/index/media-01.css" />
+
+<div id="chapter-idx">
+<div id="chapter-page-index1">
+	<!--overlay and its container for gridster view-->
+	<div id="overlay"></div>
+	<div id="overlayContent">
+		<a class="prev-m trans navarrow-left"><span class="i-ico i-prev"></span></a>
+		<a class="next-m trans navarrow-right"><span class="i-ico i-next"></span></a>
+		<a id="closeBtn">
+			<span>X</span>
+		</a>
+	</div>
+	<!--overlay and its container for gridster view end-->
+	<div id="search_gallery_elements" include-static="'../views/front/preview/elements/search_list.html'"></div>
+	<div id="search_view" include-static="'../views/front/preview/elements/search_view.html'" style="display: none"></div>
+
+	<!--overlay for loader-->
+	<div id="overlay2" style="display: none;"></div>
+	<div id="overlayContent2" style="display: none;">
+	   <img style="display:block;margin-left:auto;margin-right:auto; border: none !important;" src="../../assets/img/loader.png"/>
+	</div>
+	<div id="loader" ng-show="showLoader"><img src="/assets/create/images/ajax-loader.gif" alt="Loader" /></div>
+	<div ng-click="previewIndex.navigateLeft()" ng-show="isChapterPreview && previewIndex.allPages.length > 1" style="position: fixed; left: 0px; z-index:  9; top: 50%; width: 80px; height: 130px; border-width: 1px 1px 1px medium; border-style: solid solid solid none; border-color: black black black -moz-use-text-color; -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; text-align: center; text-rendering: optimizespeed; cursor: pointer; background-color: white ! important; color: gray;" ><span style="position: relative; font-size: 35pt; top: 27%;"><i class="fa fa-backward"></i></span></div>
+	<div ng-click="previewIndex.navigateRight()" ng-show="isChapterPreview && previewIndex.allPages.length > 1" style="position: fixed; right: 0px; z-index: 9; top: 50%; width: 80px; height: 130px; border-width: 1px medium 1px 1px; border-style: solid none solid solid; border-color: black -moz-use-text-color black black; -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; text-align: center; text-rendering: optimizespeed; cursor: pointer; background-color: white ! important; color: gray;"><span style="position: relative; font-size: 35pt; top: 27%;"><i class="fa fa-forward"></i></span></div>
+
+</div>
+
+<div id="chapter-page-index2"  style="display:none;">
+	<!--overlay and its container for gridster view-->
+	<div id="overlay"></div>
+	<div id="overlayContent">
+		<a class="prev-m trans navarrow-left"><span class="i-ico i-prev"></span></a>
+		<a class="next-m trans navarrow-right"><span class="i-ico i-next"></span></a>
+		<a id="closeBtn">
+			<span>X</span>
+		</a>
+	</div>
+	<!--overlay and its container for gridster view end-->
+	<div id="search_gallery_elements" include-static="'../views/front/preview/elements/search_list.html'"></div>
+	<div id="search_view" include-static="'../views/front/preview/elements/search_view.html'" style="display: none"></div>
+
+	<!--overlay for loader-->
+	<div id="overlay2" style="display: none;"></div>
+	<div id="overlayContent2" style="display: none;">
+	   <img style="display:block;margin-left:auto;margin-right:auto; border: none !important;" src="../../assets/img/loader.png"/>
+	</div>
+	<div id="loader" ng-show="showLoader"><img src="/assets/create/images/ajax-loader.gif" alt="Loader" /></div>
+	<div ng-click="previewIndex.navigateLeft()" ng-show="isChapterPreview && previewIndex.allPages.length > 1" style="position: fixed; left: 0px; z-index:  9; top: 50%; width: 80px; height: 130px; border-width: 1px 1px 1px medium; border-style: solid solid solid none; border-color: black black black -moz-use-text-color; -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; text-align: center; text-rendering: optimizespeed; cursor: pointer; background-color: white ! important; color: gray;" ><span style="position: relative; font-size: 35pt; top: 27%;"><i class="fa fa-backward"></i></span></div>
+	<div ng-click="previewIndex.navigateRight()" ng-show="isChapterPreview && previewIndex.allPages.length > 1" style="position: fixed; right: 0px; z-index: 9; top: 50%; width: 80px; height: 130px; border-width: 1px medium 1px 1px; border-style: solid none solid solid; border-color: black -moz-use-text-color black black; -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; text-align: center; text-rendering: optimizespeed; cursor: pointer; background-color: white ! important; color: gray;"><span style="position: relative; font-size: 35pt; top: 27%;"><i class="fa fa-forward"></i></span></div>
+
+</div>
+
+
+<div id="chapter-page-index3" style="display:none;">
+	<!--overlay and its container for gridster view-->
+	<div id="overlay"></div>
+	<div id="overlayContent">
+		<a class="prev-m trans navarrow-left"><span class="i-ico i-prev"></span></a>
+		<a class="next-m trans navarrow-right"><span class="i-ico i-next"></span></a>
+		<a id="closeBtn">
+			<span>X</span>
+		</a>
+	</div>
+	<!--overlay and its container for gridster view end-->
+	<div id="search_gallery_elements" include-static="'../views/front/preview/elements/search_list.html'"></div>
+	<div id="search_view" include-static="'../views/front/preview/elements/search_view.html'" style="display: none"></div>
+
+	<!--overlay for loader-->
+	<div id="overlay2" style="display: none;"></div>
+	<div id="overlayContent2" style="display: none;">
+	   <img style="display:block;margin-left:auto;margin-right:auto; border: none !important;" src="../../assets/img/loader.png"/>
+	</div>
+	<div id="loader" ng-show="showLoader"><img src="/assets/create/images/ajax-loader.gif" alt="Loader" /></div>
+	<div ng-click="previewIndex.navigateLeft()" ng-show="isChapterPreview && previewIndex.allPages.length > 1" style="position: fixed; left: 0px; z-index:  9; top: 50%; width: 80px; height: 130px; border-width: 1px 1px 1px medium; border-style: solid solid solid none; border-color: black black black -moz-use-text-color; -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; text-align: center; text-rendering: optimizespeed; cursor: pointer; background-color: white ! important; color: gray;" ><span style="position: relative; font-size: 35pt; top: 27%;"><i class="fa fa-backward"></i></span></div>
+	<div ng-click="previewIndex.navigateRight()" ng-show="isChapterPreview && previewIndex.allPages.length > 1" style="position: fixed; right: 0px; z-index: 9; top: 50%; width: 80px; height: 130px; border-width: 1px medium 1px 1px; border-style: solid none solid solid; border-color: black -moz-use-text-color black black; -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; text-align: center; text-rendering: optimizespeed; cursor: pointer; background-color: white ! important; color: gray;"><span style="position: relative; font-size: 35pt; top: 27%;"><i class="fa fa-forward"></i></span></div>
+
+</div>
+
+
+</div>
+<script>
+	$(document).ready(function(){
+		setTimeout(function(){startupall();},1000)
+	});
+</script>
+<style type="text/css">
+	#overlay {background-color: #000; display: none; height: 100%; left: 0; opacity: 0.7; position: fixed; top: 0; width: 100%; z-index: 1000;}
+/*#overlayContent { display: none; left: 0 !important; margin: 0 auto;
+    min-height: 100px; outline: 0 none; overflow: hidden; padding: 20px; position: fixed; right: 0; text-align: center; top: 3%; width: auto; z-index: 102;}*/
+#overlayContent { display: none; left: 0 !important; margin: 0 auto;
+    min-height: 100px; outline: 0 none;  padding: 30px; position: absolute; right: 0; text-align: center; top: 3%; width: auto; z-index: 1001;}
+
+	/*
+#closeBtn {
+background: none repeat scroll 0 0 rgba(255, 255, 255, 0.698);
+border-radius: 50%;    height: 20px;    line-height: 20px;
+padding: 2px 0 0 2px;    position: fixed;
+right: 20px;
+text-align: center;
+top: 10%;
+transition: all 0.5s ease-in-out 0s;
+-moz-transition: all 0.5s ease-in-out 0s;
+-webkit-transition: all 0.5s ease-in-out 0s;
+width: 20px;
+z-index:9900 !important;
+}
+*/
+
+#overlayContent img {    border: 6px solid rgba(255, 255, 255, 0.5);}
+#img-list > li{padding: 0;}
+#img-list > li .avatar-name{height: 100%; padding: 5px;}
+
+.holder-act .holder_img .gridster ul{width:auto!important;}
+#overlayContent{top:15%; height: 500px;}
+#overlayContent .avatar-name p{
+    background: url("../../../assets/img/bg-hills.png") no-repeat scroll center center #222;    font-size: 11pt; height: 300px; margin: auto; overflow-scrolling: auto;  overflow: auto;    padding: 15px;}
+#overlayContent img{width: auto!important; max-width: 100%; max-height: 100%;}
+.drag-md{position:absolute; width:100%; margin-top:150px; text-align:center;}
+#overlayContent .prev-m,
+#overlayContent .next-m{top:50%; margin-top: -23px; bottom: inherit; border-radius:50%; /*background: rgba(0,0,0,0.8);*/ }
+#overlayContent .prev-m{left:-33px; }
+#overlayContent .next-m{right:-33px;}
+#overlayContent .prev-m .i-prev,
+#overlayContent .next-m .i-next{background-size: 14px 14px; height: 16px; width: 16px; padding: 20px;}
+
+#overlayContent .prev-m .i-prev{background-position:80% center;}
+#overlayContent .next-m .i-next{background-position:8px center;}
+#overlayContent .image-avatar{height: 400px; display: block; overflow: auto; width: 100%; margin: 0 auto; position: relative;}
+#overlayContent .image-avatar img{max-width: 100%; height: 95%; -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */ -moz-box-sizing: border-box;    /* Firefox, other Gecko */ box-sizing: border-box;}
+/* Next Previous Button */
+/*.prev-m, .next-m{z-index:99;}*/
+.prev-m, .next-m, .prv-m, .nxt-m{background-color:rgba(255,255,255,1); position:fixed; bottom:/*20px*/0; opacity:0.7; font-family: 'brandon', sans-serif; color:#000;}
+.prev-m:hover, .next-m:hover{opacity:1;}
+.next-m, .nxt-m{right:0;}
+.i-prev, .i-next{opacity:1;}
+.i-prev{background-image:url(/assets/page/img/icons/prev-m.png);}
+.i-next{background-image:url(/assets/page/img/icons/next-m.png);}
+
+.prv-m, .nxt-m{width:150px; height:150px; text-align:center; opacity:1; background-color:rgba(255,255,255,0.8);}
+.prv-m:hover, .nxt-m:hover{background-color:rgba(255,255,255,1);}
+.md-pic{width:85px; height:85px; overflow:hidden; margin:0 auto;}
+.md-text{ font-size:14px; font-weight:700; height:85px; display:table; text-transform:uppercase; width:100%;}
+.md-text span{display:table-cell; vertical-align:middle;}
+
+.prv-nxt-t{padding-top:5px; font-size:18px;}
+/* Next Previous Button */
+
+
+
+/*montage-popup-btn style start*/
+#overlayContent .prev-m .i-prev, #overlayContent .next-m .i-next {
+    background-size: 14px 14px;
+    height: 56px;
+    padding: 20px;
+    width: 56px;
+}
+.trans, .trans a {
+    transition: all 0.3s ease 0s;
+}
+.mediaicons a.i-ico, .i-ico {
+    background-repeat: no-repeat;
+    display: block;
+    height: 23px;
+    padding: 10px;
+    transition: all 0.7s linear 0s;
+    width: 23px;
+}
+#loader {
+    background: none repeat scroll 0 0 #000;
+    bottom: 0;
+    left: 0;
+    opacity: 0.85;
+    position: fixed;
+    top: 0;
+    width: 100%;
+	z-index: 170;
+}
+#loader img {
+    left: 50%;
+    margin: -25px auto 0 -25px;
+    position: absolute;
+    top: 50%;
+}
+/*montage-popup-btn style end*/
+</style>

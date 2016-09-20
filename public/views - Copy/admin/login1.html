@@ -1,0 +1,46 @@
+            <div class="container con_pos"  >
+            <div class="left_img"></div>
+            <div class="right_img"></div>
+    <!-- Login Section Starts-->
+            <section class="login_sec">
+            	
+            	<h3>Login Here</h3><br>
+                <form name="admin" id="admin" novalidate>
+		    <div style="color:red;font-size:9pt" id="errMsg"></div>
+              
+                    
+			
+                      
+                      <p class="padlt"><input id="email" type="email" name="email" ng-model="adminlog.email" class="textfield inputlogin" placeholder="Email" required auto-focus></p>
+		<div ng-show="admin.email.$dirty && admin.email.$invalid">
+			<p style="color:red;font-size:9pt" ng-show="admin.email.$error.required">Email is required.</p>
+			<p style="color:red;font-size:9pt" ng-show="admin.email.$error.email">Invalid email address.</p>
+		    </div>
+                    
+                      
+                      <p class="padlt"><input type="password" id="password" name="password" ng-model="adminlog.password" ng-minlength="6" class="textfield inputlogin" placeholder="Password" required></p>
+		      <span ng-show="admin.password.$error.minlength" style="color:red;font-size: 9pt;"><small>Password is too short.</small></span><br>
+			   		      
+                    
+                    <!--<li class="buttonwdget">
+                        <div class="rememberme"><input type="checkbox" name="remember" ng-model="adminlog.remember" ng-true-value="1" ng-false-value="0" class="checkbox" /> Remember me</div>
+                        <div class="forgot_pass"> <a href="#">Forgot Your Password</a></div>
+                    </li>
+                    
+                    <li>
+                    	<div class="social_list">
+                        	<img src="assets/img/facebook_icon.png" alt="" title="" />
+                            <a href="#">Login with Facebook</a>
+                        </div>
+                        <div class="social_list fl_rt">
+                        	<img src="assets/img/twitter_icon.png" alt="" title="" />
+                            <a href="#">Login with Twitter</a>
+                        </div>
+                    </li>-->
+			<p style="color:red;font-size:9pt" ng-if="msg">	{{msg}}	</p>
+                      <input type="submit" class="btn btn-small btn-primary" ng-click="submitForm(admin.$valid)" name="commit" value="Login" ng-disabled="admin.$dirty && admin.$invalid">
+                    
+            	</form>
+            </section>
+            <!-- Login Section Ends -->
+            </div>

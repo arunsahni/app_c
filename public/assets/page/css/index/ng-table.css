@@ -1,0 +1,217 @@
+.ng-table th {
+  text-align: left;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.ng-table th.sortable {
+  cursor: pointer;
+}
+.ng-table th.sortable div {
+  padding-right: 18px;
+  position: relative;
+}
+.ng-table th.sortable div:after,
+.ng-table th.sortable div:before {
+  content: "";
+  border-width: 0 4px 4px;
+  border-style: solid;
+  border-color: #fff transparent;
+  visibility: visible;
+  right: 0px;
+  top: 50%;
+  position: absolute;
+  opacity: .3;
+  margin-top: -4px;
+}
+.ng-table th.sortable div:before {
+  margin-top: 2px;
+  border-bottom: none;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #fff;
+}
+.ng-table th.sortable div:hover:after,
+.ng-table th.sortable div:hover:before {
+  opacity: 1;
+  visibility: visible;
+}
+.ng-table th.sortable.sort-desc,
+.ng-table th.sortable.sort-asc {
+  
+  background-color: rgba(141, 192, 219, 0.25);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+.ng-table th.sortable.sort-desc div:after,
+.ng-table th.sortable.sort-asc div:after {
+  margin-top: -2px;
+}
+.ng-table th.sortable.sort-desc div:before,
+.ng-table th.sortable.sort-asc div:before {
+  visibility: hidden;
+}
+.ng-table th.sortable.sort-asc div:after,
+.ng-table th.sortable.sort-asc div:hover:after {
+  visibility: visible;
+  filter: alpha(opacity=60);
+  -khtml-opacity: 0.6;
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+}
+.ng-table th.sortable.sort-desc div:after {
+  border-bottom: none;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+  visibility: visible;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  filter: alpha(opacity=60);
+  -khtml-opacity: 0.6;
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+}
+.ng-table th.filter .input-filter {
+  margin: 0;
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ng-table + .pagination {
+  margin-top: 0;
+}
+@media only screen and (max-width: 800px) {
+  .ng-table-responsive {
+    border-bottom: 1px solid #999999;
+  }
+  .ng-table-responsive tr {
+    border-top: 1px solid #999999;
+    border-left: 1px solid #999999;
+    border-right: 1px solid #999999;
+  }
+  .ng-table-responsive td:before {
+    position: absolute;
+    padding: 8px;
+    left: 0;
+    top: 0;
+    width: 50%;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+  .ng-table-responsive thead tr th {
+    text-align: left;
+  }
+  .ng-table-responsive thead tr.ng-table-filters th {
+    padding: 0;
+  }
+  .ng-table-responsive thead tr.ng-table-filters th form > div {
+    padding: 8px;
+  }
+  .ng-table-responsive td {
+    border: none;
+    border-bottom: 1px solid #eeeeee;
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+    text-align: left;
+  }
+  .ng-table-responsive td:before {
+    content: attr(data-title-text);
+  }
+  .ng-table-responsive,
+  .ng-table-responsive thead,
+  .ng-table-responsive tbody,
+  .ng-table-responsive th,
+  .ng-table-responsive td,
+  .ng-table-responsive tr {
+    display: block;
+  }
+}
+.pull-right{
+	float:right;
+}
+.pagination{
+	padding:0px;
+	float:left;
+	margin:20px 0;
+}
+ul.pagination li {
+    display: inline;
+    list-style: outside none none;
+}
+ul.pagination li a{
+	line-height:normal;
+	height: 32px;
+	text-align:center;
+	float:left;
+	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.15);
+	margin:0 2px;
+	/*height:30px;*/
+	color:#fff;
+	transition:ease-in-out 0.5s;
+	-webkit-transition:ease-in-out 0.5s;
+	-moz-transition:ease-in-out 0.5s;
+	width:30px;
+}
+ul.pagination li a:hover, ul.pagination li a:hover{
+	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
+	transition:ease-in-out 0.5s;
+	-webkit-transition:ease-in-out 0.5s;
+	-moz-transition:ease-in-out 0.5s;
+}
+.ng-table-pager .btn{
+	line-height:30px;
+	text-align:center;
+	float:left;
+	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.15);
+	margin:20px 2px;
+	height:30px;
+	color:#fff;
+	transition:ease-in-out 0.5s;
+	-webkit-transition:ease-in-out 0.5s;
+	-moz-transition:ease-in-out 0.5s;
+	width:40px;
+	border:none;
+}
+.ng-table-pager .ng-table-counts .active{
+  background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
+	transition:ease-in-out 0.5s;
+	-webkit-transition:ease-in-out 0.5s;
+	-moz-transition:ease-in-out 0.5s;
+}
+@media(max-width:480px){
+.table_responsive{
+	width:100%;
+	overflow-y:hidden;
+	overflow-x:scroll;
+	padding-bottom: 14px;
+}
+.ng-table-pager.ng-scope {
+    position: absolute;
+	 width: 100%;
+}
+
+
+}
+@media(max-width:360px){
+.ng-table-counts{
+	width:100%;
+	text-align:center;
+	margin-top:10px;
+}
+.pagination {
+	width:100%;
+}
+.pagination{
+	margin-top:0px;
+}
+
+}

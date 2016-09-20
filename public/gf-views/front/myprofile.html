@@ -1,0 +1,161 @@
+  
+<div class="container">
+    
+    <style type="text/css">
+	#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: #000;
+    opacity: 0.7;
+    filter: alpha(opacity=70) !important;
+    display: none;
+    z-index: 100;
+}
+#closeBtn {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    height: 20px;
+    line-height: 20px;
+    padding: 2px 0 0 2px;
+    position: absolute;
+    right: 20px;
+    text-align: center;
+    top: 10px;
+    width: 20px;
+	transition:ease-in-out 0.5s;
+	-moz-transition:ease-in-out 0.5s;
+	-webkit-transition:ease-in-out 0.5s;
+}
+#closeBtn:hover{
+	background:#fff;
+	transition:ease-in-out 0.5s;
+	-moz-transition:ease-in-out 0.5s;
+	-webkit-transition:ease-in-out 0.5s;
+}
+#imgBig{
+    border: 6px solid rgba(255, 255, 255, 0.5);
+}
+#overlayContent {
+	display:none;
+      left: 0 !important;
+    margin: 0 auto;
+    min-height: 100px;
+    outline: 0 none;
+    overflow: hidden;
+    padding: 20px;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 3%;
+    width: auto;
+    z-index: 100;
+}
+#contentGallery {
+    margin: 0px auto;
+}
+#imgBig, #imgSmall {
+    cursor: pointer;
+}
+@media all and (max-width:500px){
+#overlayContent #imgBig{
+	width:90%;
+}
+}
+	
+    </style>
+    <header>
+	<p class="logo">Scrpt <span>Profile</span></p>	
+        <span class="pro-span">
+        <span class="brdmem_pic"><img ng-src="{{userInfo.ProfilePic}}" alt="Profile Picture" title="{{userInfo.Name}}  ({{userInfo.Email}})"></span> Welcome {{userInfo.Name}} (<a href="#/logout">Logout</a>)
+        </span> 
+        </span>
+        
+    </header>
+    
+					
+    <div id="everything"  class="my_profile">
+        <section id="login" class="animated bounceInDown">
+        
+            <form class="well simform" style="font-size:100% !important;" novalidate name="fssgs" id="fssgs">
+				<div >
+                <h1 style="font-size:2.0em !important;">My Profile</h1>
+		<div ng-show="!loaded" ><img style="display:block;margin-left:auto;margin-right:auto;" src="../assets/img/ajax-loader.gif"> </div>
+		<div ng-show="loaded">
+                <div ng-show="msg"><p class="success">{{msg}}<span class="close_icon" id="close_span"></span></p></div>
+				<ul class="loginform">
+                    <li ng-repeat="fg in fsgs|filter:{Title:'!Relation'}" style="line-height:50px;">
+                        <div style="float:left; width:150px;">
+                        {{fg.Title}}
+                        </div>
+                        <div>
+                            <!--<select class=""  ng-model="fssg.fsg[$index]" auto-fill-sync style="width:400px;" required>
+                                <option value="">Select {{fg.Title}}</option>
+                                <option ng-repeat="values in fg.Values" value="{{fg.Title}}~{{values.valueTitle}}">{{values.valueTitle}}</option>
+                            </select>-->
+							<select class="" ng-model="fssg.fsg[$index]" auto-fill-sync style="width:400px;" style="width:410px;"  multiple  required>					
+								<option value="" disabled="true">Select {{fg.Title}}</option>
+								<option ng-repeat="values in fg.Values" value="{{fg.Title}}~{{values.valueTitle}}">{{values.valueTitle}}</option>
+							</select>
+                        </div>                                
+                    </li>
+					<li style="line-height:50px;">
+						<div style="float:left; width:150px;">
+                        Nick Name
+                        </div>
+                        <div>
+                            <input type="text" ng-model="fssg.NickName" style="width:400px;" name="user" required/>
+							<div>
+								<p class="thumb thumn_two"  ng-show="fssgs.user.$error.required">
+									<a><img src="../assets/img/invalid.png" >
+									<span class="tooltip" style="width: 200px;position: relative;float: right">
+									Please enter a nick name.
+									</span>
+									</a>
+								</p>
+								<p class="thumb thumn_two"  ng-show="!(fssgs.user.$error.required)">
+									<a><img src="../assets/img/valid.png" >
+									<span class="tooltip" style="width: 200px;position: relative;float: right">
+									Please enter a nick name.
+									</span>
+									</a>
+								</p>
+							</div>
+					</div>
+					</li>
+					<li style="line-height:60px;">
+						<div style="float:left; width:150px;">
+                        Change Profile Picture
+                        </div>
+                        <div>
+                            <input type="file" style="cursor: pointer;"  file-model="myFile" />
+			    			<span class="profile_img"><img height="40" id="imgSmall" width="40" src="{{imageName}}"></span>
+                        </div>
+			
+			<div></div>
+					</li>
+					<!--
+					<li style="line-height:50px;">
+						<div style="float:left; width:150px;">
+                        Profile Picture
+                        </div>
+                        <div>
+                            <input type="file" ng-model="fssg.ProfilePic" style="width:400px;" ng-file-select="onFileSelect($files)"/>
+                        </div>
+					</li>
+					-->
+                </ul>
+                <button type="submit" class="button" ng-click="submitForm(fssgs.$valid)" style="margin-left:150px;" ng-disabled="fssgs.user.$error.required">Submit</button>
+                </div>
+		</div>
+            </form>
+	</section><!-- Login -->				
+    </div>
+</div>
+<div id="overlay"></div>
+<div id="overlayContent">
+    <a id="closeBtn"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span></a>
+    <img id="imgBig" src="{{imageName_medium}}" alt="" width="400" />
+</div>

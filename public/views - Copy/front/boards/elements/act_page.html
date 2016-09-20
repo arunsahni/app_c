@@ -1,0 +1,274 @@
+<!--style and script added by parul-->
+<!-------start-----16 Dec----->
+<link href="../assets/board/css/jquery.gridster.css" rel="stylesheet" type="text/css">
+<script src="../assets/board/js/jquery.gridster.js" type="text/javascript" charset="utf-8"></script>
+<script src="../assets/board/js/html2canvas.js" type="text/javascript" ></script>
+<script src="../assets/board/js/jquery.plugin.html2canvas.js" type="text/javascript" ></script>
+<script src="../assets/board/js/montage.js" type="text/javascript" ></script>
+<!--<script src="../assets/board/js/jquery.ui.touch-punch.min.js" type="text/javascript" ></script>-->
+<style>
+	.gridster .gs-w img {display: block;  left: -5%;  position: relative;}	
+	.innerimg-wrap {float: left; left: 0%; margin: 0; position: relative;}
+	.holder-act .media_block, .holder-act .comment_block, .media-content{box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; }
+	.holder-act .media-content .holder_img{width:auto;}
+/*---------------------------*/  
+   li{display: inline-block;}   
+    .avatar-name p {padding: 0px;}
+
+ /*--add by gaurav 5 jan 2015 for gridster--*/
+ /*
+ [data-col="7"] { left:601px; }
+ [data-col="6"] { left:501px; }
+ [data-col="5"] { left:401px; }
+ [data-col="4"] { left:301px; }
+ [data-col="3"] { left:201px; }
+ [data-col="2"] { left:101px; }
+ [data-col="1"] { left:1px; }
+ 
+ [data-row="25"] { top:2401px; }
+ [data-row="24"] { top:2301px; }
+ [data-row="23"] { top:2201px; }
+ [data-row="22"] { top:2101px; }
+ [data-row="21"] { top:2001px; }
+ [data-row="20"] { top:1901px; }
+ [data-row="19"] { top:1801px; }
+ [data-row="18"] { top:1701px; }
+ [data-row="17"] { top:1601px; }
+ [data-row="16"] { top:1501px; }
+ [data-row="15"] { top:1401px; }
+ [data-row="14"] { top:1301px; }
+ [data-row="13"] { top:1201px; }
+ [data-row="12"] { top:1101px; }
+ [data-row="11"] { top:1001px; }
+ [data-row="10"] { top:901px; }
+ [data-row="9"] { top:801px; }
+ [data-row="8"] { top:701px; }
+ [data-row="7"] { top:601px; }
+ [data-row="6"] { top:501px; }
+ [data-row="5"] { top:401px; }
+ [data-row="4"] { top:301px; }
+ [data-row="3"] { top:201px; }
+ [data-row="2"] { top:101px; }
+ [data-row="1"] { top:1px; }
+ 
+ [data-sizey="1"] { height:98px; }
+ [data-sizey="2"] { height:198px; }
+ [data-sizey="3"] { height:298px; }
+ [data-sizey="4"] { height:398px; }
+ [data-sizey="5"] { height:498px; }
+ [data-sizey="6"] { height:598px; }
+ [data-sizey="7"] { height:698px; }
+ [data-sizey="8"] { height:798px; }
+ [data-sizey="9"] { height:898px; }
+ [data-sizey="10"] { height:998px; }
+ [data-sizey="11"] { height:1098px; }
+ [data-sizey="12"] { height:1198px; }
+ [data-sizey="13"] { height:1298px; }
+ [data-sizey="14"] { height:1398px; }
+ [data-sizey="15"] { height:1498px; }
+ [data-sizey="16"] { height:1598px; }
+ [data-sizey="17"] { height:1698px; }
+ [data-sizey="18"] { height:1798px; }
+ [data-sizey="19"] { height:1898px; }
+ [data-sizey="20"] { height:1998px; }
+ 
+ [data-sizex="1"] { width:98px; }
+ [data-sizex="2"] { width:198px; }
+ [data-sizex="3"] { width:298px; }
+ [data-sizex="4"] { width:398px; }
+ [data-sizex="5"] { width:498px; }
+ [data-sizex="6"] { width:598px; }
+*/
+</style>
+<style type="text/css">
+ [data-col="3"] { left:444px; }
+ [data-col="2"] { left:222px; }
+ [data-col="1"] { left:0px; }
+ [data-row="16"] { top:3330px; }
+ [data-row="15"] { top:3108px; }
+ [data-row="14"] { top:2886px; }
+ [data-row="13"] { top:2664px; }
+ [data-row="12"] { top:2442px; }
+ [data-row="11"] { top:2220px; }
+ [data-row="10"] { top:1998px; }
+ [data-row="9"] { top:1776px; }
+ [data-row="8"] { top:1554px; }
+ [data-row="7"] { top:1332px; }
+ [data-row="6"] { top:1110px; }
+ [data-row="5"] { top:888px; }
+ [data-row="4"] { top:666px; }
+ [data-row="3"] { top:444px; }
+ [data-row="2"] { top:222px; }
+ [data-row="1"] { top:0px; }
+ [data-sizey="1"] { height:222px; }
+ [data-sizey="2"] { height:444px; }
+ [data-sizey="3"] { height:666px; }
+ [data-sizey="4"] { height:888px; }
+ [data-sizey="5"] { height:1110px; }
+ [data-sizey="6"] { height:1332px; }
+ [data-sizey="7"] { height:1554px; }
+ [data-sizey="8"] { height:1776px; }
+ [data-sizey="9"] { height:1998px; }
+ [data-sizey="10"] { height:2220px; }
+ [data-sizey="11"] { height:2442px; }
+ [data-sizey="12"] { height:2664px; }
+ [data-sizey="13"] { height:2886px; }
+ [data-sizey="14"] { height:3108px; }
+ [data-sizey="15"] { height:3330px; }
+ [data-sizex="1"] { width:222px; }
+ [data-sizex="2"] { width:444px; }
+</style>
+<script type="text/javascript">
+    // added by parul 20141211
+    $(document).ready(function(){
+		montageObject.init();
+		if ($(window).width() <= 900) {
+			$('[title]').removeAttr('title');
+			//alert($(window).width());
+			//$('*').each(function(){
+			//	if($(this).attr('title')){
+			//		 $(this).removeAttr('title');
+			//	}
+			//});
+		}
+
+	});
+</script>
+<!--added by parul 20141212-->
+
+    
+<div class="main-container">
+	<div class="main wrapper">
+		<!-- GRID --><!-- GRID -->
+                         
+		<div id="media_elements">
+                    <div class="actionholder top-pos">                        	
+                        <a href="javascript:void(0)" class="close_media red" title="Close" ng-click="close_holder_act();"><span class="close_icon"></span></a>
+                        <a href="javascript:void(0)" class="close_media green ticked" ng-click="addMedia()" title="Add"><span class="check_icon"></span></a>
+                    </div>
+                            	<!--Media icons Start-->
+                    <div id="media-row1" class="media-row clearfix" ng-show="(writeNote || sgOther || stOther) || (!sgMontage && !stMontage && !dPage)">
+                            <ul id="media-icons" class="trans fl-lt clearfix" ng-show="(writeNote || sgOther || stOther) || (!sgMontage && !stMontage && !dPage)">
+                            <li><a title="Single Media View" id="s-media" class="icn s-media active" href="javascript:void(0);" ng-click="setMontagePageFlag('single-media')"></a></li>
+                            <li><a title="Create Montage Panel" id="d-media" class="icn d-media" href="javascript:void(0);" rel="dmedia" ng-click="setMontagePageFlag('make-montage')"></a></li>
+                        </ul>
+                        <ul class="mediaicons fl-rt clearfix">
+                            <!--<li><a title="Edit" class="i-ico i-ico1" href="#"></a></li>
+                            <li><a title="Mark as important" class="i-ico i-ico4" href="#"></a></li>
+                            <li><a title="Statements" class="i-ico i-ico2" href="#"></a></li>
+                            <li><a title="Vote" class="i-ico i-ico3" href="#"></a></li>
+                            <li><a title="Vote" class="i-ico i-ico10" href="#"></a></li>-->
+                            <li><a title="Confirm & Set Montage" class="i-ico i-ico11" href="javascript:void(0)" id="confirmSend" ng-click="setMontagePageFlag('save-montage')" ng-show="makeMontage"></a></li>
+                            <li><a title="Done" class="i-ico i-ico11" href="javascript:void(0)" id="saveMontage" ng-click="uploadMontage()" ng-show="saveMontage"></a></li>
+                            
+                        </ul>
+                    </div>
+                    <!--Media icons Closed-->
+
+                    <!--Media Content Start-->
+                    <div class="media-content">
+                        <div id="media_advanced">
+                            <div class="act_content">
+                                <div class="media_block">
+                                    <div class="holder_img">
+                                         <div name="holder_bulb" class="holder_bulb gridster">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END MEDIA BLOCK -->
+                            <div class="clear"></div>
+                            </div>
+                            <!-- end comment -->
+                        </div>
+                        <div class="s-media-con">
+                            <textarea ng-model="notes.comment" id="montage_text1" placeholder="Write a note..." class="textarea m-texta bx-sz" rows="" cols=""></textarea>
+							<p class="md-tray-btn"><button type="submit" ng-click="checknotes()" class="button">Done</button></p>
+                        </div><!--Single Media-->
+                        
+                        <div class="d-media-con clearfix">
+                            <div class="dm-left">
+                                <div class="upload-col" style="display:none;">
+                                    <input type="file" class="upload_image_file_button" name="fileField">
+                                    <h2>Drag media from media tray</h2>
+                                    <!--<a href="#" class="upload-button bx-sz">Upload</a>-->
+                                </div>
+                                <div class="media-col" style="display:none;"><img src="img/image.jpg" alt=""></div><!--/Single image-->
+                                <div class="media-col">
+					<div class="drag-md">Drag your media here</div>
+                                        <div id="content_2" class="content" scrollable>
+                                            
+											<ul id="img-list"></ul>
+                                        </div>
+                                    <!--<a href="#" class="upload-button bx-sz">Upload</a>-->
+									<!--style="opacity:0; left:0; position:absolute" class="input-file uniform_on"-->
+									<!--<input type="file" value="Add Files" accept="image/*" ng-file-select="onFileSelect($files)" ng-disabled="false"  class="upload-button bx-sz input-file uniform_on">-->
+                                </div><!--/Multiple images-->
+                            </div><!--Left Column-->
+                            <div class="dm-right bx-sz"><textarea id="montage_text2" placeholder="Write a note..." class="textarea m-texta bx-sz" rows="" cols=""></textarea><p class="md-tray-btn"><button class="button" id="addNote" type="submit">Add Another Note</button></p></div><!--Right Column-->
+                        </div><!--Double Media-->
+                        
+                            <!--gridster div- 18 Dec-->
+                          
+                            <div class="gridster_div"></div>
+                            
+                            
+                            <!--<div class="ui-widget-overlay ui-front"></div>-->
+                            <div id="grid_img" class="imagecropp bx-sz"></div>   
+                            <!--<div id="grid_background"></div>-->
+			    
+			    <!----canvas without icon--23Dec-->
+			    <!--<div class="canvas_hidden" style="display: none" >
+				<div class="gridster_canvas gridster" ></div>
+			    </div>-->
+                        </div>
+                        <!--Media Content Closed-->
+                        <!--Media icons Start-->
+                            <div id="media-row2"  class="media-row clearfix" ng-show="dPage">                                	
+                        <ul class="mediaicons fl-rt clearfix" >
+                            <!--<li><a title="Delete Media" class="i-ico i-ico5" href="javascript:void(0);" ng-click="deleteMediaDiscuss()" ng-show="showsetting||(userInfo._id==mediasData.PostedBy._id)"></a></li>-->
+                            <!--<li><a title="Make Private" class="i-ico i-ico6" href="javascript:void(0);"></a></li> parul shukla//-- 5jan 2015-->
+                            <!--<li><a title="Vote" class="i-ico i-ico7" href="#"></a></li>--><!--commented by parul-->
+                           <!-- <li><a class="i-ico i-ico8 flag" href="#"></a>
+                                    <ul class="flag-dropdown hidden anim">
+                                    <li><a href="#">Inappropriate</a></li>
+                                    <li><a href="#" id="copy-btn" data-tip="Tips" rel="copy-content">Copyright Infringement</a></li>
+                                    <li><a href="#">NSFW</a></li>
+                                </ul>
+                            </li>-->
+                            <!--<li><a class="i-ico i-ico9 media" href="#"></a>
+                                    <ul class="media-dropdown hidden anim right-pos-dropdown">
+                                    <li><a href="#">Platform media</a></li>
+                                    <li><a href="#">UGC URL</a></li>
+                                    <li><a href="#">User uploaded</a></li>
+                                </ul>
+                            </li>-->
+                        </ul>
+                    </div>
+                    <!--Media icons Closed-->
+					<div class="actionholder bottom-pos" ng-show="dPage">                        	
+						<a title="Delete" class="i-ico i-ico5 sml-ico" href="javascript:void(0);" ng-click="deleteMediaDiscuss()" ng-show="showsetting||(userInfo._id==mediasData.PostedBy._id)"></a>
+					</div>
+                </div>
+    
+    <!-- ///////////////////////////// -->
+    <!-- ///////////////////////////// -->
+                            <!-- GRID -->
+    <!-- ///////////////////////////// -->
+    <!-- ///////////////////////////// -->
+	</div>
+	</div>
+	<!--Tips Star--><!--Tips Closed-->
+	<div class="ui-widget-overlay ui-front" style="display:none;"></div>
+	<!--overlay and its container for gridster view-->
+	<!--<div id="overlay"></div>
+	<div id="overlayContent">
+		<a class="prev-m trans navarrow-left"><span class="i-ico i-prev"></span></a>
+		<a class="next-m trans navarrow-right"><span class="i-ico i-next"></span></a>
+		<a id="closeBtn"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span></a>
+		<!--<img id="imgBig" src="{{imageName}}" alt="" width="400" />-->
+		
+	</div>
+	<!--overlay and its container for gridster view end-->
+
+<!--end-->
+

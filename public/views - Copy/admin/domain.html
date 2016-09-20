@@ -1,0 +1,111 @@
+			<div>
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="#/dashboard">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a href="#/domain">Domains</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row-fluid sortable">
+				
+				<div class="box span12">
+					
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-user"></i> Domains</h2>
+						<!--<div class="box-icon">
+							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						</div>-->
+						<button class="btn btn-primary" style="float:right" ng-click="openadd()" >Add</button>
+					</div>
+					<div class="box-content">
+					<div id="msg"></div>
+					<div ng-show="!loaded" ><img style="display:block;margin-left:auto;margin-right:auto;" src="../assets/img/ajax-loader.gif"> </div>
+					<div ng-show="loaded">
+						<table  ng-table="tableParams" show-filter="true" class="table">
+							<tr ng-repeat="x in $data|filter:query">
+							    <td header-class="text-left"   data-title="'Title'" filter="{ 'DomainTitle': 'text' }" sortable="'DomainTitle'">{{x.DomainTitle}}</td>
+							    <td header-class="text-left"   data-title="'Last Modified'" sortable="'LastModified'">{{x.LastModified | date:'medium'}}</td>
+							    <td header-class="text-left"   data-title="'Meta Meta Tags'" >
+								<a class="btn btn-success" href="#/domainmmt/{{x._id}}">
+								<i class="icon-zoom-in icon-white"></i>  
+									View                                            
+								</a>
+								</td>
+							    <td header-class="text-left"   data-title="'Action'">
+							    <a class="btn btn-info" ng-click="openedit(x)">
+								<i class="icon-edit icon-white"></i>  
+									Edit                                            
+								</a>
+								<!--<a class="btn btn-danger" ng-click="openDelete(x._id)">
+									<i class="icon-trash icon-white"></i> 
+									Delete
+								</a>-->
+							    </td>
+							    </tr>
+							</table>
+						</div>	
+					</div>
+				</div><!--/span-->			
+			</div><!--/row-->
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title"><span ng-hide="edit">Add</span><span ng-show="edit">Edit</span> Domains</h4>
+      </div>
+	  <form name="domains" id="domains" novalidate >
+      <div class="modal-body">
+        
+       <label> Name</label>
+        <input type="text" id="name" name="name" ng-model="domain.name" required auto-focus class="test">	
+		<input type="hidden" id="id" ng-model="domain.id"/>
+		<div ng-show="domains.name.$dirty && domains.name.$invalid ">
+			<p style="color:red;font-size:9pt" ng-show="domains.name.$error.required">Name is required.</p>
+			</div>
+        <label> Notes</label>
+        <textarea ng-model="domain.notes" name="notes" ></textarea>
+	
+     
+    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="adddomain(domains.$valid)" ng-disabled="domains.$dirty && domains.$invalid" ng-hide="edit">Save changes</button>
+	<button type="button" class="btn btn-primary" ng-click="editdomain(domains.$valid)" ng-disabled="domains.$dirty && domains.$invalid"  ng-show="edit">Edit changes</button>
+      </div>
+	  </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade" id="delete_pop">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title"><span ng-hide="edit">Delete</span>Domain</h4>
+      </div>
+	  <form name="gts" id="gts" novalidate >
+      <div class="modal-body">
+        Are you sure you want to delete this Domain?
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="deleteDomain(domainId)" >Yes</button>		
+      </div>
+	  </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+</div>
+			
+
+			

@@ -1,0 +1,381 @@
+
+<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="#/dashboard">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a href="#/massimageupload"> Mass Image Uploader</a>
+					</li>
+				</ul>
+			</div>
+			
+			<div style="width:auto; margin:0 auto; position:absolute; margin:0 0 -5px 5px; font-size:14px; text-align:center">Drop Images here to upload</div>
+						<div ng-file-drop-available="dropSupported=true" ng-file-drop="onFileSelect($files);" class="drop-box" ng-show="dropSupported">
+							<div ng-show="selectedFiles != null" style="margin-top:20px; height:250px; overflow:auto">
+				
+				
+							<ul class="thumbnails gallery">
+								<li id="image-{{($index + 1) + '.'}}" class="thumbnail" ng-repeat="media in selectedFiles">				
+										<img ng-if="media.type=='application/pdf'" class=""  ng-src="../assets/img/PDF.png" alt="Sample PDF 1">
+										<img ng-if="media.type=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || media.type=='application/msword'" class=""  ng-src="../assets/img/Icon-Document.jpg" alt="Sample Word 1">
+										<img ng-if="media.type=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || media.type=='application/vnd.ms-excel' || media.type=='application/vnd.oasis.opendocument.spreadsheet'" class=""  ng-src="../assets/img/excel.png" alt="Sample Excel 1">
+										<img ng-if="media.type=='image/png' || media.type=='image/jpeg' || media.type=='image/gif'" class=""  ng-src="{{dataUrls[$index]}}" alt="Sample Image 1">
+										<img ng-if="media.type=='application/vnd.openxmlformats-officedocument.presentationml.presentation' || media.type=='application/vnd.ms-powerpoint'" class=""  ng-src="../assets/img/ppt.png" alt="Sample PPT 1">
+								</li>
+							</ul>
+				
+							</div>
+							<div class="progress">
+			<div class="bar" style="width: {{percentUpload}}%;"></div>
+		</div>
+						</div>
+<span>{{imagessize}} KB</span>
+
+<input type="file" class="input-file uniform_on" ng-disabled="{{disablebtn}}" ng-file-select="onFileSelect($files)" multiple value="Add Files">
+
+<input type="button" ng-click="uploadAll()" class="btn btn-primary" value="Submit">
+<input type="checkbox" style="display:none" ng-model="uploadRightAway"><!--Upload right away-->
+		<br/>
+		<div class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
+		<br />
+		
+		<br/>
+			
+			<div class="row-fluid sortable">		
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-user"></i> Uploaded Media without Tags ( Select Media to assign Tags Info) </h2>
+						<!--<div class="box-icon">
+							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						</div>-->
+						
+					</div>
+					<div class="box-content">
+						
+						<fieldset style="padding-bottom:10px; border-bottom:1px solid #E5E5E5; margin-bottom:10px;">
+								<form name="mius" novalidate>
+         <legend style="margin-bottom:5px; border:0px;">Add Tags</legend>
+		<table cellpadding="10" border="0">
+		 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		 <td>
+		 Domains &nbsp;
+		 <select name="domain" id="domain" ng-model="miu.domain" style="width:auto; margin-right:10px;" data-rel="chosen" auto-fill-sync required>		 
+		 <option value="" >Select Domain</option>
+		 <option ng-repeat="do in domain" value="{{do._id}}" id="{{do._id}}">{{do.DomainTitle}}</option>
+		 </select> 	
+		 </td>
+		<!-- <td>
+		 Source &nbsp;
+		 <select name="source" ng-model="miu.source" style="width:auto; margin-right:10px;" data-rel="chosen" required>
+		 <option value="" >Select Source</option>
+		 <option ng-repeat="sc in source" value="{{sc._id}}" id="{{sc._id}}">{{sc.sourceTitle}}</option>
+		 </select>
+		 </td>-->
+		 <td>
+		 Collection &nbsp;
+		 <select name="collection" ng-model="miu.collection" style="width:auto; margin-right:10px;" data-rel="chosen" multiple required>		 
+		 <!--<option value="" >Select Collection</option> commented by parul-->
+		 <option ng-repeat="col in collection" value="{{col._id}}" id="{{col._id}}">{{col.collectionTitle}}</option>
+		 </select>
+		 </td>
+		 <td>
+		 Tag Type &nbsp;
+		 <select name="source" ng-model="miu.tagtype" required style="width:auto; margin-right:10px;" data-rel="chosen" >		 
+		 <option value="">Select Tag Types</option>
+		 <option value="More" id="More">More</option>
+		 <option value="Less" id="Less">Less</option>
+		 <option value="Think" id="Think">Think</option>
+		 
+		 </select>	
+		</td>
+		</tr>
+		<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td>
+		 MMT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <select name="mmt" ng-model="miu.mmt" style="width:auto; margin-right:10px;" class="chzn-done" required ng-change="fetchmts()" >
+		 <option value="" >Select MMTs</option>
+		 <!--<option ng-if="mmt._id != '54e7211a60e85291552b1187'" ng-repeat="mmt in mmts|filter:{status:1}" value="{{mmt._id}}" id="{{mmt._id}}">{{mmt.MetaMetaTagTitle}}</option>-->
+		 <option ng-repeat="mmt in mmts|filter:{status:1}" value="{{mmt._id}}" id="{{mmt._id}}">{{mmt.MetaMetaTagTitle}}</option>
+		 </select>
+		</td>
+		<td>
+		 MT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <select name="mt" ng-model="miu.mt" style="width:auto; margin-right:10px;" required ng-change="fetchgts()">
+		 <option value="">Select MTs</option>
+		 <option ng-repeat="mt in mts|filter:{status:1}" value="{{mt._id}}" id="{{mt._id}}">{{mt.MetaTagTitle}}</option>
+		 </select>	
+		 </td>
+		 <td>
+		 GT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <select id="selectError1" style="width:100px; margin-right:10px;" name="gt" ng-model="miu.gt" multiple data-rel="chosen" required>		 
+		 <option ng-repeat="gt in groupts" value="{{gt._id}}" id="{{gt._id}}">{{gt.GroupTagTitle}}</option>
+		 </select>
+		 </td>
+		 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" ng-disabled="testingarray.length == 0" ng-attr-title="{{testingarray.length == 0 && 'Please select at least one media to add tags' || 'Add tags to media' }}" class="btn btn-primary" style="width:13em" ng-click="addmiu(mius.$valid)" ng-hide="edit">Save changes</button>
+		</td>
+		</tr>
+		</table>
+		</form>		
+		</fieldset>
+						<div ng-show="!loaded" ><img style="display:block;margin-left:auto;margin-right:auto;" src="../assets/img/ajax-loader.gif"> </div>
+						<div ng-show="loaded">
+						<div style="margin-bottom:10px; width:100%; text-align:right;" ng-show="max_pages">
+							<a ng-click="selectAll()" style="cursor: pointer;">Select All</a> | <a ng-click="deselectAll()" style="cursor: pointer;">De-Select All</a>
+						</div>
+		
+						<ul class="thumbnails gallery" id="li-{{media._id}}">
+							<li id="image-{{media._id}}" class="thumbnail" ng-repeat="media in amit.response" ng-click="showAlert($event)" style="padding:20px 20px 20px 20px;" title="Click on the border white space area to get the form to enter Title,Prompt & Locator info.">
+								<img ng-if="media.ContentType=='application/pdf'" class=""  ng-src="../assets/img/PDF.png" alt="Sample PDF 1">
+								<img ng-if="media.ContentType=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || media.ContentType=='application/msword'" class=""  ng-src="../assets/img/Icon-Document.jpg" alt="Sample Word 1">
+								<img ng-if="media.ContentType=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || media.ContentType=='application/vnd.ms-excel' || media.ContentType=='application/vnd.oasis.opendocument.spreadsheet'" class=""  ng-src="../assets/img/excel.png" alt="Sample Excel 1">
+								<img ng-if="media.ContentType=='application/vnd.openxmlformats-officedocument.presentationml.presentation' || media.ContentType=='application/vnd.ms-powerpoint'" class=""  ng-src="../assets/img/ppt.png" alt="Sample PPT 1">
+								<!--<img ng-if="media.ContentType=='image/png' || media.ContentType=='image/jpeg' || media.ContentType=='image/gif' || media.ContentType==null" class=""  ng-src="../assets/Media/img/{{media.Location[0].URL}}" alt="Sample Image 1">-->
+								<div class="image-wrap">
+									<!--<img ng-if="media.ContentType=='image/png' || media.ContentType=='image/jpeg' || media.ContentType=='image/gif' || media.ContentType==null" class=""  ng-src="../assets/Media/img/{{media.Location[0].URL}}" alt="Sample Image 1">-->
+									<img ng-if="media.ContentType=='image/png' || media.ContentType=='image/jpeg' || media.ContentType=='image/gif' || media.ContentType==null" class=""  ng-src="../assets/Media/img/{{small__thumbnail}}/{{media.Location[0].URL}}" alt="Sample Image 1" fallback-src="../assets/Media/img/{{small__thumbnail}}/{{media.Location[0].URL}}">
+								</div>
+								<!--<img ng-if="media.ContentType=='image/png' || media.ContentType=='image/jpeg' || media.ContentType=='image/gif' || media.ContentType==null" class=""  ng-src="../assets/Media/img/400X400/{{media.Location[0].URL}}" src="../assets/Media/img/400X400/{{media.Location[0].URL}}" alt="Sample Image 1">-->
+								<!--<div ng-if="media.MediaType=='Link' || media.MediaType=='Notes'" style="height:150px !important;width:150px !important;word-wrap:true;overflow:hidden">{{media.Content}}</div>-->
+								<div class="text_wrap" ng-if="media.MediaType=='Link' || media.MediaType=='Notes'"  ng-bind-html="media.Content | to_trusted" style="height:150px !important;width:150px !important;word-wrap:true;overflow:hidden;">
+								</div>
+								
+								<div id="div-{{media._id}}" class="testing" style="border-radius:4px; display:none; margin:-4px 0 0 -4px;">
+									<div style="width:130px; background:none; margin:0px auto 0 auto;">							
+										<form name="miuks" id="miuks" novalidate>						
+											<input type="text" ng-keyup="checkInp($event , media._id)" name="title" placeholder="Title" style="width:120px; height:15px; margin-right:10px; float:left" id="title-{{media._id}}" value="{{media.Title}}">
+											<input type="text" name="Photographer" placeholder="Photographer" style="width:120px; height:15px; margin-right:10px; float:left" id="Photographer-{{media._id}}" value="{{media.Photographer}}">
+											<!--<input type="text" name="locator" placeholder="Locator" style="width:120px; height:15px; float:left; margin-right:10px;" value="{{media.Locator}}"  id="locator-{{media._id}}">	-->
+											<input type="text" name="prompt" placeholder="Descriptor" style="width:120px; height:15px; float:left" value="{{media.Prompt}}" id="prompt-{{media._id}}" class="descriptor" >
+											<input type="hidden" name="dsasdasd" ng-model="dsasdasd" value="{{media._id}}">
+										</form>
+										<div style="margin: auto" ng-show="wrongPattern"><p class="alert" style="color:red;font-weight:bold;">Text only, please.</p></div>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<div class="row-fluid">
+							<div class="span12">
+								<div style="text-align:center; width:100%;" ng-hide="max_pages">No Records Found!</div>
+								<div class="dataTables_info" id="DataTables_Table_0_info" ng-show="max_pages" >Showing {{filtering_params.offset+1}} to {{page_last_record}} of {{amit.responselength}} entries</div>
+							</div>
+							<div class="span12 center">
+								<div class="dataTables_paginate paging_bootstrap pagination">
+									<ul id="ul1">
+										<li class="prev" ng-show="prev" style="cursor: pointer;"><a ng-click="prev_page()">← Previous</a></li>
+										<li class="nums" ng-repeat="n in getNumber(amit.responselength) track by $index" style="cursor: pointer;"><a data-ng-click="get_page($event)" id="index{{$index}}">{{$index+1}}</a></li>
+										<li class="next" ng-show="next"><a ng-click="next_page()" style="cursor: pointer;">Next → </a></li>
+									</ul>
+								</div>
+							</div>
+						</div>			
+					</div><!-- ng-show div-->
+						</div>
+				</div><!--/span-->	
+				<div id="overlay" style="display: none;"></div>
+				<div id="overlayContent" style="display: none;">
+				<img style="display:block;margin-left:auto;margin-right:auto;" src="../assets/img/uploading6.gif"/>
+				</div>
+			</div><!--/row-->
+		
+			
+		
+<style>
+.drop-box{
+	width:100%;
+	height:300px;
+	border:3px solid #999;
+}
+
+.sel-file img {
+    float: left;
+    height: 40px;
+	padding-top:5px;
+    padding-right: 10px;
+}
+.sel-file{
+	clear:both;
+	height:50px; 
+	background:#ddd;
+	border-bottom:1px solid #999;
+}
+
+.thumbnail img{
+height:150px !important;
+width:150px !important;
+}
+
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: #000;
+    opacity: 0.7;
+    filter: alpha(opacity=70) !important;
+    display: none;
+    z-index: 100;
+}
+#overlayContent {
+    display:none;
+    left: 0 !important;
+    margin: 0 auto;
+    min-height: 100px;
+    outline: 0 none;
+    overflow: hidden;
+    padding: 20px;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 50%;
+    width: auto;
+    z-index: 100;
+}
+
+/*
+.thumbnail img{
+height:150px !important;
+min-width:150px !important;
+width:auto !important;
+}
+*/
+
+.selected{
+	background:#45A2D9;
+}
+
+.foreground{
+	background:url('../assets/img/background.png');
+	z-index:1000 !important;
+	opacity:1 !important;
+}
+
+</style>
+<!--
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title"><span ng-hide="edit">Add</span><span ng-show="edit">Edit</span> Group Tags</h4>
+      </div>
+	  <form name="mius" id="mius" novalidate class="form-horizontal" >
+      <div class="modal-body">
+        
+		 <label> Domains</label>		 
+		 <select name="domain" ng-model="miu.domain" data-rel="chosen" required>		 
+		 <option value="" >Select Domain</option>
+		 <option ng-repeat="do in domain" value="{{do._id}}">{{do.DomainTitle}}</option>
+		 </select> 	
+		 
+		 <label> Source</label>		 
+		 <select name="source" ng-model="miu.source" data-rel="chosen" required>		 
+		 <option value="" >Select Source</option>
+		 <option ng-repeat="sc in source" value="{{sc._id}}">{{sc.sourceTitle}}</option>
+		 </select>
+		 
+		 <label> Collection</label>		 
+		 <select name="collection" ng-model="miu.collection" data-rel="chosen" required>		 
+		 <option value="" >Select Collection</option>
+		 <option ng-repeat="col in collection" value="{{col._id}}">{{col.collectionTitle}}</option>
+		 </select>
+		 	
+		
+		 <label> Meta-Meta Tag</label>
+		 <select name="mmt" ng-model="miu.mmt" class="chzn-done" required ng-change="fetchmts()" >
+		 <option value="" >Select MMTs</option>
+		 <option ng-repeat="mmt in mmts" value="{{mmt._id}}">{{mmt.MetaMetaTagTitle}}</option>
+		 </select>
+		
+		 <label> Meta Tag</label>
+		 <select name="mt" ng-model="miu.mt" required ng-change="fetchgts()">
+		 <option value="">Select MTs</option>
+		 <option ng-repeat="mt in mts" value="{{mt._id}}">{{mt.MetaTagTitle}}</option>
+		 </select>		 
+		 
+		 <label> Group Tag</label>		 
+		 <select id="selectError1" name="gt" ng-model="miu.gt" multiple data-rel="chosen" required>		 
+		 <option ng-repeat="gt in groupts" value="{{gt._id}}">{{gt.GroupTagTitle}}</option>
+		 </select>
+		 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="addmiu(mius.$valid)" ng-hide="edit">Save changes</button>
+		
+      </div>
+	  </form>
+    </div><!-- /.modal-content -->
+  <!--</div><!-- /.modal-dialog -->
+<!--</div><!-- /.modal -->
+<!--</div>-->
+
+<!--
+<div class="modal fade" id="myModal1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title"><span ng-hide="edit">Add</span><span ng-show="edit">Edit</span> Meta Information</h4>
+      </div>
+	  <form name="miuks" id="miuks" novalidate class="form-horizontal" >
+      <div class="modal-body">
+        
+		 
+		 <label> Title</label>
+		 <input type="text" name="title" placeholder="Title" ng-model="miuk.title">
+		 
+		 
+		 <label> Prompt</label>		 
+		 <input type="text" name="prompt" placeholder="Prompt" ng-model="miuk.prompt">
+		 
+		 <label> Locator</label>
+		 <input type="text" name="locator" placeholder="Locator" ng-model="miuk.locator">		 
+		 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="saveTag(miuks.$valid, media._id)" ng-hide="edit">Save changes</button>
+		
+      </div>
+	  </form>
+	  -->
+
+    <!--</div><!-- /.modal-content -->
+  <!--</div><!-- /.modal-dialog -->
+<!--</div><!-- /.modal -->
+<!--</div>-->
+<!---- added by parul 07012015-->
+<div class="modal fade" id="sure">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title"><span ng-hide="edit">Add</span>Meta Info</h4>
+      </div>
+	  <form name="gts" id="gts" novalidate >
+      <div class="modal-body">
+        Are you sure you want to update the tag information of the Medias selected?    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="finalAddmiu()">Yes</button>		
+      </div>
+	  </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<style>
+.active{
+	background-color: #F5F5F5;
+}
+.pagination {
+height: auto;
+margin: 18px 0;
+}
+</style>

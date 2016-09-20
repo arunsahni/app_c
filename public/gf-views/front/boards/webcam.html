@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Single Page Angular Example</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+          
+            //angular.module("app", []);
+            
+	    var app = angular.module('app', []);
+	    
+	    app.filter('trusted', ['$sce', function ($sce) {
+		return function(url) {
+		    return $sce.trustAsResourceUrl(url);
+		};
+	    }]);
+          
+            app.controller('VideoCtrl',function($sce,$scope) {				
+		var self = this;
+                navigator.webkitGetUserMedia({audio: true, video: true}, function(stream) {
+                    self.src = window.URL.createObjectURL(stream);
+                    $scope.$apply();
+                });		
+	    });
+        </script>
+
+        <div ng-app="app" ng-controller="VideoCtrl as video">
+	    {{video.src}}	
+            <video id="video" autoplay="true" ng-src="{{video.src | trusted}}" ></video>
+        </div>
+    </body>
+</html>

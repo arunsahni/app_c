@@ -1,0 +1,90 @@
+<div class="container">
+			
+			<header>
+			<p class="logo">Scrpt <span>Boards</span></p>	
+        <span class="pro-span">
+        <span class="brdmem_pic"><img ng-src="{{userInfo.ProfilePic}}" alt="Profile Picture" title="{{userInfo.Name}}  ({{userInfo.Email}})"></span>Welcome {{userInfo.Name}} (<a href="#/logout">Logout</a>)
+        </span> 
+        </span>
+        
+    </header>
+			
+			<div id="everything" class="my_profile">
+                        <section id="login" class="animated bounceInDown simform" style=" font-size:100% !important;">
+                	                        
+			    <div class="loginform-inner" style="width:100%">
+                            <h1 style="font-size:2.0em;">Invited to Boards</h1>
+                            <ul class="loginform">
+<!--
+                                <li>
+<table style="width:100%;">
+    <tr>
+        <th>
+            Board Title
+        </th>
+        <th>
+            Domain
+        </th>
+	<th>
+            Collection
+        </th>
+        
+        <th>
+            Actions
+        </th>
+    </tr>
+    <tr ng-repeat="board in boards">
+        <td>
+            {{board.Title}}
+        </td>
+        <td>
+            {{board.Domain.DomainTitle}}
+        </td>
+	<td>
+            {{board.Collection.collectionTitle}}
+        </td>
+        <td>
+            <a href="board/#/discuss/{{board._id}}">Enter</a>
+        </td>
+    </tr>
+    
+</table></li>
+-->
+
+<li>
+<div class="table_responsive"><table  ng-table="tableParams" show-filter="true" width="100%" class="margin_top20">
+<tr ng-repeat="x in $data|filter:query">
+    <td header-class="text-left"   data-title="'Board Title'" filter="{ 'Title': 'text' }" sortable="'Title'">{{x.Title}}</td>
+    <td header-class="text-left"   data-title="'Domain'" sortable="'Domain.DomainTitle'" >{{x.Domain.DomainTitle}}</td>
+    <td header-class="text-left"   data-title="'Collection'"  >{{x.Collection.collectionTitle}}</td>
+    <td header-class="text-left"   data-title="'Action'">
+		<a href="board/#/discuss/{{x._id}}">Enter</a>
+		</td>
+    </tr>
+</table></div>
+</li>
+                                
+                            </ul>
+                            
+                        </div>
+                    
+				</section><!-- Login -->				
+				
+		  </div>
+			
+			<!--<div class="overlay overlay-slidedown">
+				<button type="button" class="overlay-close">Close</button>
+				<div id="content_3" class="holder fullheight">
+					<h3>What is your aspiration?</h3>
+					<div class="imageholder"></div>
+					<p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam</p>
+				</div>
+			</div>-->
+			
+			
+		</div>
+
+
+
+
+

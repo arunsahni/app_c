@@ -1,0 +1,37 @@
+<div id="left-menu" ng-click="openmenu()" class="cbp-spmenu cbp-spmenu-bg cbp-spmenu-vertical cbp-spmenu-left">
+    <div class="left-menu-bx">
+        <div class="profile-head">
+            <h2>Board Name</h2>
+            <div class="profile-info">
+                <h3 title="{{boarddata2[0].Title}}">{{boarddata2[0].Title}}</h3>
+                <div class="profile-info">
+                    <div class="profile-pic">
+                    <img  ng-src="{{boarddata2[0].OwnerID.ProfilePic}}" >
+                    </div>
+                    <div class="profile-pic-txt">
+                        <p>
+                            (Board Owner)
+                            <span>{{boarddata2[0].OwnerID.Name}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="left-menu-link">
+            <ul>
+                <li><a href="/#/dashboard">Dashboard</a></li>
+                <li><a href="/#/myprofile">My Profile</a></li>
+                <li><a href="/#/projects">Projects</a></li>
+                <li><a href="/#/board">Invite To Boards</a></li>
+                <li><a href="/#/logout">Logout</a></li>
+                <li>
+                    <div class="media-box">
+                        <a href="javascript:void(0)"><i class="fa fa-volume-up"></i></a>
+                        <a href="javascript:void(0)"><i class="fa fa-pause"></i></a>
+                        <a href="javascript:void(0)"><i class="fa fa-play"></i></a>
+                    </div>
+                </li>
+            </ul>
+        </div>   	
+    </div>
+</div>

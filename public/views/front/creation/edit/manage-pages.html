@@ -1,0 +1,357 @@
+<style>
+	.animateZoom.ng-enter{
+		-webkit-animation: zoomIn  0.5s ;
+		animation: zoomIn 0.5s;
+	}
+	.animateZoom.ng-leave.ng-leave-active{
+		-webkit-animation: zoomOut 0.5s;
+		animation: zoomOut 0.5s;
+	}
+	/*.animateZoom.ng-move.ng-leave-active{
+		-webkit-animation: zoomIn 0.5s;
+		animation: zoomIn 0.5s;
+	}*/
+	.moveAsildeLittlle{margin-left:20px;} /*kindly remove this class in case we of all 5 icons on hover a page, this class pushing first icon 20px right*/
+	
+</style>
+<div class="boards">
+	<div id="menu-button" class="toggle-menu menu-left push-body">
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+</div>
+<div class="dropdown-menu" href="#">
+<a href="#" class="dropdown-icon">
+<img alt="chapter" src="/assets/create/images/cloud-icn.png">
+</a>
+<div class="dropdown-item">
+	<ul>
+    	<li><a href="javascript:void(0)" ng-click="PagesMgmt.openLaunchSetting('AI')">AUDIENCE & INVITATION</a></li>
+    	<li><a href="javascript:void(0)" ng-click="PagesMgmt.openLaunchSetting('DE')">DESIGN & EXPERIENCE</a></li>
+	<li><a href="javascript:void(0)" ng-click="PagesMgmt.publishNewChanges()">PUBLISH NEW CHANGES</a></li>
+	<li><a href="javascript:void(0)" ng-click="PagesMgmt.revertNewChanges()">RESTORE</a></li>
+    </ul>
+</div>
+</div>
+<a class="back-page-btn page-btns" ng-href="#/dashboard-chapters/{{PagesMgmt.capsule_id}}"><span>&lt;</span><label>Back</label></a>
+<!--<a class="next-page-btn page-btns" ng-href="#/manage-chapters/{{PagesMgmt.capsule_id}}"><label>Next</label><span>&gt;</span></a>-->
+
+<div class="wrapper">
+	
+	<!--<h2 class="chapter">Chapter Name</h2>-->
+	
+	<div id="color-schemes" class="color-schemes-block">
+		<input type="text" ng-model="PagesMgmt.chapterName" ng-click="PagesMgmt.onTitleClick()" ng-blur="PagesMgmt.updateChapterName()" placeholder="Edit chapter name.." class="chapter-input" />
+	</div>
+	
+	<div class="chapter_box">
+	<h2>Pages-in-the-making</h2>
+	<!-- START CAROUSEL -->
+	<!-- chapter-row start -->
+	<div class="chapter-row page-row">
+		<ul ui-sortable="PagesMgmt.sortableOptions" ng-model="PagesMgmt.pages">
+			<li class="animateZoom" ng-repeat="page in PagesMgmt.pages"><!-- post-repeat-directive-->
+				 <div class="send-message-block scrollable" style="z-index:999999;">
+					<a href="javascript:void(0)" class="message-block-arw">
+						<img title="arrow" src="/assets/create/images/arrow-icon.png" alt="Edit" />
+					</a>
+					<!--<div class="add-msg-head">
+					<textarea placeholder="Add a message?"></textarea>
+					</div>-->
+					<div class="search-find-row">
+						<input type="text" name="name" placeholder="Search" ng-model="searchFrnd">
+					</div>
+					<div class="send-msg-description">
+						<p> <strong>Send pages to your friends!</strong><br>Plan projects, swap ideas and share your best discoveries. </p>
+					</div>
+					<div class="search-result-block" style="height:250px;">
+						<ul style="">
+							<li ng-repeat="frnd in friends | filter : searchFrnd" ng-click="PagesMgmt.share(page._id , frnd.Friend.Email)"> 
+								<a style="" href="javascript:void(0)">
+									<div class="left-box"> 
+										<!--<img style="" src="https://s-passets-cache-ak0.pinimg.com/images/user/default_75.png">-->
+										<img title="{{frnd.Friend.Email}}" ng-src="{{frnd.Friend.Pic}}" />
+									</div>
+									<div class="right-box">
+										<h2 title="{{frnd.Friend.Email}}">{{frnd.Friend.Name}}</h2>
+										<p> {{frnd.Friend.Relation}} </p>
+									</div>
+								</a> 
+							</li>
+						</ul>	
+					</div>
+                </div>
+				<div class="chapter-box">
+					<div class="chapter-pic dragBox">
+						<img ng-if="page.HeaderImage" data="small" bg-image="/assets/Media/headers/small/{{page.HeaderImage}}" src="/assets/Media/headers/small/{{page.HeaderImage}}" alt="chapter" fallback-src-rect="" />
+						<img ng-if="!(page.HeaderImage)" src="/assets/create/images/no-chapter-pic.jpg" alt="chapter" fallback-src-rect="" />
+                       
+						<ul class="chapter-tool">
+							<li class="edit moveAsildeLittlle">
+							<a data-toggle="tooltip" title="Edit" ng-if="page.PageType=='gallery'"  href="javascript:void(0)" ng-click="PagesMgmt.edit(page._id,page.PageType)"><img src="/assets/create/images/chapter/edit-chapter.png" alt="Edit" /></a>
+							<a data-toggle="tooltip" title="Edit" ng-if="page.PageType=='content'" href="javascript:void(0)" ng-click="PagesMgmt.edit(page._id,page.PageType)"><img src="/assets/create/images/chapter/edit-chapter.png" alt="Edit" /></a>
+							<!--<span class="tooltip">Edit</span>-->
+							</li>
+							
+							<li class="delete">
+							<a data-toggle="tooltip" title="Delete" href="javascript:void(0)" ng-confirm-click="Are you sure you want to delete this page ?" confirmed-click="PagesMgmt.remove(page._id)"><img src="/assets/create/images/chapter/delete-chapter.png" alt="Delete" /></a>
+							<!--<span class="tooltip">Delete</span>-->
+							
+					
+                                                        <li class="preview">
+								<a href="#/page-preview/{{PagesMgmt.chapter_id}}/{{page._id}}"><img data-toggle="tooltip" title="Preview" src="/assets/create/images/chapter/preview-chapter.png" alt="Preview" /></a>
+							</li>
+							
+
+
+						</ul>
+						<div class="chapter-overlay2" ng-click="PagesMgmt.edit(page._id,page.PageType)">
+						</div>
+					</div>
+					<!--
+					<div class="chapter-info">
+						<span class="page-no">
+							{{$index+1}} 
+						</span>
+						<span data-toggle="tooltip" title="{{page.Title}}" class="chapter-name chapter-name2">
+								{{page.Title}}
+							</span>
+						<span class="page-icon page-icon2">
+							<img ng-if="page.PageType=='content'" src="/assets/create/images/carousel-label-1.jpg" alt="Content Icon">
+							<img ng-if="page.PageType=='gallery'" src="/assets/create/images/carousel-label-2.jpg" alt="Content Icon">
+						</span>
+					</div>
+					-->
+					<div class="chapter-info">
+						<div class="edit-title-box edit-title-box-befor">
+							<span class="chapter-no">
+								{{$index+1}}
+							</span>
+							<span class="chapter-name" data-toggle="tooltip" title="{{page.Title}}">
+								<!--{{page.Title}}-->
+								{{page.Title | limitTo: 20}} {{page.Title.length > 20 ? '...' : ''}}
+							</span>
+							<a href="javascript:void(0)" class="icon-add edit_title"><img title="Edit" src="/assets/create/images/chapter/pen-checkbox.png" alt="Edit" /></a>
+						</div>
+						
+						<div class="edit-title-box edit-title-box-after" style="display:none;">
+							<input type="text" value="{{page.Title}}" ng-blur="PagesMgmt.updatePageName($index , page._id , $event.target.value)" placeholder="{{page.Title}}" >
+							<a href="javascript:void(0)" class="icon-add close_title"><img title="Close" src="/assets/create/images/chapter/cross.png" alt="Close" /></a>
+						</div>
+						<span class="page-icon page-icon2">
+							<img ng-if="page.PageType=='content'" src="/assets/create/images/carousel-label-1.jpg" alt="Content Icon">
+							<img ng-if="page.PageType=='gallery'" src="/assets/create/images/carousel-label-2.jpg" alt="Content Icon">
+						</span>
+					</div>
+					
+				</div>
+			</li>
+		</ul>
+		<ul class="add-capsules-block">
+            	<li>
+					<div class="chapter-box add-chapter-box" ng-click="PagesMgmt.goTo('#gallery-section' , 50)">
+                    	<div class="chapter-pic-outer-box">
+                            <div class="chapter-pic">
+                                <span class="add-icn">
+                                        <img src="/assets/create/images/chapter/add-icn.png">
+                                </span>
+                                <div class="chapter-overlay2">
+                                </div>
+                            </div>
+                        </div>
+						<div class="chapter-info">
+							<span class="chapter-name float-lft">
+								Add New
+							</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+	</div>
+	<!-- chapter-row end -->
+
+	<h2 class="createboard" id="add_new">
+		Select what kind of Page you would like to create
+		<!--<span>Select what kind of Page you would like to create</span>-->
+	</h2>
+	
+	</div>
+</div>
+
+<div class="chooseboard chooseboard-row" id="gallery-section">
+	<div class="experience scroll-link2" ng-click="PagesMgmt.create('content')">
+		<!--<span class="content-icn">Content</span>-->
+		<span>Content</span>
+	</div>
+	<div class="gallery scroll-link2 effect7" ng-click="PagesMgmt.create('gallery')">
+		<span>Gallery</span>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div class="wrapper">
+
+	<!-- START BROWSE -->
+	<div class="browse">
+		<div class="heading-row">
+			<h2>Page Library</h2>
+		</div>
+		<ul class="tabs library-qc">
+			<li><a href="javascript:void(0)" class="qc-all selected" ng-click="PagesMgmt.setQueryCriteria('all')">All</a></li>
+			<li><a href="javascript:void(0)" class="qc-createdByMe" ng-click="PagesMgmt.setQueryCriteria('createdByMe')">Created by you</a></li>
+			<li><a href="javascript:void(0)" class="qc-sharedWithMe" ng-click="PagesMgmt.setQueryCriteria('sharedWithMe')">Shared with you</a></li>
+			<li><a href="javascript:void(0)" class="qc-byTheHouse" ng-click="PagesMgmt.setQueryCriteria('byTheHouse')">By the house</a></li>
+		</ul>
+		
+		<div class="select-con">
+			<select>
+				<option value="Capsule 1">Latest</option>
+				<option value="Capsule 2">Latest</option>
+				<option value="Capsule 3">Latest</option>
+			</select>
+		</div>
+		
+		<div class="select-con first">
+			<select>
+				<option value="Capsule 1">Capsule 1</option>
+				<option value="Capsule 2">Capsule 2</option>
+				<option value="Capsule 3">Capsule 3</option>
+			</select>
+		</div>
+		
+		<div class="clear"></div>
+		
+		<!-- START IMAGES -->
+		<div class="browse-images browse-images2">
+        <dir-pagination-controls on-page-change="PagesMgmt.pageChanged(newPageNumber)"></dir-pagination-controls>
+				<div class="chapter-library-block">
+					<ul>
+						<li dir-paginate="page in PagesMgmt.page_library  | itemsPerPage: perPage" total-items="count" current-page="pageNo">
+						<div class="send-message-block scrollable" style="z-index:999999;">
+					<a href="javascript:void(0)" class="message-block-arw">
+						<img title="arrow" src="/assets/create/images/arrow-icon.png" alt="Edit" />
+					</a>
+					<!--<div class="add-msg-head">
+					<textarea placeholder="Add a message?"></textarea>
+					</div>-->
+					<div class="search-find-row">
+						<input type="text" name="name" placeholder="Search" ng-model="searchFrnd">
+					</div>
+					<div class="send-msg-description">
+						<p> <strong>Send pages to your friends!</strong><br>Plan projects, swap ideas and share your best discoveries. </p>
+					</div>
+					<div class="search-result-block" style="height:250px;">
+						<ul style="">
+							<li ng-repeat="frnd in friends | filter : searchFrnd" ng-click="PagesMgmt.share(page._id)"> 
+								<a style="" href="javascript:void(0)">
+									<div class="left-box"> 
+										<!--<img style="" src="https://s-passets-cache-ak0.pinimg.com/images/user/default_75.png">-->
+										<img title="{{frnd.Friend.Email}}" ng-src="{{frnd.Friend.Pic}}" />
+									</div>
+									<div class="right-box">
+										<h2 title="{{frnd.Friend.Email}}">{{frnd.Friend.Name}}</h2>
+										<p> {{frnd.Friend.Relation}} </p>
+									</div>
+								</a> 
+							</li>
+						</ul>	
+					</div>
+				</div>
+				<div class="zoomIn chapter-library-bx">
+				<img data="big" bg-image="/assets/Media/headers/small/{{page.HeaderImage}}" ng-if="page.HeaderImage" src="/assets/Media/headers/small/{{page.HeaderImage}}" alt="chapter" class="primary" />
+				<img ng-if="!(page.HeaderImage)" src="/assets/create/images/no-chapter-pic.jpg" alt="chapter" class="primary" />
+				<!--<img src="/assets/create/images/browse/1.jpg" alt="chapter" class="primary"/>-->
+				<!--<div class="chapter-overlay2" ng-click="PagesMgmt.edit(page._id,page.PageType)"></div>-->
+				<div class="chapter-overlay2" ng-click="PagesMgmt.preview(PagesMgmt.chapter_id,page._id)"></div>
+				<h3>
+				{{page.Title | limitTo: 20}} {{page.Title.length > 20 ? '...' : ''}}
+				</h3>
+                
+				<ul class="chapter-library-icon">
+					<li class="preview">
+						<a href="#/page-preview/{{PagesMgmt.chapter_id}}/{{page._id}}"><img data-toggle="tooltip" title="Preview" src="/assets/create/images/chapter/preview-chapter.png" alt="Preview" /></a>
+					</li>
+					<li class="add">
+						<a href="javascript:void(0)" ng-click="PagesMgmt.addFromLibrary(page._id)"><img data-toggle="tooltip" title="Add" src="/assets/create/images/chapter/add-chapter.png" alt="Add" /></a>
+					</li>
+					<li class="edit">
+						<a href="javascript:void(0)" class="open_pop"><img data-toggle="tooltip" title="Share" src="/assets/create/images/chapter/share.png" alt="Edit" /></a>
+                    </li>
+					<li class="delete">
+						<a href="javascript:void(0)" ng-confirm-click="Are you sure you want to delete this page ?" confirmed-click="PagesMgmt.remove(page._id)"><img data-toggle="tooltip" title="Delete" src="/assets/create/images/chapter/delete-chapter.png" alt="Delete" /></a>
+					</li>
+				</ul>
+				<!--<div class="date">11/09/2014</div>-->
+			</div>
+							<div class="chapter-info">
+								<span class="chapter-no">
+									{{$index+1}}
+								</span>
+								<span class="chapter-name" data-toggle="tooltip" title="{{page.Title}}">
+									{{page.Title | limitTo: 20}} {{page.Title.length > 20 ? '...' : ''}}
+								</span>
+                                <span class="page-icon page-icon2">
+                                    <img ng-if="page.PageType=='content'" src="/assets/create/images/carousel-label-1.jpg" alt="Content Icon">
+                                    <img ng-if="page.PageType=='gallery'" src="/assets/create/images/carousel-label-2.jpg" alt="Content Icon">
+                                </span>
+							</div>
+                        </li>
+					</ul>
+			
+			
+			
+			<div class="chapter-info" ng-if="PagesMgmt.page_library.length==0">No Record Found!</div>
+			<div class="clear"></div>
+			
+		</div>
+		<!-- END IMAGES -->
+		
+	</div>
+	<!-- END BROWSE -->
+	
+	<a class="previous-link nav-link" href="javascript:void(0)">Previous</a>
+	<a class="next-link nav-link" href="#/launch-settings/{{PagesMgmt.chapter_id}}">Proceed</a>
+
+</div>
+</div>
+<!--<script type="text/javascript" src="/assets/create/js/scripts.js"></script>-->
+<div id="loader" style="display: block;"><img src="/assets/create/images/ajax-loader.gif" alt="Loader" /></div>
+<div id="tips" style="display: none;"><div id="closetips"></div></div>
+
+
+<script>
+jQuery(function () {
+	jQuery(".capsule_edit").click(function () {
+		$('.capsule_text').hide();
+		$('.capsule_text_field').show();
+	});
+	
+	$( document ).ready(function() {
+		$( document ).on("click", ".edit_title", function(){
+			$(this).parent( ".edit-title-box-befor" ).hide( "slow" );
+			$(this).parent( ".edit-title-box-befor" ).next().show( "slow" );
+		});
+		
+		$( document ).on("click", ".close_title", function(){
+			$(this).parent( ".edit-title-box-after" ).hide( "slow" );
+			$(this).parent( ".edit-title-box-after" ).prev().show( "slow" );
+		});			
+	});
+});
+</script>
+<style type="text/css">
+	.chapter-pic-outer-box { min-height:129px; padding-top:14px; }
+	.creation-section .add-capsules-block { text-align:center; }
+	.creation-section .add-capsules-block .chapter-name.float-lft { float:none; padding-left:0; padding-right:0; }
+	.creation-section .add-capsules-block .chapter-pic { width:100px; height:100px; overflow:hidden; border-radius:100%; min-height:100px; margin:0 auto; }
+	.creation-section .add-capsules-block .add-icn { top:29%; left:29%; margin:0; }
+/*	.creation-section .add-capsules-block .add-icn img { width:26px; height:26px; }*/
+	.creation-section .chapter-info { font-family:"Brandon Light",Arial,sans-serif; }
+	.edit-title-box { position:relative; }
+	.edit-title-box .icon-add { position:absolute; width:16px; height:16px; top:6px; right:20px; }
+	.edit-title-box.edit-title-box-after .icon-add { top:6px; }
+	.creation-section .chapter-name { padding-right:45px; }
+	.creation-section #content.boards .edit-title-box  input[type="text"] { font-family:"Brandon Light",Arial,sans-serif; width:120px; font-size:14px; border:none; border-bottom:1px solid #6b6a6f;  color:#fff; padding:0 0 3px; background:none; line-height:inherit; height:auto; margin:0; }
+	.creation-section .chapter-library-block .edit-title-box-after img { width:auto; }
+	.creation-section .add-capsules-block .chapter-pic .chapter-overlay2 { border-radius:100%; }
+</style>

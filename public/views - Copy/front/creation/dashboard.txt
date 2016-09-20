@@ -1,0 +1,39 @@
+Dashboard :
+	Capsule - 1 :
+		- Chapters Listing
+			- All
+			- Launched By Me
+			- Invited
+		
+	Capsule - 2 :
+		- Chapters Listing
+			- All
+			- Launched By Me
+			- Invited
+
+	Capsule - 3 :
+		- Chapters Listing
+			- All
+			- Launched By Me
+			- Invited
+
+	Capsule - 4 :
+		- Chapters Listing
+			- All
+			- Launched By Me
+			- Invited
+
+	Capsule - 5 :
+		- Chapters Listing	
+			- All
+			- Launched By Me
+			- Invited
+	
+NOTE : 
+
+
+1) Algo for registration process
+	- what need to update ?
+	
+
+	

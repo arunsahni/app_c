@@ -1,0 +1,446 @@
+<script>
+	$(document).ready(function(){
+		$('#bighead-header1').hide()
+	});
+</script>
+<header class="wrapper" id="bighead-header1">
+<div id="head-top">
+
+<!--<div class="theme_dropdown">
+
+<ul class="anim dropdown-menu navmenu">
+<h2><a href="#">Capsule Name</a></h2>
+<h3>Chapter Name</h3>
+<span class="lead"><img src="../assets/board/img/avatar.png" alt="" width="30"><a href="#">Leads Name</a></span>
+<li><a href="#">Art's Settings</a></li>
+<li><a href="#" rel="dialog" data-dialog-id="8">Notepad</a></li>
+<span class="audio">
+<a href="#" class="audio_options">
+<img src="../assets/board/img/icons/icon-audio.png" alt="audio" width="15" class="left">
+<img src="../assets/board/img/icons/icon-play.png" alt="audio" width="15" class="left">
+<img src="../assets/board/img/icons/icon-pause.png" alt="audio" width="15" class="left">
+</a>
+<a href="#" class="btn btn_open_account">Context</a>
+</span>
+</ul>
+</div>-->
+
+<!--Probably not in use-->
+<div id="account_holder" class="account_holder anim">
+	<div class="account_wrapper anim">
+	<a href="javascript:void(0)" id="close_account" class="close_account anim" title="Close"></a>
+	<div class="holder_person anim">
+	<div class="holder_avatar open_more_info anim">
+	<img src="../assets/board/img/avatar_person.png" alt="">
+	</div>
+	<div class="button_person">
+	<h3><span>Art</span></h3>
+	<ul class="list_person dropdown-menu">
+	<li><a href="#">Darshan</a></li>
+	<li><a href="#">Martijn</a></li>
+	</ul>
+	</div>
+	</div>
+	<!--<div class="account_media anim">
+	<img src="../assets/board/img/tmbs/9.jpg" alt="">
+	</div>
+	<div class="button_chapter">
+	<h3><span>Lead for Self</span></h3>
+	<ul class="list_chapter dropdown-menu">
+	<li><a href="#">Chapter1</a></li>
+	<li><a href="#">Chapter2</a></li>
+	<li><a href="#">Chapter3</a></li>
+	</ul>
+	</div>
+	<div class="button_question">
+	<h3><span>What is your aspiration?</span></h3>
+	<ul class="list_question dropdown-menu">
+	<li><a href="#">Question1</a></li>
+	<li><a href="#">Question2</a></li>
+	<li><a href="#">Question3</a></li>
+	</ul>
+	</div>-->
+	</div>
+</div>
+<!--Probably not in use-->
+
+<!--Probably not in use-->
+<div class="account_more_info_holder anim">
+	<a href="javascript:void(0)" id="close_more_info" class="close_account"></a>
+	<h2>Peace</h2>
+	<div class="holder_img">
+	<img src="../assets/board/img/tmbs/10.jpg" alt="">
+	</div>
+	<p>Art statement...</p>
+</div>
+<!--Probably not in use-->
+<!--Header All Sections Start-->
+<div class="headerBg anim" style="{{headerstyle}}">
+	<div class="center-container">
+		<a href="javascript:void(0)" class="navarrow-left" ng-click="changePT()"></a>
+		<a href="javascript:void(0)" class="navarrow-right" ng-click="changePT()"></a>
+		<div class="avtartop"><a href="javascript:void(0)"><img ng-src="{{userInfo.ProfilePic}}" alt="Profile Picture" title="{{userInfo.Name}}  ({{userInfo.Email}})"></a>
+			<!--User Info Start-->
+			<div class="user-info clearfix" style="display:none;">
+				<div class="userpic"><img ng-src="{{userInfo.ProfilePic}}" alt="Profile Picture" title="{{userInfo.Name}}  ({{userInfo.Email}})"><input type="file" class="changepic input-file uniform_on" value="Change Photo" accept="image/*" ng-file-select="changeProfilePic()" file-model="myFile" ng-disabled="false" style="opacity:0; left:0; position:absolute; z-index: 10; height: 100%; width:100%;"/> <a href="#" class="changepic">Change Photo</a></div>
+				<div class="user-dtls">
+						<p class="name-sec">{{userInfo.Name}}</p>
+						<p class="email-sec">{{userInfo.Email}}</p>
+						<p class="view-profile"><a href="/#/myprofile" target="_blank" class="button bordered-btn">View Profile</a></p>
+				</div>
+				<div class="bottom-btns clearfix"><a href="/#/logout" class="button">Logout</a></div>
+			</div>
+			<!--User Info Closed-->
+		</div>
+		<div class="center">
+			<!--Board title/question Start-->
+			<div class="question_block">
+				<h2><span>{{title}}</span><!--<br/>{{showsetting}}--></h2>
+				<!--Probably not in use-->
+				<ul id="questionMenu" style="visibility:hidden" class="anim dropdown-menu">
+					<div style="height:44px;">
+						<li>
+						<h2 class="ques-input"><input class="questioninput"><a href="javascript:void(0)" class="addques" style="text-decoration:underline;">Add</a></h2>
+						</li>
+						<li>
+						<h2 class="add-ques"><a href="javascript:void(0)" style="text-decoration:underline;">Add a new question</a></h2>
+						</li>
+					</div>
+					<li>
+					<h2><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit?</a></h2>
+					</li>
+					<li>
+					<h2><a href="#">sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?</a></h2>
+					</li>
+					<li>
+					<h2><a href="#">Ut enim ad minim veniam, quis nostrud exercitation ullamco?</a></h2>
+					</li>
+					<li>
+					<h2><a href="#">Duis aute irure dolor in reprehenderit in voluptate?</a></h2>
+					</li>
+					<li>
+					<h2><a href="#" id="tips-btn" data-tip="Tips" rel="tips-content">Tips</a></h2>
+					</li>
+				</ul>
+				<!--Probably not in use-->
+			</div>
+			<!--Board title/question Closed-->
+			
+			<!--Page Theme pop-up Start-->
+			<ul id="header-dropdown-pager" class="header-dropdown-pager rt-matg_none">
+				<li ng-repeat="themes in gt">
+				<ul class="headerTitleMenu anim  dropdown-menu">
+				<li class="inputli"><input class="searchthemes" ng-model="search" placeholder="Search Themes.."></li>
+				<li >
+				<a href="javascript:void(0)" rel="dialog" data-dialog-id="6">Add New</a>
+				</li>				                            			
+				</ul>
+
+				<ul scrollable class="headerTitleMenu anim dropdown-menu" style="max-height:250px; overflow:auto; margin-top:108px; padding-top:0px;">
+				<li ng-repeat="theme in groupta | filter:{ title:search }" style="width:100%;" ng-class="(theme.canDeleted==1) ? 'active' : ''">
+				<a  style="display:inline;" ng-if="theme.canAdded==1" ng-click="addGroupTag(theme.id,theme.title)">{{theme.title}} <span style="float: right; padding:0 10px 0 0;" ng-if="theme.canAdded" ng-click="alert('add')">Add</span></a>
+				<a ng-if="theme.canDeleted==1" style="display:inline;" ng-click="deleteGroupTag(theme.id,theme.title)">{{theme.title}} <span style="float: right; padding:0 10px 0 0;" ng-if="theme.canDeleted==1">Delete</span>
+				<a href="javascript:void(0)" ng-click="makealert(theme)" rel="dialog" data-dialog-id="53" style="float:right; padding:0px; width:70px;"><span style="float: right; padding:0 10px 0 0;" ng-if="theme.canDeleted==1">Rename&nbsp;&nbsp;</span></a></a>
+				
+				<a  style="display:inline;" ng-if="theme.canAdded==0 && theme.canDeleted==0" >{{theme.title}} <span style="float: right; padding:0 10px 0 0;" ng-if="theme.canAdded=0 && theme.canDeleted==0" ng-click=""></span></a>
+				</li>
+				</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="dropzone" class="anim discuss dropzone3" style="position:relative">
+		<!--Page theme navigation Arrows Start-->
+		<div class="avatar-widget dropzone3" style="overflow: hidden">
+			<div class="avatarwdgt dropzone3">
+				<ul id="media-tray-elements" class="avatarlist clearfix dropzone3"></ul>
+				<a style="display:none" class="avarrow-left dropzone3" href="javascript:void(0)"></a>
+				<a style="display:none" class="avarrow-right dropzone3" href="javascript:void(0)"></a>
+			</div>
+		</div>
+		<!--Page theme navigation Arrows Closed-->
+		
+		<!--Write Note/Recorder/Hard-drive Icon Start-->
+		<form action="http://www.torrentplease.com/dropzone.php" class="dropzone3" id="demo-upload">
+			<ul class="dz-default dz-message dropzone3">
+			<li class="icon dropzone3"><a href="javascript:void(0)" id="noteIcon" rel="dialog" class="text dropzone3 noteIcons" title="Write Note" ng-click="setPageFlag('write-note')"></a></li>
+			<li class="icon dropzone3">
+			<a href="javascript:void(0)" class="record dropzone3"></a>
+			<ul class="record-dropdown hidden anim dropzone3"><!--giving id to empty video source on every new event of recording video-->
+			<!--by parul 05022015-->
+			<li class="dropzone3"><a id="recVideo" ng-click="isRecording('video')" href="javascript:void(0)" class="dropzone3" rel="dialog" data-dialog-id="421">Video</a></li>
+			<!--<li class="dropzone3"><a id="recAudio" ng-click="isRecording('audio')" href="javascript:void(0)" class="dropzone3" rel="dialog" data-dialog-id="421">Audio</a></li>-->
+			</ul>
+			</li>
+			<li class="icon dropzone3">
+			<a href="javascript:void(0)" class="upload more dropzone3"></a>
+			<a href="#" rel="dialog" data-dialog-id="21" class="upload more dropzone3" style="display:none"></a>
+			<ul class="upload-dropdown hidden anim dropzone3">
+
+			<li class="dropzone3" style="background:none repeat scroll 0 0 rgba(0, 0, 0, 0.8); font-size:0.85em;">
+
+			<span  class="dropzone3" style=" cursor:pointer !important;">                                                                                     <input type="file" class="input-file uniform_on" style="opacity:0; left:0; position:absolute" ng-disabled="{{disablebtn}}" ng-file-select="onFileSelect($files)"  accept="image/*" value="Add Files">
+			Hard Drive 
+			</span>                                                                               </li>                                                                                      <li><a class="input-file uniform_on"  rel="dialog" data-dialog-id="221" >Link </a></li>
+			<li  class="dropzone3"><a  class="dropzone3" href="javascript:void(0)" ng-click="viewBoardsMedia()" >Boards</a></li>
+
+			</ul>
+			</li>
+			</ul>
+		</form>
+		<!--Page Theme Title Cycle section Start-->
+		<ul id="slideTitleHeader" class="slideTitleHeader dropzone3">
+			<li id="{{theme.ThemeID}}" ng-repeat="theme in gt"  class="dropzone3">
+				<div class="title_header_block dropzone3">
+					<h1 class="dropzone3" ><span class="dropzone3">{{theme.ThemeTitle}}</span></h1>
+				</div>
+			</li>
+		</ul>		                            	
+		<!--Page Theme Title Cycle section Closed-->
+	</div>
+</div>
+<!--Header All Sections Closed-->
+<!--Expended View Tray Start-->
+<div class="media-tray" style="display: none"></div>
+<!--Expended View Tray Closed-->
+<!--Filter-bar/Header-Bottom-box Icons Start-->
+<ul id="filterbar">
+	
+	<li class="icon left filtersssss" ng-click="opensearchContainerif()">
+		<a href="javascript:void(0)" class="ico ico1 filterMenu" title="Filters"></a>
+	</li>
+	
+	<li class="icon left">
+		<a href="javascript:void(0)" ng-click="opensearchContainer()" class="ico ico7 switch" title="Go to discuss"></a>
+	</li>
+	
+	<!-- Setting icon Start-->
+	<li class="icon right">
+		<a href="javascript:void(0)" class="ico ico6 settingsBar" title="Settings" ng-if="showsetting"></a>
+	</li>
+	<!-- Setting icon Closed-->
+	
+	<!-- Comment List Start-->
+	<li class="icon right">
+		<a href="javascript:void(0)" class="ico ico8 commentBar" title="Comments"></a>	                        			
+	</li>
+	<!-- Comment List Closed-->
+	
+	<!-- Members List Start-->
+	<li class="icon right">
+		<a href="javascript:void(0)" class="ico ico9 mediaBar2"></a>
+		
+		<div class="mediaBar-dropdown2 anim hidden">
+		<ul>
+			<li style="text-align: center; cursor: pointer">Members list</li>
+			<li style="text-align: center; cursor: pointer" ng-if="!boardMembers"><small>No current member. </small></li>
+			<li style="padding: 2px;" ng-if="boardMembers"><input type="text" style="font-size: 8pt;width:150px" placeholder="Search members" ng-model="membrNm.nm" ></li>
+		</ul>
+		<div class="content content12" style="height:150px;">
+		<ul>			
+			
+			<li ng-if="isFriendSolo" ng-show="userInfo._id==invitee.UserID._id" ng-repeat="invitee in boarddata[0].Invitees | filter:membrNm.nm">
+				<a href="javascript:void(0)" ng-show="boarddata[0].PrivacySetting[0].DisplayNames=='RealNames'">
+					<span class="user_profile">
+						<i><img title="{{invitee.UserID.Email}}" ng-src="{{invitee.UserID.ProfilePic}}" style="height:30px; width:30px; border-radius:30px;" alt=""></i>
+					</span> 
+					<span class="profile-usrname">{{invitee.UserID.Name}}</span>
+				</a>
+				<a href="javascript:void(0)" ng-show="boarddata[0].PrivacySetting[0].DisplayNames=='NickNames'">
+					<span class="user_profile">
+					<i><img title="{{invitee.UserID.Email}}" ng-src="{{invitee.UserID.ProfilePic}}" style="height:30px; width:30px; border-radius:30px;" alt=""></i>
+					</span> 
+					<span class="profile-usrname">{{invitee.UserID.NickName}}</span>
+				</a>
+			</li>
+			
+
+			<li ng-if="!isFriendSolo" ng-repeat="invitee in boarddata[0].Invitees| filter:membrNm.nm">
+				<a href="javascript:void(0)" ng-show="boarddata[0].PrivacySetting[0].DisplayNames=='RealNames'">
+					<span class="user_profile">
+						<i><img title="{{invitee.UserID.Email}}" ng-src="{{invitee.UserID.ProfilePic}}" style="height:30px; width:30px; border-radius:30px;" alt=""></i>
+					</span> 
+					<span class="profile-usrname">{{invitee.UserID.Name}}</span>
+				</a>
+				<a href="javascript:void(0)" ng-show="boarddata[0].PrivacySetting[0].DisplayNames=='NickNames'">
+					<span class="user_profile">
+						<i><img title="{{invitee.UserID.Email}}" ng-src="{{invitee.UserID.ProfilePic}}" style="height:30px; width:30px; border-radius:30px;" alt=""></i>
+					</span> 
+					<span class="profile-usrname">{{invitee.UserID.NickName}}</span>
+				</a>
+			</li>
+		</ul>
+		</div><!--/Scroll-->
+		</div>
+	</li>
+	<!-- Members List Closed-->
+	
+	<!-- search title -->
+	<li class="icon searchinglist">
+		<!--<a class="searchBar" href="#">-->
+		<a href="javascript:void(0)" class="searchBar" ng-click="opensearchContainerif()" title="Search">
+			<span class="ico ico2"></span>
+			<span class="searching">You are searching <span class="bold" ng-if="byTheme && search1.tata1">{{search1.tata1}} (By Themes)</span> <span class="bold" ng-if="byDesc && search1.tata2">{{search1.tata2}} (By Descriptors) </span></span>
+		</a>
+	</li>
+	
+</ul>
+<!--Filter-bar/Header-Bottom-box Icons Closed-->
+
+<!--Filter-bar Drop-down Start-->
+<ul id="filterbar-dropdown">
+	<li class="searchBar hidden anim">
+		<!--<div class="search-bar">
+		<input type="text" placeholder="Start typing here.." ui-items="tagta" ng-model="search1.tata" auto-complete-tags id="searchfld" autofocus>
+			<input type="hidden" ng-model="search1.gt">
+		<button>More</button>
+		</div>--><!--parul19022015-->
+		<div class="search-bar">
+		<input type="text" style="width: 40%" placeholder="Type Here To Search By Theme.." ui-items="tagta" ng-model="search1.tata1" auto-complete-tags id="searchfld" autofocus>
+		<input type="text" style="width: 40%" placeholder="Type Here To Search By Descriptor.."  ui-items="descriptors.selected" ng-model="search1.tata2" auto-complete-descriptor id="searchfld2" >
+			<input type="hidden" ng-model="search1.gt">
+		<button>More</button>
+		</div>
+		<div class="search-dropdown">
+			<div class="toprow clearfix">
+				<!--<input type="checkbox" name="checbox" id="save-st"> <label for="save-st">Save Settings</label>--><!--commented by parul 6 jan 2015-->
+				<!--<input type="submit" value="Save Settings" ng-click="saveSetting()" class="btn_border">parul 6 jan 2015-->
+				<a href="javascript:void(0);" ng-click="saveSetting()" class="save-setting"><span class="i-ico i-ico11"></span>Save Settings</a>
+			</div>
+			<ul class="search-fl clearfix">
+			<li><p class="info-icon-span clearfix"><span class="i-ico i-ico8 flag fl-rt" title="Information"></span></p>
+				<ul class="custom-radio listul">
+					<li class="filter_checbox"><input type="radio" name="radiog_lite" ng-click="changePower(0)" id="allUser" class="css-checkbox" checked="checked"/><label for="allUser" class="css-label"><span></span>All Users</label></li>
+					<!--<li><input type="radio" name="radiog_lite" id="radio2" class="css-checkbox" /><label for="radio2" class="css-label"><span></span>Power Users</label></li>-->
+					<li class="filter_checbox"><input type="radio" name="radiog_lite" ng-click="changePower(1)" id="powerUser" class="css-checkbox" /><label for="powerUser" class="css-label"><span></span>Power Users</label></li>
+				</ul>
+			</li>
+			<li>
+				<p class="info-icon-span clearfix"><span class="i-ico i-ico8 flag fl-rt" title="Information"></span></p>
+				<ul class="custom-radio listul">
+					<li class="filter_checbox"><input type="radio" name="radiog_lite1" ng-click="changeOwner(0)" id="yourFSG" class="css-checkbox" checked="checked"/><label for="yourFSG" class="css-label"><span></span>Your Preferences</label></li>
+					<!--<li><input type="radio" name="radiog_lite1" id="radio4" class="css-checkbox" /><label for="radio4" class="css-label"><span></span>Receiver’s Preferences</label></li>-->
+					<li class="filter_checbox"><input type="radio" name="radiog_lite1" ng-click="changeOwner(1)" id="ownerFSG" name="radiog_lite1" class="css-checkbox" /><label for="ownerFSG" class="css-label"><span></span>Receiver's Preferences</label></li>
+				</ul>
+			</li>
+			<li><p class="info-icon-span clearfix"><span class="i-ico i-ico8 flag fl-rt" title="Information"></span></p>
+				<ul class="custom-radio listul">
+					<li class="filter_checbox"><input type="radio" name="radiog_lite2" id="radio5" class="css-checkbox" /><label for="radio5" class="css-label">Enablers</label></li>
+					<li class="filter_checbox"><input type="radio" name="radiog_lite2" id="radio6" class="css-checkbox" /><label for="radio6" class="css-label">Barriers</label></li>
+				</ul>
+			</li>
+			<li><p class="info-icon-span clearfix"><span class="i-ico i-ico8 flag fl-rt" title="Information"></span></p>
+				<!--<ul class="custom-radio listul">
+					<li class="filter_checbox" ng-click="changeMediaType('All')"><input type="radio" name="radiog_lite3" id="radioAll" class="css-checkbox" checked="checked"/><label for="radioAll" class="css-label">All</label></li>
+					<li class="filter_checbox" ng-click="changeMediaType('Image')"><input type="radio" name="radiog_lite3" id="radioImage" class="css-checkbox" /><label for="radioImage" class="css-label">Photo</label></li>
+					<li class="filter_checbox" ng-click="changeMediaType('Link')"><input type="radio" name="radiog_lite3" id="radioLink" class="css-checkbox" /><label for="radioLink" class="css-label">Film & Sound</label></li>
+					<li class="filter_checbox" ng-click="changeMediaType('Notes')"><input type="radio" name="radiog_lite3" id="radioNotes" class="css-checkbox" /><label for="radioNotes" class="css-label">Text/Note</label></li>
+					<li class="filter_checbox" ng-click="changeMediaType('Montage')"><input type="radio" name="radiog_lite3" id="radioMontage" class="css-checkbox" /><label for="radioMontage" class="css-label">Montage</label></li>
+					--><!--<li class="filter_checbox" ng-click="changeMediaType('Video')"><input type="radio" name="radiog_lite3" id="radioVideo" class="css-checkbox" /><label for="radioVideo" class="css-label">Film</label></li>-->
+					<!--<li ng-click="changeMediaType('Audio')"><input type="radio" name="radiog_lite3" id="radio11" class="css-checkbox" /><label for="radio11" class="css-label">Sound</label></li>-->
+					<!--<li ng-click="changeMediaType('Image')"><input type="radio" name="radiog_lite3" id="radio12" class="css-checkbox" /><label for="radio12" class="css-label">Document</label></li>-->
+				<!--</ul>-->
+				<ul class="custom-radio custom-checkbox listul">
+					<!--<li class="filter_checbox" ng-click="changeMediaType('All')"><input  value='All' type="checkbox" name="radiog_lite3" id="radioAll" class="css-checkbox select_media" checked="checked"/><label for="radioAll" class="css-label">All</label></li>-->
+					<li class="filter_checbox"><input ng-click="changeMediaType('Image')" value='Image' type="checkbox" name="radiog_lite3" id="radioImage" class="css-checkbox select_media" /><label for="radioImage" class="css-label">Photo</label></li>
+					<li class="filter_checbox"><input ng-click="changeMediaType('Link')" value='Link' type="checkbox" name="radiog_lite3" id="radioLink" class="css-checkbox select_media" /><label for="radioLink" class="css-label">Film & Sound</label></li>
+					<li class="filter_checbox"><input ng-click="changeMediaType('Notes')" value='Notes' type="checkbox" name="radiog_lite3" id="radioNotes" class="css-checkbox select_media" /><label for="radioNotes" class="css-label">Text/Note</label></li>
+					<li class="filter_checbox"><input ng-click="changeMediaType('Montage')" value='Montage' type="checkbox" name="radiog_lite3" id="radioMontage" class="css-checkbox select_media" /><label for="radioMontage" class="css-label">Montage</label></li>
+					<!--<li class="filter_checbox" ng-click="changeMediaType('Video')"><input type="radio" name="radiog_lite3" id="radioVideo" class="css-checkbox" /><label for="radioVideo" class="css-label">Film</label></li>-->
+					<!--<li ng-click="changeMediaType('Audio')"><input type="radio" name="radiog_lite3" id="radio11" class="css-checkbox" /><label for="radio11" class="css-label">Sound</label></li>-->
+					<!--<li ng-click="changeMediaType('Image')"><input type="radio" name="radiog_lite3" id="radio12" class="css-checkbox" /><label for="radio12" class="css-label">Document</label></li>-->
+				</ul>
+			</li>
+			</ul>
+		</div>
+	</li>
+	
+	<li class="settingsBar">
+		<div class="settingsBar-dropdown">
+		<ul>
+		<li ng-show="boarddata[0].PrivacySetting[0].BoardType!='OnlyYou'"><a class="option head">Members</a>
+		<ul>
+		<li><a rel="dialog" data-dialog-id="29" class="option"><span class="padded" ng-show="boarddata[0].PrivacySetting[0].BoardType!='OnlyYou'">Members List</span></a></li>
+		<li><a class="option" href="javascript:void(0)" rel="dialog" data-dialog-id="26"><span class="padded" ng-show="boarddata[0].PrivacySetting[0].BoardType!='OnlyYou'">Add Members</span></a></li>
+		</ul>
+		</li>
+		<li><a class="option head">Board</a>
+		<ul>
+		<li><a data-dialog-id="52" rel="dialog" class="option"><span class="padded">Rename</span></a></li>
+		<li><a data-dialog-id="25" rel="dialog" class="option"><span class="padded">Duplicate</span></a></li>	
+		<li><a class="option" rel="dialog" data-dialog-id="32"><span class="padded">Move</span></a></li>	
+		<li><a class="option" ng-click="deleteBoard()"><span class="padded">Delete</span></a></li>	
+		</ul>
+		</li>
+		<li><a class="option head">Design &amp; Sound</a>
+		<ul class="upload_btn">
+		<li><span class="padded"><input type="file" id='headerUpload' class="input-file uniform_on" style="opacity:0; position:absolute" ng-disabled="{{disablebtn}}" ng-file-select="onHeaderSelect($files)" accept="image/*" value="Add Files">Header Image</span></li>
+		<li><span class="padded"><input type="file" id='musicUpload' class="input-file uniform_on" style="opacity:0; position:absolute" ng-disabled="{{disablebtn}}" ng-file-select="onAudioSelect($files)" accept="audio/*" value="Add Files">Background Music</span></li>	
+		</ul>
+		</li>
+		</ul>
+		</div>
+	</li>
+</ul>
+<!--Filter-bar Drop-down Closed-->
+</div>
+</header>
+<script type="text/javascript">
+	$('#recVideo').click(function(event){
+		if ($('#media-tray-elements').find('li').length < 15) {
+			//$('#popUpVideoTag').attr('')
+			//$('#popUpVideoTag').removeProp('src');
+			$('#popUpVideoTag').removeAttr('src');
+			$('#popUpVideoTag').removeAttr('controls');
+		}else{
+			setTimeout(function(){$('.ui-dialog-titlebar-close').trigger('click');},50)
+			$("#media_tray_full_pop").show();
+		}
+	});
+	$('#recAudio').click(function(){
+		//$('#popUpVideoTag').attr('')
+		$('#popUpVideoTag').removeAttr('src');
+		$('#popUpVideoTag').removeAttr('controls');
+	});
+	
+	$('.avtartop').click(function(){
+	    if ($('.user-info').css('display')!='none') {
+		$('.user-info').fadeOut('slow');
+	    }else{
+		$('.user-info').fadeIn('slow');
+	    }
+	});
+		$('.avarrow-right').on('click',function(){
+	/*--------------------------------------------------*/	
+	if($('body').hasClass('small-fixed-header')){
+		var theWidth=52;
+	}else{
+		var theWidth=69;
+	}
+	/*--------------------------------------------------*/	
+	theWidthu=$('.avatarlist li').length*theWidth;
+	if (theWidthu>=(((intIndex + 1)+5) * theWidth)) {
+		$('.avatarlist').animate({	
+			"margin-left": (-(intIndex + 1) * theWidth)//-4				
+		}, 1000);
+		intIndex++;
+	}
+})
+
+
+$('.avarrow-left').on('click',function(){	
+	/*--------------------------------------------------*/	
+	if($('body').hasClass('small-fixed-header')){
+		var theWidth=52;
+	}else{
+		var theWidth=69;
+	}
+	/*--------------------------------------------------*/	
+	if(intIndex>0){
+		$('.avatarlist').animate({
+			"margin-left": (-(intIndex - 1) * theWidth)				
+		}, 1000);
+		intIndex--; 
+	}
+})
+</script>

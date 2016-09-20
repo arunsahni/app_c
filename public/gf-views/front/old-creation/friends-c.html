@@ -1,0 +1,121 @@
+<div id="menu-button" class="toggle-menu menu-left push-body">
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+</div>
+<!--<div class="dropdown-menu" href="#">-->
+<!--<a href="#" class="dropdown-icon">-->
+<!--<img alt="chapter" src="/assets/create/images/cloud-icn.png">-->
+<!--</a>-->
+<!--<div class="dropdown-item">-->
+<!--	<ul>-->
+<!--    	<li><a href="#">Menu Link 1</a></li>-->
+<!--    	<li><a href="#">Menu Link 2</a></li>-->
+<!--    </ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--<a class="back-page-btn page-btns" href="#"><span>&lt;</span><label>Back</label></a>-->
+<!--<a class="next-page-btn page-btns" href="#"><label>Next</label><span>&gt;</span></a>-->
+<div class="setting-block">
+    	<div class="setting-heading">
+        	<h2 class="member-label">Add Friend </h2>
+            <!--<h2 class="friend-label"><a href="javascript:void(0)">Show Friends</a></h2>-->
+        </div>
+        <div class="member-form">
+			<form name="frnd">
+				<!--<div class="member-row member-input-row">
+					<div class="member-col">
+						<input ng-model="friend.name" type="text" class="first" placeholder="Enter name.." name="name" required>
+						<p ng-show="(clicked) && ( frnd.email.$invalid|| frnd.email.$error.required)" class="m-notification"><em> Please enter a valid email id.</em></p>
+					</div>
+					<div class="member-col">
+						<input ng-model="friend.email" type="email" placeholder="Enter email.." name="email" required>-->
+						<!--<p ng-show="(clicked) && (frnd.name.$error.required)" class="m-notification"><em> Please enter a name.</em></p>-->
+					<!--</div>
+					<div class="member-col">
+						<div class="select-wrapper">
+                        <select name="relation" ng-model="friend.relation" required>
+                        <option value="">Please select</option>
+                        <option ng-repeat="relation in relations.Values" value="{{relation.valueTitle}}~{{relation._id}}">{{relation.valueTitle}}</option>
+                        </select> 
+                        </div>
+					</div>
+				</div>
+				<div class="member-row member-btn-rw">
+					<button ng-click="addFriend()">Add as Friend</button>
+				</div>
+				<div class="member-row member-btn-rw">-->
+					<!--<p class="m-notification"><em>Choose if they are a co-owner or a member</em></p>-->
+				<!--</div>-->
+                
+                <div class="member-row member-input-row member-input-row2">
+					<div class="member-col">
+						<input ng-model="friend.name" type="text" class="first" placeholder="Enter name.." name="name" required>
+						<p ng-show="(clicked) && ( frnd.email.$invalid|| frnd.email.$error.required)" class="m-notification"><em> Please enter a valid email id.</em></p>
+					</div>
+					<div class="member-col">
+						<input ng-model="friend.email" type="email" placeholder="Enter email.." name="email" required>
+					</div>
+					<div class="member-col">
+						<div class="select-wrapper">
+							<select name="relation" ng-model="friend.relation" required>
+								<option value="">Please select</option>
+								<option ng-repeat="relation in relations.Values" value="{{relation.valueTitle}}~{{relation._id}}">{{relation.valueTitle}}</option>
+							</select> 
+						</div>
+                    
+                    
+					</div>
+                	
+				</div>
+                <div class="member-row member-btn-rw">
+						<button ng-click="addFriend()">Add as Friend</button>
+					</div>
+                
+			</form>
+        </div>
+		<div class="setting-heading setting-padd">
+			<h2 class="friend-label friend-label2"><a href="javascript:void(0)">Existing Friends</a></h2>
+        </div>
+		<dir-pagination-controls on-page-change="getAllFriendsPaginated(newPageNumber)"></dir-pagination-controls>
+        <div class="member-list-block">
+			<span class="noFrndBlock" ng-if="friends.length == 0">No friends yet.. Start adding friends and they will be displayed here.</span>
+        	<ul>
+            	<li dir-paginate="friend in friends | itemsPerPage: perPage"  total-items="total" current-page="pageNo"> 
+                	<div class="member-box">
+                    	<div class="member-pic">
+               	    	<!--<img ng-src="../{{friend.Friend.Pic}}" width="45" height="45" alt="" />-->
+						<img ng-src="{{friend.Friend.Pic}}" width="45" height="45" alt=""  data-toggle="tooltip" title="{{friend.Friend.Email }}"/>
+                    </div>
+					<div class="member-info">
+                    	<p data-toggle="tooltip" title="{{friend.Friend.Name }}">{{friend.Friend.Name }}</p>
+						<p>{{friend.Friend.Relation}}</p>
+                        
+						<div ng-confirm-click="Are you sure you want to remove this user from your friends?" confirmed-click="removeFriend(friend.Friend.Email)" class="close-icn">
+                        	<img src="/assets/create/images/close-member-icn.png" alt="Member Close Icon" data-toggle="tooltip" title="Remove friend"/>
+                        </div>
+                    </div>
+                    </div>
+                </li>
+                
+            </ul>
+			
+        </div>
+		
+    </div>
+
+<style>
+	
+.noFrndBlock {
+    font-family: "Brandon Light",Arial,sans-serif;
+    font-size: 16pt;
+    line-height: 1.5;
+    margin: auto;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+}
+.setting-block, .setting-block a {
+    text-decoration: none;
+}
+</style>

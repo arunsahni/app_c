@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>custom input file</title>
+
+<style>
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+    vertical-align: middle;
+    white-space: nowrap;
+	background:#5d585e;
+	color: #fff;
+    display: block;
+    font-family: "Brandon Light",Arial,sans-serif;
+    padding: 10px 20px;
+    letter-spacing: 2px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    width: 186px;
+	cursor:pointer;
+}
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 10px 20px;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="fileUpload upload_btn">
+    <span>Upload</span>
+    <input type="file" class="upload" />
+</div>
+
+
+</body>
+</html>

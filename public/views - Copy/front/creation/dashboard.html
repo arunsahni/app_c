@@ -1,0 +1,95 @@
+<div id="menu-button" class="toggle-menu menu-left push-body">
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+</div>
+<div class="head">
+	<div class="wrapper">
+		<div class="clearfix"></div>
+		<!-- START BROWSE -->
+		<div class="browse">
+			<div class="heading-row">
+				<h2>Dashboard : Chapters </h2>
+			</div>
+			<!--<ul class="tabs library-qc">
+				<li><a href="javascript:void(0)" class="qc-all selected" ng-click="DashboardMgmt.setQueryCriteria('all')">All</a></li>
+				<li><a href="javascript:void(0)" class="qc-createdByMe" ng-click="DashboardMgmt.setQueryCriteria('createdByMe')">Created by you</a></li>
+				<li><a href="javascript:void(0)" class="qc-sharedWithMe" ng-click="DashboardMgmt.setQueryCriteria('sharedWithMe')">Shared with you</a></li>
+				<li><a href="javascript:void(0)" class="qc-byTheHouse" ng-click="DashboardMgmt.setQueryCriteria('byTheHouse')">By the house</a></li>
+			</ul>
+			-->
+			<ul class="tabs library-qc">
+				<li><a href="javascript:void(0)" class="qc-all selected" ng-click="DashboardMgmt.setQueryCriteria('all')">All</a></li>
+				<li><a href="javascript:void(0)" class="qc-launchedByMe" ng-click="DashboardMgmt.setQueryCriteria('launchedByMe')">Launched by you</a></li>
+				<!--<li><a href="javascript:void(0)" class="qc-createdByMe" ng-click="DashboardMgmt.setQueryCriteria('createdForMe')">Created for you</a></li>-->
+				<li><a href="javascript:void(0)" class="qc-invitationForMe" ng-click="DashboardMgmt.setQueryCriteria('invitationForMe')">Invitation For You</a></li>
+				<!--<li><a href="javascript:void(0)" class="qc-byTheHouse" ng-click="DashboardMgmt.setQueryCriteria('byTheHouse')">By the house</a></li>-->
+			</ul>
+			<div class="select-con select-con2">
+				<select>
+					<option value="Capsule 1">Latest</option>
+					<option value="Capsule 2">Latest</option>
+					<option value="Capsule 3">Latest</option>
+				</select>
+			</div>
+			
+			<div class="select-con first  select-con2">
+				<select>
+					<option value="Capsule 1">Capsule 1</option>
+					<option value="Capsule 2">Capsule 2</option>
+					<option value="Capsule 3">Capsule 3</option>
+				</select>
+			</div>
+			
+			<div class="clear"></div>
+			
+			<!-- START IMAGES -->
+			<div class="browse-images browse-images2">
+				<dir-pagination-controls on-page-change="DashboardMgmt.pageNoChangedChapters(newPageNumber)" pagination-id="chapter"></dir-pagination-controls>
+                <div class="chapter-library-block">
+                	<ul>
+                    	<li dir-paginate="chapter in DashboardMgmt.chaptersPaginated  | itemsPerPage: perPage" pagination-id="chapter" total-items="count" current-page="pageNoChapter" ng-click="DashboardMgmt.viewChapter(chapter._id)">
+                        	<div class="zoomIn chapter-library-bx">
+								<img ng-if="!(chapter.CoverArt)" src="/assets/create/images/no-chapter-pic.jpg" alt="chapter" class="primary zoomIn" />
+								<img ng-if="chapter.CoverArt" src="/assets/Media/covers/small/{{chapter.CoverArt}}" alt="chapter" class="primary zoomIn" />
+								<div class="chapter-overlay2"></div>
+								<h3>{{chapter.Title}}</h3>
+								<ul class="chapter-library-icon">
+									<li class="preview">
+										<a href="javascript:void(0)" style="text-decoration: none; color: white;">Enter</a>
+										<!--<span class="tooltip">Preview</span>-->
+									</li>
+								</ul>
+								<!--<div class="date">11/09/2014</div>-->
+							</div>
+                        </li>
+                    </ul>
+                    
+                </div>
+				
+				
+				<div ng-if="DashboardMgmt.chaptersPaginated.length==0">No Record Found!</div>
+				<div class="clear"></div>
+				
+			</div>
+			<!-- END IMAGES -->
+			
+		</div>
+		<!-- END BROWSE -->
+		
+		<!--<a class="previous-link nav-link" href="javascript:void(0)">Previous</a>-->
+		<!--<a class="next-link nav-link" href="javascript:void(0)">Proceed</a>-->
+		
+		<div class="clear"></div>
+		
+	</div>
+</div>
+<div id="loader" style="display: block;"><img src="/assets/create/images/ajax-loader.gif" alt="Loader" /></div>
+<div id="tips" style="display: none;"><div id="closetips"></div></div>
+<!--<script type="text/javascript" src="/assets/create/js/scripts.js"></script>-->
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

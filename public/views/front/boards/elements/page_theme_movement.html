@@ -1,0 +1,14 @@
+<!--Next previous Arrows Start-->
+<a id='pt-l-1' href="javascript:void(0);" class="prev-m trans navarrow-left" ng-mouseover="prevHoverIn()" ng-click="changePT('previous')"><span class="i-ico i-prev"></span></a>                        
+<a id='pt-r-1' href="javascript:void(0);" class="next-m trans navarrow-right" ng-mouseover="nextHoverIn()" ng-click="changePT('next')"><span class="i-ico i-next"></span></a>
+<!--Next previous Arrows Closed-->
+<!--Next previous with pic/text Start-->
+<a id='pt-l-2' href="javascript:void(0);" class="prv-m trans navarrow-left" ng-show="isPrevTheme" ng-mouseleave="prevHoverOut()" ng-click="changePT('previous')">
+	<span class="prv-nxt-t l-br">Previous Theme</span>
+	<span class="md-text"><span>{{prevPageTheme}}</span></span>
+</a>  
+<a id='pt-r-2' href="javascript:void(0);" class="nxt-m trans navarrow-right" ng-show="isNextTheme" ng-mouseleave="nextHoverOut()" ng-click="changePT('next')">
+	<span class="prv-nxt-t l-br">Next Theme</span>
+	<span class="md-text"><span>{{nextPageTheme}}</span></span>                        
+</a>
+<!--Next previous with pic/text Closed-->

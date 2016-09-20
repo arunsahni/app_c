@@ -1,0 +1,841 @@
+<style type="text/css">
+	@import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+	.creation-section .header-title-input { position:relative; }
+	.creation-section .header-title-input a { position:absolute; position:absolute; width:20px; height:20px; text-align:center; background-color:#000; border-radius:50%; right:0; top:15px; overflow:hidden; line-height:21px; }
+	.creation-section .header-title-input a img { height:13px; }
+	.creation-section .media-description { padding-top:30px; }
+	.media-description-info { display:none; border-bottom:1px solid #8a8589; padding-bottom:30px; font-size:12px; }
+	.media-description-info p { line-height:18px; font-family: 'Droid Sans', sans-serif; }
+        /*making page consistent - by manishp*/
+        .media-description-info p {
+            line-height: 18px;
+            font-family: 'Brandon Light', Arial, sans-serif;
+            font-size: 16px;
+        }
+	.media-description-info p span { font-style:italic; }
+	.media-description-info ul { margin:10px 0; } 
+	.media-description-info ul li { line-height:18px; font-family: 'Droid Sans', sans-serif;  }
+	.creation-section #content.media span.subheading,
+	.creation-section .media-option-bx2 button,
+	.creation-section .filter-input-bx input[type="text"], 
+	.creation-section .filter-input-bx input[type="email"], 
+	.creation-section .filter-input-bx input[type="password"],
+	.creation-section .selectric .label { font-size:12px;/*font-family:"Brandon Light",Arial,sans-serif;*/ }
+	.creation-section #content.media span.subheading { font-style:italic; }
+	.creation-section #content.media .body .sidebar ul.filters > li > ul li { font-family:"Brandon Light",Arial,sans-serif; }
+	.select-header-align { padding:7px 21px 0; text-align:left; left:0; right:0; position:absolute; top:0; } 
+	.select-header-align-overlay { background-color:#5a5a5a; }
+	.creation-section #content.media .upload-pic-header .center { top: 75px; }
+	.media-option-bx2 { position:relative; }
+	.creation-section #content.media .head { background-color:#5a5a5a; background-image:none; }
+	.creation-section .media-option-bx2 button { padding:10px; }
+	.creation-section .filter-input-bx input[type="text"] { height:37px; padding:10px; font-size:14px; }
+	.creation-section #slider_container { height:70px; padding:15px 21px; background-color:#161616;  }
+	.creation-section .overall_slider_container { height:70px; padding:15px 21px; background-color:#161616;  }
+	.creation-section .filter-input-bx { left:21px; top:15px; width:230px; }
+	.creation-section .slider-tags { margin-left:380px; padding:8px 40px; }
+	.creation-section #slider_container .controls a { top:11px; }
+	.creation-section .overall_slider_container .controls a { top:11px; }
+	.creation-section #content.media .head.head-row { padding-bottom:30px; min-height:120px; }
+	.creation-section .header-title-block { padding:15px 0 30px; position:relative; }
+		/*************** 16/12/2015 ************/
+	.upload-media-box { padding-bottom:20px; }
+	.upload-media-box .button.first { width:28%; float:left; }
+	.upload-media-box .button { width:70%; float:right; position:relative; }
+	.upload-media-box a.button { height: 57px;  display: block; text-decoration: none;  position: relative; line-height: 57px; text-transform: uppercase; font-size: 14px; font-family: 'Brandon Light', Arial, sans-serif;  color: #fff; text-align: center; width: 100%; float: left; letter-spacing: 2px; }
+	.upload-media-box a.button.first {  width: 100%; }
+	.upload-media-box a.button span { height: 57px;  display: block; background: #fff; opacity: .05;  position: absolute; top: 0; left: 0;  width: 100%; transition: opacity 0.5s ease; }
+	.upload-media-box a.button span:hover { opacity: 0.15;  } 
+	
+	.upload-media-box .inbox-file { position:absolute; left:0; bottom:0; top:0; width:100%; height:57px; z-index:2; cursor:pointer; opacity:0; }	
+	
+	.upload-media-box .inbox-text { height: 57px;  display: block; background-color:rgba(255,255,255,0.05); width: 100%; border:none; font-size: 14px; font-family: 'Brandon Light', Arial, sans-serif;  color: #fff; text-align: center; letter-spacing: 2px; padding:0 10px; -webkit-transition:all 0.3s; -moz-transition:all 0.3s; transition:all 0.3s; }
+	.upload-media-box .inbox-text:hover, .upload-media-box .inbox-text:focus { background-color:rgba(255,255,255,0.15); -webkit-transition:all 0.3s; -moz-transition:all 0.3s; transition:all 0.3s; }
+	::-webkit-input-placeholder { color: #fff; opacity: 1 !important; }
+	:-moz-placeholder { color: #fff; opacity: 1 !important; }
+	::-moz-placeholder { color: #fff; opacity: 1 !important;}
+	:-ms-input-placeholder {   color: #fff;opacity: 1 !important; }
+		
+	.clear { clear:both; }
+	
+	.question-tip-text textarea { height: 180px; border: none;  border-top: solid 1px #8a8589; border-bottom: solid 1px #8a8589; font-family: 'Droid', Arial, sans-serif; font-size: 12px; letter-spacing: 1px; width: 100%; background: transparent;  text-align: left; padding: 20px 0; color: #fff;  outline: none; margin-bottom: 0px; }
+	
+	/************************* 21/12/2015 ************************/
+	.creation-section #container .item.item-selected { border:none; }
+	.creation-section #container .item .item-select-overlay {display:none; }
+	.creation-section #container .item.item-selected .item-select-overlay { position:absolute; background-color:rgba(255,255,255,0.35); display:block; top:0; left:0; right:0; bottom:0; }
+	.creation-section #container .item.item-selected .item-select-overlay div { padding-top:44%; text-align:center; }
+	.creation-section #container .item.item-selected .item-select-overlay img { width:32px; height:32px; }
+	
+	@media all and ( max-width: 1023px) {
+		.creation-section .media-option-bx2 button { margin-bottom:10px; }
+	}
+        
+        /*added for selected media overlay*/
+        .search-gallery-modal.widget-tollbar-popup { position:fixed; z-index:50; top:0; left:0; right:0; bottom:0; background-color:rgba(0,0,0,0.85); width:100%; overflow-x:hidden; overflow-y:scroll; -webkit-transition:all 0.3s; -moz-transition:all 0.3s; transition:all 0.3s; }
+        .search-gallery-space { padding:13px 12px; } 
+        .close-btn { height:19px; position:fixed; right:33px; top:12px; -webkit-transition:all 0.3s; -moz-transition:all 0.3s; transition:all 0.3s; }
+        .close-btn a { width:43px;height: 30px;  background:url(../../../assets/img/close.png) no-repeat left top; background-color:transparent; display:block; }
+        .search-gallery-wrap { width:90%; margin:0 auto; position:relative; }
+        .prevent-body-scroll {overflow-y:hidden}
+        /*added for selected media overlay*/
+	
+	.strike-text {text-decoration: line-through;color: red;}
+</style>
+<style type="text/css">
+	/*.creation-section #content #menu-button:hover { background-color:#000; } */
+	.dropdown-menu { z-index:11; }
+	.dropdown-menu .dispalyB { display:none; }
+	.dropdown-menu:hover .dispalyB { display:block; }
+	.dropdown-menu:hover .dispalyN { display:none; }
+	.dropdown-menu:hover .save-close-tooltip { display:block; }
+	.dropdown-menu .save-close-tooltip { position:absolute; background: #000; border: 1px solid #000; color:#fff; font-family: "Brandon Light",Arial,sans-serif; left:-130px; width:115px; top:9px; padding:8px; border-radius:2px; line-height:7px; display:none; }
+	.save-close-tooltip:after, .save-close-tooltip:before { left: 100%; top: 50%;  border: solid transparent;  content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
+	.save-close-tooltip:after { border-color: rgba(0, 0, 0, 0);  border-left-color: #000;  border-width: 8px; margin-top: -8px;  }
+	.save-close-tooltip:before { border-color: rgba(0, 0, 0, 0); border-left-color: #000; border-width: 9px; margin-top: -9px; }
+	
+	
+	div.show-image {
+    position: relative;
+    float:left;
+    margin:5px;
+}
+div.show-image:hover img{
+    opacity:0.5;
+}
+div.show-image:hover input {
+    display: block;
+}
+div.show-image input {
+    position:absolute;
+    display:none;
+}
+div.show-image input.update {
+    top:0;
+    left:0;
+}
+div.show-image input.delete {
+    top:0;
+    left:79%;
+}
+</style>
+<script type="text/javascript">
+	$( document ).ready(function() {
+		$( ".info-section" ).click(function() {
+			$( ".media-description-info" ).fadeToggle( "500" );
+		});
+	});
+	
+</script>
+
+<div class="test123">
+<div id="menu-button" class="toggle-menu menu-left push-body">
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+</div>
+<div class="dropdown-menu" style="z-index: 1;">
+    <a href="javascript:void(0)" class="dropdown-icon">
+    <img alt="chapter" src="/assets/create/images/cloud-icn.png">
+</a>
+<div class="dropdown-item">
+    <ul>
+    	<li><a href="javascript:void(0)" ng-click="SgPageMgmt.openLaunchSetting('AI')">AUDIENCE &amp; INVITATION</a></li>
+    	<li><a href="javascript:void(0)" ng-click="SgPageMgmt.openLaunchSetting('DE')">DESIGN &amp; EXPERIENCE</a></li>
+    </ul>
+</div>
+</div>
+
+<a class="back-page-btn page-btns" ng-href="#/manage-pages/{{SgPageMgmt.capsule_id}}/{{SgPageMgmt.chapter_id}}"><span>&lt;</span><label>Back</label></a>
+<a class="next-page-btn page-btns" href="javascript:void(0)" ng-click="SgPageMgmt.saveSG()"><label>Done</label><span>&gt;</span></a>
+
+<a class="back-page-btn page-btns" ng-show="$scope.SgPageMgmt.allPages.length > 1 && SgPageMgmt.whichPage!='first'" ng-click="SgPageMgmt.openPage('previous')"><span>&lt;</span><label>Previous</label></a>
+<a class="next-page-btn page-btns" ng-show="$scope.SgPageMgmt.allPages.length > 1 && SgPageMgmt.whichPage!='last'" ng-click="SgPageMgmt.openPage('next')"><label>Next</label><span>&gt;</span></a>
+<div style="position:fixed;left:0px;right:0px;bottom: 25px;text-align:center;z-index: 1;">
+    <a class="next-page-btn page-btns" style="position:relative;bottom:0px;" href="javascript:void(0)" ng-click="SgPageMgmt.saveSG()"><label>Save</label></a>
+</div>
+
+<div class="wrapper">
+	<div class="head head-row">
+            <div class="center">
+                <div class="header-title-block">
+                <span class='header-title-input'><input type="text" placeholder="Enter Header Title.." class="chapter-input" ng-model="SgPageMgmt.pageName" ng-blur="SgPageMgmt.updatePageName()" ng-click="SgPageMgmt.onTitleClick()"> <a href="javascript:void(0)" class="info-section"><img title="info" src="/assets/create/images/chapter/info.png" alt="info" /></a></span>
+                <div class="media-description" style="position: absolute;z-index: 1;word-wrap: break-word;width: 100%;">
+                <div class="media-description-info" style="background-color:#5a5a5a;padding: 10px;">
+                        <p>To provide a personal touch, use “Jack” or “Jill” in your question or statement. “Jack” or “Jill” will automatically be replaced by the name of the Recipient. You can also include gender or number-specific pronouns e.g.</p>
+                    <ul class="">
+                        <li>His / Her / Their</li>
+                        <li>He / She / They </li>
+                        <li>Himself / Herself / Themselves </li>
+                        <li>Him / Her / Them</li>
+                    </ul>
+                    <p>For e.g. you can type "When <span>Jack</span> is at <span>his</span> best, what do you see <span>him</span> doing?" or "When <span>Jill</span> is at <span>her</span> best, what do you see <span>her</span> doing?” Our elves will make it all look good!</p>
+                </div>
+                </div>
+                </div>
+            </div>
+	</div>
+	<div class="upload upload-block upload-nopic">
+		<div class="upload-pic-header" style="padding-top:50px;border-top: solid 1px #8a8589;">
+			<div class="select-header-align select-header-align-overlay">
+				<h2>Select Header Image
+				<span>
+					<a class="trashIcon" ng-click="SgPageMgmt.deleteHeaderImage()" ng-if="SgPageMgmt.pageData.HeaderImage"><img alt="" src="/assets/img/delete-icon-blue.png" height=15 width=15></a>
+				</span>
+				</h2>
+				<span class="subheading">Upload your own imagery or choose from below, then drag your image into position</span>
+			</div>
+		</div>
+    	 <div class="upload-pic-header" >
+			<img ng-if="SgPageMgmt.pageData.HeaderImage" id="hdr-img" src="{{SgPageMgmt.pageData.HeaderImage+'?876876'}}" alt=''  />
+         	<div class="center">
+				<div class="header-pic-rw">
+					<div class="select-con">
+					<select>
+						<option value="">Tone</option>
+						<option value="">Tone</option>
+						<option value="">Tone</option>
+						<option value="">Tone</option>
+					</select>
+				</div>
+				
+				<div class="select-con first">
+					<select>
+						<option value="">Industry</option>
+						<option value="">Industry</option>
+						<option value="">Industry</option>
+						<option value="">Industry</option>
+					</select>
+				</div>
+				
+				<!--<a href="javascript:void(0)" class="button">
+					<span></span>
+					Upload
+				</a>-->
+				<div class="browse-file-btn browse-file-btn2">
+					<span class="button">
+					Upload
+					<input id="uploadHeader" type="file" style="cursor: pointer;"  file-model="myFile" ng-file-select="SgPageMgmt.onHeaderSelect()" >
+					</span>
+				</div>
+				</div>
+				
+		  </div>
+         </div>
+         <div class="center">
+         	<div class="gallery-hd-rw">
+				<ul>
+					<li>
+						<div style="background:url(/assets/create/images/gallery-head-pic/pic1.jpg) 0 0 no-repeat; background-size:100%;"></div>
+					</li>
+					<li>
+						<div style="background:url(/assets/create/images/gallery-head-pic/pic1.jpg) 0 0 no-repeat; background-size:100%;"></div>
+					</li>
+				</ul>
+			</div>
+		 </div>
+		<!--<div style="margin-top:-30px;width:100%;height:300px;position:absolute;background-image:url('{{SgPageMgmt.pageData.HeaderImage}}');background-repeat: no-repeat;background-position: center center;"></div>-->
+		<!--<div class="member-col browse-file-btn">
+			<span>
+			Upload
+			<input id="uploadHeader" type="file" style="cursor: pointer;"  file-model="myFile" ng-file-select="SgPageMgmt.onHeaderSelect()" >
+			</span>
+		</div>-->
+		
+	</div>
+    <div class="slider-heading-block">
+    	<div class="media-option-bx2">
+            <h2>Tailor Media Gallery (Optional)</h2>
+            <p>
+            	<button class="active" id="all-media-btn" ng-click="SgPageMgmt.setAllMedia()">All Media</button>
+		<button class="" id="media-btn" ng-click="SgPageMgmt.setMediaSelected()">Hand-Picked</button>
+		<button id="theme-btn" ng-click="SgPageMgmt.setThemeSelected()">By Themes</button>
+		<button id="descriptor-btn" ng-click="SgPageMgmt.setDesciptorSelected()">By Descriptors</button>
+		<button class="" id="filter-btn" ng-click="SgPageMgmt.setFilterSelected()">By Filters</button>
+		<button class="" id="upload-btn" ng-click="SgPageMgmt.setUploadSelected()">Upload</button>
+                <!--<button class="all-media-btn" style="float: right;" ng-click="SgPageMgmt.showGalleryImg()" ng-show="SgPageMgmt.selectionType=='media' && SgPageMgmt.selectedMedia.length > 0">Selection</button>-->
+                <button class="all-media-btn" style="float: right;" ng-click="SgPageMgmt.showGalleryImg()" ng-show="SgPageMgmt.selectionType == 'hand-picked' || SgPageMgmt.selectionType == 'upload'">Selection</button>
+            </p>
+	    <span class="subheading" style="margin-bottom: 0px;margin-top: 18px">{{SgPageMgmt.toolTipMsg}}</span>
+        </div>
+    </div>
+<div id="filterArea" ng-hide="SgPageMgmt.selectionType=='all-media'">
+	<div id="slider_container">
+    	<div class="filter-input-bx">
+            <input type="text" id="keyword" name="Filter Name" placeholder="Enter Keyword" auto-complete-tags-create ui-items="SgPageMgmt.keywordList" />
+	   
+	</div>
+	<!-- added Keyword type-->
+	<div style="float: left; margin-left: 242px">
+            <div ng-hide="SgPageMgmt.themeDisabled == true || SgPageMgmt.descriptorsDisabled == true">
+                <input type="radio" name="keywordType" value="themes" style="cursor: pointer;" ng-model="SgPageMgmt.keywordType" ng-click="SgPageMgmt.chgKeywordType('themes')" ng-disabled="SgPageMgmt.themeDisabled"> <span ng-class="{'strike-text': SgPageMgmt.themeDisabled== true}">By Themes</span>
+            </div>
+            <div ng-hide="SgPageMgmt.themeDisabled == true || SgPageMgmt.descriptorsDisabled == true">
+                <input type="radio" name="keywordType" value="descriptors" style="cursor: pointer;" ng-model="SgPageMgmt.keywordType" ng-click="SgPageMgmt.chgKeywordType('descriptors')" ng-disabled="SgPageMgmt.descriptorsDisabled"> <span ng-class="{'strike-text': SgPageMgmt.descriptorsDisabled== true}">By Descriptors</span>
+            </div>
+            <!--<div style="margin-left: 242px">
+                <input type="radio" name="keywordType" value="descriptors1" ng-model="SgPageMgmt.keywordType" ng-change="SgPageMgmt.chgKeywordType('descriptors1')"> By Descriptors1
+            </div>-->
+	</div>
+
+    	<div class="slider-tags">
+            <div id="keyword_slider" class="slider" lmn-slider>
+                <ul>
+                    <li style="cursor: pointer;" id="keyword_{{keyword.id}}" ng-repeat="keyword in SgPageMgmt.keywordsSelcted"><span ng-click="SgPageMgmt.delKey(keyword,'Kword')" class="remove-tag"></span><span  ng-click="SgPageMgmt.setKey(keyword)">{{keyword.title}}</span></li>
+                </ul>
+            </div>
+            <div class="controls">
+                <a href="javascript:void(0)" style="display: none" class="prev-slide"><</a> 
+                <a href="javascript:void(0)" style="display: none" class="next-slide">></a> 
+            </div>
+        </div>
+	</div>
+	<div id="slider_container">
+    	<div class="filter-input-bx"><!--another_tag_slider_container-->
+            <input type="text" id="another" name="Filter Name" placeholder="Add Another Tag" auto-complete-tags-another ui-items="SgPageMgmt.keywordList" />
+	   
+	</div>
+
+    	<div class="slider-tags">
+            <div id="another_tag_slider" class="slider" lmn-slider-another>
+                <ul>
+                    <li style="cursor: pointer;" id="another_{{keyword.id}}" ng-repeat="keyword in SgPageMgmt.addAnotherTag"><span ng-click="SgPageMgmt.delKey(keyword,'another')" class="remove-tag"></span><span  ng-click="SgPageMgmt.setKey(keyword)">{{keyword.title}}</span></li>
+                </ul>
+            </div>
+            <div class="controls">
+                <a href="javascript:void(0)" style="display: none" class="prev-slide"><</a> 
+                <a href="javascript:void(0)" style="display: none" class="next-slide">></a> 
+            </div>
+        </div>
+	</div>
+	<div id="slider_container">
+    	<div class="filter-input-bx">
+            <input type="text" id="exclude" name="Filter Name" placeholder="Exclude Tag" auto-complete-tags-exclude ui-items="SgPageMgmt.keywordList" />
+	   
+	</div>
+
+    	<div class="slider-tags">
+            <div id="exclude_tag_slider" class="slider" lmn-slider-exclude>
+                <ul>
+                    <li style="cursor: pointer;" id="{{keyword.id}}" ng-repeat="keyword in SgPageMgmt.excludeTag"><span ng-click="SgPageMgmt.delKey(keyword,'exclude')" class="remove-tag"></span><span  ng-click="SgPageMgmt.setKey(keyword)">{{keyword.title}}</span></li>
+                </ul>
+            </div>
+            <div class="controls">
+                <a href="javascript:void(0)" style="display: none" class="prev-slide"><</a> 
+                <a href="javascript:void(0)" style="display: none" class="next-slide">></a> 
+            </div>
+        </div>
+	</div>
+</div>
+	<div class="body media-body">
+		<div class="sidebar">
+			<h3 class="top">Filters</h3>
+			<!--<div class="filter-input-bx">
+            	<input type="text" name="Filter Name" placeholder="Enter Your Search..." />
+            </div>-->
+			<h3 class="underline">Types of Media</h3>
+			<ul class="media-type media-type-bx">
+				<li>
+					<label>
+						<input class="type" type="checkbox" ng-checked="SgPageMgmt.Image" ng-click="SgPageMgmt.filterMedia()" name="textaudio" value="Image" />
+						<span>Image</span>
+					</label>
+				</li>
+				<li>
+					<label>
+						<input class="type" type="checkbox" ng-click="SgPageMgmt.filterMedia()" ng-checked="SgPageMgmt.Link" name="textaudio" value="Link" />
+						<span>Video & Audio Link</span>
+					</label>
+				</li>
+				<li>
+					<label>
+						<input class="type" type="checkbox" ng-click="SgPageMgmt.filterMedia()" ng-checked="SgPageMgmt.Montage" name="textaudio" value="Montage" />
+						<span>Montage</span>
+					</label>
+				</li>
+			</ul>
+			
+			<h3 class="underline">Filters</h3>
+			<ul class="filters">
+				<li ng-repeat="fsg in SgPageMgmt.fsgs" ng-if="'Country of Affiliation' !== fsg.Title">
+					<div class="info">Information</div>
+					<span>{{fsg.Title}}</span>
+					<ul class="figureAll">
+						<li class="filter_checbox">
+							<label>
+								<input type="checkbox" class="type radiobb2 all" rel="{{fsg.Title}}all" name="{{fsg.Title}}" data="{{fsg.Title}}" id='{{fsg._id}}' value="" onclick="createModule.checkAll($(this))"/>
+								<span class="check-label" data="{{fsg.Title}}~{{value.valueTitle}}"  ng-click="SgPageMgmt.changeCss(fsg._id,fsg.Title,fsg.valueTitle)" subfilter="{{sg.Title}}" >All</span>
+							</label>
+						</li>
+						<li class="filter_checbox" ng-repeat=" value in fsg.Values">
+							<label>
+								<input type="checkbox"   class="type radiobb2 radioFsg" data="{{fsg.Title}}~{{value.valueTitle}}" rel="{{value.valueTitle}}" name="{{fsg.Title}}" id='{{value._id}}' value=""/>
+								<span data="{{fsg.Title}}~{{value.valueTitle}}" ng-click="SgPageMgmt.changeCss(value._id,fsg.Title,value.valueTitle)">{{value.valueTitle}}</span>
+							</label>
+						</li>
+					</ul>
+				</li>
+				<li ng-repeat="fsg in SgPageMgmt.fsgs" ng-if="'Country of Affiliation' == fsg.Title">
+					<div class="info">Information</div>
+					<span>{{fsg.Title}}</span>
+					<ul class="country-list-block">
+						<li>
+                        	<div class="added-country-block">
+                                <ul>
+                                    <li ng-repeat="country in SgPageMgmt.currentCountries | filter : countrySearch | limitTo: 10" style="padding-top:15px;padding-bottom: 7px;"><p style="width: 85%;float: left">{{country.valueTitle}}</p><p ng-click="SgPageMgmt.removeCountry(country)" style="width: 10%;float: right"><b>X</b></p></li>
+                                </ul>
+						</div>
+                        </li>
+						
+						<li class="search-country-rw">
+								<input ng-model="countrySearch" type="text" placeholder="search countries.. " class="" name="source" id='{{value._id}}' value="" />
+						</li>
+						<li>
+                        	<div class="add-country-block">
+							<ul>
+								<li ng-repeat="country in SgPageMgmt.remainingCountries | filter : countrySearch | limitTo: 10" style="padding-top:15px;padding-bottom: 7px;"><p style="width: 85%;float: left">{{country.valueTitle}}</p><p ng-click="SgPageMgmt.addCountry(country)" style="width: 10%;float: right"><b>+</b></p></li>
+							</ul>
+						</div>
+                        </li>
+						<!--<input type="text" keywords-tokenizer/>-->
+						<li class="save">
+							<input type="submit" value="Search" ng-click="SgPageMgmt.countrySearch()"/>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<div class="slide-con">
+				<!--<span>How much media will be displayed?</span>
+				<input id="slider1" type="range" min="5" max="100" step="5" ng-model="per_page"/>{{per_page}}-->
+				<span>Maximum number of  media displayed to user</span>
+				<div class="range-slider">
+					<!--<span class="range-input"><input id="slider1" type="range" min="5" max="100" step="5" ng-model="SgPageMgmt.per_page" ng-change="SgPageMgmt.setPageLimit()"/></span>-->
+					<span class="range-input"><input id="slider1" type="range" min="0" max="5000" step="10" ng-model="SgPageMgmt.maxMediaLimit" /></span>
+					<span class="range-input-no">{{SgPageMgmt.maxMediaLimit}}</span>
+				</div>
+			</div>
+			<!--
+			<div class="slide-con">
+				<span>Number of media a user can choose?</span>
+                <div class="range-slider">
+                	<span class="range-input">
+                    	<input id="slider2" type="range" min="5" max="100" step="5" ng-change="SgPageMgmt.mediaRangeChange()" ng-model="SgPageMgmt.mediaLimit"/>
+                    </span>
+                    <span class="range-input-no">
+                    	{{SgPageMgmt.mediaLimit}}
+                    </span>
+                </div>
+				
+			</div>
+			-->
+		</div>
+		
+		<div class="images">
+			
+                    <div class="grid">
+                        <div id="container">
+				
+                        <div id="{{media._id}}" class="item" ng-repeat="media in SgPageMgmt.medias" ng-click="SgPageMgmt.manageSelection(media.value)">
+                            <img ng-if="media.value.MediaType=='Image'" src="http://beta.scrpt.com/assets/Media/img/300/{{media.value.URL}}" alt="loading..." fallback-src="">
+				{{media.value._id}}
+                            <img  ng-if="media.value.MediaType=='Montage'" src="http://beta.scrpt.com/assets/Media/img/300/{{media.value.thumbnail}}" alt="loading..." fallback-src="">
+                            <img ng-if="media.value.MediaType=='Link'" src="http://beta.scrpt.com/assets/Media/img/300/{{media.value.thumbnail}}" alt="loading..." fallback-src="">
+                            <div class="item-select-overlay">
+                                <div><img alt="" src="/assets/create/images/select-icon.png"></div>
+                            </div>
+                        </div>
+                        </div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		
+		
+		<div class="head head-row" style="background-color: #000;" >
+			<div class="center" style="text-align: center;">
+				<button class="load-more-media" ng-click="SgPageMgmt.loadmoreMedia()" ng-hide="SgPageMgmt.medias.length == SgPageMgmt.mediaCount">Load More Media</button>
+			</div>
+		</div>
+	</div>
+	<div class="head head-row">
+            <div class="center">
+                <!--<div class="header-title-block">-->
+                    <div style="padding-top:10px;">
+                        <h2>Question Tip (optional)</h2>
+                        <span class="subheading subheading2">To help others answering your question, add a tip to give them content using a video or text.</span>
+		       
+		        <div class="upload-media-box">
+                        <div class="button first"><a class="button first" href="#"><span></span>Upload</a> <form enctype='multipart/form-data'>
+			<input type="file" video-upload="video" accept="video/mp4" class="inbox-file" onchange="angular.element(this).scope().SgPageMgmt.onFileSelect(this.files)"></form></div>
+                        <div class="button"><input type="text" placeholder="PASTE URL" class="inbox-text"></div>
+                        <div class="clear"></div>
+                        </div>
+			
+			<div style="border: 4px solid #3a3a3a;display: inline-block;padding: 1px;vertical-align: top;" ng-show="SgPageMgmt.showVideo">
+				<a style="cursor: pointer;position: absolute;margin-left: 170px;margin-top: 2px;" ng-click="SgPageMgmt.deleteQuesTipVideo()"><img alt="" src="/assets/img/delete-icon.png" height=20 width=20></a>
+				<a style="cursor: pointer;" ng-click="SgPageMgmt.viewUploadedVideo()"><img alt="" src="/assets/img/404error.png" height="200" width="200"></a>
+				
+			</div>
+                        <div class="question-tip-text">
+                            <textarea placeholder="Provide the user more context when answering your question.." ng-model="SgPageMgmt.questionTip" ng-blur="SgPageMgmt.saveQuesTip(SgPageMgmt.questionTip)"></textarea>
+                        </div>
+                    </div>
+                <!--</div>-->
+            </div>
+        </div>
+        <!--
+	<div class="">
+		<a class="previous-link nav-link" href="javascript:void(0)">Previous</a>
+		<a class="next-link nav-link" href="javascript:void(0)" ng-click="SgPageMgmt.saveSG()">Proceed</a>
+	</div>
+	-->
+        
+</div>
+<div id="loader" style="display: block;z-index:9999;"><img src="/assets/create/images/ajax-loader.gif" alt="Loader" /></div>
+<div id="tips" style="display: none;"><div id="closetips"></div></div>
+
+<div class="drag-popup dropzone4 popup-style">
+	<span class="popup-close-icn  dropzone4" onclick="$('.drag-popup').hide()">X</span>
+	<div class="drag-icon dropzone4">
+		<img src="/assets/img/upload-icon.png" width="82" height="70" class=" dropzone4">
+	</div>
+	<div class="drag-text dropzone4">
+		Drop your Image or Click to Add<br>
+	</div>
+</div>
+
+<div id="crop-pop" class="upload-popup popup-style" style="display: none">
+	<span class="popup-close-icn" ng-click="SgPageMgmt.closeCropPop()" >X</span>
+	<div class="upload-popup-ttl">
+		Crop the image to get your desired selection.
+	</div>
+	<div class="upload-pic">
+		<img id="cropperImg" src="{{cropImg}}" header-cropper />
+	</div>
+	<!--
+	<div class="edit-done-btn" ng-click="SgPageMgmt.uploadCroppedHeader()">
+		<span>Done</span>
+	</div>-->
+	<div style="position:fixed;left:0px;right:0px;bottom: 25px;text-align:center;z-index: 1;" ng-click="SgPageMgmt.uploadCroppedHeader()">
+		<a class="next-page-btn page-btns" style="position:relative;bottom:0px;" href="javascript:void(0)"><label>CROP</label></a>
+	</div>
+</div>
+
+<div class="popup-overlayer"></div>
+</div>
+<div include-static="'/views/front/creation/popups.html'"></div>
+
+<!--div moved by Arun Sahani-->
+<div class="search-gallery-modal widget-tollbar-popup search-gallery-page-modal" id="pop-up-uncle" style="display:none;">
+    <a class="dropdown-icon dropdown-menu ng-scope" href="javascript:void(0);" ng-click="SgPageMgmt.closeOverlay()">
+	<span class="dispalyN"><img src="/assets/create/images/cross-btn-n.png" alt="cross"></span> 
+        <span class="dispalyB"><img src="/assets/create/images/cross-btn-h.png" alt="cross"></span>
+        <div class="save-close-tooltip" style="left:-65px;width:55px;">Close</div> 
+    </a>
+    <div class="search-gallery-space">
+        <!--<div class="close-btn"><a href="javascript:void(0);" ng-click="SgPageMgmt.closeOverlay()"></a></div>-->
+        <!-- SEARCH LISTING -->
+        <div class="search-gallery-wrap">
+			<h2 style="text-align:center;" ng-show="!SgPageMgmt.selectedMediaData.length">No Selection Found!</h2>
+            <div id="mygallery">
+                <a  ng-repeat="selectedImg in SgPageMgmt.selectedMediaData">
+                    <img ng-if="selectedImg.MediaType=='Image'" src="/assets/Media/img/300/{{selectedImg.Location[0].URL}}" alt="{{selectedImg.Title}}" fallback-src="">
+                    <img  ng-if="selectedImg.MediaType=='Montage'" src="/assets/Media/img/300/{{selectedImg.thumbnail}}" alt="{{selectedImg.Title}}" fallback-src="">
+                    <img ng-if="selectedImg.MediaType=='Link'" src="/assets/Media/img/300/{{selectedImg.thumbnail}}" alt="{{selectedImg.Title}}" fallback-src="">
+			<div class="caption">
+        
+        <div><img alt="" src="/assets/img/delete-icon-blue.png" height=30 width=30 style="cursor:pointer" ng-click="SgPageMgmt.deleteUploadedImage(selectedImg,$index)"></div>
+    </div>
+                </a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="clr"></div>
+        </div>
+        <!-- /SEARCH LISTING -->
+    </div>
+</div>
+
+<!--Overlay for Filter-->
+<div class="search-gallery-modal widget-tollbar-popup widget-tollbar-popup2" id="pop-up-overlay" style="display:none;z-index:9999;">
+    <div class="search-gallery-space">
+        <div class="search-gallery-wrap">
+	<div class="clearfix"></div>
+		<div class="modal-outer">
+			<h2 align="center">Select From Branches <a href="javascript:void(0);" ng-click="SgPageMgmt.closeFilterOverlay()">&nbsp;</a></h2>
+			<div class="form-field">
+				<label>Meta-Meta-Tag</label>
+				<div class="">
+					<select ng-model="SgPageMgmt.mmt" ng-options="mmt._id as mmt.MetaMetaTagTitle for mmt in SgPageMgmt.mmts |filter:{status:1}" ng-change="SgPageMgmt.fetchmt()">
+						<option value="">Select Meta-Meta-Tag</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-field">
+				<label>Meta-Tag</label>
+				<div class="">
+					<select ng-model="SgPageMgmt.mt" ng-options="mt._id as mt.MetaTagTitle for mt in SgPageMgmt.mts |filter:{status:1}" ng-change="SgPageMgmt.fetchgt()">
+						<option value="">Select Meta-Tag</option>
+					</select>
+				</div>
+			</div>
+			<!---->
+			<div class="form-field">
+				<label>Theme</label>
+				<span style="color: black;" ng-if="loading == true">Loading...</span>
+				<div class="">
+					<select ng-model="SgPageMgmt.gt" ng-options="gt as gt.GroupTagTitle for gt in SgPageMgmt.grouptfs" ng-change="SgPageMgmt.dsbledValCheck()" >
+						<option value="">Select Theme</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-field">
+				<button id="theme-btn" value="submit" ng-disabled="SgPageMgmt.addKeywordDisabled == true" ng-click="SgPageMgmt.saveByTheme()">Add Keyword</button>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="clr"></div>
+        </div>
+      
+    </div>
+</div>
+
+
+<!--Overlay for Filter-->
+
+
+<div class="search-gallery-modal widget-tollbar-popup" id="multi-upload" style="display:none;z-index: 9999;">
+    <a class="dropdown-icon dropdown-menu ng-scope" href="javascript:void(0);" ng-click="SgPageMgmt.closemultiUploadOverlay()"> 
+	<span class="dispalyN"><img src="/assets/create/images/cross-btn-n.png" alt="cross"></span> 
+        <span class="dispalyB"><img src="/assets/create/images/cross-btn-h.png" alt="cross"></span>
+        <div class="save-close-tooltip" style="left:-65px;width:55px;">Close</div> 
+    </a>
+    <div class="search-gallery-space">
+        <!--<div class="close-btn"><a href="javascript:void(0);" ng-click="SgPageMgmt.closemultiUploadOverlay()"></a></div>-->
+        <div class="search-gallery-wrap">
+		<div style="width:auto; margin:0 auto; position:absolute; margin:0 0 -5px 5px; font-size:14px; text-align:center"></div>
+		<h1 align="center">Select Images to upload</h1>
+			<div ng-file-drop-available="dropSupported=true" ng-file-drop="SgPageMgmt.onmultiFileSelect($files);" class="drop-box" ng-show="dropSupported">
+				<div ng-show="SgPageMgmt.selectedFiles != null" style="margin-top:20px;" >
+					<div id="multi-upload-gallery" ng-repeat="media in SgPageMgmt.selectedFiles" >
+						
+						<a style="float: left; margin-left: 15px;" id="image-{{($index + 1) + '.'}}" class="thumbnail" title="I'm only in the title" href="{{SgPageMgmt.dataUrls[$index]}}">
+							
+							
+								<!--<a class="trashIcon" ng-click="SgPageMgmt.deleteUploadedImage()"><img alt="" src="/assets/img/delete-icon-blue.png" height=15 width=15></a>-->
+							
+							<img ng-if="media.type=='application/pdf'" class=""  ng-src="../assets/img/PDF.png" alt="Sample PDF 1">
+							<img ng-if="media.type=='application/vnd.openxmlformats-officedocument.wordprocessingml.document' || media.type=='application/msword'" class=""  ng-src="../assets/img/Icon-Document.jpg" alt="Sample Word 1">
+							<img ng-if="media.type=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || media.type=='application/vnd.ms-excel' || media.type=='application/vnd.oasis.opendocument.spreadsheet'" class=""  ng-src="../assets/img/excel.png" alt="Sample Excel 1">
+							<img ng-if="media.type=='image/png' || media.type=='image/jpeg' || media.type=='image/gif'" class=""  src="{{SgPageMgmt.dataUrls[$index]}}" alt="Sample Image 1">
+							<img ng-if="media.type=='application/vnd.openxmlformats-officedocument.presentationml.presentation' || media.type=='application/vnd.ms-powerpoint'" class=""  ng-src="../assets/img/ppt.png" alt="Sample PPT 1">
+								 
+
+						
+  
+   	
+							
+						</a>	
+					</div>
+					
+	
+				</div>
+		
+				
+				<div class="progress">
+					<div class="bar" style="width: {{SgPageMgmt.percentUpload}}%;"></div>
+				</div>
+			</div>
+            <div style="position:fixed;left:0px;right:0px;bottom: 125px;text-align:center;z-index: 1;">
+                <a class="next-page-btn page-btns" style="position:relative;bottom:0px;" href="javascript:void(0)">
+                    <input style="width:100%;height:auto;" type="file" id="multiUpload" accept="image/*" class="next-page-btn" ng-disabled="{{SgPageMgmt.disablebtn}}" ng-file-select="SgPageMgmt.onmultiFileSelect($files)" multiple value="Add Files">
+                </a>
+            </div>
+            <div style="position:fixed;left:0px;right:0px;bottom: 25px;text-align:center;z-index: 1;">
+                <a class="next-page-btn page-btns" style="position:relative;bottom:0px;" href="javascript:void(0)" ng-click="SgPageMgmt.uploadAll()"><label>Upload</label></a>
+            </div>
+            <!--<input type="file" style="margin-top: 25px;margin-left: 406px;" id="multiUpload" accept="image/*" class="input-file uniform_on" ng-disabled="{{SgPageMgmt.disablebtn}}" ng-file-select="SgPageMgmt.onmultiFileSelect($files)" multiple value="Add Files">-->
+            <!--<input type="button" style="margin-top: 25px;margin-left: 406px;height: 56px;line-height: 39px;width: 192px;font-size: 22px;" ng-click="SgPageMgmt.uploadAll()" class="btn btn-primary" value="Submit"></div>-->
+	<div class="clearfix"></div>
+	<div class="clr"></div>
+    </div>
+    </div>
+</div> 
+
+<div class="search-gallery-modal widget-tollbar-popup" id="video-display" style="display:none;z-index: 9999;">
+    <a class="dropdown-icon dropdown-menu ng-scope" href="javascript:void(0);" ng-click="SgPageMgmt.closeVideoOverlay()">
+	<span class="dispalyN"><img src="/assets/create/images/cross-btn-n.png" alt="cross"></span> 
+        <span class="dispalyB"><img src="/assets/create/images/cross-btn-h.png" alt="cross"></span>
+        <div class="save-close-tooltip" style="left:-65px;width:55px;">Close</div> 
+    </a>
+	<div class="search-gallery-space">
+        <!--<div class="close-btn"><a href="javascript:void(0);" ng-click="SgPageMgmt.closeVideoOverlay()"></a></div>-->
+        <!-- SEARCH LISTING -->
+        <div id="embed-video" class="search-gallery-wrap">
+			<!--<div ng-bind-html="SgPageMgmt.bindData"></div>-->
+		</div>
+	<div class="clearfix"></div>
+	<div class="clr"></div>
+    </div>
+        <!-- /SEARCH LISTING -->
+    </div>
+</div>
+<div style="z-index: 99999;" id="loader" ng-show="SgPageMgmt.loaded">
+	<div id="overlayContent">
+		<img src="../../../assets/img/ajax-loader.gif" alt="Loader">
+	</div>
+</div>
+<script type="text/javascript" src="/assets/create/js/masonry.js"></script>
+<!--<script type="text/javascript" src="/assets/create/js/scripts.js"></script>-->
+<!--<script type="text/javascript" src="js/carasdfousel.js"></script>-->
+
+	<script type="text/javascript">
+			
+			function DropDown(el) {
+				this.dd = el;
+				this.placeholder = this.dd.children('span');
+				this.opts = this.dd.find('ul.dropdown > li');
+				this.val = '';
+				this.index = -1;
+				this.initEvents();
+			}
+			DropDown.prototype = {
+				initEvents : function() {
+					var obj = this;
+
+					obj.dd.on('click', function(event){
+						$(this).toggleClass('active');
+						return false;
+					});
+
+					obj.opts.on('click',function(){
+						var opt = $(this);
+						obj.val = opt.text();
+						obj.index = opt.index();
+						obj.placeholder.text(obj.val);
+					});
+				},
+				getValue : function() {
+					return this.val;
+				},
+				getIndex : function() {
+					return this.index;
+				}
+			}
+
+			$(function() {
+				var dd = new DropDown( $('#dd') );
+				$(document).click(function() {
+					// all dropdowns
+					$('.wrapper-dropdown-2').removeClass('active');
+				});
+			});
+
+		</script>
+
+
+<script> 
+$(document).ready(function(){
+	$("#private").click(function(){
+	$(".private_text").show();
+	$(".public_text,.friendssolo_text,.friendsgroup_text").hide();
+	});
+	
+	$("#public").click(function(){
+	$(".public_text").show();
+	$(".private_text,.friendssolo_text,.friendsgroup_text").hide();
+	});
+	
+	$("#frnds").click(function(){
+	$(".friendssolo_text").show();
+	$(".private_text,.public_text,.friendsgroup_text").hide();
+	});
+	
+	$("#last").click(function(){
+	$(".friendsgroup_text").show();
+	$(".private_text,.public_text,.friendssolo_text").hide();
+	});
+	
+	$("#co-owner").click(function(){
+	$(".co-owner").show();
+	$(".member").hide();
+	});
+	
+	$("#member").click(function(){
+	$(".member").show();
+	$(".co-owner").hide();
+	});
+	
+	$("#nick").click(function(){
+	$(".nick").show();
+	$(".real").hide();
+	});
+	
+	$("#real").click(function(){
+	$(".real").show();
+	$(".nick").hide();
+	});
+	
+});
+</script>
+
+<script type="text/javascript">
+jQuery(function () {
+	jQuery(".capsule_edit").click(function () {
+		//alert("asdas");
+		$('.capsule_text').hide(); 
+		$('.capsule_text_field').show();
+	});
+});
+		
+</script>
+<style>	
+	/* Necessary CSS */
+	.slider    { overflow:hidden; position:relative; }
+	.slider ul { margin:0; padding:0; }
+	.slider li { float:left; margin:0 5px 0 0; list-style:none; }
+	/* IE6 issues */
+	.slider ul { width:100%; }
+	
+#overlayContent {
+    /*display:none;*/
+    left: 0 !important;
+    margin: 0 auto;
+    min-height: 100px;
+    outline: 0 none;
+    overflow: hidden;
+    padding: 20px;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 50%;
+    width: auto;
+}
+
+.create-section #loader {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: #000;
+    opacity: .85;
+    z-index: 99999;
+}
+/*Add Keyword Overlay */
+.search-gallery-modal.widget-tollbar-popup.widget-tollbar-popup2 { background-color:rgba(0,0,0,0.15); }
+.modal-outer { background-color: #fff; margin: 100px auto;  max-width: 400px; padding: 10px 10px 0; border-radius: 5px; min-height: 250px;}
+.modal-outer h2 { color: #232323; font-size:22px !imporatnt; text-align:center; padding:5px 0 20px; margin:0 !imporatnt; position: relative; }
+.modal-outer h2 a { position: absolute; top: 0; right: 0; width: 12px; height:12px; background: url(/assets/page/img/cross-grey.png) no-repeat left top; text-indent: -9999px;  transition: all .2s;}
+.modal-outer h2 a:hover { background-position: left -12px; }
+.modal-outer .form-field { position:relative; padding-bottom:20px; }
+.modal-outer .form-field label { display:block; margin-bottom:5px; color:#232323; font-family: 'Brandon Regular', Arial, sans-serif; }
+.modal-outer .form-field select { border:1px solid #d0d0d0; padding: 8px; display:block; width:100%; border-radius:2px; }
+.modal-outer .form-field button { display: block; min-width: 180px; border:1px solid #d0d0d0; border-radius:2px; line-height: 36px; background-color: #f5f5f5; font-family: 'Brandon Regular', Arial, sans-serif; font-size: 15px; margin: 0 auto; text-transform:uppercase; cursor: pointer; }
+.modal-outer .form-field button:hover { background-color: #d0d0d0; }
+.load-more-media { cursor: pointer;height: 38px;width: 180px;margin-top: 17px;margin-bottom: 5px; }
+.load-more-media:hover { background-color: grey; }
+.mutli-upload {max-width: 1200px;height: 680px;}
+
+.trashIcon {cursor: pointer; position: absolute; margin-left: 0px; margin-top: 0px; right: 25px; top: 68px; z-index: 1;display:block;}
+
+</style>

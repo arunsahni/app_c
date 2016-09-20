@@ -1,0 +1,85 @@
+//pushes everytime no mater whether already exists or not
+{
+	$push : {
+      "items" : {
+        "sku" : "MO001",
+        "description" : "Bluetooth mouse",
+        "quantity" : 1,
+        "unit_price" : 20.00,
+        "price" : 20.00,
+        "vat" : 20.00,
+		"otherkey" : "testing"
+      }
+    }
+}
+
+//will insert if don't exist.
+{
+	$addToSet : {
+      "items" : {
+        "sku" : "MO001",
+        "description" : "Bluetooth mouse",
+        "quantity" : 1,
+        "unit_price" : 20.00,
+        "price" : 20.00,
+        "vat" : 20.00,
+		"otherkey" : "testing"
+      }
+    }
+}
+
+The $pull operator removes all elements in the array that match a specified value.
+{
+	$pull : {
+      "items" : {
+        "sku" : "MO001",
+        "description" : "Bluetooth mouse",
+        "quantity" : 1,
+        "unit_price" : 20.00,
+        "price" : 20.00,
+        "vat" : 20.00,
+		"otherkey" : "testing"
+      }
+    }
+}
+
+The $pullAll operator removes all elements in the array that match any of the specified values.
+{
+	$pullAll : {
+		"items" : [
+			{
+				"sku" : "MO001",
+				"description" : "Bluetooth mouse",
+				"quantity" : 1,
+				"unit_price" : 20.00,
+				"price" : 20.00,
+				"vat" : 20.00
+			},{
+				"sku" : "MO001",
+				"description" : "Bluetooth mouse",
+				"quantity" : 1,
+				"unit_price" : 20.00,
+				"price" : 20.00,
+				"vat" : 20.00,
+				"otherkey" : "testing"
+			}
+		]
+	}
+}
+
+//sort an array element
+
+{
+	$push: {
+		items: {
+			$each: [],
+			$sort: { unit_price: -1 }
+		}
+	}
+}
+
+
+- $size
+- $elementMatch
+
+

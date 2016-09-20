@@ -1,0 +1,792 @@
+<style type="text/css">
+	.creation-section #content #menu-button:hover { background-color:#000; } 
+	.dropdown-menu { z-index:11; }
+	.dropdown-menu .dispalyB { display:none; }
+	.dropdown-menu:hover .dispalyB { display:block; }
+	.dropdown-menu:hover .dispalyN { display:none; }
+	.dropdown-menu:hover .save-close-tooltip { display:block; }
+	.dropdown-menu .save-close-tooltip { position:absolute; background: #000; border: 1px solid #000; color:#fff; font-family: "Brandon Light",Arial,sans-serif; left:-130px; width:115px; top:9px; padding:8px; border-radius:2px; line-height:7px; display:none; }
+	.save-close-tooltip:after, .save-close-tooltip:before { left: 100%; top: 50%;  border: solid transparent;  content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
+	.save-close-tooltip:after { border-color: rgba(0, 0, 0, 0);  border-left-color: #000;  border-width: 8px; margin-top: -8px;  }
+	.save-close-tooltip:before { border-color: rgba(0, 0, 0, 0); border-left-color: #000; border-width: 9px; margin-top: -9px; }
+</style>
+
+
+<!-- START SETTINGS -->
+<div id="menu-button" class="toggle-menu menu-left push-body">
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+</div>
+
+<div style="padding-left: 7px;font-size: 42px;top:150px;" class="circle-button"><span>A</span></div>
+<div style="padding-left: 9px;font-size: 42px;padding-top: 2px;top:200px;" class="circle-button"><span>D</span></div>
+
+<a class="dropdown-icon dropdown-menu" href="#/manage-chapters/{{LsCapsuleMgmt.capsule_id}}"> 
+	<span class="dispalyN"><img src="/assets/create/images/cross-btn-n.png" alt="cross"></span> 
+    <span class="dispalyB"><img src="/assets/create/images/cross-btn-h.png" alt="cross"></span>
+    <div class="save-close-tooltip">Save and Close</div> 
+</a>
+
+<a class="back-page-btn page-btns" data-toggle="tooltip" href="#/manage-chapters/{{LsCapsuleMgmt.capsule_id}}"><span>&lt;</span><label>Back</label></a>
+<a class="next-page-btn page-btns" data-toggle="tooltip" ng-if="LSMgmt.chapters.length" ng-click="LsCapsuleMgmt.publish()" title="{{LsCapsuleMgmt.publishTitle}}"><label>Publish Now</label><span>&gt;</span></a>
+<div id="settings" class="settings-block">
+	<div id="background"></div>
+	<div class="wrapper audience_n_inv">
+		<div class="central">
+			<!--<h2 class="page-heading">Settings</h2>-->
+			<h2 class="page-heading"><u>Audience and Invitation</u></h2>
+			<div>
+				<!--<h3>For the capsule  : {{currentCapsule.Title}}</h3>-->
+				<h3>{{currentCapsule.Title +" settings :"}}</h3>
+				<div class="launch-divider">
+				<!--<h2 class="AI"><u>Audience and Invitation</u></h2>-->
+				<div class="launch-row">
+					
+					<h3>Audience - Who is the primary user of this Capsule ?</h3>
+					<div class="radio-con-who">
+						<label>
+							<input type="radio" name="making" value="ME" checked="checked" ng-model="LsCapsuleMgmt.makingFor" ng-click="LsCapsuleMgmt.saveMakingFor('ME')"/>
+							<span>Myself</span>
+						</label>
+						
+						<label>
+							<input type="radio" name="making" value="OTHERS"  ng-model="LsCapsuleMgmt.makingFor" ng-click="LsCapsuleMgmt.saveMakingFor('OTHERS')"/>
+							<span>Others</span>
+						</label>
+						
+						<label>
+							<input type="radio" name="making" value="SUBSCRIBERS"  ng-model="LsCapsuleMgmt.makingFor" ng-click="LsCapsuleMgmt.saveMakingFor('SUBSCRIBERS')"/>
+							<span>Subscribers</span>
+						</label>
+						<div class="clear"></div>
+						
+					</div>
+					<p ng-if="LsCapsuleMgmt.makingFor == 'ME'">
+						Myself: Making for yourself. you remain both creater and owner of this module.
+					</p>
+					<p ng-if="LsCapsuleMgmt.makingFor == 'OTHERS'">
+						Others: Making it for someone else, in this mode you can transfer ownership later to someone else.
+					</p>
+					<p ng-if="LsCapsuleMgmt.makingFor == 'PUBLISH'">
+						Subscribers: Making it for subscribers,  in this mode you can transfer ownership later to subscribers.
+					</p>
+				  
+			</div>
+			
+			 <div ng-show="LsCapsuleMgmt.makingFor == 'OTHERS'">
+				<div class="launch-row members-con">
+					<h3>
+					Add Owners/Leads to this capsule
+					<!--added by arun sahani-->
+						<span class="show-members cpsltoggleSf" ng-click="LsCapsuleMgmt.toggleFriends()" ng-hide="friend_hide_Oth">Show Friends</span>
+					<!--<span class="show-members" ng-click="LsCapsuleMgmt.showFriends = !LsCapsuleMgmt.showFriends ; LsCapsuleMgmt.showGroups = false; LsCapsuleMgmt.showGroupMembers = false;">Show Friends</span>-->
+					<!--<span class="show-members"  ng-click="LsCapsuleMgmt.showGroups = !LsCapsuleMgmt.showGroups ; LsCapsuleMgmt.showFriends = false; LsCapsuleMgmt.showGroupMembers = false;">Show Groups</span>-->
+					</h3> 
+					<div class="add-member add-member-rw">
+						<form name="invite">
+							<ul class="add-member-ul">
+								<li>
+									<input ng-model="LsCapsuleMgmt.invitee.name" type="text" name="name" placeholder="Enter name.." class="first" required/>	
+								</li>
+								<li>
+									<input ng-model="LsCapsuleMgmt.invitee.email" type="email" name="email" placeholder="Enter email.." required />
+								</li>
+								<li>
+									<select class="slectinvite" ng-model="LsCapsuleMgmt.invitee.relation" name="relation" ng-model="friend.relation" required>
+										<option value="">Please select</option>
+										<option ng-repeat="relation in relations.Values" value="{{relation.valueTitle}}~{{relation._id}}">{{relation.valueTitle}}</option>
+									</select>
+								</li>
+							</ul>
+							
+							<div class="bottom-btn-rw">
+								<input type="submit" value="Add" id="invite" ng-click="LsCapsuleMgmt.addInvitee(invite.$invalid)"/>
+							</div>
+						</form>
+						<div class="clear"></div>
+					</div>
+					<!-- existing friends-->
+					<div id="friends_Oth" class="friends box-shadow" style="position: absolute;width: 100%;top: 0;left: 0;background: #1f1f20;display: none;height: 520px;z-index: 9999">
+						<h3>My Friends :</h3>
+						<a href="javascript:void(0)" ng-click="LsCapsuleMgmt.toggleFriends()" style="float: right;margin-top: -40px; color: white;">Close</a>
+						<div class="nofrnd" ng-show="friends.length == 0">
+							<span> You have no friends. <a href="#/manage-friends" target="_blank">CLICK HERE </a>to add some friends</span>
+						</div>
+						
+						<dir-pagination-controls on-page-change="LsCapsuleMgmt.getAllFriends(newPageNumber)"  pagination-id="frnd"></dir-pagination-controls>
+						<div class="friend friend-box" dir-paginate="frnd in friends  | itemsPerPage: LsCapsuleMgmt.perPageFriends"  current-page="LsCapsuleMgmt.pageNoFriends" total-items="LsCapsuleMgmt.totalFrnds" pagination-id="frnd" >
+							<a class="add-member-icon" href="javascript:void(0)" ng-click="LsCapsuleMgmt.inviteMember(frnd,'friends')"  data-toggle="tooltip" title="Add to members"><img src="/assets/create/images/plus-icon.png" /></a>
+							<div class="photo" data-toggle="tooltip" title="{{frnd.Friend.Email}}"><img width="45" height="45" style="border-radius: 50%;" alt="" ng-src="/assets/users/default.png" src="/assets/users/default.png"></div>
+							<div class="member-info2">
+								<span class="name" data-toggle="tooltip" title="{{frnd.Friend.Name}}">{{frnd.Friend.Name}}</span>
+								<span class="relationship" data-toggle="tooltip" title="{{frnd.Friend.Relation}}">{{frnd.Friend.Relation}}</span>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<!-- existing friends End-->
+				</div>
+				<div class="launch-row members-con">
+					<h3>My Groups :
+						<span class="show-members cpsltoggleSg"  ng-click="LsCapsuleMgmt.toggleGroupsOth()" ng-hide="group_hide_Oth">Add New Group</span>
+					</h3>
+					<!-- existing groups listing-->
+						
+					<dir-pagination-controls on-page-change="LsCapsuleMgmt.getAllGroups(newPageNumber)"  pagination-id="groupsPagination"></dir-pagination-controls>
+					<div class="group-member-heading" dir-paginate="group in LsCapsuleMgmt.groups  |  itemsPerPage: LsCapsuleMgmt.perPageGroups"  total-items="LsCapsuleMgmt.totalGroups" current-page="LsCapsuleMgmt.pageNoGroups"  pagination-id="groupsPagination">
+						<h2>{{group.Title}}</h2>
+						<h3 class="g-member-list">
+							<a ng-click="LsCapsuleMgmt.getAllMembers(group._id, $parent.$index)" style="cursor: pointer">View</a>
+						</h3>
+						<h3 class="" style="margin-right: 25px;">
+							<a ng-click="LSGroupMgmt.addAllMembersofGroupToCapsule(group._id)" style="cursor: pointer">Add</a>
+						</h3>
+					</div>
+					
+					<!-- existing groups End-->
+					<!--For Group on platform by arun sahaniz-->
+					<div id="groups_Oth" style="position: absolute;width: 100%;top: 0;left: 0;background: #1f1f20;display: none;z-index: 9999">
+						<form name="group">
+						<div class="setting-heading">
+							<h3 class="">Add Group on platform :</h3>
+								<a class="closeOverlay" href="javascript:void(0)" ng-click="LsCapsuleMgmt.toggleGroupsOth()" style="float: right;margin-top: -40px; color: white;">Close</a>
+						    <!--<h2 class="friend-label"><a href="javascript:void(0)">Show Friends</a></h2>-->
+						</div>
+						<div class="member-form box-shadow">
+							<div class="member-row member-input-row">
+							<div class="member-col">
+								<input type="text" class="first" ng-model="LSGroupMgmt.group.title" placeholder="Enter name.." name="name" required>
+							</div>
+						    <!--    <div class="member-col">-->
+						    <!--		<input type="text" placeholder="Enter email.." name="email">-->
+						    <!--	</div>-->
+							<div class="member-col browse-file-btn">
+								<span>
+							    Choose Icon
+								<input type="file" style="cursor: pointer;" file-model="LSGroupMgmt.myFile" required>
+							    </span>
+							</div>
+						    </div>
+						    <div class="member-row member-btn-rw">
+								<button ng-click="LSGroupMgmt.addGroup(LSGroupMgmt.group.$invalid, $index)">Add Group</button>
+						    </div>
+						    <div class="member-row member-btn-rw">
+							<!--<p class="m-notification"><em>Choose if they are a co-owner or a member</em></p>-->
+						    </div>
+								<div class="setting-heading">
+									<!--<h2 class="member-label">Add Groups </h2>-->
+									<!--<h2 class="friend-label"><a href="javascript:void(0)">Show Friends</a></h2>-->
+								</div>
+						</div>
+						</form>
+					</div>
+					
+					<!--members under selected group section start-->
+					<div id="group_members_Oth" class="friends box-shadow" ng-show="LsCapsuleMgmt.showGroupMembers" style="position: absolute;width: 100%;top: 0;left: 0;background: #1f1f20;display: none;z-index: 9999">
+						<div class="setting-heading">
+							<h3 class="member-label">Add member to the Group :</h3>
+						</div>
+						
+						<a href="javascript:void(0)" ng-click="LsCapsuleMgmt.getAllMembers(group._id, $parent.$index)" style="float: right;margin-top: -40px; color: white;">Close</a>
+						<div class="member-form">
+							<form name="membr">
+								<div class="member-row member-input-row member-input-row2">
+									<div class="member-col">
+										<input ng-model="LSGroupMgmt.member.name" type="text" class="first" placeholder="Enter name.." name="name1" required>
+									</div>
+									<div class="member-col">
+										<input ng-model="LSGroupMgmt.member.email" type="email" placeholder="Enter email.." name="email1" required>
+									</div>
+									<div class="member-col">
+										<div class="select-wrapper">
+											<select name="relation" ng-model="LSGroupMgmt.member.relation" required>
+												<option value="">Please select</option>
+												<option ng-repeat="relation in relations.Values" value="{{relation.valueTitle}}~{{relation._id}}">{{relation.valueTitle}}</option>
+											</select>
+										</div> 
+									</div>
+								</div>
+								<div class="member-row member-btn-rw">
+									<button ng-click="LSGroupMgmt.addMember(LSGroupMgmt.member,membr.$invalid,'Others')">Add member</button>
+								</div>
+								<!--<div class="member-row member-btn-rw">
+									<p class="m-notification"><em>Choose if they are a co-owner or a member</em></p>
+								</div>-->
+							</form>
+						</div>
+						<div class="clear"></div>
+						<h3>Group Members :</h3>
+						
+						<div class="nofrnd" ng-if="LsCapsuleMgmt.groupMembers.length == 0">
+							<span> There are no members in this group. </span>
+						</div>
+						<dir-pagination-controls pagination-id="groupMembers"></dir-pagination-controls>
+						<div class="friend friend-box" dir-paginate="frnd in LsCapsuleMgmt.groupMembers|  itemsPerPage: 20" pagination-id="groupMembers" current-page="LsCapsuleMgmt.pageNoMembers">
+							<a class="add-member-icon" href="javascript:void(0)" ng-click="LsCapsuleMgmt.inviteMember(frnd,'group')"  data-toggle="tooltip" title="Add to invited members"><img src="/assets/create/images/plus-icon.png" /></a>
+							<div class="photo" data-toggle="tooltip" title="{{frnd.MemberEmail}}"><img width="45" height="45" style="border-radius: 50%;" alt="" ng-src="/assets/users/default.png" src="/assets/users/default.png"></div>
+							<div class="member-info2">
+								<span class="name" data-toggle="tooltip" title="{{frnd.MemberName}}">{{frnd.MemberName}}</span>
+								<span class="relationship" data-toggle="tooltip" title="{{frnd.MemberRelation}}">{{frnd.MemberRelation}}</span>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					
+				</div>
+				<div class="launch-row members-con">
+					<h3>Capsule Owners/Leads :</h3>
+					<div class="nofrnd" ng-show="currentCapsule.LaunchSettings.Invitees.length == 0">
+							<span> No Owners/Leads for this Capsule..</span>
+					</div>
+					<div ng-if="currentCapsule.LaunchSettings.Invitees.length != 0" class="friends ">
+						<dir-pagination-controls  pagination-id="invitees"></dir-pagination-controls>
+						<div class="friend friend-box" dir-paginate="invitee in currentCapsule.LaunchSettings.Invitees | itemsPerPage: 20"  current-page="LsCapsuleMgmt.pageNoInvitees" pagination-id="invitees" >
+							<a class="add-member-icon" href="javascript:void(0)" ng-click="LsCapsuleMgmt.removeInvitee(invitee , chapterData._id)"  data-toggle="tooltip" title="Delete member"><img src="/assets/create/images/close-member-icn.png" /></a>
+							<div class="photo" data-toggle="tooltip" title=""><img width="45" height="45" style="border-radius: 50%;" alt="" ng-src="{{invitee.UserPic}}" src="/assets/users/default.png"></div>
+							<div class="member-info2">
+								<span class="name" data-toggle="tooltip" title="{{invitee.UserName}}">{{invitee.UserName}}</span>
+								<span class="relationship" data-toggle="tooltip" title="{{invitee.UserEmail}}">{{invitee.UserEmail}}</span>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>		
+				</div>	
+				<!--All invitee section Start-->
+				<!--<div ng-if="currentCapsule.LaunchSettings.Invitees.length != 0" class="friends add-frm-frnd add-frm-frnd2  no-padd-tb">
+					<h3>Added Primary Users (They will get their independent copy of this capsule after publish) :</h3>
+					
+					<dir-pagination-controls  pagination-id="invitees"></dir-pagination-controls>
+					<div class="friend-list-rw">
+						<ul>
+							<li dir-paginate="invitee in currentCapsule.LaunchSettings.Invitees | itemsPerPage: 20" current-page="LsCapsuleMgmt.pageNoInvitees"  pagination-id="invitees" >
+								<div class="member-box">
+									<div class="member-pic" data-toggle="tooltip" title=""><img ng-src="{{invitee.UserPic}}"></div>
+									<div class="member-info">
+										<p data-toggle="tooltip" title="{{invitee.UserName}}">{{invitee.UserName}}</p>
+										<p data-toggle="tooltip" title="{{invitee.UserEmail}}">{{invitee.UserEmail}}</p>
+										<div  data-toggle="tooltip" title="Delete member" class="close-icn" href="javascript:void(0)" ng-click="LsCapsuleMgmt.removeInvitee(invitee , chapterData._id)">
+											<img src="/assets/create/images/close-member-icn.png" />
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="clear"></div>
+				</div>-->
+				<!--All invitee section ends-->
+				</div>
+			<div ng-repeat = "chapterData in LSMgmt.chapters" id="top{{$index}}">
+				
+					<!--<h3>For the Chapter : {{chapterData.Title}} <span style="text-decoration: none;" ng-if="chapterData.Title == 'Untitled Chapter'">{{" "+chapterData.Order}}</span></h3>-->
+					
+					
+						<!--<h2 class="AI"><u>Audience and Invitation</u></h2>-->
+						<div class="launch-row chapter-margn">
+							<h3>Chapter : {{chapterData.Title}} <span style="text-decoration: none;" ng-if="chapterData.Title == 'Untitled Chapter'">{{" "+chapterData.Order}}</span>{{" settings"}}</h3>
+							<div ng-if="LSMgmt.makingFor[$index] == 'ME'">
+						
+								<h3>Invitations - Who do I want to respond to this Chapter?<!--{{LSMgmt.participation[$index]}}--></h3>
+								<div class="radio-con-who  radio-con-who2">
+									<label>
+										<input type="radio" name="who{{$index}}" value="private" ng-click="LSMgmt.saveParticipation($index, 'private')" ng-model="LSMgmt.participation[$index]" />
+										<span>Just Me</span>
+									</label>
+									<label>
+										<input type="radio" name="who{{$index}}" value="friend-solo" ng-click="LSMgmt.saveParticipation($index, 'friend-solo')" ng-model="LSMgmt.participation[$index]" />
+										<span>My Friends as Individuals</span>
+									</label>
+									<label class="last">
+										<input type="radio" name="who{{$index}}" value="friend-group" ng-click="LSMgmt.saveParticipation($index, 'friend-group')" ng-model="LSMgmt.participation[$index]" />
+										<span>My Friends as a Group</span>
+									</label>
+									<label>
+										<input type="radio" name="who{{$index}}" value="public" ng-click="LSMgmt.saveParticipation($index, 'public')" ng-model="LSMgmt.participation[$index]" />
+										<span>One & All</span>
+									</label>
+									<div class="clear"></div>
+								</div>
+						
+								<p ng-if="LSMgmt.participation == 'private'">
+									Just Me: This space will be reserved only for you.
+								</p>
+								
+								<p ng-if="LSMgmt.participation == 'friend-solo'">
+									My Friends as Individuals: Multiple friends will be asked to answer but they WON'T be able to see each other's answers.
+								</p>
+								
+								<p ng-if="LSMgmt.participation == 'friend-group'">
+									My Friends as a Group:Multiple friends will be asked to answer and they WILL be able to see each other's answers.
+								</p>
+								
+								<p ng-if="LSMgmt.participation == 'public'">
+									One & All: Any registered user on the platform, whether invited by you or not, will be able to participate
+								</p>
+						
+							</div>
+							<div ng-if="LSMgmt.makingFor[$index] != 'ME'">
+						
+								<h3>Invitations - Who do I recommend to respond to this Chapter?<!--{{LSMgmt.participation[$index]}}--></h3>
+								<div class="radio-con-who  radio-con-who2">
+									<label>
+										<input type="radio" name="who{{$index}}" value="private" ng-click="LSMgmt.saveParticipation($index, 'private')" ng-model="LSMgmt.participation[$index]" />
+										<span>Just User</span>
+									</label>
+									<label>
+										<input type="radio" name="who{{$index}}" value="friend-solo" ng-click="LSMgmt.saveParticipation($index, 'friend-solo')" ng-model="LSMgmt.participation[$index]" />
+										<span>User's Friends as Individuals</span>
+									</label>
+									<label class="last">
+										<input type="radio" name="who{{$index}}" value="friend-group" ng-click="LSMgmt.saveParticipation($index, 'friend-group')" ng-model="LSMgmt.participation[$index]" />
+										<span>User's Friends as a Group</span>
+									</label>
+									<label>
+										<input type="radio" name="who{{$index}}" value="public" ng-click="LSMgmt.saveParticipation($index, 'public')" ng-model="LSMgmt.participation[$index]" />
+										<span>One & All</span>
+									</label>
+									<div class="clear"></div>
+								</div>
+						
+								<p ng-if="LSMgmt.participation[$index] == 'private'">
+									Just User: This space will be reserved only for user.
+								</p>
+								
+								<p ng-if="LSMgmt.participation[$index] == 'friend-solo'">
+									User's Friends as Individuals: Multiple friends will be asked to answer but they WON'T be able to see each other's answers.
+								</p>
+								
+								<p ng-if="LSMgmt.participation[$index] == 'friend-group'">
+									User's Friends as a Group:Multiple friends will be asked to answer and they WILL be able to see each other's answers.
+								</p>
+								
+								<p ng-if="LSMgmt.participation[$index] == 'public'">
+									One & All: Any registered user on the platform, whether invited by user or not, will be able to participate
+								</p>
+						
+							</div>
+						</div>
+						
+						<div ng-show="LSMgmt.participation[$index] != 'private' && LSMgmt.makingFor[$index] == 'ME'" >
+								<div class="launch-row members-con">
+								<h3>
+									Add members to this chapter
+									<span class="show-members" ng-click="LSMgmt.toggleFriends($index)" ng-hide="LSMgmt.friend_hide[$index]">Show Friends</span>
+								</h3>
+								<div class="add-member add-member-rw" >
+									<form name="invite{{$index}}">
+										<ul class="add-member-ul">
+											<li>
+												<input id="{{$index}}" ng-model="LSMgmt.invitee[$index].name" type="text" name="name" placeholder="Enter name.." class="first" required auto-complete-members />	
+											</li>
+											<li>
+												<input ng-model="LSMgmt.invitee[$index].email" type="email" name="email" placeholder="Enter email.." required />
+											</li>
+											<li>
+												<select ng-model="LSMgmt.invitee[$index].relation" name="relation" required>
+													<option value="">Please select</option>
+													<option ng-repeat="relation in relations.Values" value="{{relation.valueTitle}}~{{relation._id}}">{{relation.valueTitle}}</option>
+												</select>
+											</li>
+										</ul>
+										
+										<div class="bottom-btn-rw">
+											<input type="submit" value="Invite" id="invite" ng-click="LSMgmt.addInvitee(invite{{$index}}.$invalid,$index)"/>
+										</div>
+									</form>
+									<div class="clear"></div>
+								</div>	
+							
+								<div id="friends{{$index}}" class="friends box-shadow" style="position: absolute;width: 100%;top: 0;left: 0;background: #1f1f20;display: none;z-index: 9999">
+									<h3>My Friends :</h3>
+									<a href="javascript:void(0)" ng-click="LSMgmt.toggleFriends($index)" style="float: right;margin-top: -40px; color: white;">Close</a>
+									<div class="nofrnd" ng-show="friends[chapterData._id].length == 0">
+										<span> You have no friends. <a href="#/manage-friends" target="_blank">CLICK HERE </a>to add some friends</span>
+									</div>
+									
+									<dir-pagination-controls on-page-change="LSMgmt.getFriendsIndividually(newPageNumber ,chapterData._id)"  pagination-id="'frnd'+chapterData._id"></dir-pagination-controls>
+									<div class="friend friend-box" dir-paginate="frnd in friends[chapterData._id]  | itemsPerPage: LSMgmt.perPageFriends"  current-page="LSMgmt.pageNoFrnd['f'+chapterData._id]" total-items="LSMgmt.totalFrnds" pagination-id="'frnd'+chapterData._id" >
+										<a class="add-member-icon" href="javascript:void(0)" ng-click="LSMgmt.inviteMember(frnd, chapterData._id,$parent.$index,'friends',$index)"  data-toggle="tooltip" title="Add to members"><img src="/assets/create/images/plus-icon.png" /></a>
+										<div class="photo" data-toggle="tooltip" title="{{frnd.Friend.Email}}"><img width="45" height="45" style="border-radius: 50%;" alt="" ng-src="/assets/users/default.png" src="/assets/users/default.png"></div>
+										<div class="member-info2">
+											<span class="name" data-toggle="tooltip" title="{{frnd.Friend.Name}}">{{frnd.Friend.Name}}</span>
+											<span class="relationship" data-toggle="tooltip" title="{{frnd.Friend.Relation}}">{{frnd.Friend.Relation}}</span>
+										</div>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+							<div class="launch-row members-con">
+								<h3>My Groups :
+									<span class="show-members"  ng-click="LSGroupMgmt.toggleGroups($index)" ng-hide="LSGroupMgmt.friend_group_hide[$index]">Add New Group</span>
+								</h3>
+								<!--<a class="closeOverlay1" href="javascript:void(0)" ng-click="LSMgmt.toggleGroups($index)" style="float: right;margin-top: -40px; color: white;">Close</a>-->
+								<div ng-show="LSMgmt.groups[chapterData._id] == 0">
+									Opps! you haven't created any group.Click on the button Add New group.
+								</div>
+								<dir-pagination-controls  on-page-change="LSMgmt.getGroupsSpecific(newPageNumber , chapterData._id)"  pagination-id="'g'+chapterData._id"></dir-pagination-controls>
+								<div class="group-member-block margn-btm-0" >
+									
+									<div class="group-member-heading" dir-paginate="group in LSMgmt.groups[chapterData._id]  |  itemsPerPage: LSMgmt.perPageGroups"  total-items="LSMgmt.totalGroups" current-page="LSMgmt.pageNoGroups['g'+chapterData._id]"  pagination-id="'g'+chapterData._id">
+										<h2>{{group.Title}}</h2>
+										
+										<h3 class="g-member-list">
+											<a ng-click="LSMgmt.getAllMembers(group._id, $parent.$index , chapterData._id, $index)" style="cursor: pointer">View</a>
+										</h3>
+										<h3 class="" style="margin-right: 25px;">
+											<a ng-click="LSGroupMgmt.addAllMembersofGroup(group._id,chapterData._id)" style="cursor: pointer">Add</a>
+										</h3>
+									</div>
+								</div>
+								
+								<!--For Group on platform by arun sahani-->
+								<div id="groups{{$index}}" class="box-shadow" style="position: absolute;width: 100%;top: 0;left: 0;background: #1f1f20;display: none;z-index: 9999">
+									<form name="group">
+									<div class="setting-heading">
+										<h3 class="">Add Group on platform :</h3>
+											<a class="closeOverlay1" href="javascript:void(0)" ng-click="LSGroupMgmt.toggleGroups($index)" style="float: right;margin-top: -40px; color: white;">Close</a>	
+										
+									    <!--<h2 class="friend-label"><a href="javascript:void(0)">Show Friends</a></h2>-->
+									</div>
+									<div class="member-form">
+										<div class="member-row member-input-row">
+										<div class="member-col">
+											<input type="text" class="first" ng-model="LSGroupMgmt.group.title" placeholder="Enter name.." name="name" required>
+										</div>
+									    <!--    <div class="member-col">-->
+									    <!--		<input type="text" placeholder="Enter email.." name="email">-->
+									    <!--	</div>-->
+										<div class="member-col browse-file-btn">
+											<span>
+										    Choose Icon
+											<input type="file" style="cursor: pointer;" file-model="LSGroupMgmt.myFile" required>
+										    </span>
+										</div>
+									    </div>
+									    <div class="member-row member-btn-rw">
+											<button ng-click="LSGroupMgmt.addGroup(LSGroupMgmt.group.$invalid, $index)">Add Group</button>
+									    </div>
+									    <div class="member-row member-btn-rw">
+										<!--<p class="m-notification"><em>Choose if they are a co-owner or a member</em></p>-->
+									    </div>
+											<div class="setting-heading">
+												<!--<h2 class="member-label">Add Groups </h2>-->
+												<!--<h2 class="friend-label"><a href="javascript:void(0)">Show Friends</a></h2>-->
+											</div>
+									</div>
+									</form>
+								</div>
+									
+								<!--members under selected group section start-->
+								<div id="group_members{{$index}}" class="friends box-shadow" ng-show="LSMgmt.showGroupMembers[$index]" style="position: absolute;width: 100%;top: 0;left: 0;background: #1f1f20;display: none;z-index: 9999">
+									<div class="setting-heading">
+										<h3 class="member-label">Add member to the Group :</h3>
+									</div>
+									<a href="javascript:void(0)" ng-click="LSMgmt.getAllMembers(group._id, $index , chapterData._id, $index)" style="float: right;margin-top: -40px; color: white;">Close</a>
+									<div class="member-form">
+										<form name="membr">
+											<div class="member-row member-input-row member-input-row2">
+												<div class="member-col">
+													<input ng-model="LSGroupMgmt.member.name" type="text" class="first" placeholder="Enter name.." name="name1" required>
+												</div>
+												<div class="member-col">
+													<input ng-model="LSGroupMgmt.member.email" type="email" placeholder="Enter email.." name="email1" required>
+												</div>
+												<div class="member-col">
+													<div class="select-wrapper">
+														<select name="relation" ng-model="LSGroupMgmt.member.relation" required>
+															<option value="">Please select</option>
+															<option ng-repeat="relation in relations.Values" value="{{relation.valueTitle}}~{{relation._id}}">{{relation.valueTitle}}</option>
+														</select>
+													</div> 
+												</div>
+											</div>
+											<div class="member-row member-btn-rw">
+												<button ng-click="LSGroupMgmt.addMember(LSGroupMgmt.member,membr.$invalid,'mySelf',chapterData._id)">Add member</button>
+											</div>
+											<!--<div class="member-row member-btn-rw">
+												<p class="m-notification"><em>Choose if they are a co-owner or a member</em></p>
+											</div>-->
+										</form>
+									</div>
+									<div class="clear"></div>
+									<h3>Group Members :</h3>
+									
+									<div class="nofrnd" ng-if="LSMgmt.groupMembers.length == 0">
+										<span> There are no members in this group. </span>
+									</div>
+									<dir-pagination-controls pagination-id="'m'+chapterData._id"></dir-pagination-controls>
+									
+									<div class="friend friend-box" dir-paginate="frnd in LSMgmt.groupMembers|  itemsPerPage: 20" pagination-id="'m'+chapterData._id" current-page="LSMgmt.pageNoMembers['m'+chapterData._id]">
+										<a class="add-member-icon" href="javascript:void(0)" ng-click="LSMgmt.inviteMember(frnd, chapterData._id, $parent.$index,'group',$index)"  data-toggle="tooltip" title="Add to invited members"><img src="/assets/create/images/plus-icon.png" /></a>
+										<div class="photo" data-toggle="tooltip" title="{{frnd.MemberEmail}}"><img width="45" height="45" style="border-radius: 50%;" alt="" ng-src="/assets/users/default.png" src="/assets/users/default.png"></div>
+										<div class="member-info2">
+											<span class="name" data-toggle="tooltip" title="{{frnd.MemberName}}">{{frnd.MemberName}}</span>
+											<span class="relationship" data-toggle="tooltip" title="{{frnd.MemberRelation}}">{{frnd.MemberRelation}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+							<!--All invitee section Start-->
+							<div id="members">
+								<h3>Chapter Members :</h3>
+								<div class="nofrnd" ng-if="chapterData.LaunchSettings.Invitees.length == 0">
+									<span> There are no members. </span>
+								</div>
+								<dir-pagination-controls  pagination-id="'chapterData._id'+chapterData._id"></dir-pagination-controls>
+								<div class="friend-list-rw">
+									<ul>
+										<li dir-paginate="invitee in chapterData.LaunchSettings.Invitees | itemsPerPage: 20" current-page="LSMgmt.pageNoInvitee['c'+chapterData._id]"  pagination-id="'chapterData._id'+chapterData._id" >
+											<div class="member-box">
+												<div class="member-pic" data-toggle="tooltip" title=""><img ng-src="{{invitee.UserPic}}"></div>
+												<div class="member-info" >
+													<p style="font-family: 'Brandon Light', Arial, sans-serif;font-size: 15px;" data-toggle="tooltip" title="{{invitee.UserName}}">{{invitee.UserName}}</p>
+													<p style="font-family: 'Brandon Light', Arial, sans-serif;font-size: 15px;" data-toggle="tooltip" title="{{invitee.UserEmail}}">{{invitee.UserEmail}}</p>
+													<div  data-toggle="tooltip" title="Delete member" class="close-icn" href="javascript:void(0)" ng-click="LSMgmt.removeInvitee(invitee , chapterData._id)">
+														<img src="/assets/create/images/close-member-icn.png" />
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<div class="clear"></div>
+							</div>
+							
+							<!--</div>-->
+							<!--All invitee section end-->
+							<!-- END INVITE FRIENDS -->
+						</div>
+						
+						<div class="launch-row open-group-rw  margn-btm-0" ng-show="LSMgmt.participation[$index] == 'friend-group' && LSMgmt.makingFor[$index] == 'ME'">
+							<h3>Scheduling</h3>
+							<div class="clear"></div>
+							<div >
+								<label class="groupmode" ng-click="LSMgmt.chgGroupMode($index,'first','percentage')">
+									<!--<input type="radio" name="making" value="ME" checked="checked" ng-model="LsCapsuleMgmt.makingFor" ng-click="LsCapsuleMgmt.saveMakingFor('ME')"/>-->
+									<input  class="groupmode"  type="radio"  value="percentage" ng-model="groupSlider.name"  >
+									<h3>Open group mode after <span id="response"><span>{{LSMgmt.sliderval}}</span>%</span> responds</h3>
+								</label>
+								<!--<div  ng-if="LSMgmt.groupMode== true">
+									<div ng-model="LSMgmt.sliderval" id="response-slider" class="response-sliders" slider options="options"></div>
+								</div>-->
+									
+								<!--<div id="response-slider" class="response-sliders" ng-model="sliderval"></div>-->
+								<div>
+									<span ng-if="LSMgmt.groupMode== true" ng-model="LSMgmt.sliderval" id="response-slider" class="response-sliders" slider options="options"></span>
+									<span ng-if="LSMgmt.groupMode== false" ng-model="LSMgmt.sliderval1" id="response-slider" class="response-sliders" slider options="options1"></span>
+								</div>
+								
+								<label class="groupmode"  ng-click="LSMgmt.chgGroupMode($index,'second','days')">
+									<input type="radio" value="days" ng-model="groupSlider.name">
+									<h3 class="days" style="margin-top: 20px">Group mode will open <span id="response">{{LSMgmt.sliderval1}} </span> days after launch</h3>
+								</label>
+							</div>
+						</div>
+					</div>
+					
+			 
+				
+				<div class="clear"></div>
+				<!--
+				<div class="launch-btm-btns">
+					<input type="submit" name="save" value="Save" class="save-btn"  ng-click="LSMgmt.saveSetting($index , 'save')" />
+					<input type="submit" name="save" value="Save & Exit" id="save" ng-click="LSMgmt.saveSetting($index , 'saveNexit')" class="save-btn" />
+				</div>
+				-->
+			
+		</div>
+				
+		 </div>  
+			<div class="clear"></div>
+			<!--
+			<div class="launch-btm-btns">
+				<input type="submit" name="save" value="Save" id="save" class="save-btn" ng-click="LsCapsuleMgmt.saveSettings('save')"/>
+				<input type="submit" name="save" value="Save & Exit" id="saveNexit" class="save-btn" ng-click="LsCapsuleMgmt.saveSettings('saveNexit')"/>
+			</div>
+			-->
+			
+			</div>
+			
+	</div>
+<!-- END SETTINGS -->
+
+<!--for design -->
+
+	<div id="background"></div>
+	<div class="wrapper design_n_exp">
+		<a id="scrollHere"></a>
+		<div class="central">
+			<!--<h2 class="page-heading">Settings</h2>-->
+			<h2 class="DE"><u>Design & Experience</u></h2>
+			<div>
+				<!--<h3>For the capsule  : {{currentCapsule.Title}}</h3>-->
+				<h3>{{currentCapsule.Title +" settings :"}}</h3>
+				<div class="launch-divider">
+					<div>
+						<!--<h2 class="DE"><u>Design & Experience</u></h2>-->
+						
+						<h3>
+						Finishing touches
+						<span class="cover">How your cover image will look</span>
+						</h3>
+						
+						<div class="finishing-touches">
+							<div class="browse-file-box">
+								<div class="custom-browse-btn">
+									<input type="file" file-model="myFile" style="cursor: pointer;" accept="image/*" ng-file-select="LsCapsuleMgmt.uploadCover()" value="Upload" />
+									<span>Browse File</span>
+								</div>
+							</div>
+							<div class="browse-btn-ttl">
+								<input type="text" ng-model="LsCapsuleMgmt.newTitle" name="title" placeholder="Add title" ng-blur="LsCapsuleMgmt.saveSettings('save')"/>
+							</div>
+							<div class="browse-pic-box" ng-if="LsCapsuleMgmt.newCover ">
+								<div class="browse-pic-box-inr">
+									<img ng-src="{{LsCapsuleMgmt.newCover}}" />
+								</div>
+							</div>
+						</div>
+					</div>
+				<div class="clear" style="margin-bottom: 50px"></div>	
+				<div ng-repeat = "chapterData in LSMgmt.chapters" id="top{{$index}}" >
+				
+					<!--<h3>For the Chapter : {{chapterData.Title}} <span style="text-decoration: none;" ng-if="chapterData.Title == 'Untitled Chapter'">{{" "+chapterData.Order}}</span></h3>-->
+					
+					
+							<!-- END INVITE FRIENDS -->
+					
+						
+						<div class="launch-row chapter-margn-desg">
+							<h3>Chapter : {{chapterData.Title}} <span style="text-decoration: none;" ng-if="chapterData.Title == 'Untitled Chapter'">{{" "+chapterData.Order}}</span>{{" settings "}}</h3>
+							<!--<h2 class="DE"><u>Design & Experience</u></h2>-->
+							<h3 class="privacy">Privacy Options</h3>
+							<div class="radio-con-privacy">
+							<label class="first" ng-click="LSMgmt.saveSetting($index , 'save')">
+							<input type="radio" name="realnames{{$index}}" value="realnames" ng-model="LSMgmt.namingConvention[$index]" />
+							<span>Real Names</span>
+							</label>
+							<label ng-click="LSMgmt.saveSetting($index , 'save')">
+							<input type="radio" name="nicknames{{$index}}" value="nicknames"  ng-model="LSMgmt.namingConvention[$index]"/>
+							<span>Nick names</span>
+							</label>
+							<div class="clear"></div>
+							<span ng-if="LSMgmt.namingConvention == 'realnames'">Real names: Have a users real name appear</span>
+							<span ng-if="LSMgmt.namingConvention == 'nicknames'">Nick names: Have a users nick name appear</span>
+							</div>
+							
+							<h3>
+							Finishing touches
+							<span class="cover">How your cover image will look</span>
+							</h3>
+							
+							<div class="finishing-touches">
+								<div class="browse-file-box">
+									<div class="custom-browse-btn">
+										<input type="file" file-model="myFile{{$index}}" style="cursor: pointer;" accept="image/*" ng-file-select="LSMgmt.uploadCover($index , myFile{{$index}})" value="Upload" />
+										<span>Browse File</span>
+									</div>
+								</div>
+								<div class="browse-btn-ttl">
+									<input type="text" name="title" placeholder="Add title" ng-model="LSMgmt.newTitle[$index]" ng-blur="LSMgmt.saveSetting($index , 'save')"/>
+								</div>
+								<div class="browse-pic-box" ng-if="LSMgmt.newCover[$index] != ''  ">
+									<div class="browse-pic-box-inr">
+										<img ng-src="{{LSMgmt.newCover[$index]}}" />
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				
+				</div>
+						
+				</div>
+				
+			</div>
+		
+			</div>
+	</div>
+	</div>
+</div>
+</div>
+
+
+<style>
+    p {
+        cursor: default;
+    }
+	/*.add-member.ng-hide-add{*/
+	/*	-webkit-animation: fadeOut  0.5s ;*/
+	/*	animation: fadeIn 0.5s;*/
+	/*}*/
+	.add-member.ng-hide-remove{
+		-webkit-animation: fadeIn  0.5s ;
+		animation: fadeOut 0.5s;
+	}
+	/*.add-frm-frnd.ng-hide-add{*/
+	/*	-webkit-animation: fadeOut  0.5s ;*/
+	/*	animation: fadeIn 0.5s;*/
+	/*}*/
+	.add-frm-frnd.ng-hide-remove{
+		-webkit-animation: fadeIn  0.5s;
+		animation: fadeOut 0.5s;
+	}
+	.nofrnd{
+		background-color: #252526;
+		border: 1px solid #353535;
+		padding: 10px;
+	}
+	.nofrnd a{
+		text-decoration: none;
+		color: #fff;
+	}
+	.ui-menu-item {
+			color: #fff;
+		}
+		
+		.ui-menu-item.ui-state-focus {
+			color: #fff;
+		}
+	/*added by arunsahani 3032016*/
+	.chapter-margn {
+		margin-top: 60px;
+	}
+	.chapter-margn-desg {
+		margin-top: 120px;
+	}
+	div.chapter-margn-desg > h3:first-child {
+		text-align: center;
+		font-weight: bold;
+	}
+	div.chapter-margn > h3:first-child {
+		text-align: center;
+		font-weight: bold;
+	}
+	.slectinvite{
+		height: 12px;
+	}
+	
+	.creation-section #content .circle-button {
+		z-index: 1;
+		height: 15px;
+		top: 28px;
+		left: 25px;
+		position: fixed;
+		cursor: pointer;
+		background: #29282e;
+		border-radius: 50%;
+		-moz-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		-o-border-radius: 50%;
+		width: 44px;
+		height: 44px;
+	}
+</style>
+<script>
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip();
+	});
+</script>

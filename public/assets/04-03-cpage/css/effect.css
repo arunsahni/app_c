@@ -1,0 +1,453 @@
+.cbutton {
+	position: relative;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	border: none;
+	background: none;
+	color: #286aab;
+	font-size: 1.4em;
+	overflow: visible;
+	-webkit-transition: color 0.7s;
+	transition: color 0.7s;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.cbutton.cbutton--click,
+.cbutton:focus {
+	outline: none;
+	color: #000;
+}
+
+.cbutton__icon {
+	display: block;
+}
+
+.cbutton__text {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+	left:0; top:0; bottom:0; right:0;
+}
+
+.cbutton::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	/*margin: -35px 0 0 -35px;*/
+	margin:0;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	content: '';
+	opacity: 0;
+	pointer-events: none;
+}
+
+.cbutton--box {
+	width: 24px;
+	height: 24px;
+	border: 4px solid rgb(0, 0, 0);
+}
+
+/* Individual Effects */
+/* Tamara */
+.cbutton--effect-tamara::after {
+	box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+}
+
+.cbutton--effect-tamara.cbutton--click::after {
+	-webkit-animation: anim-effect-tamara 0.5s ease-out forwards;
+	animation: anim-effect-tamara 0.5s ease-out forwards;
+}
+
+@-webkit-keyframes anim-effect-tamara {
+	0% {
+		box-shadow: 0 0 0 3px rgba(0,0,0,0.3);
+		opacity: 1;
+		-webkit-transform: scale3d(0.6, 0.6, 1);
+		transform: scale3d(0.6, 0.6, 1);
+	}
+	100% {
+		box-shadow: 0 0 0 100px rgba(0,0,0,0);
+		opacity: 0;
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+@keyframes anim-effect-tamara {
+	0% {
+		box-shadow: 0 0 0 3px rgba(0,0,0,0.3);
+		opacity: 1;
+		-webkit-transform: scale3d(0.6, 0.6, 1);
+		transform: scale3d(0.6, 0.6, 1);
+	}
+	100% {
+		box-shadow: 0 0 0 100px rgba(0,0,0,0);
+		opacity: 0;
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+}
+
+
+/* Ivana */
+.cbutton--effect-ivana::before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -35px 0 0 -35px;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	content: '';
+	opacity: 0;
+	pointer-events: none;
+}
+
+.cbutton--effect-ivana::before,
+.cbutton--effect-ivana::after {
+	box-shadow: 0 0 0 2px rgba(0,0,0,0.8);
+}
+
+.cbutton--effect-ivana.cbutton--click::before {
+	-webkit-animation: anim-effect-ivana-1 0.5s forwards;
+	animation: anim-effect-ivana-1 0.5s forwards;
+}
+
+.cbutton--effect-ivana.cbutton--click::after {
+	-webkit-animation: anim-effect-ivana-2 0.5s forwards;
+	animation: anim-effect-ivana-2 0.5s forwards;
+}
+
+@-webkit-keyframes anim-effect-ivana-1 {
+	0% {
+		opacity: 1;
+		-webkit-transform: scale3d(0.5, 0.5, 1);
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	100% {
+		opacity: 0;
+		-webkit-transform: scale3d(1.1, 1.1, 1);
+		transform: scale3d(1.1, 1.1, 1);
+	}
+}
+
+@keyframes anim-effect-ivana-1 {
+	0% {
+		opacity: 1;
+		-webkit-transform: scale3d(0.5, 0.5, 1);
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	100% {
+		opacity: 0;
+		-webkit-transform: scale3d(1.1, 1.1, 1);
+		transform: scale3d(1.1, 1.1, 1);
+	}
+}
+
+@-webkit-keyframes anim-effect-ivana-2 {
+	0% {
+		opacity: 1;
+		-webkit-transform: scale3d(0.5, 0.5, 1);
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	50%, 100% {
+		opacity: 0;
+		-webkit-transform: scale3d(1.2, 1.2, 1);
+		transform: scale3d(1.2, 1.2, 1);
+	}
+}
+
+@keyframes anim-effect-ivana-2 {
+	0% {
+		opacity: 1;
+		-webkit-transform: scale3d(0.5, 0.5, 1);
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	50%, 100% {
+		opacity: 0;
+		-webkit-transform: scale3d(1.2, 1.2, 1);
+		transform: scale3d(1.2, 1.2, 1);
+	}
+}
+
+
+
+/************************************************ *************************************************************/
+.hi-icon {
+	display: inline-block;
+	font-size: 0px;
+	cursor: pointer;
+	margin:0;
+	width:44px;
+	height:44px;
+	border-radius: 50%;
+	text-align: center;
+	position: relative;
+	z-index: 1;
+	color: #fff;
+	background-color:#29282e;
+}
+
+.hi-icon:after {
+	pointer-events: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	-webkit-box-sizing: content-box; 
+	-moz-box-sizing: content-box; 
+	box-sizing: content-box;
+}
+
+.hi-icon:before {
+	speak: none;
+	font-size: 48px;
+	line-height: 90px;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	display: block;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Effect 1 */
+.hi-icon-effect-1 .hi-icon {
+	/*background: rgba(255,255,255,0.1);*/
+	background:#29282e;
+	-webkit-transition: background 0.2s, color 0.2s;
+	-moz-transition: background 0.2s, color 0.2s;
+	transition: background 0.2s, color 0.2s;
+}
+
+.hi-icon-effect-1 .hi-icon:after {
+	top: -2px;
+	left: -2px;
+	padding:2px;
+	box-shadow: 0 0 0 4px #29282e;
+	-webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
+	-webkit-transform: scale(.8);
+	-moz-transition: -moz-transform 0.2s, opacity 0.2s;
+	-moz-transform: scale(.8);
+	-ms-transform: scale(.8);
+	transition: transform 0.2s, opacity 0.2s;
+	transform: scale(.8);
+	opacity: 0;
+}
+
+/* Effect 1a */
+.hi-icon-effect-1a .hi-icon:hover {
+	background: rgba(0,0,0,1);
+	color: #41ab6b;
+}
+
+.hi-icon-effect-1a .hi-icon:hover:after {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
+
+/* Effect 1b */
+.hi-icon-effect-1b .hi-icon:hover {
+	background: rgba(255,255,255,1);
+	color: #41ab6b;
+}
+
+.hi-icon-effect-1b .hi-icon:after {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+
+.hi-icon-effect-1b .hi-icon:hover:after {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	opacity: 1;
+}
+
+/* Effect 9 */
+.hi-icon-effect-9 .hi-icon {
+	-webkit-transition: box-shadow 0.2s;
+	-moz-transition: box-shadow 0.2s;
+	transition: box-shadow 0.2s;
+}
+
+.hi-icon-effect-9 .hi-icon:after {
+	top: 0;
+	left: 0;
+	padding: 0;
+	box-shadow: 0 0 0 3px #fff;
+	-webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
+	-moz-transition: -moz-transform 0.2s, opacity 0.2s;
+	transition: transform 0.2s, opacity 0.2s;
+}
+
+/* Effect 9a */
+.hi-icon-effect-9a .hi-icon:hover:after {
+	-webkit-transform: scale(0.85);
+	-moz-transform: scale(0.85);
+	-ms-transform: scale(0.85);
+	transform: scale(0.85);
+	opacity: 0.5;
+}
+
+.hi-icon-effect-9a .hi-icon:hover {
+	box-shadow: 0 0 0 10px rgba(0,0,0,0.5);
+	color: #fff;
+}
+
+/* Effect 9b */
+.hi-icon-effect-9b .hi-icon:hover:after {
+	-webkit-transform: scale(0.85);
+	-moz-transform: scale(0.85);
+	-ms-transform: scale(0.85);
+	transform: scale(0.85);
+}
+
+.hi-icon-effect-9b .hi-icon:hover {
+	box-shadow: 0 0 0 10px rgba(0,0,0,0.2);
+	color: #fff;
+} 
+
+
+/* Effect 7: Centered expanding line */
+.la-anim-7 {
+	position: fixed;
+	top: 50%;
+	bottom: 0;
+	left: 50%;
+	z-index: -1;
+	width: 0;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	pointer-events: none;
+}
+
+.la-anim-7.la-animate {
+	z-index: 100;
+	width: 100%;
+	opacity: 0;
+	-webkit-transition: width 5s ease-in, opacity 1s 5s;
+	transition: width 5s ease-in, opacity 1s 5s;
+}
+
+
+/* Button 7i */
+.select-gallery-pic .btn {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background: none;
+	cursor: pointer;
+	padding: 25px 80px;
+	display: inline-block;
+	margin: 15px 30px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.select-gallery-pic .btn:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.select-gallery-pic .btn:before{
+	/*font-family: 'icomoon';
+	speak: none; */
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+}
+.btn-7 {
+	background:#17aa56;
+	color:#fff;
+	padding:0;
+}
+
+.btn-icon-only {
+	font-size: 0;
+	padding:;
+}
+
+.btn-icon-only:before {
+	/*position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	font-size: 26px;
+	line-height: 54px;*/
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+.btn-7d {
+	overflow: hidden;
+}
+
+.btn-7d:before {
+	color: #fff;
+	z-index: 1;
+}
+
+.btn-7d:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 0;
+	width: 100%;
+	z-index: 0;
+	background:rgba(0,0,0,0.5);
+	color:#fff;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+}
+
+.btn-7d.btn-activated:after {
+	-webkit-animation: emptyBottom 0.7s forwards;
+	-moz-animation: emptyBottom 0.7s forwards;
+	animation: emptyBottom 0.7s forwards;
+}
+
+@-webkit-keyframes emptyBottom {
+	to { 
+		height: 100%;
+	}
+}
+
+@-moz-keyframes emptyBottom {
+	to { 
+		height: 100%;
+	}
+}
+
+@keyframes emptyBottom {
+	to { 
+		height: 100%;
+	}
+}

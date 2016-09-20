@@ -1,0 +1,329 @@
+<div id="menu-button" class="toggle-menu menu-left push-body">
+	<div id="top"></div>
+	<div id="middle"></div>
+	<div id="bottom"></div>
+</div>
+
+<div class="dropdown-menu" href="#">
+<a href="#" class="dropdown-icon">
+<img alt="chapter" src="/assets/create/images/cloud-icn.png">
+</a>
+<div class="dropdown-item">
+	<ul>
+    	<li><a href="javascript:void(0)" ng-click="ChaptersMgmt.openLaunchSetting('AI')">AUDIENCE & INVITATION</a></li>
+    	<li><a href="javascript:void(0)" ng-click="ChaptersMgmt.openLaunchSetting('DE')">DESIGN & EXPERIENCE</a></li>
+    </ul>
+</div>
+</div>
+<a class="back-page-btn page-btns" href="#"><span>&lt;</span><label>Back</label></a>
+<!--<a class="next-page-btn page-btns" href="javascript:void(0)" ng-click="ChaptersMgmt.openLaunchSetting('AI')"><label>Next</label><span>&gt;</span></a>-->
+<div class="head">
+	<div class="wrapper">
+		
+		<div id="color-schemes" class="color-schemes-block">
+			<input type="text" ng-model="ChaptersMgmt.capsuleName" ng-blur="ChaptersMgmt.updateCapsuleName()" placeholder="Edit capsule name.." class="chapter-input" />
+		</div>
+		<div class="clearfix"></div>
+		
+		<div class="chapter_box chapter_box2">
+		<h2 class="width_auto">Chapters-in-the-making</h2> 
+		<span class="dragdesc">
+			Drag and move your chapters in order as you wish
+		</span>
+		<div class="clear"></div>
+		
+		<!-- chapter-row start -->
+		<div class="chapter-row">
+			<ul ui-sortable="ChaptersMgmt.sortableOptions" ng-model="ChaptersMgmt.chapters">
+				<li class="testing" ng-repeat="chapter in ChaptersMgmt.chapters">
+					<div class="send-message-block scrollable" style="z-index:999999;">
+						<a href="javascript:void(0)" class="message-block-arw">
+							<img title="arrow" src="/assets/create/images/arrow-icon.png" alt="Edit" />
+						</a>
+						<!--<div class="add-msg-head">
+						<textarea placeholder="Add a message?"></textarea>
+						</div>-->
+						<div class="search-find-row">
+							<input type="text" name="name" placeholder="Search" ng-model="searchFrnd">
+						</div>
+						<div class="send-msg-description">
+							<p> <strong>Send chapters to your friends!</strong><br>Plan projects, swap ideas and share your best discoveries. </p>
+						</div>
+						<div class="search-result-block" style="height:250px;">
+							<ul style="">
+								<li ng-repeat="frnd in friends | filter : searchFrnd" ng-click="ChaptersMgmt.share(chapter._id , frnd.Friend.Email)"> 
+									<a style="" href="javascript:void(0)">
+										<div class="left-box"> 
+											<!--<img style="" src="https://s-passets-cache-ak0.pinimg.com/images/user/default_75.png">-->
+											<img title="{{frnd.Friend.Email}}" ng-src="{{frnd.Friend.Pic}}" />
+										</div>
+										<div class="right-box">
+											<h2 title="{{frnd.Friend.Email}}">{{frnd.Friend.Name}}</h2>
+											<p> {{frnd.Friend.Relation}} </p>
+										</div>
+									</a> 
+								</li>
+							</ul>	
+						</div>
+					</div>
+					<div class="chapter-box  zoomIn animated ">
+						<div class="chapter-pic dragBox">
+							<img ng-if="chapter.CoverArt" src="/assets/Media/covers/small/{{chapter.CoverArt}}" alt="chapter"/>
+							<img ng-if="!(chapter.CoverArt)" src="/assets/create/images/no-chapter-pic.jpg" alt="chapter"/>
+							<ul class="chapter-tool">
+								<li class="edit">
+									<a data-toggle="tooltip" title="Edit" href="#/manage-pages/{{chapter.CapsuleId}}/{{chapter._id}}"><img src="/assets/create/images/chapter/edit-chapter.png" alt="Edit" /></a>
+									<!--<span class="tooltip">Edit</span>-->
+								</li>
+								<li class="duplicate">
+									<a data-toggle="tooltip" title="Duplicate"  href="javascript:void(0)" ng-click="ChaptersMgmt.duplicate(chapter._id)"><img src="/assets/create/images/chapter/duplicate.png" alt="Duplicate" /></a>
+									<!--<span class="tooltip">Duplicate</span>-->
+								</li>
+								<li class="delete">
+									<a data-toggle="tooltip" title="Delete"  href="javascript:void(0)" ng-click="ChaptersMgmt.remove(chapter._id)"><img data-toggle="tooltip" title="Delete" src="/assets/create/images/chapter/delete-chapter.png" alt="Edit" /></a>
+									<!--<span class="tooltip">Delete</span>-->
+								</li>
+								<li class="edit">
+									<a href="javascript:void(0)" class="open_pop2"><img data-toggle="tooltip" title="Share" src="/assets/create/images/chapter/share.png" alt="Edit" /></a>
+									<!--<span class="tooltip">Share</span>-->
+								</li>
+                                <li class="preview" ng-click="ChaptersMgmt.preview(chapter._id)">
+									<a href="javascript:void(0)"><img data-toggle="tooltip" title="Preview" src="/assets/create/images/chapter/preview-chapter.png" alt="Preview" /></a>
+									<!--<span class="tooltip">Preview</span>-->
+								</li>
+							</ul>
+							<div class="chapter-overlay2" ng-click="ChaptersMgmt.init_edit(chapter._id)" >
+							</div>
+						</div>
+						<!--
+						<div class="chapter-info">
+							<span class="chapter-no">
+								{{$index+1}}
+							</span>
+							<span class="chapter-name" data-toggle="tooltip" title="{{chapter.Title}}">
+								{{chapter.Title}}
+							</span>
+						</div>
+						-->
+						<div class="chapter-info">
+                        	<div class="edit-title-box edit-title-box-befor">
+                                <span class="chapter-no">
+                                    {{$index+1}}
+                                </span>
+                                <span class="chapter-name" data-toggle="tooltip" title="{{chapter.Title}}">
+                                    {{chapter.Title}}
+                                </span>
+                                <a href="javascript:void(0)" class="icon-add edit_title"><img title="Edit" src="/assets/create/images/chapter/pen-checkbox.png" alt="Edit" /></a>
+                            </div>
+                            
+                            <div class="edit-title-box edit-title-box-after" style="display:none;">
+                                <input type="text" value="" placeholder="{{chapter.Title}}" >
+                                <a href="javascript:void(0)" class="icon-add close_title"><img title="Close" src="/assets/create/images/chapter/cross.png" alt="Close" /></a>
+                            </div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<!--
+			<ul>
+            	<li>
+					<div class="chapter-box add-chapter-box" ng-click="ChaptersMgmt.create()">
+						<div class="chapter-pic">
+							<img src="/assets/create/images/add-new-pic.jpg">
+							<span class="add-icn">
+                                	<img src="/assets/create/images/chapter/add-icn.png">
+                            </span>
+							<div class="chapter-overlay2">
+							</div>
+						</div>
+						<div class="chapter-info">
+							<span class="chapter-name float-lft">
+								Add New
+							</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+			-->
+			<ul class="add-capsules-block">
+            	<li>
+					<div class="chapter-box add-chapter-box" ng-click="ChaptersMgmt.create()">
+                    	<div class="chapter-pic-outer-box">
+                            <div class="chapter-pic">
+                                <span class="add-icn">
+                                        <img src="/assets/create/images/chapter/add-icn.png">
+                                </span>
+                                <div class="chapter-overlay2">
+                                </div>
+                            </div>
+                        </div>
+						<div class="chapter-info">
+							<span class="chapter-name float-lft">
+								Add New
+							</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- chapter-row end -->
+		
+		</div>
+		
+		<!-- START BROWSE -->
+		<div class="browse">
+			<div class="heading-row">
+				<h2>Chapter Library</h2>
+			</div>
+			<ul class="tabs library-qc">
+				<li><a href="javascript:void(0)" class="qc-all selected" ng-click="ChaptersMgmt.setQueryCriteria('all')">All</a></li>
+				<li><a href="javascript:void(0)" class="qc-createdByMe" ng-click="ChaptersMgmt.setQueryCriteria('createdByMe')">Created by you</a></li>
+				<li><a href="javascript:void(0)" class="qc-sharedWithMe" ng-click="ChaptersMgmt.setQueryCriteria('sharedWithMe')">Shared with you</a></li>
+				<!--<li><a href="javascript:void(0)" class="qc-createdForMe" ng-click="ChaptersMgmt.setQueryCriteria('createdForMe')">Created For you</a></li>-->
+				<li><a href="javascript:void(0)" class="qc-byTheHouse" ng-click="ChaptersMgmt.setQueryCriteria('byTheHouse')">By the house</a></li>
+			</ul>
+			
+			<div class="select-con select-con2">
+				<select>
+					<option value="Capsule 1">Latest</option>
+					<option value="Capsule 2">Latest</option>
+					<option value="Capsule 3">Latest</option>
+				</select>
+			</div>
+			
+			<div class="select-con first  select-con2">
+				<select>
+					<option value="Capsule 1">Capsule 1</option>
+					<option value="Capsule 2">Capsule 2</option>
+					<option value="Capsule 3">Capsule 3</option>
+				</select>
+			</div>
+			
+			<div class="clear"></div>
+			
+			<!-- START IMAGES -->
+			<div class="browse-images browse-images2">
+				<dir-pagination-controls on-page-change="ChaptersMgmt.pageChanged(newPageNumber)"></dir-pagination-controls>
+                <div class="chapter-library-block">
+                	<ul>
+                    	<li dir-paginate="chapter in ChaptersMgmt.chaptersPaginated  | itemsPerPage: perPage" total-items="count" current-page="pageNo">
+                        	<div class="send-message-block scrollable" style="z-index:999999;">
+								<a href="javascript:void(0)" class="message-block-arw">
+									<img title="arrow" src="/assets/create/images/arrow-icon.png" alt="Edit" />
+								</a>
+								<!--<div class="add-msg-head">
+								<textarea placeholder="Add a message?"></textarea>
+								</div>-->
+								<div class="search-find-row">
+									<input type="text" name="name" placeholder="Search" ng-model="searchFrnd">
+								</div>
+								<div class="send-msg-description">
+									<p> <strong>Send chapters to your friends!</strong><br>Plan projects, swap ideas and share your best discoveries. </p>
+								</div>
+								<div class="search-result-block" style="height:250px;">
+									<ul style="">
+										<li ng-repeat="frnd in friends | filter : searchFrnd" ng-click="ChaptersMgmt.share(chapter._id , frnd.Friend.Email)"> 
+											<a style="" href="javascript:void(0)">
+												<div class="left-box"> 
+													<!--<img style="" src="https://s-passets-cache-ak0.pinimg.com/images/user/default_75.png">-->
+													<img title="{{frnd.Friend.Email}}" ng-src="{{frnd.Friend.Pic}}" />
+												</div>
+												<div class="right-box">
+													<h2 title="{{frnd.Friend.Email}}">{{frnd.Friend.Name}}</h2>
+													<p> {{frnd.Friend.Relation}} </p>
+												</div>
+											</a> 
+										</li>
+									</ul>	
+								</div>
+							</div>
+							<div class="zoomIn chapter-library-bx">
+					<img ng-if="!(chapter.CoverArt)" src="/assets/create/images/no-chapter-pic.jpg" alt="chapter" class="primary zoomIn" />
+					<img ng-if="chapter.CoverArt" src="/assets/Media/covers/small/{{chapter.CoverArt}}" alt="chapter" class="primary zoomIn" />
+					<div class="chapter-overlay2" ng-click="ChaptersMgmt.preview(chapter._id)"></div>
+					<h3>{{chapter.Title}}</h3>
+					<ul class="chapter-library-icon">
+						<li class="preview" ng-click="ChaptersMgmt.preview(chapter._id)">
+							<a href="javascript:void(0)"><img data-toggle="tooltip" title="Preview" src="/assets/create/images/chapter/preview-chapter.png" alt="Preview" /></a>
+							<!--<span class="tooltip">Preview</span>-->
+						</li>
+						<li class="add">
+							<a href="javascript:void(0)" ng-click="ChaptersMgmt.addFromLibrary(chapter._id)"><img data-toggle="tooltip" title="Add" src="/assets/create/images/chapter/add-chapter.png" alt="Add" /></a>
+							<!--<span class="tooltip">Add</span>-->
+						</li>
+						<li class="edit">
+							<a href="javascript:void(0)" class="open_pop"><img data-toggle="tooltip" title="Share" src="/assets/create/images/chapter/share.png" alt="Edit" /></a>
+							<!--<span class="tooltip">Share</span>-->
+						</li>
+						<li class="delete">
+							<a href="javascript:void(0)" ng-click="ChaptersMgmt.remove(chapter._id)"><img data-toggle="tooltip" title="Delete" src="/assets/create/images/chapter/delete-chapter.png" alt="Edit" /></a>
+							<!--<span class="tooltip">Delete</span>-->
+						</li>
+					</ul>
+					<!--<div class="date">11/09/2014</div>-->
+				</div>
+						<div class="chapter-info">
+							<span class="chapter-no">
+								{{$index+1}}
+							</span>
+							<span class="chapter-name" data-toggle="tooltip" title="{{chapter.Title}}">
+								{{chapter.Title}}
+							</span>
+						</div>
+                        </li>
+                    </ul>
+                    
+                </div>
+				
+				
+				<div ng-if="ChaptersMgmt.chaptersPaginated.length==0">No Record Found!</div>
+				<div class="clear"></div>
+				
+			</div>
+			<!-- END IMAGES -->
+			
+		</div>
+		<!-- END BROWSE -->
+		
+		<a class="previous-link nav-link" href="javascript:void(0)">Previous</a>
+		<a class="next-link nav-link" href="javascript:void(0)">Proceed</a>
+		
+		<div class="clear"></div>
+		
+	</div>
+</div>
+<div id="loader" style="display: block;"><img src="/assets/create/images/ajax-loader.gif" alt="Loader" /></div>
+<div id="tips" style="display: none;"><div id="closetips"></div></div>
+<!--<script type="text/javascript" src="/assets/create/js/scripts.js"></script>-->
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  
+  $( document ).ready(function() {
+		$( document ).on("click", ".edit_title", function(){
+			$(this).parent( ".edit-title-box-befor" ).hide( "slow" );
+			$(this).parent( ".edit-title-box-befor" ).next().show( "slow" );
+		});
+		
+		$( document ).on("click", ".close_title", function(){
+			$(this).parent( ".edit-title-box-after" ).hide( "slow" );
+			$(this).parent( ".edit-title-box-after" ).prev().show( "slow" );
+		});			
+	});
+})
+</script>
+
+<style type="text/css">
+	.chapter-pic-outer-box { min-height:129px; padding-top:14px; }
+	.creation-section .add-capsules-block .chapter-pic { width:100px; height:100px; overflow:hidden; border-radius:100%; min-height:100px; }
+	.creation-section .add-capsules-block .add-icn { top:29%; left:29%; margin:0; }
+/*	.creation-section .add-capsules-block .add-icn img { width:26px; height:26px; }*/
+	.creation-section .chapter-info { font-family:"Brandon Light",Arial,sans-serif; }
+	.edit-title-box { position:relative; }
+	.edit-title-box .icon-add { position:absolute; width:16px; height:16px; top:2px; right:0; }
+	.creation-section .chapter-name { padding-right:20px; }
+	.edit-title-box input[type="text"] { font-family:"Brandon Light",Arial,sans-serif; width:140px; font-size:14px; border-bottom:1px solid #6b6a6f; border:none; color:#fff; padding:0 0 1px; background:none; }
+	.edit-title-box.edit-title-box-after .icon-add { top:4px; }
+	.creation-section .chapter-library-block .edit-title-box-after img { width:auto; }
+</style>
